@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- shownest main's color -->
+    <color name="main_color">#ff006a</color>
+    <color name="text_gray">#808080</color>
+    <color name="white">#FFFFFF</color>
+
+</resources>
