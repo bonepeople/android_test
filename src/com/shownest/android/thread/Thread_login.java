@@ -9,6 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.net.URLEncoder;
 
 import com.shownest.android.activity.Activity_login;
 
@@ -142,7 +143,7 @@ public class Thread_login extends Thread
 		__con.setRequestProperty("Cache-Control", "max-age=0");
 
 		StringBuffer __str_buf = new StringBuffer();
-		__str_buf.append("userName=" + this._username + "&userPassword=" + this._password);
+		__str_buf.append("userName=" + URLEncoder.encode(this._username, "UTF-8") + "&userPassword=" + URLEncoder.encode(this._password, "UTF-8"));
 		OutputStream __os = null;
 		try
 		{
