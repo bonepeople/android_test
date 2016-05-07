@@ -1,13 +1,11 @@
 package com.shownest.android.fragment;
 
 import com.shownest.android.R;
-import com.shownest.android.thread.Thread_get_code;
-import com.shownest.android.thread.Thread_login;
+import com.shownest.android.activity.Activity_regist;
 import com.shownest.android.utils.CommonUtil;
-import com.shownest.android.widget.RelativeLayout_edit_informationbar;
+import com.shownest.android.utils.HttpUtil;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,7 +52,8 @@ public class Fragment_regist extends Fragment
 				if (CommonUtil.isPhone(_string_phone))
 				{
 					_regist_phone = _string_phone;
-					new Thread_get_code(_string_phone).start();
+					// new Thread_get_code(_string_phone).start();
+					HttpUtil.check_loginname(Activity_regist._handler, _string_phone, Activity_regist.CHECK_SUCCESSFUL, Activity_regist.CHECK_FAILED);
 				}
 				else
 					Toast.makeText(getActivity(), "不是正常的电话号码", Toast.LENGTH_SHORT).show();

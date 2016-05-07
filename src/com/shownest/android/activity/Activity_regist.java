@@ -4,16 +4,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.shownest.android.R;
-import com.shownest.android.fragment.Fragment_login;
 import com.shownest.android.fragment.Fragment_regist;
-import com.shownest.android.thread.Thread_send_code;
+import com.shownest.android.utils.HttpUtil;
 
 import android.app.Activity;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -88,7 +85,7 @@ public class Activity_regist extends Activity
 			 */
 			if (_result.equals("用户名不存在"))
 			{
-				new Thread_send_code(_fragment_regist.get_regist_phone()).start();
+				HttpUtil.send_mobilecode(_handler, _fragment_regist.get_regist_phone(), SEND_SUCCESSFUL, SEND_FAILED);
 			}
 			else
 				Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
@@ -96,7 +93,6 @@ public class Activity_regist extends Activity
 		}
 		catch (JSONException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

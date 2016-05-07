@@ -1,11 +1,10 @@
 package com.shownest.android.fragment;
 
 import com.shownest.android.R;
-import com.shownest.android.thread.Thread_login;
-import com.shownest.android.widget.RelativeLayout_edit_informationbar;
+import com.shownest.android.activity.Activity_login;
+import com.shownest.android.utils.HttpUtil;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,11 +41,10 @@ public class Fragment_login extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				// TODO Auto-generated method stub
-				_relativelayout_wait.setVisibility(_relativelayout_wait.VISIBLE);
+				_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
 				String _string_username = _edittext_username.getText().toString().trim();
 				String _string_password = _edittext_password.getText().toString();
-				new Thread_login(_string_username, _string_password).start();
+				HttpUtil.user_login(Activity_login._handler, _string_username, _string_password, Activity_login.LOGIN_SUCCESSFUL, Activity_login.LOGIN_FAILED);
 			}
 		});
 
@@ -57,7 +54,6 @@ public class Fragment_login extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				// TODO Auto-generated method stub
 				Toast.makeText(getActivity(), "forget password", Toast.LENGTH_SHORT).show();
 			}
 		});
