@@ -144,6 +144,8 @@ public class Thread_login extends Thread
 
 		StringBuffer __str_buf = new StringBuffer();
 		__str_buf.append("userName=" + URLEncoder.encode(this._username, "UTF-8") + "&userPassword=" + URLEncoder.encode(this._password, "UTF-8"));
+		
+		System.out.println(__str_buf);
 		OutputStream __os = null;
 		try
 		{

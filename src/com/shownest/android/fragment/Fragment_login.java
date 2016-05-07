@@ -14,13 +14,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Fragment_login extends Fragment
 {
 	private static boolean DEBUG = true;
-	private LinearLayout _linearlayout_body;
+	public RelativeLayout _relativelayout_wait;
 	private EditText _edittext_username, _edittext_password;
 	private TextView _textview_forget;
 	private Button _button_login;
@@ -30,6 +31,7 @@ public class Fragment_login extends Fragment
 		if (DEBUG)
 			System.out.println("Fragment_login onCreateView");
 		View _view = inflater.inflate(R.layout.fragment_login, container, false);
+		_relativelayout_wait = (RelativeLayout) _view.findViewById(R.id.relativelayout_wait);
 		_button_login = (Button) _view.findViewById(R.id.button_login);
 		_edittext_username = (EditText) _view.findViewById(R.id.edittext_username);
 		_edittext_password = (EditText) _view.findViewById(R.id.edittext_password);
@@ -42,6 +44,7 @@ public class Fragment_login extends Fragment
 			public void onClick(View v)
 			{
 				// TODO Auto-generated method stub
+				_relativelayout_wait.setVisibility(_relativelayout_wait.VISIBLE);
 				String _string_username = _edittext_username.getText().toString().trim();
 				String _string_password = _edittext_password.getText().toString();
 				new Thread_login(_string_username, _string_password).start();

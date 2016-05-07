@@ -4,12 +4,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.shownest.android.R;
+import com.shownest.android.fragment.Fragment_login;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class Activity_login extends Activity
@@ -19,6 +22,7 @@ public class Activity_login extends Activity
 	public static final int LOGIN_SUCCESSFUL = 1;
 	private static Activity_login _instance;
 	private static Context _context;
+	private static Fragment_login _fragment_login;
 	public static Handler _handler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)
@@ -37,6 +41,7 @@ public class Activity_login extends Activity
 
 				break;
 			}
+			_fragment_login._relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
 			System.out.println(_string_result);
 		};
 	};
@@ -49,6 +54,8 @@ public class Activity_login extends Activity
 		_instance = this;
 		_context = this.getApplicationContext();
 		setContentView(R.layout.activity_login);
+
+		_fragment_login = (Fragment_login) getFragmentManager().findFragmentById(R.id.fragment_login);
 
 	}
 

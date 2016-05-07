@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/button"
-        android:background="@drawable/button_background"
+        android:background="@drawable/background_button"
         android:text="下一步" />
 
 </LinearLayout>

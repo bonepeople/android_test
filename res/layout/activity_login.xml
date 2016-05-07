@@ -5,13 +5,13 @@
     android:orientation="vertical" >
 
     <fragment
-        android:id="@+id/fragment_home_title"
+        android:id="@+id/fragment_title"
         android:name="com.shownest.android.fragment.Fragment_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_height" />
 
     <fragment
-        android:id="@+id/fragment_home_body"
+        android:id="@+id/fragment_login"
         android:name="com.shownest.android.fragment.Fragment_login"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
