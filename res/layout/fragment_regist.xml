@@ -78,9 +78,9 @@
 
         <CheckBox
             android:id="@+id/checkbox_agree"
-            style="@style/CustomCheckboxTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:button="@drawable/checkbox_selector"
             android:checked="true" />
 
         <TextView
