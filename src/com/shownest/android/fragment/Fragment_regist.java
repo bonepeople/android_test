@@ -1,7 +1,9 @@
 package com.shownest.android.fragment;
 
 import com.shownest.android.R;
+import com.shownest.android.thread.Thread_get_code;
 import com.shownest.android.thread.Thread_login;
+import com.shownest.android.utils.CommonUtil;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 
 import android.app.Fragment;
@@ -49,8 +51,12 @@ public class Fragment_regist extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				Toast.makeText(getActivity(), "get code", Toast.LENGTH_SHORT).show();
-				// new Thread_login(_string_username, _string_password).start();
+				String _string_phone = _edittext_phone.getText().toString();
+				if (CommonUtil.isPhone(_string_phone))
+
+					new Thread_get_code(_string_phone).start();
+				else
+					Toast.makeText(getActivity(), "不是正常的电话号码", Toast.LENGTH_SHORT).show();
 			}
 		});
 
@@ -61,7 +67,7 @@ public class Fragment_regist extends Fragment
 			public void onClick(View v)
 			{
 				Toast.makeText(getActivity(), "regist  next", Toast.LENGTH_SHORT).show();
-//				new Thread_login(_string_username, _string_password).start();
+				// new Thread_login(_string_username, _string_password).start();
 			}
 		});
 

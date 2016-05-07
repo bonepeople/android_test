@@ -68,22 +68,18 @@ public class Activity_regist extends Activity
 		{
 			System.out.println("Activity_regist handle msg:" + str);
 		}
-		try
+		if(Integer.parseInt(str)==0)
 		{
-			JSONObject _obj = new JSONObject(str);
-			String _result = _obj.getString("msg");
-			Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
-			if (_result.equals("用户登录成功"))
-			{
-				_instance.finish();
-			}
-
+			Toast.makeText(_context, "用户已注册", Toast.LENGTH_SHORT).show();
 		}
-		catch (JSONException e)
+		else
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//进行下一步
+			Toast.makeText(_context, "用户未注册", Toast.LENGTH_SHORT).show();
 		}
+		
+		
+		
 	}
 
 }

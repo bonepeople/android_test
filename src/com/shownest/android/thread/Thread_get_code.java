@@ -11,36 +11,34 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
 
-import com.shownest.android.activity.Activity_login;
+import com.shownest.android.activity.Activity_regist;
 
 import android.os.Handler;
 import android.os.Message;
 
-public class Thread_login extends Thread
+public class Thread_get_code extends Thread
 {
-	private String _username = "";
-	private String _password = "";
+	private String _phone = "";
 	private Handler _handler;
 
-	public Thread_login(String username, String password)
+	public Thread_get_code(String phone)
 	{
-		this._handler = Activity_login._handler;
-		this._username = username;
-		this._password = password;
+		this._handler = Activity_regist._handler;
+		this._phone = phone;
 	}
 
 	@Override
 	public void run()
 	{
-		file_upload();
+		send_post();
 	}
 
-	private int file_upload()// ("/TradeLog.txt","TradeLog.txt")
+	private int send_post()// ("/TradeLog.txt","TradeLog.txt")
 	{
 		// 获取上传地址
 		// 根据系统时间判断过期问题
 		Message _msg = _handler.obtainMessage();
-		_msg.what = Activity_login.LOGIN_FAILED;
+		_msg.what = Activity_regist.REGIST_FAILED;
 		_msg.obj = new String("Exception");
 		URL __realUrl = null;
 		HttpURLConnection __connection = null;
@@ -50,7 +48,7 @@ public class Thread_login extends Thread
 		try
 		{
 
-			String __url_upload_file = "http://t.shownest.com:86/webuserlogin";
+			String __url_upload_file = "http://t.shownest.com:86/checkUserPhone";
 
 			System.out.println(__url_upload_file);
 			__realUrl = new URL(__url_upload_file);
@@ -73,7 +71,7 @@ public class Thread_login extends Thread
 				}
 				// System.out.println("result=" + __result);
 				__status = 1;
-				_msg.what = Activity_login.LOGIN_SUCCESSFUL;
+				_msg.what = Activity_regist.REGIST_SUCCESSFUL;
 				_msg.obj = __result;
 			}
 			else
@@ -88,7 +86,7 @@ public class Thread_login extends Thread
 				}
 				// System.out.println("HTTP上传返回值异常：" + __status);
 				// System.out.println("result=" + __result_err);
-				_msg.what = Activity_login.LOGIN_FAILED;
+				_msg.what = Activity_regist.REGIST_FAILED;
 				_msg.obj = __result_err;
 			}
 		}
@@ -143,8 +141,8 @@ public class Thread_login extends Thread
 		__con.setRequestProperty("Cache-Control", "max-age=0");
 
 		StringBuffer __str_buf = new StringBuffer();
-		__str_buf.append("userName=" + URLEncoder.encode(this._username, "UTF-8") + "&userPassword=" + URLEncoder.encode(this._password, "UTF-8"));
-		
+		__str_buf.append("telNo=" + URLEncoder.encode(this._phone, "UTF-8"));
+
 		System.out.println(__str_buf);
 		OutputStream __os = null;
 		try
