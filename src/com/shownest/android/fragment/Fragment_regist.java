@@ -25,10 +25,11 @@ public class Fragment_regist extends Fragment
 {
 	private static boolean DEBUG = true;
 	public RelativeLayout _relativelayout_wait;
-	private EditText _edittext_phone, _edittext_code, _edittext_pwd, _edittext_pwd_confirm;
+	private EditText _edittext_phone, _edittext_code, _edittext_pwd;
 	private TextView _textview_agreement;
 	private CheckBox _checkbox_agree;
 	private Button _button_code, _button_next;
+	private String _regist_phone = "";
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
@@ -41,7 +42,6 @@ public class Fragment_regist extends Fragment
 		_edittext_phone = (EditText) _view.findViewById(R.id.edittext_phone);
 		_edittext_code = (EditText) _view.findViewById(R.id.edittext_code);
 		_edittext_pwd = (EditText) _view.findViewById(R.id.edittext_password);
-		_edittext_pwd_confirm = (EditText) _view.findViewById(R.id.edittext_password_confirm);
 		_textview_agreement = (TextView) _view.findViewById(R.id.textview_agreement);
 		_checkbox_agree = (CheckBox) _view.findViewById(R.id.checkbox_agree);
 
@@ -53,8 +53,10 @@ public class Fragment_regist extends Fragment
 			{
 				String _string_phone = _edittext_phone.getText().toString();
 				if (CommonUtil.isPhone(_string_phone))
-
+				{
+					_regist_phone = _string_phone;
 					new Thread_get_code(_string_phone).start();
+				}
 				else
 					Toast.makeText(getActivity(), "不是正常的电话号码", Toast.LENGTH_SHORT).show();
 			}
@@ -84,4 +86,8 @@ public class Fragment_regist extends Fragment
 		return _view;
 	}
 
+	public String get_regist_phone()
+	{
+		return _regist_phone;
+	}
 }

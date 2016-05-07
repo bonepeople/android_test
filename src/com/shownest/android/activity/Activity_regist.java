@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import com.shownest.android.R;
 import com.shownest.android.fragment.Fragment_login;
 import com.shownest.android.fragment.Fragment_regist;
+import com.shownest.android.thread.Thread_send_code;
 
 import android.app.Activity;
 import android.app.FragmentManager;
@@ -21,6 +22,10 @@ public class Activity_regist extends Activity
 	private static boolean DEBUG = true;
 	public static final int REGIST_FAILED = 0;
 	public static final int REGIST_SUCCESSFUL = 1;
+	public static final int SEND_FAILED = 2;
+	public static final int SEND_SUCCESSFUL = 3;
+	public static final int CHECK_FAILED = 4;
+	public static final int CHECK_SUCCESSFUL = 5;
 	private static Activity_regist _instance;
 	private static Context _context;
 	private static Fragment_regist _fragment_regist;
@@ -31,16 +36,20 @@ public class Activity_regist extends Activity
 			String _string_result = "";
 			switch (msg.what)
 			{
-			case REGIST_FAILED:
+			case SEND_FAILED:
+			case CHECK_FAILED:
 				Toast.makeText(_context, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 				_string_result = (String) msg.obj;
 
 				break;
-			case REGIST_SUCCESSFUL:
+			case CHECK_SUCCESSFUL:
 				_string_result = (String) msg.obj;
 				handle_string(_string_result);
 
 				break;
+			case SEND_SUCCESSFUL:
+				_string_result = (String) msg.obj;
+				handle_string(_string_result);
 			}
 			_fragment_regist._relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
 			System.out.println(_string_result);
@@ -68,18 +77,29 @@ public class Activity_regist extends Activity
 		{
 			System.out.println("Activity_regist handle msg:" + str);
 		}
-		if(Integer.parseInt(str)==0)
+		try
 		{
-			Toast.makeText(_context, "用户已注册", Toast.LENGTH_SHORT).show();
+			JSONObject _obj = new JSONObject(str);
+			String _result = _obj.getString("msg");
+
+			/*
+			 * if (_result.equals("用户名已经存在")) Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show(); if (_result.equals("用户名不存在")) { new
+			 * Thread_send_code(_fragment_regist.get_regist_phone()).start(); } if (_result.equals("手机验证码发送成功")) Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
+			 */
+			if (_result.equals("用户名不存在"))
+			{
+				new Thread_send_code(_fragment_regist.get_regist_phone()).start();
+			}
+			else
+				Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
+
 		}
-		else
+		catch (JSONException e)
 		{
-			//进行下一步
-			Toast.makeText(_context, "用户未注册", Toast.LENGTH_SHORT).show();
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
-		
-		
+
 	}
 
 }
