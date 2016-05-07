@@ -5,7 +5,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:background="@color/background_main" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -13,25 +14,33 @@
             android:gravity="center_horizontal"
             android:orientation="vertical" >
 
-            <EditText
-                android:id="@+id/edittext_username"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:drawableLeft="@drawable/username"
-                android:drawablePadding="10dp"
-                android:hint="用户名、邮箱或者手机"
-                android:singleLine="true" />
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/background_linearlayuot"
+                android:orientation="vertical" >
 
-            <EditText
-                android:id="@+id/edittext_password"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
-                android:drawableLeft="@drawable/passwords"
-                android:drawablePadding="10dp"
-                android:hint="密码"
-                android:inputType="textPassword"
-                android:singleLine="true" />
+                <EditText
+                    android:id="@+id/edittext_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableLeft="@drawable/username"
+                    android:drawablePadding="10dp"
+                    android:hint="用户名、邮箱或者手机"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/edittext_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:drawableLeft="@drawable/passwords"
+                    android:drawablePadding="10dp"
+                    android:hint="密码"
+                    android:inputType="textPassword"
+                    android:singleLine="true" />
+            </LinearLayout>
 
             <Button
                 android:id="@+id/button_login"
