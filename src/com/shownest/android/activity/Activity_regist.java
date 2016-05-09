@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.fragment.Fragment_regist;
+import com.shownest.android.thread.Thread_time;
 import com.shownest.android.utils.HttpUtil;
 
 import android.app.Activity;
@@ -23,6 +24,7 @@ public class Activity_regist extends Activity
 	public static final int SEND_SUCCESSFUL = 3;
 	public static final int CHECK_FAILED = 4;
 	public static final int CHECK_SUCCESSFUL = 5;
+	public static final int BUTTON_CHANGE = 6;
 	private static Activity_regist _instance;
 	private static Context _context;
 	private static Fragment_regist _fragment_regist;
@@ -46,10 +48,14 @@ public class Activity_regist extends Activity
 			case SEND_SUCCESSFUL:
 				_string_result = (String) msg.obj;
 				handle_string(_string_result);
+				new Thread_time(_handler, BUTTON_CHANGE, 62, 1).start();
 				break;
 			case REGIST_SUCCESSFUL:
 				_string_result = (String) msg.obj;
 				handle_string(_string_result);
+				break;
+			case BUTTON_CHANGE:
+				_fragment_regist.mobilcode_change();
 			}
 			_fragment_regist._relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
 			System.out.println(_string_result);
