@@ -16,7 +16,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.shownest.android.activity.Activity_publish_yezhu"
+            android:name="com.shownest.android.activity.Activity_main"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,6 +27,8 @@
         <activity android:name="com.shownest.android.activity.Activity_login" >
         </activity>
         <activity android:name="com.shownest.android.activity.Activity_regist" >
+        </activity>
+        <activity android:name="com.shownest.android.activity.Activity_publish_yezhu" >
         </activity>
     </application>
 

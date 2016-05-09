@@ -52,10 +52,6 @@ public class Fragment_activity_publish_yezhu extends Fragment
 			public void onClick(View v)
 			{
 				Toast.makeText(getActivity(), "next", Toast.LENGTH_SHORT).show();
-				Intent intent = new Intent(getActivity(), Activity_regist.class);
-				// intent.putExtra("type", "update");
-				// intent.putExtra("name", _selected);
-				startActivity(intent);
 
 			}
 		});
