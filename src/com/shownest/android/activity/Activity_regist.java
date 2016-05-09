@@ -33,18 +33,21 @@ public class Activity_regist extends Activity
 			String _string_result = "";
 			switch (msg.what)
 			{
-			case SEND_FAILED:
 			case CHECK_FAILED:
+			case SEND_FAILED:
+			case REGIST_FAILED:
 				Toast.makeText(_context, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 				_string_result = (String) msg.obj;
-
 				break;
 			case CHECK_SUCCESSFUL:
 				_string_result = (String) msg.obj;
 				handle_string(_string_result);
-
 				break;
 			case SEND_SUCCESSFUL:
+				_string_result = (String) msg.obj;
+				handle_string(_string_result);
+				break;
+			case REGIST_SUCCESSFUL:
 				_string_result = (String) msg.obj;
 				handle_string(_string_result);
 			}

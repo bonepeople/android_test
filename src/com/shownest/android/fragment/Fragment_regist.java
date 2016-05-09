@@ -27,6 +27,7 @@ public class Fragment_regist extends Fragment
 	private CheckBox _checkbox_agree;
 	private Button _button_code, _button_next;
 	private String _regist_phone = "";
+	private boolean _code_wait = false;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
@@ -49,14 +50,14 @@ public class Fragment_regist extends Fragment
 			public void onClick(View v)
 			{
 				String _string_phone = _edittext_phone.getText().toString();
-				if (CommonUtil.isPhone(_string_phone))
-				{
-					_regist_phone = _string_phone;
-					// new Thread_get_code(_string_phone).start();
-					HttpUtil.check_loginname(Activity_regist._handler, _string_phone, Activity_regist.CHECK_SUCCESSFUL, Activity_regist.CHECK_FAILED);
-				}
-				else
-					Toast.makeText(getActivity(), "不是正常的电话号码", Toast.LENGTH_SHORT).show();
+				if (!_code_wait)
+					if (CommonUtil.isPhone(_string_phone))
+					{
+						_regist_phone = _string_phone;
+						HttpUtil.check_loginname(Activity_regist._handler, _string_phone, Activity_regist.CHECK_SUCCESSFUL, Activity_regist.CHECK_FAILED);
+					}
+					else
+						Toast.makeText(getActivity(), "请输入正确的电话号码", Toast.LENGTH_SHORT).show();
 			}
 		});
 
@@ -66,8 +67,32 @@ public class Fragment_regist extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				Toast.makeText(getActivity(), "regist  next", Toast.LENGTH_SHORT).show();
-				// new Thread_login(_string_username, _string_password).start();
+				String _string_phone = _edittext_phone.getText().toString();
+				String _code = _edittext_code.getText().toString().trim();
+				String _password = _edittext_pwd.getText().toString();
+
+				if (!CommonUtil.isPhone(_string_phone))
+				{
+					Toast.makeText(getActivity(), "请输入正确的电话号码", Toast.LENGTH_SHORT).show();
+				}
+				else if (_code.isEmpty())
+				{
+					Toast.makeText(getActivity(), "请输入短信验证码", Toast.LENGTH_SHORT).show();
+				}
+				else if (_password.length() < 6 || _password.length() > 20)
+				{
+					Toast.makeText(getActivity(), "请确保密码为6-20位", Toast.LENGTH_SHORT).show();
+				}
+				else if (!_checkbox_agree.isChecked())
+				{
+					Toast.makeText(getActivity(), "请同意秀巢协议", Toast.LENGTH_SHORT).show();
+				}
+				else
+				{
+					_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
+					HttpUtil.submit_reg(Activity_regist._handler, _string_phone, _code, _password, Activity_regist.REGIST_SUCCESSFUL, Activity_regist.REGIST_FAILED);
+				}
+
 			}
 		});
 
@@ -78,10 +103,31 @@ public class Fragment_regist extends Fragment
 			public void onClick(View v)
 			{
 				// TODO Auto-generated method stub
-				Toast.makeText(getActivity(), "view agreement", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getActivity(), "详细协议请前往官网查看", Toast.LENGTH_SHORT).show();
 			}
 		});
 		return _view;
+	}
+
+	public void mobilcode_change()
+	{
+		String _temp_str = _button_code.getText().toString();
+		if (_temp_str.equals("获取验证码"))
+		{
+			_button_code.setText("60");
+			_code_wait = true;
+		}
+		else
+		{
+			int _second = Integer.parseInt(_temp_str);
+			if (_second == 0)
+			{
+				_button_code.setText("获取验证码");
+				_code_wait = false;
+			}
+			else
+				_button_code.setText(String.valueOf(_second - 1));
+		}
 	}
 
 	public String get_regist_phone()
