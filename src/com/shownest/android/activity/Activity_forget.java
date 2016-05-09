@@ -28,6 +28,7 @@ public class Activity_forget extends Activity
 	public static final int BUTTON_CHANGE = 6;
 	private static Context _context;
 	private static Fragment_forget _fragment_forget;
+	private static Thread_time _timer = null;
 	public static Handler _handler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)
@@ -47,7 +48,6 @@ public class Activity_forget extends Activity
 			case SEND_SUCCESSFUL:
 				_string_result = (String) msg.obj;
 				handle_string(_string_result);
-				new Thread_time(_handler, BUTTON_CHANGE, 62, 1).start();
 				break;
 			case FORGET_SUCCESSFUL:
 				_string_result = (String) msg.obj;
@@ -72,6 +72,8 @@ public class Activity_forget extends Activity
 		setContentView(R.layout.activity_forget);
 
 		_fragment_forget = (Fragment_forget) getFragmentManager().findFragmentById(R.id.fragment_forget);
+		if (_timer != null)
+			_timer.interrupt();
 
 	}
 
@@ -94,6 +96,11 @@ public class Activity_forget extends Activity
 			{
 				// 开启修改密码的界面。
 				Toast.makeText(_context, "验证成功，更改密码", Toast.LENGTH_SHORT).show();
+			}
+			else if (_result.equals("机验证码发送成功"))
+			{
+				_timer = new Thread_time(_handler, BUTTON_CHANGE, 62, 1);
+				_timer.start();
 			}
 			else
 				Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
