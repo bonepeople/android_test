@@ -1,13 +1,9 @@
 package com.shownest.android.fragment;
 
 import com.shownest.android.R;
-import com.shownest.android.activity.Activity_login;
-import com.shownest.android.activity.Activity_regist;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 
 import android.app.Fragment;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

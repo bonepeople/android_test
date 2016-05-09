@@ -7,11 +7,9 @@ import com.shownest.android.R;
 import com.shownest.android.fragment.Fragment_login;
 
 import android.app.Activity;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 

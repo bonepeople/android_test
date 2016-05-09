@@ -44,7 +44,13 @@ public class Fragment_login extends Fragment
 				_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
 				String _string_username = _edittext_username.getText().toString().trim();
 				String _string_password = _edittext_password.getText().toString();
-				HttpUtil.user_login(Activity_login._handler, _string_username, _string_password, Activity_login.LOGIN_SUCCESSFUL, Activity_login.LOGIN_FAILED);
+				if (_string_username.isEmpty() || _string_password.isEmpty())
+				{
+					Toast.makeText(getActivity(), "用户名或密码不能为空", Toast.LENGTH_SHORT).show();
+				}
+				else
+
+					HttpUtil.user_login(Activity_login._handler, _string_username, _string_password, Activity_login.LOGIN_SUCCESSFUL, Activity_login.LOGIN_FAILED);
 			}
 		});
 

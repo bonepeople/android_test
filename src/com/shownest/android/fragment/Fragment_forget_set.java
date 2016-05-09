@@ -1,7 +1,6 @@
 package com.shownest.android.fragment;
 
 import com.shownest.android.R;
-import com.shownest.android.activity.Activity_login;
 import com.shownest.android.utils.HttpUtil;
 
 import android.app.Fragment;
@@ -13,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class Fragment_forget_set extends Fragment
@@ -47,7 +45,7 @@ public class Fragment_forget_set extends Fragment
 				{
 					Toast.makeText(getActivity(), "请确保密码为6-20位", Toast.LENGTH_SHORT).show();
 				}
-				else if (_password.equals(_password))
+				else if (_password.equals(_password_confirm))
 				{
 					Toast.makeText(getActivity(), "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
 				}
