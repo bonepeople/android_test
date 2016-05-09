@@ -24,7 +24,7 @@ public class Fragment_forget extends Fragment
 	private EditText _edittext_phone, _edittext_code;
 	private Button _button_code, _button_next;
 	private String _regist_phone = "";
-	private boolean _code_wait = false;
+	private int _mobilecode_wait = 0;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
@@ -44,7 +44,7 @@ public class Fragment_forget extends Fragment
 			public void onClick(View v)
 			{
 				String _string_phone = _edittext_phone.getText().toString();
-				if (!_code_wait)
+				if (_mobilecode_wait == 0)
 					if (CommonUtil.isPhone(_string_phone))
 					{
 						_regist_phone = _string_phone;
@@ -86,22 +86,20 @@ public class Fragment_forget extends Fragment
 
 	public void mobilcode_change()
 	{
-		String _temp_str = _button_code.getText().toString();
-		if (_temp_str.equals("获取验证码"))
+		switch (_mobilecode_wait)
 		{
-			_button_code.setText("60");
-			_code_wait = true;
-		}
-		else
-		{
-			int _second = Integer.parseInt(_temp_str);
-			if (_second == 0)
-			{
-				_button_code.setText("获取验证码");
-				_code_wait = false;
-			}
-			else
-				_button_code.setText(String.valueOf(_second - 1));
+		case 0:
+			_mobilecode_wait = 60;
+			_button_code.setText("重新发送(" + _mobilecode_wait + ")");
+			break;
+		case 1:
+			_mobilecode_wait--;
+			_button_code.setText("获取验证码");
+			break;
+		default:
+			_mobilecode_wait--;
+			_button_code.setText("重新发送(" + _mobilecode_wait + ")");
+
 		}
 	}
 

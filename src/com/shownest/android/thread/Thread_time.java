@@ -23,9 +23,9 @@ public class Thread_time extends Thread
 		{
 			while (_time < _max)
 			{
+				_handler.sendEmptyMessage(_code);
 				sleep(_space * 1000);
 				_time++;
-				_handler.sendEmptyMessage(_code);
 			}
 		}
 		catch (Exception e)

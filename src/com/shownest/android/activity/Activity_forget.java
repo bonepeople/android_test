@@ -5,7 +5,6 @@ import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.fragment.Fragment_forget;
-import com.shownest.android.fragment.Fragment_regist;
 import com.shownest.android.thread.Thread_time;
 import com.shownest.android.utils.HttpUtil;
 
@@ -97,10 +96,11 @@ public class Activity_forget extends Activity
 				// 开启修改密码的界面。
 				Toast.makeText(_context, "验证成功，更改密码", Toast.LENGTH_SHORT).show();
 			}
-			else if (_result.equals("机验证码发送成功"))
+			else if (_result.equals("手机验证码发送成功"))
 			{
-				_timer = new Thread_time(_handler, BUTTON_CHANGE, 62, 1);
+				_timer = new Thread_time(_handler, BUTTON_CHANGE, 61, 1);
 				_timer.start();
+				Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
 			}
 			else
 				Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();

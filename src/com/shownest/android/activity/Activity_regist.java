@@ -101,10 +101,11 @@ public class Activity_regist extends Activity
 			{
 
 			}
-			else if(_result.equals("机验证码发送成功"))
+			else if(_result.equals("手机验证码发送成功"))
 			{
-				_timer = new Thread_time(_handler, BUTTON_CHANGE, 62, 1);
+				_timer = new Thread_time(_handler, BUTTON_CHANGE, 61, 1);
 				_timer.start();
+				Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
 			}
 			else
 				Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
