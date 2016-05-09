@@ -96,6 +96,10 @@ public class Activity_regist extends Activity
 			{
 				HttpUtil.send_mobilecode(_handler, _fragment_regist.get_regist_phone(), SEND_SUCCESSFUL, SEND_FAILED);
 			}
+			else if (_result.equals("---注册成功"))
+			{
+
+			}
 			else
 				Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
 
