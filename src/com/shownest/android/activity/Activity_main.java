@@ -43,5 +43,12 @@ public class Activity_main extends Activity
 		Intent intent = new Intent(this, Activity_publish_yezhu.class);
 		startActivity(intent);
 	}
+	
+	public void forget(View v)
+	{
+		Toast.makeText(this, "forget", Toast.LENGTH_SHORT).show();
+		Intent intent = new Intent(this, Activity_forget.class);
+		startActivity(intent);
+	}
 
 }

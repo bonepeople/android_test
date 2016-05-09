@@ -25,6 +25,21 @@ import android.os.Message;
  */
 public class HttpUtil
 {
+	public static void check_mobcode(Handler _handler, String _phone, String _mobilecode, int _successful, int _failed)
+	{
+		String _address = "http://t.shownest.com:86/webCheckMobCode";
+		String _message = "";
+		try
+		{
+			_message = "telNo=" + URLEncoder.encode(_phone, "UTF-8") + "&mobilecode=" + URLEncoder.encode(_mobilecode, "UTF-8");
+		}
+		catch (UnsupportedEncodingException e)
+		{
+			e.printStackTrace();
+		}
+		new Thread_http(_handler, _address, _message, _successful, _failed).start();
+	}
+	
 	public static void submit_reg(Handler _handler, String _username, String _mobilecode, String _password, int _successful, int _failed)
 	{
 		String _address = "http://t.shownest.com:86/websubmitreg";

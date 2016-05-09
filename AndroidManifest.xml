@@ -30,6 +30,8 @@
         </activity>
         <activity android:name="com.shownest.android.activity.Activity_publish_yezhu" >
         </activity>
+        <activity android:name="com.shownest.android.activity.Activity_forget" >
+        </activity>
     </application>
 
 </manifest>
