@@ -28,6 +28,7 @@ public class Activity_regist extends Activity
 	private static Activity_regist _instance;
 	private static Context _context;
 	private static Fragment_regist _fragment_regist;
+	private static Thread_time _timer = null;
 	public static Handler _handler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)
@@ -48,7 +49,6 @@ public class Activity_regist extends Activity
 			case SEND_SUCCESSFUL:
 				_string_result = (String) msg.obj;
 				handle_string(_string_result);
-				new Thread_time(_handler, BUTTON_CHANGE, 62, 1).start();
 				break;
 			case REGIST_SUCCESSFUL:
 				_string_result = (String) msg.obj;
@@ -74,7 +74,8 @@ public class Activity_regist extends Activity
 		setContentView(R.layout.activity_regist);
 
 		_fragment_regist = (Fragment_regist) getFragmentManager().findFragmentById(R.id.fragment_regist);
-
+		if (_timer != null)
+			_timer.interrupt();
 	}
 
 	private static void handle_string(String str)
@@ -99,6 +100,11 @@ public class Activity_regist extends Activity
 			else if (_result.equals("---注册成功"))
 			{
 
+			}
+			else if(_result.equals("机验证码发送成功"))
+			{
+				_timer = new Thread_time(_handler, BUTTON_CHANGE, 62, 1);
+				_timer.start();
 			}
 			else
 				Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
