@@ -22,13 +22,12 @@ public class Fragment_forget extends Fragment
 	public RelativeLayout _relativelayout_wait;
 	private EditText _edittext_phone, _edittext_code;
 	private Button _button_code, _button_next;
-	private String _regist_phone = "";
 	private int _mobilecode_wait = 0;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		if (DEBUG)
-			System.out.println("Fragment_regist onCreateView");
+			System.out.println("Fragment_forget onCreateView");
 		View _view = inflater.inflate(R.layout.fragment_forget, container, false);
 		_relativelayout_wait = (RelativeLayout) _view.findViewById(R.id.relativelayout_wait);
 		_button_code = (Button) _view.findViewById(R.id.button_code);
@@ -46,7 +45,7 @@ public class Fragment_forget extends Fragment
 				if (_mobilecode_wait == 0)
 					if (CommonUtil.isPhone(_string_phone))
 					{
-						_regist_phone = _string_phone;
+						Activity_forget.set_forget_code(_string_phone);
 						HttpUtil.check_loginname(Activity_forget._handler, _string_phone, Activity_forget.CHECK_SUCCESSFUL, Activity_forget.CHECK_FAILED);
 					}
 					else
@@ -74,7 +73,10 @@ public class Fragment_forget extends Fragment
 				else
 				{
 					_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
-					HttpUtil.check_mobcode(Activity_forget._handler, _string_phone, _code, Activity_forget.FORGET_SUCCESSFUL, Activity_forget.FORGET_FAILED);
+					Activity_forget.set_forget_phone(_string_phone);
+					Activity_forget.set_forget_code(_code);
+					// 开下一个fragment
+					HttpUtil.check_mobcode(Activity_forget._handler, _string_phone, _code, Activity_forget.NEXT_SUCCESSFUL, Activity_forget.NEXT_FAILED);
 				}
 
 			}
@@ -102,8 +104,4 @@ public class Fragment_forget extends Fragment
 		}
 	}
 
-	public String get_regist_phone()
-	{
-		return _regist_phone;
-	}
 }

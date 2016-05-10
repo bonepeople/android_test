@@ -5,10 +5,13 @@ import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.fragment.Fragment_forget;
+import com.shownest.android.fragment.Fragment_forget_set;
 import com.shownest.android.thread.Thread_time;
 import com.shownest.android.utils.HttpUtil;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,8 +28,13 @@ public class Activity_forget extends Activity
 	public static final int CHECK_FAILED = 4;
 	public static final int CHECK_SUCCESSFUL = 5;
 	public static final int BUTTON_CHANGE = 6;
+	public static final int NEXT_FAILED = 7;
+	public static final int NEXT_SUCCESSFUL = 8;
+	private static Activity_forget _instance;
 	private static Context _context;
 	private static Fragment_forget _fragment_forget;
+	private static String _forget_phone = "";
+	private static String _forget_code = "";
 	private static Thread_time _timer = null;
 	public static Handler _handler = new Handler()
 	{
@@ -37,6 +45,7 @@ public class Activity_forget extends Activity
 			{
 			case CHECK_FAILED:
 			case SEND_FAILED:
+			case NEXT_FAILED:
 			case FORGET_FAILED:
 				Toast.makeText(_context, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 				break;
@@ -45,6 +54,10 @@ public class Activity_forget extends Activity
 				handle_string(_string_result);
 				break;
 			case SEND_SUCCESSFUL:
+				_string_result = (String) msg.obj;
+				handle_string(_string_result);
+				break;
+			case NEXT_SUCCESSFUL:
 				_string_result = (String) msg.obj;
 				handle_string(_string_result);
 				break;
@@ -67,6 +80,7 @@ public class Activity_forget extends Activity
 			System.out.println("Activity_forget onCreate");
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		_instance = this;
 		_context = this.getApplicationContext();
 		setContentView(R.layout.activity_forget);
 
@@ -89,18 +103,28 @@ public class Activity_forget extends Activity
 
 			if (_result.equals("用户名已经存在"))
 			{
-				HttpUtil.send_mobilecode(_handler, _fragment_forget.get_regist_phone(), SEND_SUCCESSFUL, SEND_FAILED);
-			}
-			else if (_result.equals("验证成功"))
-			{
-				// 开启修改密码的界面。
-				Toast.makeText(_context, "验证成功，更改密码", Toast.LENGTH_SHORT).show();
+				HttpUtil.send_mobilecode(_handler, _forget_phone, SEND_SUCCESSFUL, SEND_FAILED);
 			}
 			else if (_result.equals("手机验证码发送成功"))
 			{
 				_timer = new Thread_time(_handler, BUTTON_CHANGE, 61, 1);
 				_timer.start();
 				Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
+			}
+			else if (_result.equals("验证成功"))
+			{
+				Toast.makeText(_context, "验证成功，设置密码", Toast.LENGTH_SHORT).show();
+
+				Fragment_forget_set _set = new Fragment_forget_set();
+				FragmentManager fm = _instance.getFragmentManager();
+				FragmentTransaction tx = fm.beginTransaction();
+				tx.add(R.id.framelayout_content, _set, "SET");
+				tx.addToBackStack(null);
+				tx.commit();
+			}
+			else if (_result.equals("提交成功"))
+			{
+
 			}
 			else
 				Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
@@ -113,4 +137,23 @@ public class Activity_forget extends Activity
 
 	}
 
+	public static String get_forget_phone()
+	{
+		return _forget_phone;
+	}
+
+	public static void set_forget_phone(String _forget_phone_new)
+	{
+		_forget_phone = _forget_phone_new;
+	}
+
+	public static String get_forget_code()
+	{
+		return _forget_code;
+	}
+
+	public static void set_forget_code(String _forget_code_new)
+	{
+		_forget_code = _forget_code_new;
+	}
 }

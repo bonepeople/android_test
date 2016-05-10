@@ -1,6 +1,7 @@
 package com.shownest.android.fragment;
 
 import com.shownest.android.R;
+import com.shownest.android.activity.Activity_forget;
 import com.shownest.android.utils.HttpUtil;
 
 import android.app.Fragment;
@@ -37,7 +38,6 @@ public class Fragment_forget_set extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
 				String _password = _edittext_password.getText().toString();
 				String _password_confirm = _edittext_password_confirm.getText().toString();
 
@@ -51,8 +51,9 @@ public class Fragment_forget_set extends Fragment
 				}
 				else
 				{
-					Toast.makeText(getActivity(), "没有修改密码的接口", Toast.LENGTH_SHORT).show();
-					// HttpUtil.user_login(Activity_login._handler, _string_username, _string_password, Activity_login.LOGIN_SUCCESSFUL, Activity_login.LOGIN_FAILED);
+					_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
+					HttpUtil.forget_pwd(Activity_forget._handler, Activity_forget.get_forget_phone(), Activity_forget.get_forget_code(), _password, _password_confirm,
+							Activity_forget.FORGET_SUCCESSFUL, Activity_forget.FORGET_FAILED);
 				}
 			}
 		});

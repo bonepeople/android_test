@@ -25,6 +25,21 @@ import android.os.Message;
  */
 public class HttpUtil
 {
+	public static void forget_pwd(Handler _handler, String _phone, String _code, String _password, String _repassword, int _successful, int _failed)
+	{
+		String _address = "http://t.shownest.com:86/webCheckMobCode";
+		String _message = "";
+
+		String _telNo = encode("telNo=" + _phone);
+		String _mobilecode = encode("mobilecode=" + _code);
+		String _pwd = encode("pwd=" + _password);
+		String _repwd = encode("repwd=" + _repassword);
+
+		_message = _telNo + "&" + _mobilecode + "&" + _pwd + "&" + _repwd;
+
+		new Thread_http(_handler, _address, _message, _successful, _failed).start();
+	}
+
 	public static void check_mobcode(Handler _handler, String _phone, String _mobilecode, int _successful, int _failed)
 	{
 		String _address = "http://t.shownest.com:86/webCheckMobCode";
@@ -39,7 +54,7 @@ public class HttpUtil
 		}
 		new Thread_http(_handler, _address, _message, _successful, _failed).start();
 	}
-	
+
 	public static void submit_reg(Handler _handler, String _username, String _mobilecode, String _password, int _successful, int _failed)
 	{
 		String _address = "http://t.shownest.com:86/websubmitreg";
@@ -235,4 +250,16 @@ public class HttpUtil
 		}
 	}
 
+	private static String encode(String _str)
+	{
+		String _result = "";
+		try
+		{
+			_result = URLEncoder.encode(_str, "UTF-8");
+		}
+		catch (Exception e)
+		{
+		}
+		return _result;
+	}
 }
