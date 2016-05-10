@@ -124,10 +124,6 @@ public class Activity_forget extends Activity
 					_instance.finish();
 				}
 			}
-			else if (_result.equals("提交成功"))
-			{
-
-			}
 			else
 				Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
 

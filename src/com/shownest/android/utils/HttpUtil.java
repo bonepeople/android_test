@@ -25,7 +25,7 @@ import android.os.Message;
 public class HttpUtil
 {
 	private static boolean DEBUG = true;
-	private static String SESSIONID = null; // 定义一个静态的字段，保存sessionID
+	private static String SESSION = null; // 定义一个静态的字段，保存sessionID
 	private static String BASEADDRESS = "http://t.shownest.com:86/";
 	// http://192.168.1.112:10000/shownest/html/test1.html
 	// http://192.168.1.112:10000/shownest/websubmitreg
@@ -152,8 +152,8 @@ public class HttpUtil
 			_connection.setRequestProperty("connection", "keep-alive");
 			_connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 			_connection.setRequestProperty("Cache-Control", "max-age=0");
-			if (SESSIONID != null)
-				_connection.setRequestProperty("Cookie", "JSESSIONID=" + SESSIONID);
+			if (SESSION != null)
+				_connection.setRequestProperty("Cookie", SESSION);
 			// JSESSIONID=CB8A56EF79CC3A06C1A1EB4EF24415B8
 
 			OutputStream _os = null;
@@ -185,11 +185,10 @@ public class HttpUtil
 			_status = _connection.getResponseCode();
 			if (_status == 200)
 			{
-				if (SESSIONID == null)
+				if (SESSION == null)
 				{
 					String _cookie = _connection.getHeaderField("Set-Cookie");
-					String _session = _cookie.split(";")[0];
-					SESSIONID = _session.split("=")[1];
+					SESSION = _cookie.split(";")[0];
 					// Set-Cookie:JSESSIONID=59D090155623FADDE01819851B437C0F; Path=/shownest/; HttpOnly
 				}
 
