@@ -18,6 +18,7 @@ public class CommonUtil
 	public static final String REG_E = "\\[e\\](.*?)\\[/e\\]";
 	public static final String REG_EMAIL = "\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
 	public static final String REG_PHONE = "^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+	public static final String REG_PASSWORD = "\\w+";
 	public static final String REG_COMMENT_NAME = "「(.*)」";
 	public static String REG_WEB_URL = "[^\u4e00-\u9fa5\\s|^\uFE30-\uFFA0\\s|^\\]]*?\\.(com|net|cn|me|tw|fr)[^\u4e00-\u9fa5\\s|^\uFE30-\uFFA0\\s|^\\[|^\\<|^@]*";
 
@@ -30,6 +31,11 @@ public class CommonUtil
 			return true;
 		}
 		return false;
+	}
+
+	public static boolean isPassword(String password)
+	{
+		return Pattern.matches(REG_PASSWORD, password);
 	}
 
 	public static boolean isEmail(String email)

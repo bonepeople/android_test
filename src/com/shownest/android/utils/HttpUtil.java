@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -25,15 +24,21 @@ import android.os.Message;
  */
 public class HttpUtil
 {
+	private static boolean DEBUG = true;
+	private static String SESSIONID = null; // 定义一个静态的字段，保存sessionID
+	private static String BASEADDRESS = "http://t.shownest.com:86/";
+	// http://192.168.1.112:10000/shownest/html/test1.html
+	// http://192.168.1.112:10000/shownest/websubmitreg
+
 	public static void forget_pwd(Handler _handler, String _phone, String _code, String _password, String _repassword, int _successful, int _failed)
 	{
-		String _address = "http://t.shownest.com:86/webCheckMobCode";
+		String _address = BASEADDRESS + "webCheckMobCode";
 		String _message = "";
 
-		String _telNo = encode("telNo=" + _phone);
-		String _mobilecode = encode("mobilecode=" + _code);
-		String _pwd = encode("pwd=" + _password);
-		String _repwd = encode("repwd=" + _repassword);
+		String _telNo = "telNo=" + _phone;
+		String _mobilecode = "mobilecode=" + _code;
+		String _pwd = "pwd=" + _password;
+		String _repwd = "repwd=" + _repassword;
 
 		_message = _telNo + "&" + _mobilecode + "&" + _pwd + "&" + _repwd;
 
@@ -42,63 +47,52 @@ public class HttpUtil
 
 	public static void check_mobcode(Handler _handler, String _phone, String _mobilecode, int _successful, int _failed)
 	{
-		String _address = "http://t.shownest.com:86/webCheckMobCode";
+		String _address = BASEADDRESS + "webCheckMobCode";
 		String _message = "";
-		try
-		{
-			_message = "telNo=" + URLEncoder.encode(_phone, "UTF-8") + "&mobilecode=" + URLEncoder.encode(_mobilecode, "UTF-8");
-		}
-		catch (UnsupportedEncodingException e)
-		{
-			e.printStackTrace();
-		}
+
+		_message = "telNo=" + _phone + "&mobilecode=" + _mobilecode;
+
 		new Thread_http(_handler, _address, _message, _successful, _failed).start();
 	}
 
 	public static void submit_reg(Handler _handler, String _username, String _mobilecode, String _password, int _successful, int _failed)
 	{
-		String _address = "http://t.shownest.com:86/websubmitreg";
+		String _address = BASEADDRESS + "websubmitreg";
 		String _message = "";
-		try
-		{
-			_message = "userName=" + URLEncoder.encode(_username, "UTF-8") + "&pwd=" + URLEncoder.encode(_password, "UTF-8") + "&repwd=" + URLEncoder.encode(_password, "UTF-8") + "&mobilecode="
-					+ URLEncoder.encode(_mobilecode, "UTF-8");
-		}
-		catch (UnsupportedEncodingException e)
-		{
-			e.printStackTrace();
-		}
-		System.out.println("regist message:" + _message);
+
+		_message = "userName=" + _username + "&pwd=" + _password + "&repwd=" + _password + "&mobilecode=" + _mobilecode;
+
 		new Thread_http(_handler, _address, _message, _successful, _failed).start();
 	}
 
 	public static void send_mobilecode(Handler _handler, String _phone, int _successful, int _failed)
 	{
-		String _address = "http://t.shownest.com:86/websendmobilecode";
+		String _address = BASEADDRESS + "websendmobilecode";
 		String _message = "";
-		try
-		{
-			_message = "telNo=" + URLEncoder.encode(_phone, "UTF-8");
-		}
-		catch (UnsupportedEncodingException e)
-		{
-			e.printStackTrace();
-		}
+
+		_message = "telNo=" + _phone;
+
 		new Thread_http(_handler, _address, _message, _successful, _failed).start();
 	}
 
+	/**
+	 * 用户登录的接口
+	 * 
+	 * @param _handler
+	 * @param _username
+	 *            用户名
+	 * @param _password
+	 *            密码
+	 * @param _successful
+	 * @param _failed
+	 */
 	public static void user_login(Handler _handler, String _username, String _password, int _successful, int _failed)
 	{
-		String _address = "http://t.shownest.com:86/webuserlogin";
+		String _address = BASEADDRESS + "webuserlogin";
 		String _message = "";
-		try
-		{
-			_message = "userName=" + URLEncoder.encode(_username, "UTF-8") + "&userPassword=" + URLEncoder.encode(_password, "UTF-8");
-		}
-		catch (UnsupportedEncodingException e)
-		{
-			e.printStackTrace();
-		}
+
+		_message = "userName=" + _username + "&userPassword=" + _password;
+
 		new Thread_http(_handler, _address, _message, _successful, _failed).start();
 	}
 
@@ -112,16 +106,11 @@ public class HttpUtil
 	 */
 	public static void check_loginname(Handler _handler, String _name, int _successful, int _failed)
 	{
-		String _address = "http://t.shownest.com:86/webcheckloginname";
+		String _address = BASEADDRESS + "webcheckloginname";
 		String _message = "";
-		try
-		{
-			_message = "userName=" + URLEncoder.encode(_name, "UTF-8");
-		}
-		catch (UnsupportedEncodingException e)
-		{
-			e.printStackTrace();
-		}
+
+		_message = "userName=" + _name;
+
 		new Thread_http(_handler, _address, _message, _successful, _failed).start();
 	}
 
@@ -132,15 +121,18 @@ public class HttpUtil
 	 *            activity的handler
 	 * @param _address
 	 *            服务器地址
-	 * @param _massage
+	 * @param _message
 	 *            form表单
 	 * @param _successful
 	 *            activity的成功响应值
 	 * @param _failed
 	 *            activity的失败响应值
 	 */
-	public static void send_post(Handler _handler, String _address, String _massage, int _successful, int _failed)
+	public static void send_post(Handler _handler, String _address, String _message, int _successful, int _failed)
 	{
+		if (DEBUG)
+			System.out.println("post message:" + _message);
+
 		Message _msg = _handler.obtainMessage();
 		_msg.what = _failed;
 		_msg.obj = new String("Exception");
@@ -160,13 +152,16 @@ public class HttpUtil
 			_connection.setRequestProperty("connection", "keep-alive");
 			_connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 			_connection.setRequestProperty("Cache-Control", "max-age=0");
+			if (SESSIONID != null)
+				_connection.setRequestProperty("Cookie", "JSESSIONID=" + SESSIONID);
+			// JSESSIONID=CB8A56EF79CC3A06C1A1EB4EF24415B8
 
 			OutputStream _os = null;
 			try
 			{
 				_connection.connect();
 				_os = _connection.getOutputStream();
-				_os.write(_massage.getBytes());
+				_os.write(_message.getBytes());
 			}
 			catch (Exception _e)
 			{
@@ -190,6 +185,14 @@ public class HttpUtil
 			_status = _connection.getResponseCode();
 			if (_status == 200)
 			{
+				if (SESSIONID == null)
+				{
+					String _cookie = _connection.getHeaderField("Set-Cookie");
+					String _session = _cookie.split(";")[0];
+					SESSIONID = _session.split("=")[1];
+					// Set-Cookie:JSESSIONID=59D090155623FADDE01819851B437C0F; Path=/shownest/; HttpOnly
+				}
+
 				BufferedReader _in = new BufferedReader(new InputStreamReader(_connection.getInputStream()));
 				String _result = "";
 				String _line;
