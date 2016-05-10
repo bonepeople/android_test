@@ -45,7 +45,8 @@ public class Fragment_forget extends Fragment
 				if (_mobilecode_wait == 0)
 					if (CommonUtil.isPhone(_string_phone))
 					{
-						Activity_forget.set_forget_code(_string_phone);
+						Activity_forget.set_forget_phone(_string_phone);
+						_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
 						HttpUtil.check_loginname(Activity_forget._handler, _string_phone, Activity_forget.CHECK_SUCCESSFUL, Activity_forget.CHECK_FAILED);
 					}
 					else

@@ -54,6 +54,7 @@ public class Fragment_regist extends Fragment
 					if (CommonUtil.isPhone(_string_phone))
 					{
 						_regist_phone = _string_phone;
+						_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
 						HttpUtil.check_loginname(Activity_regist._handler, _string_phone, Activity_regist.CHECK_SUCCESSFUL, Activity_regist.CHECK_FAILED);
 					}
 					else
@@ -83,9 +84,13 @@ public class Fragment_regist extends Fragment
 				{
 					Toast.makeText(getActivity(), "请确保密码为6-20位", Toast.LENGTH_SHORT).show();
 				}
+				else if(!CommonUtil.isPassword(_password))
+				{
+					Toast.makeText(getActivity(), "密码只能是英文字母和数字的组合", Toast.LENGTH_SHORT).show();
+				}
 				else if (!_checkbox_agree.isChecked())
 				{
-					Toast.makeText(getActivity(), "请同意秀巢协议", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getActivity(), "必须同意秀巢协议", Toast.LENGTH_SHORT).show();
 				}
 				else
 				{

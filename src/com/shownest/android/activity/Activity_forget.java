@@ -33,6 +33,7 @@ public class Activity_forget extends Activity
 	private static Activity_forget _instance;
 	private static Context _context;
 	private static Fragment_forget _fragment_forget;
+	private static Fragment_forget_set _fragment_forget_set = null;
 	private static String _forget_phone = "";
 	private static String _forget_code = "";
 	private static Thread_time _timer = null;
@@ -50,25 +51,18 @@ public class Activity_forget extends Activity
 				Toast.makeText(_context, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 				break;
 			case CHECK_SUCCESSFUL:
-				_string_result = (String) msg.obj;
-				handle_string(_string_result);
-				break;
 			case SEND_SUCCESSFUL:
-				_string_result = (String) msg.obj;
-				handle_string(_string_result);
-				break;
 			case NEXT_SUCCESSFUL:
-				_string_result = (String) msg.obj;
-				handle_string(_string_result);
-				break;
 			case FORGET_SUCCESSFUL:
 				_string_result = (String) msg.obj;
-				handle_string(_string_result);
+				handle_string(FORGET_SUCCESSFUL, _string_result);
 				break;
 			case BUTTON_CHANGE:
 				_fragment_forget.mobilcode_change();
 			}
 			_fragment_forget._relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
+			if (_fragment_forget_set != null && msg.what != NEXT_SUCCESSFUL)
+				_fragment_forget_set._relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
 			System.out.println(_string_result);
 		};
 	};
@@ -90,15 +84,15 @@ public class Activity_forget extends Activity
 
 	}
 
-	private static void handle_string(String str)
+	private static void handle_string(int _message, String _str)
 	{
 		if (DEBUG)
 		{
-			System.out.println("Activity_forget handle msg:" + str);
+			System.out.println("Activity_forget handle msg:" + _str);
 		}
 		try
 		{
-			JSONObject _obj = new JSONObject(str);
+			JSONObject _obj = new JSONObject(_str);
 			String _result = _obj.getString("msg");
 
 			if (_result.equals("用户名已经存在"))
@@ -113,18 +107,22 @@ public class Activity_forget extends Activity
 			}
 			else if (_result.equals("验证成功"))
 			{
-				Toast.makeText(_context, "验证成功，设置密码", Toast.LENGTH_SHORT).show();
+				if (_message == NEXT_SUCCESSFUL)
+				{
+					Toast.makeText(_context, "验证成功，设置密码", Toast.LENGTH_SHORT).show();
 
-				Fragment_forget_set _set = new Fragment_forget_set();
-				FragmentManager fm = _instance.getFragmentManager();
-				FragmentTransaction tx = fm.beginTransaction();
-				tx.add(R.id.framelayout_content, _set, "SET");
-				tx.addToBackStack(null);
-				tx.commit();
-			}
-			else if (_result.equals("提交成功"))
-			{
-
+					_fragment_forget_set = new Fragment_forget_set();
+					FragmentManager fm = _instance.getFragmentManager();
+					FragmentTransaction tx = fm.beginTransaction();
+					tx.add(R.id.framelayout_content, _fragment_forget_set, "SET");
+					tx.addToBackStack(null);
+					tx.commit();
+				}
+				else
+				{
+					Toast.makeText(_context, "设置成功", Toast.LENGTH_SHORT).show();
+					_instance.finish();
+				}
 			}
 			else
 				Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
@@ -135,6 +133,21 @@ public class Activity_forget extends Activity
 			e.printStackTrace();
 		}
 
+	}
+
+	private static int get_code(String _json)
+	{
+		int _code = 0;
+		try
+		{
+			JSONObject _obj = new JSONObject(_json);
+			_code = _obj.getInt("state");
+		}
+		catch (Exception e)
+		{
+			// TODO: handle exception
+		}
+		return _code;
 	}
 
 	public static String get_forget_phone()

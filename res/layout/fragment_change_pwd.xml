@@ -22,45 +22,42 @@
                 android:orientation="vertical" >
 
                 <EditText
-                    android:id="@+id/edittext_username"
+                    android:id="@+id/edittext_password_old"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:drawableLeft="@drawable/username"
-                    android:drawablePadding="10dp"
-                    android:hint="用户名、邮箱或者手机"
+                    android:layout_height="wrap_content"
+                    android:hint="原始密码"
+                    android:inputType="textPassword"
                     android:singleLine="true" />
 
                 <EditText
                     android:id="@+id/edittext_password"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:drawableLeft="@drawable/passwords"
-                    android:drawablePadding="10dp"
-                    android:hint="密码"
+                    android:hint="新的密码"
+                    android:inputType="textPassword"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/edittext_password_confirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:hint="请重复输入新密码"
                     android:inputType="textPassword"
                     android:singleLine="true" />
             </LinearLayout>
 
             <Button
-                android:id="@+id/button_login"
+                android:id="@+id/button_change"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_margin="@dimen/button"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/background_button"
-                android:text="登录"
+                android:text="确认修改"
                 android:textColor="@color/main_color"
                 android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/textview_forget_pwd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="忘记密码?"
-                android:textColor="@color/main_color"
-                android:textSize="12sp" />
         </LinearLayout>
     </ScrollView>
 

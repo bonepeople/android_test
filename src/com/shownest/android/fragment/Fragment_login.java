@@ -2,6 +2,7 @@ package com.shownest.android.fragment;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_login;
+import com.shownest.android.utils.CommonUtil;
 import com.shownest.android.utils.HttpUtil;
 
 import android.app.Fragment;
@@ -41,16 +42,21 @@ public class Fragment_login extends Fragment
 			@Override
 			public void onClick(View v)
 			{
-				_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
 				String _string_username = _edittext_username.getText().toString().trim();
 				String _string_password = _edittext_password.getText().toString();
 				if (_string_username.isEmpty() || _string_password.isEmpty())
 				{
 					Toast.makeText(getActivity(), "用户名或密码不能为空", Toast.LENGTH_SHORT).show();
 				}
+				else if (!CommonUtil.isPhone(_string_username))
+				{
+					Toast.makeText(getActivity(), "请输入正确的电话号码", Toast.LENGTH_SHORT).show();
+				}
 				else
-
+				{
+					_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
 					HttpUtil.user_login(Activity_login._handler, _string_username, _string_password, Activity_login.LOGIN_SUCCESSFUL, Activity_login.LOGIN_FAILED);
+				}
 			}
 		});
 
