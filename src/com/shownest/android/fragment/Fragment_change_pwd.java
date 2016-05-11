@@ -55,7 +55,7 @@ public class Fragment_change_pwd extends DEBUG_Fragment
 				}
 				else
 				{
-					wait_show();
+					show_wait();
 					// 调用修改密码的接口
 				}
 
@@ -71,13 +71,13 @@ public class Fragment_change_pwd extends DEBUG_Fragment
 		return this.getClass().toString();
 	}
 
-	public void wait_show()
+	public void show_wait()
 	{
 		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() != RelativeLayout.VISIBLE)
 			_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
 	}
 
-	public void wait_close()
+	public void close_wait()
 	{
 		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() == RelativeLayout.VISIBLE)
 			_relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);

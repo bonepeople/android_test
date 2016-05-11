@@ -39,16 +39,9 @@ public class Activity_regist extends DEBUG_Activity
 			case SEND_FAILED:
 			case REGIST_FAILED:
 				Toast.makeText(_context, "连接服务器失败。", Toast.LENGTH_SHORT).show();
-				_string_result = (String) msg.obj;
 				break;
 			case CHECK_SUCCESSFUL:
-				_string_result = (String) msg.obj;
-				handle_string(_string_result);
-				break;
 			case SEND_SUCCESSFUL:
-				_string_result = (String) msg.obj;
-				handle_string(_string_result);
-				break;
 			case REGIST_SUCCESSFUL:
 				_string_result = (String) msg.obj;
 				handle_string(_string_result);
@@ -64,7 +57,6 @@ public class Activity_regist extends DEBUG_Activity
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		_instance = this;
 		_context = this.getApplicationContext();

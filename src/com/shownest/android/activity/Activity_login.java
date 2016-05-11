@@ -29,14 +29,10 @@ public class Activity_login extends DEBUG_Activity
 			{
 			case LOGIN_FAILED:
 				Toast.makeText(_context, "连接服务器失败。", Toast.LENGTH_SHORT).show();
-				_string_result = (String) msg.obj;
-
 				break;
 			case LOGIN_SUCCESSFUL:
 				_string_result = (String) msg.obj;
 				handle_string(_string_result);
-
-				break;
 			}
 			_fragment_login._relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
 			System.out.println(_string_result);
@@ -46,7 +42,6 @@ public class Activity_login extends DEBUG_Activity
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		_instance = this;
 		_context = this.getApplicationContext();
@@ -72,7 +67,6 @@ public class Activity_login extends DEBUG_Activity
 		}
 		catch (JSONException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
