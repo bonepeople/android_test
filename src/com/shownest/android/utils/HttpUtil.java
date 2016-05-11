@@ -30,6 +30,19 @@ public class HttpUtil
 	// http://192.168.1.112:10000/shownest/html/test1.html
 	// http://192.168.1.112:10000/shownest/websubmitreg
 
+	public static void modify_Phone(Handler _handler, String _phone, String _code, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "webSetModifyOaPhone";
+		String _message = "";
+
+		String _telNo = "telNo=" + _phone;
+		String _checkCode = "checkCode=" + _code;
+
+		_message = _telNo + "&" + _checkCode;
+
+		new Thread_http(_handler, _address, _message, _successful, _failed).start();
+	}
+
 	public static void forget_pwd(Handler _handler, String _phone, String _code, String _password, String _repassword, int _successful, int _failed)
 	{
 		String _address = BASEADDRESS + "webCheckMobCode";

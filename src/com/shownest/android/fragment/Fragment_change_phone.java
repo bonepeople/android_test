@@ -44,9 +44,8 @@ public class Fragment_change_phone extends DEBUG_Fragment
 				if (_mobilecode_wait == 0)
 					if (CommonUtil.isPhone(_string_phone))
 					{
-						Activity_change_phone.set_change_phone(_string_phone);
 						show_wait();
-						// HttpUtil.check_loginname(Activity_forget._handler, _string_phone, Activity_forget.CHECK_SUCCESSFUL, Activity_forget.CHECK_FAILED);
+						HttpUtil.send_mobilecode(Activity_change_phone._handler, _string_phone, Activity_change_phone.SEND_SUCCESSFUL, Activity_change_phone.SEND_FAILED);
 					}
 					else
 						Toast.makeText(getActivity(), "请输入正确的电话号码", Toast.LENGTH_SHORT).show();
@@ -73,9 +72,7 @@ public class Fragment_change_phone extends DEBUG_Fragment
 				else
 				{
 					show_wait();
-					Activity_change_phone.set_change_phone(_string_phone);
-					Activity_change_phone.set_change_code(_code);
-					// HttpUtil.check_mobcode(Activity_forget._handler, _string_phone, _code, Activity_forget.NEXT_SUCCESSFUL, Activity_forget.NEXT_FAILED);
+					HttpUtil.modify_Phone(Activity_change_phone._handler, _string_phone, _code, Activity_change_phone.CHANGE_SUCCESSFUL, Activity_change_phone.CHANGE_FAILED);
 				}
 
 			}
@@ -87,6 +84,25 @@ public class Fragment_change_phone extends DEBUG_Fragment
 	protected String get_class()
 	{
 		return this.getClass().toString();
+	}
+
+	public void mobilcode_change()
+	{
+		switch (_mobilecode_wait)
+		{
+		case 0:
+			_mobilecode_wait = 60;
+			_button_code.setText("重新发送(" + _mobilecode_wait + ")");
+			break;
+		case 1:
+			_mobilecode_wait--;
+			_button_code.setText("获取验证码");
+			break;
+		default:
+			_mobilecode_wait--;
+			_button_code.setText("重新发送(" + _mobilecode_wait + ")");
+
+		}
 	}
 
 	public void show_wait()
