@@ -15,7 +15,7 @@ public class Activity_main extends DEBUG_Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.fragment_set_role_home);
 
 	}
 
