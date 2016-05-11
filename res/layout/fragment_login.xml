@@ -27,7 +27,8 @@
                     android:layout_height="match_parent"
                     android:drawableLeft="@drawable/username"
                     android:drawablePadding="10dp"
-                    android:hint="用户名、邮箱或者手机"
+                    android:hint="请输入手机号"
+                    android:inputType="phone"
                     android:singleLine="true" />
 
                 <EditText
