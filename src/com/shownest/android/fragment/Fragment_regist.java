@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 public class Fragment_regist extends DEBUG_Fragment
 {
-	public RelativeLayout _relativelayout_wait;
+	private RelativeLayout _relativelayout_wait;
 	private EditText _edittext_phone, _edittext_code, _edittext_pwd;
 	private TextView _textview_agreement;
 	private CheckBox _checkbox_agree;
@@ -52,7 +52,7 @@ public class Fragment_regist extends DEBUG_Fragment
 					if (CommonUtil.isPhone(_string_phone))
 					{
 						_regist_phone = _string_phone;
-						_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
+						show_wait();
 						HttpUtil.check_loginname(Activity_regist._handler, _string_phone, Activity_regist.CHECK_SUCCESSFUL, Activity_regist.CHECK_FAILED);
 					}
 					else
@@ -92,7 +92,7 @@ public class Fragment_regist extends DEBUG_Fragment
 				}
 				else
 				{
-					_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
+					show_wait();
 					HttpUtil.submit_reg(Activity_regist._handler, _string_phone, _code, _password, Activity_regist.REGIST_SUCCESSFUL, Activity_regist.REGIST_FAILED);
 				}
 
@@ -105,7 +105,6 @@ public class Fragment_regist extends DEBUG_Fragment
 			@Override
 			public void onClick(View v)
 			{
-				// TODO Auto-generated method stub
 				Toast.makeText(getActivity(), "详细协议请前往官网查看", Toast.LENGTH_SHORT).show();
 			}
 		});
@@ -140,5 +139,17 @@ public class Fragment_regist extends DEBUG_Fragment
 	public String get_regist_phone()
 	{
 		return _regist_phone;
+	}
+
+	public void show_wait()
+	{
+		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() != RelativeLayout.VISIBLE)
+			_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
+	}
+
+	public void close_wait()
+	{
+		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() == RelativeLayout.VISIBLE)
+			_relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
 	}
 }

@@ -12,7 +12,6 @@ import com.shownest.android.utils.HttpUtil;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class Activity_regist extends DEBUG_Activity
@@ -49,7 +48,7 @@ public class Activity_regist extends DEBUG_Activity
 			case BUTTON_CHANGE:
 				_fragment_regist.mobilcode_change();
 			}
-			_fragment_regist._relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
+			_fragment_regist.close_wait();
 			System.out.println(_string_result);
 		};
 	};

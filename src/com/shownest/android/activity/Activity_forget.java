@@ -15,7 +15,6 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class Activity_forget extends DEBUG_Activity
@@ -59,9 +58,9 @@ public class Activity_forget extends DEBUG_Activity
 			case BUTTON_CHANGE:
 				_fragment_forget.mobilcode_change();
 			}
-			_fragment_forget._relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
+			_fragment_forget.close_wait();
 			if (_fragment_forget_set != null && msg.what != NEXT_SUCCESSFUL)
-				_fragment_forget_set._relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
+				_fragment_forget_set.close_wait();
 			System.out.println(_string_result);
 		};
 	};
@@ -82,7 +81,7 @@ public class Activity_forget extends DEBUG_Activity
 
 	private static void handle_string(int _message, String _str)
 	{
-		handle_msg(_instance,_str);
+		handle_msg(_instance, _str);
 		try
 		{
 			JSONObject _obj = new JSONObject(_str);

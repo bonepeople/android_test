@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 public class Fragment_forget extends DEBUG_Fragment
 {
-	public RelativeLayout _relativelayout_wait;
+	private RelativeLayout _relativelayout_wait;
 	private EditText _edittext_phone, _edittext_code;
 	private Button _button_code, _button_next;
 	private int _mobilecode_wait = 0;
@@ -44,7 +44,7 @@ public class Fragment_forget extends DEBUG_Fragment
 					if (CommonUtil.isPhone(_string_phone))
 					{
 						Activity_forget.set_forget_phone(_string_phone);
-						_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
+						show_wait();
 						HttpUtil.check_loginname(Activity_forget._handler, _string_phone, Activity_forget.CHECK_SUCCESSFUL, Activity_forget.CHECK_FAILED);
 					}
 					else
@@ -71,7 +71,7 @@ public class Fragment_forget extends DEBUG_Fragment
 				}
 				else
 				{
-					_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
+					show_wait();
 					Activity_forget.set_forget_phone(_string_phone);
 					Activity_forget.set_forget_code(_code);
 					// 开下一个fragment
@@ -107,6 +107,18 @@ public class Fragment_forget extends DEBUG_Fragment
 			_button_code.setText("重新发送(" + _mobilecode_wait + ")");
 
 		}
+	}
+
+	public void show_wait()
+	{
+		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() != RelativeLayout.VISIBLE)
+			_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
+	}
+
+	public void close_wait()
+	{
+		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() == RelativeLayout.VISIBLE)
+			_relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
 	}
 
 }

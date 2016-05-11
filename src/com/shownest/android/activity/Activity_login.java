@@ -10,7 +10,6 @@ import com.shownest.android.fragment.Fragment_login;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class Activity_login extends DEBUG_Activity
@@ -34,7 +33,7 @@ public class Activity_login extends DEBUG_Activity
 				_string_result = (String) msg.obj;
 				handle_string(_string_result);
 			}
-			_fragment_login._relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
+			_fragment_login.close_wait();
 			System.out.println(_string_result);
 		};
 	};

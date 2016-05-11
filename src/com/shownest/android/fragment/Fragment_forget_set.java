@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 public class Fragment_forget_set extends DEBUG_Fragment
 {
-	public RelativeLayout _relativelayout_wait;
+	private RelativeLayout _relativelayout_wait;
 	private EditText _edittext_password, _edittext_password_confirm;
 	private Button _button_commit;
 
@@ -54,7 +54,7 @@ public class Fragment_forget_set extends DEBUG_Fragment
 				}
 				else
 				{
-					_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
+					show_wait();
 					HttpUtil.forget_pwd(Activity_forget._handler, Activity_forget.get_forget_phone(), Activity_forget.get_forget_code(), _password, _password_confirm,
 							Activity_forget.FORGET_SUCCESSFUL, Activity_forget.FORGET_FAILED);
 				}
@@ -68,5 +68,17 @@ public class Fragment_forget_set extends DEBUG_Fragment
 	protected String get_class()
 	{
 		return this.getClass().toString();
+	}
+
+	public void show_wait()
+	{
+		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() != RelativeLayout.VISIBLE)
+			_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
+	}
+
+	public void close_wait()
+	{
+		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() == RelativeLayout.VISIBLE)
+			_relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
 	}
 }
