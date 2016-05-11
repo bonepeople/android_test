@@ -2,10 +2,10 @@ package com.shownest.android.fragment;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_regist;
+import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.utils.CommonUtil;
 import com.shownest.android.utils.HttpUtil;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +18,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Fragment_regist extends Fragment
+public class Fragment_regist extends DEBUG_Fragment
 {
-	private static boolean DEBUG = true;
 	public RelativeLayout _relativelayout_wait;
 	private EditText _edittext_phone, _edittext_code, _edittext_pwd;
 	private TextView _textview_agreement;
@@ -31,8 +30,7 @@ public class Fragment_regist extends Fragment
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-		if (DEBUG)
-			System.out.println("Fragment_regist onCreateView");
+		super.onCreateView(inflater, container, savedInstanceState);
 		View _view = inflater.inflate(R.layout.fragment_regist, container, false);
 		_relativelayout_wait = (RelativeLayout) _view.findViewById(R.id.relativelayout_wait);
 		_button_code = (Button) _view.findViewById(R.id.button_code);
@@ -84,7 +82,7 @@ public class Fragment_regist extends Fragment
 				{
 					Toast.makeText(getActivity(), "请确保密码为6-20位", Toast.LENGTH_SHORT).show();
 				}
-				else if(!CommonUtil.isPassword(_password))
+				else if (!CommonUtil.isPassword(_password))
 				{
 					Toast.makeText(getActivity(), "密码只能是英文字母和数字的组合", Toast.LENGTH_SHORT).show();
 				}
@@ -112,6 +110,12 @@ public class Fragment_regist extends Fragment
 			}
 		});
 		return _view;
+	}
+
+	@Override
+	protected String get_class()
+	{
+		return this.getClass().toString();
 	}
 
 	public void mobilcode_change()

@@ -1,9 +1,9 @@
 package com.shownest.android.fragment;
 
 import com.shownest.android.R;
+import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.utils.CommonUtil;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +14,8 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-public class Fragment_change_pwd extends Fragment
+public class Fragment_change_pwd extends DEBUG_Fragment
 {
-	private static boolean DEBUG = true;
 	private RelativeLayout _relativelayout_wait = null;
 	private EditText _edittext_pwd_old, _edittext_pwd, _edittext_pwd_confirm;
 	private Button _button_change;
@@ -24,8 +23,7 @@ public class Fragment_change_pwd extends Fragment
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-		if (DEBUG)
-			System.out.println("Fragment_change_pwd onCreateView");
+		super.onCreateView(inflater, container, savedInstanceState);
 		View _view = inflater.inflate(R.layout.fragment_change_pwd, container, false);
 		_relativelayout_wait = (RelativeLayout) _view.findViewById(R.id.relativelayout_wait);
 		_edittext_pwd_old = (EditText) _view.findViewById(R.id.edittext_password_old);
@@ -65,6 +63,12 @@ public class Fragment_change_pwd extends Fragment
 		});
 
 		return _view;
+	}
+
+	@Override
+	protected String get_class()
+	{
+		return this.getClass().toString();
 	}
 
 	public void wait_show()

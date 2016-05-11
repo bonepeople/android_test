@@ -11,4 +11,10 @@
         android:text="test activity"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
+    <fragment
+        android:id="@+id/fragment_test"
+        android:name="com.shownest.android.fragment.Fragment_test"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </LinearLayout>

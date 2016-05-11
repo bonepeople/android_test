@@ -1,9 +1,9 @@
 package com.shownest.android.fragment;
 
 import com.shownest.android.R;
+import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,16 +13,14 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-public class Fragment_activity_publish_yezhu extends Fragment
+public class Fragment_activity_publish_yezhu extends DEBUG_Fragment
 {
-	private static boolean DEBUG = true;
 	private LinearLayout _linearlayout_body;
 	private Button _button_next;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-		if (DEBUG)
-			System.out.println("Fragment_activity_publish_yezhu onCreateView");
+		super.onCreateView(inflater, container, savedInstanceState);
 		View _view = inflater.inflate(R.layout.fragment_activity_publish_yezhu, container, false);
 		_linearlayout_body = (LinearLayout) _view.findViewById(R.id.linearlayout_fragment_body);
 		_button_next = (Button) _view.findViewById(R.id.button_next);
@@ -52,5 +50,11 @@ public class Fragment_activity_publish_yezhu extends Fragment
 			}
 		});
 		return _view;
+	}
+
+	@Override
+	protected String get_class()
+	{
+		return this.getClass().toString();
 	}
 }

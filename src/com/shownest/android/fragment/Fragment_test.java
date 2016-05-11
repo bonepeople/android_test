@@ -8,17 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class Fragment_title extends DEBUG_Fragment
+public class Fragment_test extends DEBUG_Fragment
 {
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		super.onCreateView(inflater, container, savedInstanceState);
-		View _view = inflater.inflate(R.layout.fragment_title, container, false);
+		View _view = inflater.inflate(R.layout.fragment_test, container, false);
 
 		return _view;
-
 	}
 
 	@Override

@@ -2,10 +2,10 @@ package com.shownest.android.fragment;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_login;
+import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.utils.CommonUtil;
 import com.shownest.android.utils.HttpUtil;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +17,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Fragment_login extends Fragment
+public class Fragment_login extends DEBUG_Fragment
 {
-	private static boolean DEBUG = true;
 	public RelativeLayout _relativelayout_wait;
 	private EditText _edittext_username, _edittext_password;
 	private TextView _textview_forget;
@@ -27,8 +26,7 @@ public class Fragment_login extends Fragment
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-		if (DEBUG)
-			System.out.println("Fragment_login onCreateView");
+		super.onCreateView(inflater, container, savedInstanceState);
 		View _view = inflater.inflate(R.layout.fragment_login, container, false);
 		_relativelayout_wait = (RelativeLayout) _view.findViewById(R.id.relativelayout_wait);
 		_button_login = (Button) _view.findViewById(R.id.button_login);
@@ -72,4 +70,9 @@ public class Fragment_login extends Fragment
 		return _view;
 	}
 
+	@Override
+	protected String get_class()
+	{
+		return this.getClass().toString();
+	}
 }
