@@ -34,6 +34,10 @@
         </activity>
         <activity android:name="com.shownest.android.activity.Activity_test" >
         </activity>
+        <activity android:name="com.shownest.android.activity.Activity_change_pwd" >
+        </activity>
+        <activity android:name="com.shownest.android.activity.Activity_change_phone" >
+        </activity>
     </application>
 
 </manifest>

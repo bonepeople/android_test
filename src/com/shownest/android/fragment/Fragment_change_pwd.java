@@ -45,6 +45,10 @@ public class Fragment_change_pwd extends DEBUG_Fragment
 				{
 					Toast.makeText(getActivity(), "请填写密码", Toast.LENGTH_SHORT).show();
 				}
+				else if (_pwd.length() < 6 || _pwd.length() > 20)
+				{
+					Toast.makeText(getActivity(), "请确保密码为6-20位", Toast.LENGTH_SHORT).show();
+				}
 				else if (!CommonUtil.isPassword(_pwd))
 				{
 					Toast.makeText(getActivity(), "密码只能是英文字母和数字的组合", Toast.LENGTH_SHORT).show();

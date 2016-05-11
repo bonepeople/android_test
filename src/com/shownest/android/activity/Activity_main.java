@@ -54,6 +54,20 @@ public class Activity_main extends DEBUG_Activity
 		startActivity(intent);
 	}
 
+	public void change_pwd(View v)
+	{
+		Toast.makeText(this, "change_pwd", Toast.LENGTH_SHORT).show();
+		Intent intent = new Intent(this, Activity_change_pwd.class);
+		startActivity(intent);
+	}
+
+	public void change_phone(View v)
+	{
+		Toast.makeText(this, "change_phone", Toast.LENGTH_SHORT).show();
+		Intent intent = new Intent(this, Activity_change_phone.class);
+		startActivity(intent);
+	}
+
 	@Override
 	protected String get_class()
 	{
