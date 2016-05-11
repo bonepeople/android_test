@@ -43,6 +43,20 @@ public class HttpUtil
 		new Thread_http(_handler, _address, _message, _successful, _failed).start();
 	}
 
+	public static void set_pwd(Handler _handler, String _oldPwd, String _password, String _repassword, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "webSetPwd";
+		String _message = "";
+
+		String _currentPwd = "currentPwd=" + _oldPwd;
+		String _pwd = "pwd=" + _password;
+		String _repwd = "repwd=" + _repassword;
+
+		_message = _currentPwd + "&" + _pwd + "&" + _repwd;
+
+		new Thread_http(_handler, _address, _message, _successful, _failed).start();
+	}
+
 	public static void forget_pwd(Handler _handler, String _phone, String _code, String _password, String _repassword, int _successful, int _failed)
 	{
 		String _address = BASEADDRESS + "webCheckMobCode";

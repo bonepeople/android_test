@@ -1,8 +1,10 @@
 package com.shownest.android.fragment;
 
 import com.shownest.android.R;
+import com.shownest.android.activity.Activity_change_pwd;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.utils.CommonUtil;
+import com.shownest.android.utils.HttpUtil;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -60,7 +62,7 @@ public class Fragment_change_pwd extends DEBUG_Fragment
 				else
 				{
 					show_wait();
-					// 调用修改密码的接口
+					HttpUtil.set_pwd(Activity_change_pwd._handler, _pwd_old, _pwd, _pwd_confirm, Activity_change_pwd.CHANGE_SUCCESSFUL, Activity_change_pwd.CHANGE_FAILED);
 				}
 
 			}
