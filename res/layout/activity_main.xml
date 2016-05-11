@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:columnCount="3" >
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:background="@drawable/background_button"
+        android:onClick="test"
+        android:text="测试" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_margin="5dp"
         android:background="@drawable/background_button"
         android:onClick="login"
@@ -14,24 +25,28 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_margin="5dp"
         android:background="@drawable/background_button"
         android:onClick="regist"
         android:text="注册" />
-    
-  <Button
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_margin="5dp"
         android:background="@drawable/background_button"
         android:onClick="publish"
         android:text="发布" />
-  
-   <Button
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_margin="5dp"
         android:background="@drawable/background_button"
         android:onClick="forget"
         android:text="忘记密码" />
+
 </GridLayout>

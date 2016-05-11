@@ -4,12 +4,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.shownest.android.R;
+import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_forget;
 import com.shownest.android.fragment.Fragment_forget_set;
 import com.shownest.android.thread.Thread_time;
 import com.shownest.android.utils.HttpUtil;
 
-import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -18,9 +18,8 @@ import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-public class Activity_forget extends Activity
+public class Activity_forget extends DEBUG_Activity
 {
-	private static boolean DEBUG = true;
 	public static final int FORGET_FAILED = 0;
 	public static final int FORGET_SUCCESSFUL = 1;
 	public static final int SEND_FAILED = 2;
@@ -70,8 +69,6 @@ public class Activity_forget extends Activity
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		if (DEBUG)
-			System.out.println("Activity_forget onCreate");
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		_instance = this;
@@ -86,10 +83,7 @@ public class Activity_forget extends Activity
 
 	private static void handle_string(int _message, String _str)
 	{
-		if (DEBUG)
-		{
-			System.out.println("Activity_forget handle msg:" + _str);
-		}
+		handle_msg(_instance,_str);
 		try
 		{
 			JSONObject _obj = new JSONObject(_str);
@@ -148,6 +142,12 @@ public class Activity_forget extends Activity
 			// TODO: handle exception
 		}
 		return _code;
+	}
+
+	@Override
+	protected String get_class()
+	{
+		return this.getClass().toString();
 	}
 
 	public static String get_forget_phone()

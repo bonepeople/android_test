@@ -4,20 +4,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.shownest.android.R;
+import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_regist;
 import com.shownest.android.thread.Thread_time;
 import com.shownest.android.utils.HttpUtil;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-public class Activity_regist extends Activity
+public class Activity_regist extends DEBUG_Activity
 {
-	private static boolean DEBUG = true;
 	public static final int REGIST_FAILED = 0;
 	public static final int REGIST_SUCCESSFUL = 1;
 	public static final int SEND_FAILED = 2;
@@ -65,8 +64,6 @@ public class Activity_regist extends Activity
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		if (DEBUG)
-			System.out.println("Activity_regist onCreate");
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		_instance = this;
@@ -80,10 +77,7 @@ public class Activity_regist extends Activity
 
 	private static void handle_string(String str)
 	{
-		if (DEBUG)
-		{
-			System.out.println("Activity_regist handle msg:" + str);
-		}
+		handle_msg(_instance, str);
 		try
 		{
 			JSONObject _obj = new JSONObject(str);
@@ -102,7 +96,7 @@ public class Activity_regist extends Activity
 				Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
 				_instance.finish();
 			}
-			else if(_result.equals("手机验证码发送成功"))
+			else if (_result.equals("手机验证码发送成功"))
 			{
 				_timer = new Thread_time(_handler, BUTTON_CHANGE, 61, 1);
 				_timer.start();
@@ -119,4 +113,9 @@ public class Activity_regist extends Activity
 
 	}
 
+	@Override
+	protected String get_class()
+	{
+		return this.getClass().toString();
+	}
 }

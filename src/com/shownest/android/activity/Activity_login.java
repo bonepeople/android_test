@@ -4,18 +4,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.shownest.android.R;
+import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_login;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-public class Activity_login extends Activity
+public class Activity_login extends DEBUG_Activity
 {
-	private static boolean DEBUG = true;
 	public static final int LOGIN_FAILED = 0;
 	public static final int LOGIN_SUCCESSFUL = 1;
 	private static Activity_login _instance;
@@ -47,8 +46,6 @@ public class Activity_login extends Activity
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		if (DEBUG)
-			System.out.println("Activity_login onCreate");
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		_instance = this;
@@ -61,10 +58,7 @@ public class Activity_login extends Activity
 
 	private static void handle_string(String str)
 	{
-		if (DEBUG)
-		{
-			System.out.println("Activity_login handle msg:" + str);
-		}
+		handle_msg(_instance, str);
 		try
 		{
 			JSONObject _obj = new JSONObject(str);
@@ -83,4 +77,9 @@ public class Activity_login extends Activity
 		}
 	}
 
+	@Override
+	protected String get_class()
+	{
+		return this.getClass().toString();
+	}
 }

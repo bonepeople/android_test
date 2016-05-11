@@ -5,24 +5,14 @@ import com.shownest.android.basic.DEBUG_Activity;
 
 import android.os.Bundle;
 
-/**
- * 业主-发布招标
- * 
- * @author bonepeople
- *
- */
-public class Activity_publish_yezhu extends DEBUG_Activity
+public class Activity_test extends DEBUG_Activity
 {
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
+		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_publish_yezhu);
-
-		// FragmentManager fm = getFragmentManager();
-		// FragmentTransaction tx = fm.beginTransaction();
-
+		setContentView(R.layout.activity_test);
 	}
 
 	@Override
@@ -30,4 +20,5 @@ public class Activity_publish_yezhu extends DEBUG_Activity
 	{
 		return this.getClass().toString();
 	}
+
 }

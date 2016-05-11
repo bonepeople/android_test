@@ -32,6 +32,8 @@
         </activity>
         <activity android:name="com.shownest.android.activity.Activity_forget" >
         </activity>
+        <activity android:name="com.shownest.android.activity.Activity_test" >
+        </activity>
     </application>
 
 </manifest>
