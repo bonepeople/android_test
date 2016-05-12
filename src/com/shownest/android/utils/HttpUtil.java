@@ -124,15 +124,23 @@ public class HttpUtil
 	}
 
 	/**
+	 * 获取登录用户基本信息
+	 */
+	public static void get_userinfo(Handler _handler, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "getuserinfo";
+		String _message = "";
+
+		new Thread_http(_handler, _address, _message, _successful, _failed).start();
+	}
+
+	/**
 	 * 用户登录的接口
 	 * 
-	 * @param _handler
 	 * @param _username
 	 *            用户名
 	 * @param _password
 	 *            密码
-	 * @param _successful
-	 * @param _failed
 	 */
 	public static void user_login(Handler _handler, String _username, String _password, int _successful, int _failed)
 	{
@@ -140,6 +148,21 @@ public class HttpUtil
 		String _message = "";
 
 		_message = "userName=" + _username + "&userPassword=" + _password;
+
+		new Thread_http(_handler, _address, _message, _successful, _failed).start();
+	}
+
+	/**
+	 * ukey用户登录获取SESSION
+	 * 
+	 * @param _ukey
+	 */
+	public static void user_checkUkey(Handler _handler, String _ukey, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "getUserCheckUkey";
+		String _message = "";
+
+		_message = "ukey=" + _ukey;
 
 		new Thread_http(_handler, _address, _message, _successful, _failed).start();
 	}
