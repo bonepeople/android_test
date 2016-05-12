@@ -15,7 +15,7 @@ public class Activity_main extends DEBUG_Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.fragment_select_role);
+		setContentView(R.layout.activity_main);
 
 	}
 
@@ -65,6 +65,13 @@ public class Activity_main extends DEBUG_Activity
 	{
 		Toast.makeText(this, "change_phone", Toast.LENGTH_SHORT).show();
 		Intent intent = new Intent(this, Activity_change_phone.class);
+		startActivity(intent);
+	}
+	
+	public void select_role(View v)
+	{
+		Toast.makeText(this, "select_role", Toast.LENGTH_SHORT).show();
+		Intent intent = new Intent(this, Activity_select_role.class);
 		startActivity(intent);
 	}
 
