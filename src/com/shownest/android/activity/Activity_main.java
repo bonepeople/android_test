@@ -67,12 +67,13 @@ public class Activity_main extends DEBUG_Activity
 		Intent intent = new Intent(this, Activity_change_phone.class);
 		startActivity(intent);
 	}
-	
+
 	public void select_role(View v)
 	{
 		Toast.makeText(this, "select_role", Toast.LENGTH_SHORT).show();
 		Intent intent = new Intent(this, Activity_select_role.class);
 		startActivity(intent);
+		finish();
 	}
 
 	@Override

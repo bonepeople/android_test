@@ -27,8 +27,29 @@ public class HttpUtil
 	private static boolean DEBUG = true;
 	private static String SESSION = null; // 定义一个静态的字段，保存sessionID
 	private static String BASEADDRESS = "http://t.shownest.com:86/";
+
 	// http://192.168.1.112:10000/shownest/html/test1.html
 	// http://192.168.1.112:10000/shownest/websubmitreg
+	/**
+	 * 设置用户类型
+	 * 
+	 * @param _handler
+	 * @param _type
+	 *            11: owner 业主 12: designer 设计师 13: constructor 施工队 14: supervisionner 监理 15: businesser 装修公司 100:未认证
+	 * @param _successful
+	 * @param _failed
+	 */
+	public static void set_UserType(Handler _handler, int _type, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "webSetUseType";
+		String _message = "";
+
+		String _userType = "userType=" + _type;
+
+		_message = _userType;
+
+		new Thread_http(_handler, _address, _message, _successful, _failed).start();
+	}
 
 	public static void modify_Phone(Handler _handler, String _phone, String _code, int _successful, int _failed)
 	{
