@@ -22,7 +22,7 @@ public class Fragment_test extends DEBUG_Fragment
 		LinearLayout _body = (LinearLayout) _view.findViewById(R.id.linearlayout_content);
 
 		String[] _items = new String[] { "简约", "现代", "中式", "欧式", "美式", "日式", "东南亚", "地中海", "混搭", "新古典", "田园", "其他" };
-		LinearLayout_style _choose = new LinearLayout_style(getActivity(), "倾向风格(可多选)", _items, 5);
+		LinearLayout_style _choose = new LinearLayout_style(getActivity(), "倾向风格(可多选)", _items, 5, new int[] { 1, 5, 6, 9 });
 
 		_body.addView(_choose);
 		return _view;

@@ -1,19 +1,28 @@
 package com.shownest.android.widget;
 
+import java.util.ArrayList;
+
 import com.shownest.android.R;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class LinearLayout_style extends LinearLayout
+public class LinearLayout_style extends LinearLayout implements View.OnClickListener
 {
 	private static boolean DEBUG = true;
+	private int _count_max = 0;
 	private int _count = 0;
+	private ArrayList<TextView> _text = new ArrayList<TextView>();
+	private ArrayList<Integer> _choose = new ArrayList<Integer>();
+
+	private Context _context;
 
 	public LinearLayout_style(Context context)
 	{
@@ -33,14 +42,27 @@ public class LinearLayout_style extends LinearLayout
 		// TODO Auto-generated constructor stub
 	}
 
-	public LinearLayout_style(Context context, String _name, String[] _args, int _count)
+	/**
+	 * 初始化一个多选风格控件
+	 * 
+	 * @param _name
+	 *            控件标题
+	 * @param _args
+	 *            控件内部标签名称
+	 * @param _max
+	 *            可选数量
+	 * @param _choose
+	 *            已被选择的控件序号。例：{1，3，7}
+	 */
+	public LinearLayout_style(Context context, String _name, String[] _args, int _max, int[] _choose)
 	{
 		super(context);
 		if (DEBUG)
 			System.out.println("LinearLayout_style super");
 
-		this._count = _count;
+		this._count_max = _max;
 		this.setOrientation(LinearLayout.VERTICAL);
+		this._context = context;
 
 		TextView _textview_name = new TextView(context);
 		_textview_name.setText(_name);
@@ -53,21 +75,84 @@ public class LinearLayout_style extends LinearLayout
 
 		TextView _textview_item;
 		GridLayout.LayoutParams _params;
+		int _id = 0;
 		for (String string : _args)
 		{
 			_textview_item = new TextView(context);
+			_text.add(_textview_item);
+			this._choose.add(isClicked(_id + 1, _choose) ? 1 : 0);
+			_textview_item.setId(_id);
 			_textview_item.setText(string);
 			_textview_item.setTextSize(18);
 			_textview_item.setGravity(Gravity.CENTER);
-			_textview_item.setBackgroundResource(R.drawable.background_button_gray);
+			if (isClicked(_id + 1, _choose))
+			{
+				_textview_item.setBackgroundResource(R.drawable.background_button);
+				this._count++;
+			}
+			else
+				_textview_item.setBackgroundResource(R.drawable.background_button_gray);
+			_textview_item.setOnClickListener(this);
 			_params = new GridLayout.LayoutParams();
 			_params.setMargins(10, 10, 10, 10);
 			_params.width = 120;
 			_params.height = 50;
 			_gridlayout.addView(_textview_item, _params);
+			_id++;
 		}
 
 		this.addView(_gridlayout);
 	}
 
+	@Override
+	public void onClick(View v)
+	{
+		TextView _temp_textview = _text.get(v.getId());
+		if (_choose.get(v.getId()) == 0)
+		{
+			if (_count < _count_max)
+			{
+				_temp_textview.setBackgroundResource(R.drawable.background_button);
+				_choose.set(v.getId(), 1);
+				_count++;
+			}
+		}
+		else
+		{
+			_temp_textview.setBackgroundResource(R.drawable.background_button_gray);
+			_choose.set(v.getId(), 0);
+			_count--;
+		}
+
+		Toast.makeText(_context, getData(), Toast.LENGTH_SHORT).show();
+	}
+
+	private boolean isClicked(int _id, int[] _choose)
+	{
+		for (int i : _choose)
+		{
+			if (_id == i)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public String getData()
+	{
+		StringBuffer _string = new StringBuffer();
+
+		for (int _temp_i = 0; _temp_i < _choose.size(); _temp_i++)
+		{
+			if (_choose.get(_temp_i) == 1)
+			{
+				_string.append(_temp_i + 1);
+				_string.append(',');
+			}
+		}
+		if (_string.length() != 0)
+			_string.deleteCharAt(_string.length() - 1);
+		return _string.toString();
+	}
 }

@@ -1,103 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="match_parent" >
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="15" >
-
-        <TableLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:padding="10dp" >
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-
-                <com.shownest.android.widget.Linearlayout_role
-                    android:id="@+id/linearlayout_role_yezhu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:src="@drawable/shejishi"
-                    android:text="我是业主" >
-                </com.shownest.android.widget.Linearlayout_role>
-
-                <com.shownest.android.widget.Linearlayout_role
-                    android:id="@+id/linearlayout_role_shejishi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:src="@drawable/shejishi"
-                    android:text="我是设计师" >
-                </com.shownest.android.widget.Linearlayout_role>
-            </TableRow>
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-
-                <com.shownest.android.widget.Linearlayout_role
-                    android:id="@+id/linearlayout_role_shigongdui"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:src="@drawable/shejishi"
-                    android:text="我是施工队" >
-                </com.shownest.android.widget.Linearlayout_role>
-
-                <com.shownest.android.widget.Linearlayout_role
-                    android:id="@+id/linearlayout_role_jianli"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:src="@drawable/shejishi"
-                    android:text="我是监理" >
-                </com.shownest.android.widget.Linearlayout_role>
-            </TableRow>
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-
-                <com.shownest.android.widget.Linearlayout_role
-                    android:id="@+id/linearlayout_role_zhuangxiugongsi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:src="@drawable/shejishi"
-                    android:text="我是装修公司" >
-                </com.shownest.android.widget.Linearlayout_role>
-
-                <com.shownest.android.widget.Linearlayout_role
-                    android:id="@+id/linearlayout_role_doubushi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:src="@drawable/shejishi"
-                    android:text="以上都不是" >
-                </com.shownest.android.widget.Linearlayout_role>
-            </TableRow>
-        </TableLayout>
-    </ScrollView>
-
-    <Button
-        android:id="@+id/button_next"
-        android:layout_width="match_parent"
+    <TableLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/button"
-        android:background="@drawable/background_button"
-        android:text="下一步" />
+        android:layout_gravity="center_horizontal"
+        android:padding="10dp" >
 
-</LinearLayout>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <com.shownest.android.widget.Linearlayout_role
+                android:id="@+id/linearlayout_role_yezhu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:src="@drawable/shejishi"
+                android:text="我是业主" >
+            </com.shownest.android.widget.Linearlayout_role>
+
+            <com.shownest.android.widget.Linearlayout_role
+                android:id="@+id/linearlayout_role_shejishi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:src="@drawable/shejishi"
+                android:text="我是设计师" >
+            </com.shownest.android.widget.Linearlayout_role>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <com.shownest.android.widget.Linearlayout_role
+                android:id="@+id/linearlayout_role_shigongdui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:src="@drawable/shejishi"
+                android:text="我是施工队" >
+            </com.shownest.android.widget.Linearlayout_role>
+
+            <com.shownest.android.widget.Linearlayout_role
+                android:id="@+id/linearlayout_role_jianli"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:src="@drawable/shejishi"
+                android:text="我是监理" >
+            </com.shownest.android.widget.Linearlayout_role>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <com.shownest.android.widget.Linearlayout_role
+                android:id="@+id/linearlayout_role_zhuangxiugongsi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:src="@drawable/shejishi"
+                android:text="我是装修公司" >
+            </com.shownest.android.widget.Linearlayout_role>
+
+            <com.shownest.android.widget.Linearlayout_role
+                android:id="@+id/linearlayout_role_doubushi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:src="@drawable/shejishi"
+                android:text="以上都不是" >
+            </com.shownest.android.widget.Linearlayout_role>
+        </TableRow>
+    </TableLayout>
+
+</ScrollView>
