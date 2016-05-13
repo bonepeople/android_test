@@ -29,7 +29,8 @@
                     android:drawablePadding="10dp"
                     android:hint="请输入手机号"
                     android:inputType="phone"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:text="15210196421" />
 
                 <EditText
                     android:id="@+id/edittext_password"
@@ -40,7 +41,8 @@
                     android:drawablePadding="10dp"
                     android:hint="密码"
                     android:inputType="textPassword"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:text="qwerty" />
             </LinearLayout>
 
             <Button
