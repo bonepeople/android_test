@@ -82,4 +82,13 @@
         android:background="@drawable/background_button"
         android:onClick="basicinfo"
         android:text="个人资料" />
+       
+        <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:background="@drawable/background_button"
+        android:onClick="basicinfo_yezhu"
+        android:text="业主认证" />
 </GridLayout>

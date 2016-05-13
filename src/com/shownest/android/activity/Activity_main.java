@@ -81,7 +81,13 @@ public class Activity_main extends DEBUG_Activity
 		Toast.makeText(this, "basicinfo", Toast.LENGTH_SHORT).show();
 		Intent intent = new Intent(this, Activity_basicinfo.class);
 		startActivity(intent);
-		finish();
+	}
+
+	public void basicinfo_yezhu(View v)
+	{
+		Toast.makeText(this, "basicinfo_yezhu", Toast.LENGTH_SHORT).show();
+		Intent intent = new Intent(this, Activity_basicinfo_yezhu.class);
+		startActivity(intent);
 	}
 
 	@Override
