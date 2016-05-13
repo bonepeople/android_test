@@ -1,7 +1,6 @@
 package com.shownest.android.utils;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -48,7 +47,7 @@ public class HttpUtil
 
 		_message = _userType;
 
-		new Thread_http(_handler, _address, _message, _successful, _failed).start();
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}
 
 	public static void modify_Phone(Handler _handler, String _phone, String _code, int _successful, int _failed)
@@ -61,7 +60,7 @@ public class HttpUtil
 
 		_message = _telNo + "&" + _checkCode;
 
-		new Thread_http(_handler, _address, _message, _successful, _failed).start();
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}
 
 	public static void set_pwd(Handler _handler, String _oldPwd, String _password, String _repassword, int _successful, int _failed)
@@ -75,7 +74,7 @@ public class HttpUtil
 
 		_message = _currentPwd + "&" + _pwd + "&" + _repwd;
 
-		new Thread_http(_handler, _address, _message, _successful, _failed).start();
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}
 
 	public static void forget_pwd(Handler _handler, String _phone, String _code, String _password, String _repassword, int _successful, int _failed)
@@ -90,7 +89,7 @@ public class HttpUtil
 
 		_message = _telNo + "&" + _mobilecode + "&" + _pwd + "&" + _repwd;
 
-		new Thread_http(_handler, _address, _message, _successful, _failed).start();
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}
 
 	public static void check_mobcode(Handler _handler, String _phone, String _mobilecode, int _successful, int _failed)
@@ -100,7 +99,7 @@ public class HttpUtil
 
 		_message = "telNo=" + _phone + "&mobilecode=" + _mobilecode;
 
-		new Thread_http(_handler, _address, _message, _successful, _failed).start();
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}
 
 	public static void submit_reg(Handler _handler, String _username, String _mobilecode, String _password, int _successful, int _failed)
@@ -110,7 +109,7 @@ public class HttpUtil
 
 		_message = "userName=" + _username + "&pwd=" + _password + "&repwd=" + _password + "&mobilecode=" + _mobilecode;
 
-		new Thread_http(_handler, _address, _message, _successful, _failed).start();
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}
 
 	public static void send_mobilecode(Handler _handler, String _phone, int _successful, int _failed)
@@ -120,7 +119,7 @@ public class HttpUtil
 
 		_message = "telNo=" + _phone;
 
-		new Thread_http(_handler, _address, _message, _successful, _failed).start();
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}
 
 	/**
@@ -131,7 +130,7 @@ public class HttpUtil
 		String _address = BASEADDRESS + "getuserinfo";
 		String _message = "";
 
-		new Thread_http(_handler, _address, _message, _successful, _failed).start();
+		new Thread_http(_handler, _address, _message, _successful, _failed, "GET").start();
 	}
 
 	/**
@@ -149,7 +148,7 @@ public class HttpUtil
 
 		_message = "userName=" + _username + "&userPassword=" + _password;
 
-		new Thread_http(_handler, _address, _message, _successful, _failed).start();
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}
 
 	/**
@@ -164,7 +163,7 @@ public class HttpUtil
 
 		_message = "ukey=" + _ukey;
 
-		new Thread_http(_handler, _address, _message, _successful, _failed).start();
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}
 
 	/**
@@ -182,7 +181,7 @@ public class HttpUtil
 
 		_message = "userName=" + _name;
 
-		new Thread_http(_handler, _address, _message, _successful, _failed).start();
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}
 
 	/**
@@ -199,17 +198,16 @@ public class HttpUtil
 	 * @param _failed
 	 *            activity的失败响应值
 	 */
-	public static void send_post(Handler _handler, String _address, String _message, int _successful, int _failed)
+	public static void send_http(Handler _handler, String _address, String _message, int _successful, int _failed, String _method)
 	{
 		if (DEBUG)
-			System.out.println("post message:" + _message);
+			System.out.println(_method + " message:" + _message);
 
 		Message _msg = _handler.obtainMessage();
 		_msg.what = _failed;
 		_msg.obj = new String("Exception");
 		URL _realUrl = null;
 		HttpURLConnection _connection = null;
-		FileInputStream _is = null;
 		int _status = 0;
 
 		try
@@ -218,8 +216,11 @@ public class HttpUtil
 			_connection = (HttpURLConnection) _realUrl.openConnection();
 			_connection.setConnectTimeout(3000);
 			_connection.setReadTimeout(3000);
-			_connection.setRequestMethod("POST");
-			_connection.setDoOutput(true);
+			_connection.setRequestMethod(_method);
+			if (_method.equals("POST"))
+			{
+				_connection.setDoOutput(true);
+			}
 			_connection.setRequestProperty("connection", "keep-alive");
 			_connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 			_connection.setRequestProperty("Cache-Control", "max-age=0");
@@ -231,8 +232,12 @@ public class HttpUtil
 			try
 			{
 				_connection.connect();
-				_os = _connection.getOutputStream();
-				_os.write(_message.getBytes());
+				if (_method.equals("POST"))
+				{
+					_os = _connection.getOutputStream();
+					_os.write(_message.getBytes());
+				}
+
 			}
 			catch (Exception _e)
 			{
@@ -312,14 +317,6 @@ public class HttpUtil
 			_handler.sendMessage(_msg);
 			if (_connection != null)
 				_connection.disconnect();
-			if (_is != null)
-				try
-				{
-					_is.close();
-				}
-				catch (IOException _e)
-				{
-				}
 		}
 	}
 
