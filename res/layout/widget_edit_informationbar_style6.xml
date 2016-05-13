@@ -14,20 +14,28 @@
         android:singleLine="true"
         android:text="所在城市" />
 
-    <RadioButton
-        android:id="@+id/radiobutton_widget_right"
+    <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:text="装修公司设计师" />
+        android:orientation="horizontal" >
 
-    <RadioButton
-        android:id="@+id/radiobutton_widget_left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/radiobutton_widget_right"
-        android:text="独立设计师" />
+        <RadioButton
+            android:id="@+id/radiobutton_widget_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/radiobutton_widget_right"
+            android:text="独立设计师" />
+
+        <RadioButton
+            android:id="@+id/radiobutton_widget_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="装修公司设计师" />
+    </RadioGroup>
 
 </RelativeLayout>

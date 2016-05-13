@@ -3,12 +3,9 @@ package com.shownest.android.widget;
 import com.shownest.android.R;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
@@ -52,7 +49,7 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 	 * @param style
 	 *            类型（1-6）
 	 * @param name
-	 *            信息条内容
+	 *            信息条内容 1-3,2-2,3-3,4-6,5-2,6-4
 	 * 
 	 */
 	public RelativeLayout_edit_informationbar(Context context, ViewGroup root, int style, String[] args, boolean _clickable)
@@ -63,7 +60,7 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 		this._context = context;
 		this._style = style;
 		this._rootview = root;
-		this._clickable = style == 6 ? false : _clickable;
+		this._clickable = style == 6 ? true : _clickable;
 		setContentView(args);
 
 	}
@@ -144,7 +141,7 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 		case 5:
 			if (args.length != 2)
 			{
-				System.out.println("relativelayout super:4-" + args.toString());
+				System.out.println("relativelayout super:5-" + args.toString());
 				break;
 			}
 			_view = (ViewGroup) View.inflate(this._context, R.layout.widget_edit_informationbar_style5, this._rootview);
@@ -155,8 +152,36 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 
 			_textview_name.setText(args[0]);
 			_textview_right.setText(args[1]);
+			break;
+		case 6:
+			if (args.length != 4)
+			{
+				System.out.println("relativelayout super:6-" + args.toString());
+				break;
+			}
+			_view = (ViewGroup) View.inflate(this._context, R.layout.widget_edit_informationbar_style6, this._rootview);
+			_childview = _view.getChildAt(_view.getChildCount() - 1);
+
+			_textview_name = (TextView) _childview.findViewById(R.id.textview_widget_name);
+			_radiobutton_left = (RadioButton) _childview.findViewById(R.id.radiobutton_widget_left);
+			_radiobutton_right = (RadioButton) _childview.findViewById(R.id.radiobutton_widget_right);
+
+			_textview_name.setText(args[0]);
+			_radiobutton_left.setText(args[1]);
+			_radiobutton_right.setText(args[2]);
+			if (Integer.parseInt(args[3]) == 1)
+			{
+				_radiobutton_left.setChecked(true);
+			}
+			else
+			{
+				_radiobutton_right.setChecked(true);
+			}
+
+			break;
 		}
-		if (!this._clickable && this._style != 6)
+		// if (this._style != 6)
+		if (!this._clickable)
 		{
 			_textview_right.setTextColor(getResources().getColor(R.color.text_gray));
 			if (_textview_left != null)
@@ -185,6 +210,10 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 			break;
 		case 5:
 			_data = this._textview_right.getText().toString();
+			break;
+		case 6:
+			_data = _radiobutton_left.isChecked() ? _radiobutton_left.getText().toString() : _radiobutton_right.getText().toString();
+			_radiobutton_right.setChecked(true);
 			break;
 		}
 		return _data;
