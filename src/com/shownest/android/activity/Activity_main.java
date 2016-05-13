@@ -76,6 +76,14 @@ public class Activity_main extends DEBUG_Activity
 		finish();
 	}
 
+	public void basicinfo(View v)
+	{
+		Toast.makeText(this, "basicinfo", Toast.LENGTH_SHORT).show();
+		Intent intent = new Intent(this, Activity_basicinfo.class);
+		startActivity(intent);
+		finish();
+	}
+
 	@Override
 	protected String get_class()
 	{

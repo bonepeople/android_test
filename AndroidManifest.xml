@@ -40,6 +40,8 @@
         </activity>
         <activity android:name="com.shownest.android.activity.Activity_select_role" >
         </activity>
+         <activity android:name="com.shownest.android.activity.Activity_basicinfo" >
+        </activity>
     </application>
 
 </manifest>
