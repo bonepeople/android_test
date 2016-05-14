@@ -24,6 +24,15 @@ public class Thread_http extends Thread
 	@Override
 	public void run()
 	{
+		try
+		{
+			sleep(2000);
+		}
+		catch (InterruptedException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		HttpUtil.send_http(_handler, _address, _message, _successful, _failed, _method);
 	}
 

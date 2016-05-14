@@ -11,9 +11,18 @@
         android:layout_height="@dimen/title_height" />
 
     <FrameLayout
-        android:id="@+id/framelayout_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
+
+        <FrameLayout
+            android:id="@+id/framelayout_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </FrameLayout>
+
+        <include
+            android:id="@+id/relativelayout_wait"
+            layout="@layout/widget_wait" />
     </FrameLayout>
 
 </LinearLayout>
