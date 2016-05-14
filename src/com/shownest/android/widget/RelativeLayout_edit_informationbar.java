@@ -249,7 +249,6 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 			break;
 		case 6:
 			_data = _radiobutton_left.isChecked() ? _radiobutton_left.getText().toString() : _radiobutton_right.getText().toString();
-			_radiobutton_right.setChecked(true);
 			break;
 		}
 		return _data;

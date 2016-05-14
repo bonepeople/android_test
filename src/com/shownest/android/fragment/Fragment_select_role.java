@@ -2,7 +2,6 @@ package com.shownest.android.fragment;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_main;
-import com.shownest.android.activity.Activity_regist;
 import com.shownest.android.activity.Activity_select_role;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.utils.HttpUtil;
@@ -10,7 +9,6 @@ import com.shownest.android.widget.Linearlayout_role;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +22,7 @@ public class Fragment_select_role extends DEBUG_Fragment implements View.OnClick
 	private AlertDialog _dialog;
 	private String _role_name = "";
 	private int _role_code = 100;
-	private Class _intent_class = Activity_main.class;// 默认为主页，选择不同角色时切换不同的class
+	private Class<?> _intent_class = Activity_main.class;// 默认为主页，选择不同角色时切换不同的class
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -123,7 +121,7 @@ public class Fragment_select_role extends DEBUG_Fragment implements View.OnClick
 		_dialog.show();
 	}
 
-	public Class get_intent_class()
+	public Class<?> get_intent_class()
 	{
 		return _intent_class;
 	}

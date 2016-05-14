@@ -5,8 +5,6 @@ import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
-import com.shownest.android.fragment.Fragment_change_pwd;
-import com.shownest.android.fragment.Fragment_regist;
 import com.shownest.android.fragment.Fragment_select_role;
 
 import android.content.Context;
