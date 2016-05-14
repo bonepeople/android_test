@@ -30,6 +30,8 @@ public class Activity_my_center extends DEBUG_Activity
 	{
 		public void handleMessage(android.os.Message msg)
 		{
+			if (_instance == null)
+				return;
 			String _string_result = "";
 			switch (msg.what)
 			{
@@ -58,6 +60,13 @@ public class Activity_my_center extends DEBUG_Activity
 
 		show_wait();
 		HttpUtil.get_userinfo(_handler, LOGIN_SUCCESSFUL, LOGIN_FAILED);
+	}
+
+	@Override
+	protected void onDestroy()
+	{
+		_instance = null;
+		super.onDestroy();
 	}
 
 	private static void handle_string(String str)

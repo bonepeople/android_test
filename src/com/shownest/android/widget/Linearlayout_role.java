@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class Linearlayout_role extends LinearLayout
 {
-	private static boolean DEBUG = true;
+	private static boolean DEBUG = false;
 	private ImageView _imageview;
 	private TextView _textview;
 
