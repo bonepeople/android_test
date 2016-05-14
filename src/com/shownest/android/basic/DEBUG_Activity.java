@@ -11,7 +11,7 @@ public abstract class DEBUG_Activity extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		if (DEBUG)
-			System.out.println(get_class() + "-onCreate");
+			System.out.println(this.getClass().getName() + "-onCreate");
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 	}
@@ -20,7 +20,7 @@ public abstract class DEBUG_Activity extends Activity
 	protected void onStart()
 	{
 		if (DEBUG)
-			System.out.println(get_class() + "-onStart");
+			System.out.println(this.getClass().getName() + "-onStart");
 		// TODO Auto-generated method stub
 		super.onStart();
 	}
@@ -29,16 +29,17 @@ public abstract class DEBUG_Activity extends Activity
 	protected void onResume()
 	{
 		if (DEBUG)
-			System.out.println(get_class() + "-onResume");
+			System.out.println(this.getClass().getName() + "-onResume");
 		// TODO Auto-generated method stub
 		super.onResume();
+
 	}
 
 	@Override
 	protected void onPause()
 	{
 		if (DEBUG)
-			System.out.println(get_class() + "-onPause");
+			System.out.println(this.getClass().getName() + "-onPause");
 		// TODO Auto-generated method stub
 		super.onPause();
 	}
@@ -47,7 +48,7 @@ public abstract class DEBUG_Activity extends Activity
 	protected void onStop()
 	{
 		if (DEBUG)
-			System.out.println(get_class() + "-onStop");
+			System.out.println(this.getClass().getName() + "-onStop");
 		// TODO Auto-generated method stub
 		super.onStop();
 	}
@@ -56,7 +57,7 @@ public abstract class DEBUG_Activity extends Activity
 	protected void onRestart()
 	{
 		if (DEBUG)
-			System.out.println(get_class() + "-onRestart");
+			System.out.println(this.getClass().getName() + "-onRestart");
 		// TODO Auto-generated method stub
 		super.onRestart();
 	}
@@ -65,7 +66,7 @@ public abstract class DEBUG_Activity extends Activity
 	protected void onDestroy()
 	{
 		if (DEBUG)
-			System.out.println(get_class() + "-onDestroy");
+			System.out.println(this.getClass().getName() + "-onDestroy");
 		// TODO Auto-generated method stub
 		super.onDestroy();
 	}
@@ -74,7 +75,7 @@ public abstract class DEBUG_Activity extends Activity
 	{
 		if (DEBUG)
 		{
-			String _class = _activity.get_class();
+			String _class = _activity.getClass().getName();
 			System.out.println(_class + "-handle msg:" + _msg);
 		}
 	}

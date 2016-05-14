@@ -30,7 +30,7 @@
                     android:hint="请输入手机号"
                     android:inputType="phone"
                     android:singleLine="true"
-                    android:text="15210196421" />
+                    android:text="15901515556" />
 
                 <EditText
                     android:id="@+id/edittext_password"
@@ -42,7 +42,7 @@
                     android:hint="密码"
                     android:inputType="textPassword"
                     android:singleLine="true"
-                    android:text="qwerty" />
+                    android:text="jiangsi8878" />
             </LinearLayout>
 
             <Button

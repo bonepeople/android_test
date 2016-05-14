@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
+import com.shownest.android.model.UserInfo;
 import com.shownest.android.utils.HttpUtil;
 
 import android.content.Context;
@@ -62,13 +63,17 @@ public class Activity_test extends DEBUG_Activity
 			JSONObject _obj = new JSONObject(str);
 			String _result = _obj.getString("msg");
 			Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
+
+			JSONObject _data = _obj.getJSONArray("data").getJSONObject(0);
+			UserInfo _info = new UserInfo(_data);
+			System.out.println(_info.toString());
 		}
 		catch (JSONException e)
 		{
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void test(View v)
 	{
 		Toast.makeText(this, "test", Toast.LENGTH_SHORT).show();
