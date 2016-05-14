@@ -5,14 +5,12 @@ import java.util.ArrayList;
 import com.shownest.android.R;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class LinearLayout_style extends LinearLayout implements View.OnClickListener
 {
@@ -21,8 +19,6 @@ public class LinearLayout_style extends LinearLayout implements View.OnClickList
 	private int _count = 0;
 	private ArrayList<TextView> _text = new ArrayList<TextView>();
 	private ArrayList<Integer> _choose = new ArrayList<Integer>();
-
-	private Context _context;
 
 	public LinearLayout_style(Context context)
 	{
@@ -62,7 +58,6 @@ public class LinearLayout_style extends LinearLayout implements View.OnClickList
 
 		this._count_max = _max;
 		this.setOrientation(LinearLayout.VERTICAL);
-		this._context = context;
 
 		TextView _textview_name = new TextView(context);
 		_textview_name.setText(_name);
@@ -80,12 +75,12 @@ public class LinearLayout_style extends LinearLayout implements View.OnClickList
 		{
 			_textview_item = new TextView(context);
 			_text.add(_textview_item);
-			this._choose.add(isClicked(_id + 1, _choose) ? 1 : 0);
+			this._choose.add(isChecked(_id + 1, _choose) ? 1 : 0);
 			_textview_item.setId(_id);
 			_textview_item.setText(string);
 			_textview_item.setTextSize(18);
 			_textview_item.setGravity(Gravity.CENTER);
-			if (isClicked(_id + 1, _choose))
+			if (isChecked(_id + 1, _choose))
 			{
 				_textview_item.setBackgroundResource(R.drawable.background_button);
 				this._count++;
@@ -123,11 +118,9 @@ public class LinearLayout_style extends LinearLayout implements View.OnClickList
 			_choose.set(v.getId(), 0);
 			_count--;
 		}
-
-		Toast.makeText(_context, getData(), Toast.LENGTH_SHORT).show();
 	}
 
-	private boolean isClicked(int _id, int[] _choose)
+	private boolean isChecked(int _id, int[] _choose)
 	{
 		for (int i : _choose)
 		{

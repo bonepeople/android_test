@@ -2,10 +2,14 @@ package com.shownest.android.widget;
 
 import com.shownest.android.R;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
@@ -22,6 +26,8 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 	private ImageView _imageview_right;
 	private boolean _clickable;
 	private RadioButton _radiobutton_left, _radiobutton_right;
+	private AlertDialog _dialog;
+	EditText _edittext_dialog;
 
 	public RelativeLayout_edit_informationbar(Context context)
 	{
@@ -60,7 +66,7 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 		this._context = context;
 		this._style = style;
 		this._rootview = root;
-		this._clickable = style == 6 ? true : _clickable;
+		this._clickable = _clickable;
 		setContentView(args);
 
 	}
@@ -180,15 +186,45 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 
 			break;
 		}
-		// if (this._style != 6)
-		if (!this._clickable)
+		if (this._style != 6)
+			if (!this._clickable)
+			{
+				_textview_right.setTextColor(getResources().getColor(R.color.text_gray));
+				if (_textview_left != null)
+					_textview_left.setTextColor(getResources().getColor(R.color.text_gray));
+			}
+			else if (_childview != null)
+				_childview.setOnClickListener(this);
+	}
+
+	public void setData(String[] args)
+	{
+		switch (this._style)
 		{
-			_textview_right.setTextColor(getResources().getColor(R.color.text_gray));
-			if (_textview_left != null)
-				_textview_left.setTextColor(getResources().getColor(R.color.text_gray));
+		case 1:
+			_textview_left.setText(args[0]);
+			_textview_right.setText(args[1]);
+			break;
+		case 2:
+			_textview_right.setText(args[0]);
+			break;
+		case 3:
+			_textview_left.setText(args[0]);
+			break;
+		case 4:
+			_textview_right.setText(args[0] + "室" + args[1] + "厅" + args[2] + "厨" + args[3] + "卫" + args[4] + "阳台");
+			break;
+		case 5:
+			_textview_right.setText(args[0]);
+			break;
+		case 6:
+			if (Integer.parseInt(args[0]) == 1)
+				_radiobutton_left.setChecked(true);
+			else
+				_radiobutton_right.setChecked(true);
+			break;
 		}
-		else if (_childview != null)
-			_childview.setOnClickListener(this);
+
 	}
 
 	public String getData()
@@ -222,8 +258,56 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 	@Override
 	public void onClick(View v)
 	{
-		Toast.makeText(_context, this.getData(), Toast.LENGTH_SHORT).show();
+		switch (v.getId())
+		{
+		case R.id.button_commit:
+			setData(new String[] { _edittext_dialog.getText().toString() });
+			_dialog.dismiss();
+			break;
+
+		case R.id.button_cancel:
+			_dialog.dismiss();
+			break;
+
+		default:
+			switch (this._style)
+			{
+			case 1:
+				Toast.makeText(_context, "跳转", Toast.LENGTH_SHORT).show();
+				break;
+			case 2:
+				Toast.makeText(_context, "跳转", Toast.LENGTH_SHORT).show();
+				break;
+			case 3:
+				show_dialog(getData());
+				break;
+			case 4:
+				Toast.makeText(_context, "显示滚轮", Toast.LENGTH_SHORT).show();
+				break;
+			case 5:
+				show_dialog(getData());
+				break;
+			}
+		}
+
 		// Toast.makeText(_context, "clicked", Toast.LENGTH_SHORT).show();
+	}
+
+	private void show_dialog(String _value)
+	{
+		View _view = View.inflate(_context, R.layout.dialog_edit, null);
+		AlertDialog.Builder _builder = new Builder(_context);
+		_dialog = _builder.create();
+		_dialog.setView(_view, 0, 0, 0, 0);
+
+		Button _button_commit = (Button) _view.findViewById(R.id.button_commit);
+		Button _button_cancel = (Button) _view.findViewById(R.id.button_cancel);
+		_edittext_dialog = (EditText) _view.findViewById(R.id.edittext_dialog);
+		_edittext_dialog.setText(_value);
+
+		_button_commit.setOnClickListener(this);
+		_button_cancel.setOnClickListener(this);
+		_dialog.show();
 	}
 
 }
