@@ -90,6 +90,13 @@ public class Activity_main extends DEBUG_Activity
 		startActivity(intent);
 	}
 
+	public void my_center(View v)
+	{
+		Toast.makeText(this, "my_center", Toast.LENGTH_SHORT).show();
+		Intent intent = new Intent(this, Activity_my_center.class);
+		startActivity(intent);
+	}
+
 	@Override
 	protected String get_class()
 	{
