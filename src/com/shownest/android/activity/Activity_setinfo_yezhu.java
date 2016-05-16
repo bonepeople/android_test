@@ -8,12 +8,14 @@ import com.shownest.android.basic.DEBUG_Activity;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class Activity_setinfo_yezhu extends DEBUG_Activity
 {
 	public static final int CHANGE_FAILED = 0;
 	public static final int CHANGE_SUCCESSFUL = 1;
+	private static RelativeLayout _relativelayout_wait;
 	private static Activity_setinfo_yezhu _instance;
 	public static Handler _handler = new Handler()
 	{
@@ -30,7 +32,7 @@ public class Activity_setinfo_yezhu extends DEBUG_Activity
 				handle_string(CHANGE_SUCCESSFUL, _string_result);
 				break;
 			}
-			System.out.println(_string_result);
+			close_wait();
 		};
 	};
 
@@ -38,8 +40,9 @@ public class Activity_setinfo_yezhu extends DEBUG_Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_basicinfo_yezhu);
+		setContentView(R.layout.activity_setinfo_yezhu);
 		_instance = this;
+		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 	}
 
 	private static void handle_string(int _message, String _str)
@@ -57,12 +60,23 @@ public class Activity_setinfo_yezhu extends DEBUG_Activity
 			}
 			else
 				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
-
 		}
 		catch (JSONException e)
 		{
 			e.printStackTrace();
 		}
 
+	}
+
+	public static void show_wait()
+	{
+		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() != RelativeLayout.VISIBLE)
+			_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
+	}
+
+	public static void close_wait()
+	{
+		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() == RelativeLayout.VISIBLE)
+			_relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
 	}
 }

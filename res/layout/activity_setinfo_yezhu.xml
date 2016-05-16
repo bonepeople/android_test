@@ -10,10 +10,20 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_height" />
 
-    <fragment
-        android:id="@+id/fragment_basicinfo_yezhu"
-        android:name="com.shownest.android.fragment.Fragment_setinfo_yezhu"
+    <FrameLayout
+        android:id="@+id/framelayout_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+
+        <fragment
+            android:id="@+id/fragment_basicinfo_yezhu"
+            android:name="com.shownest.android.fragment.Fragment_setinfo_yezhu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <include
+            android:id="@+id/relativelayout_wait"
+            layout="@layout/widget_wait" />
+    </FrameLayout>
 
 </LinearLayout>

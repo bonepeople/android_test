@@ -14,27 +14,24 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class Fragment_setinfo_yezhu extends DEBUG_Fragment
 {
 	private LinearLayout _body;
 	private Button _button_commit;
-	private RelativeLayout _relativelayout_wait;
-	private RelativeLayout_edit_informationbar _role, _showname, _realname, _sex;
+	private RelativeLayout_edit_informationbar _showname, _realname, _sex;
 	LinearLayout_style _style;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		super.onCreateView(inflater, container, savedInstanceState);
-		View _view = inflater.inflate(R.layout.fragment_setinfo_yezhu, container, false);
+		View _view = inflater.inflate(R.layout.fragment_setinfo, container, false);
 		_body = (LinearLayout) _view.findViewById(R.id.linearlayout_content);
 		_button_commit = (Button) _view.findViewById(R.id.button_commit);
-		_relativelayout_wait = (RelativeLayout) _view.findViewById(R.id.relativelayout_wait);
-
-		_role = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "身份类型", "业主" }, false);
+		_button_commit.setText("完成认证");
+		new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "身份类型", "业主" }, false);
 		_showname = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "秀巢昵称", "sn1234" }, true);
 		_realname = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "真是姓名", "秀巢" }, true);
 		_sex = new RelativeLayout_edit_informationbar(getActivity(), _body, 6, new String[] { "性别", "男", "女", "1" }, false);
@@ -60,6 +57,7 @@ public class Fragment_setinfo_yezhu extends DEBUG_Fragment
 				else
 				{
 					Toast.makeText(getActivity(), _string_showname + _string_realname + _string_sex + _string_style, Toast.LENGTH_SHORT).show();
+					Activity_setinfo_yezhu.show_wait();
 					HttpUtil.change_bsaeinfo(Activity_setinfo_yezhu._handler, _string_showname, _string_realname, _string_sex, _string_style, Activity_setinfo_yezhu.CHANGE_SUCCESSFUL,
 							Activity_setinfo_yezhu.CHANGE_FAILED);
 				}
@@ -68,17 +66,5 @@ public class Fragment_setinfo_yezhu extends DEBUG_Fragment
 		});
 
 		return _view;
-	}
-
-	public void show_wait()
-	{
-		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() != RelativeLayout.VISIBLE)
-			_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
-	}
-
-	public void close_wait()
-	{
-		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() == RelativeLayout.VISIBLE)
-			_relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
 	}
 }
