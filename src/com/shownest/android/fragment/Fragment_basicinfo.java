@@ -2,16 +2,25 @@ package com.shownest.android.fragment;
 
 import com.loopj.android.image.SmartImageView;
 import com.shownest.android.R;
+import com.shownest.android.activity.Activity_change_phone;
+import com.shownest.android.activity.Activity_change_pwd;
 import com.shownest.android.activity.Activity_my_center;
+import com.shownest.android.activity.Activity_select_role;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.UserInfo;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Fragment_basicinfo extends DEBUG_Fragment implements View.OnClickListener
 {
@@ -87,20 +96,38 @@ public class Fragment_basicinfo extends DEBUG_Fragment implements View.OnClickLi
 		switch (v.getId())
 		{
 		case R.id.imageview_header:
+			Toast.makeText(getActivity(), "修改头像", Toast.LENGTH_SHORT).show();
 			break;
 
 		case R.id.relativelayout_name:
-
+			Toast.makeText(getActivity(), "修改用户名", Toast.LENGTH_SHORT).show();
 			break;
 
 		case R.id.relativelayout_password:
+			Intent _change_password = new Intent(getActivity(), Activity_change_pwd.class);
+			getActivity().startActivity(_change_password);
 			break;
 
 		case R.id.relativelayout_role:
-
+			Intent _select_role = new Intent(getActivity(), Activity_select_role.class);
+			getActivity().startActivity(_select_role);
 			break;
 
 		case R.id.relativelayout_phone:
+			AlertDialog.Builder _builder = new Builder(getActivity());
+			_builder.setMessage("更换手机号？");
+			_builder.setPositiveButton("确定", new OnClickListener()
+			{
+
+				@Override
+				public void onClick(DialogInterface dialog, int which)
+				{
+					Intent _change_phone = new Intent(Fragment_basicinfo.this.getActivity(), Activity_change_phone.class);
+					Fragment_basicinfo.this.getActivity().startActivity(_change_phone);
+				}
+			});
+			_builder.setNegativeButton("取消", null);
+			_builder.show();
 			break;
 		}
 

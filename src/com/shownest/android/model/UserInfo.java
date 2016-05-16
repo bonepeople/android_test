@@ -52,7 +52,7 @@ public class UserInfo
 		this._userPhone = _json.has("userPhone") ? _json.getString("userPhone") : "";
 		this._userShowName = _json.has("userShowName") ? _json.getString("userShowName") : "";
 		this._userType = _json.has("userType") ? _json.getInt("userType") : 100;
-		this._total = _json.has("total") ? _json.getInt("total") : 100;
+		this._total = _json.has("total") ? _json.getInt("total") : 0;
 		this._headerIcon = _json.has("headerIcon") ? _json.getString("headerIcon") : "";// 需要一个正确的初始值
 		this._gradePraise = _json.has("gradePraise") ? _json.getDouble("gradePraise") : 0.0;
 		this._createDate = _json.has("createDate") ? _json.getLong("createDate") : System.currentTimeMillis();

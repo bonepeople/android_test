@@ -4,6 +4,7 @@ import com.loopj.android.image.SmartImageView;
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_basicinfo;
 import com.shownest.android.activity.Activity_my_center;
+import com.shownest.android.activity.Activity_select_role;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.UserInfo;
 
@@ -70,6 +71,7 @@ public class Fragment_my_center extends DEBUG_Fragment implements View.OnClickLi
 			break;
 		case 100:
 			_textview_hint.setVisibility(TextView.VISIBLE);
+			_textview_hint.setOnClickListener(this);
 			break;
 		}
 		_item_info.setOnClickListener(this);
@@ -81,6 +83,10 @@ public class Fragment_my_center extends DEBUG_Fragment implements View.OnClickLi
 	{
 		switch (v.getId())
 		{
+		case R.id.textview_hint:
+			Intent _select_role = new Intent(getActivity(), Activity_select_role.class);
+			getActivity().startActivity(_select_role);
+			break;
 		case R.id.item_info:
 			Intent _my_info = new Intent(getActivity(), Activity_basicinfo.class	);
 			getActivity().startActivity(_my_info);

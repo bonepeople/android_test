@@ -1,11 +1,13 @@
 package com.shownest.android.fragment;
 
 import com.shownest.android.R;
+import com.shownest.android.activity.Activity_forget;
 import com.shownest.android.activity.Activity_login;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.utils.CommonUtil;
 import com.shownest.android.utils.HttpUtil;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,7 +66,8 @@ public class Fragment_login extends DEBUG_Fragment
 			@Override
 			public void onClick(View v)
 			{
-				Toast.makeText(getActivity(), "forget password", Toast.LENGTH_SHORT).show();
+				Intent _forget = new Intent(getActivity(), Activity_forget.class);
+				getActivity().startActivity(_forget);
 			}
 		});
 		return _view;
