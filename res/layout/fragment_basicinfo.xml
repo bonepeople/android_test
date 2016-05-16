@@ -25,14 +25,13 @@
                     android:text="头像"
                     android:textSize="16sp" />
 
-                <ImageView
+                <com.loopj.android.image.SmartImageView
                     android:id="@+id/imageview_header"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_margin="10dp"
-                    android:src="@drawable/icon_shownest" />
+                    android:layout_margin="10dp" />
             </RelativeLayout>
 
             <View

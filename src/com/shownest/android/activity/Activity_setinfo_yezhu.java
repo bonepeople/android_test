@@ -10,11 +10,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
 
-public class Activity_basicinfo_yezhu extends DEBUG_Activity
+public class Activity_setinfo_yezhu extends DEBUG_Activity
 {
 	public static final int CHANGE_FAILED = 0;
 	public static final int CHANGE_SUCCESSFUL = 1;
-	private static Activity_basicinfo_yezhu _instance;
+	private static Activity_setinfo_yezhu _instance;
 	public static Handler _handler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)

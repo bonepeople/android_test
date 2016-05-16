@@ -1,7 +1,7 @@
 package com.shownest.android.fragment;
 
 import com.shownest.android.R;
-import com.shownest.android.activity.Activity_basicinfo_yezhu;
+import com.shownest.android.activity.Activity_setinfo_yezhu;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.widget.LinearLayout_style;
@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-public class Fragment_basicinfo_yezhu extends DEBUG_Fragment
+public class Fragment_setinfo_yezhu extends DEBUG_Fragment
 {
 	private LinearLayout _body;
 	private Button _button_commit;
@@ -60,8 +60,8 @@ public class Fragment_basicinfo_yezhu extends DEBUG_Fragment
 				else
 				{
 					Toast.makeText(getActivity(), _string_showname + _string_realname + _string_sex + _string_style, Toast.LENGTH_SHORT).show();
-					HttpUtil.change_bsaeinfo(Activity_basicinfo_yezhu._handler, _string_showname, _string_realname, _string_sex, _string_style, Activity_basicinfo_yezhu.CHANGE_SUCCESSFUL,
-							Activity_basicinfo_yezhu.CHANGE_FAILED);
+					HttpUtil.change_bsaeinfo(Activity_setinfo_yezhu._handler, _string_showname, _string_realname, _string_sex, _string_style, Activity_setinfo_yezhu.CHANGE_SUCCESSFUL,
+							Activity_setinfo_yezhu.CHANGE_FAILED);
 				}
 
 			}

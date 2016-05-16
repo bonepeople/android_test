@@ -42,7 +42,7 @@
         </activity>
         <activity android:name="com.shownest.android.activity.Activity_basicinfo" >
         </activity>
-        <activity android:name="com.shownest.android.activity.Activity_basicinfo_yezhu" >
+        <activity android:name="com.shownest.android.activity.Activity_setinfo_yezhu" >
         </activity>
         <activity android:name="com.shownest.android.activity.Activity_my_center" >
         </activity>

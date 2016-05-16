@@ -2,10 +2,12 @@ package com.shownest.android.fragment;
 
 import com.loopj.android.image.SmartImageView;
 import com.shownest.android.R;
+import com.shownest.android.activity.Activity_basicinfo;
 import com.shownest.android.activity.Activity_my_center;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.UserInfo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,7 +50,6 @@ public class Fragment_my_center extends DEBUG_Fragment implements View.OnClickLi
 	private void setContent()
 	{
 		UserInfo _info = Activity_my_center.get_userinfo();
-		System.out.println(_info);
 		_textview_money.setText(String.valueOf(_info.get_money()));
 		_textview_name.setText(_info.get_userName());
 		_number_bowen.setText(String.valueOf(_info.get_blogNum()));
@@ -81,6 +82,8 @@ public class Fragment_my_center extends DEBUG_Fragment implements View.OnClickLi
 		switch (v.getId())
 		{
 		case R.id.item_info:
+			Intent _my_info = new Intent(getActivity(), Activity_basicinfo.class	);
+			getActivity().startActivity(_my_info);
 			break;
 
 		case R.id.item_money:

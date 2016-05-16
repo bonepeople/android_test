@@ -12,7 +12,7 @@
 
     <fragment
         android:id="@+id/fragment_basicinfo_yezhu"
-        android:name="com.shownest.android.fragment.Fragment_basicinfo_yezhu"
+        android:name="com.shownest.android.fragment.Fragment_setinfo_yezhu"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
