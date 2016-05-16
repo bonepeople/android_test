@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="5dp"
-        android:background="@drawable/background_button"
+        android:background="@drawable/background_button_gray"
         android:onClick="login"
         android:text="登录" />
 
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="5dp"
-        android:background="@drawable/background_button"
+        android:background="@drawable/background_button_gray"
         android:onClick="regist"
         android:text="注册" />
 
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="5dp"
-        android:background="@drawable/background_button"
+        android:background="@drawable/background_button_gray"
         android:onClick="publish"
         android:text="发布" />
 
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="5dp"
-        android:background="@drawable/background_button"
+        android:background="@drawable/background_button_gray"
         android:onClick="forget"
         android:text="忘记密码" />
 
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="5dp"
-        android:background="@drawable/background_button"
+        android:background="@drawable/background_button_gray"
         android:onClick="change_pwd"
         android:text="修改密码" />
 
@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="5dp"
-        android:background="@drawable/background_button"
+        android:background="@drawable/background_button_gray"
         android:onClick="change_phone"
         android:text="修改手机号" />
 
@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="5dp"
-        android:background="@drawable/background_button"
+        android:background="@drawable/background_button_gray"
         android:onClick="select_role"
         android:text="选择身份" />
 
@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="5dp"
-        android:background="@drawable/background_button"
+        android:background="@drawable/background_button_gray"
         android:onClick="basicinfo"
         android:text="个人资料" />
 
@@ -90,7 +90,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="5dp"
-        android:background="@drawable/background_button"
+        android:background="@drawable/background_button_gray"
         android:onClick="basicinfo_yezhu"
         android:text="业主认证" />
 
