@@ -111,12 +111,6 @@ public class Fragment_regist extends DEBUG_Fragment
 		return _view;
 	}
 
-	@Override
-	protected String get_class()
-	{
-		return this.getClass().toString();
-	}
-
 	public void mobilcode_change()
 	{
 		switch (_mobilecode_wait)

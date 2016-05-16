@@ -48,12 +48,6 @@ public class Fragment_select_role extends DEBUG_Fragment implements View.OnClick
 	}
 
 	@Override
-	protected String get_class()
-	{
-		return this.getClass().toString();
-	}
-
-	@Override
 	public void onClick(View v)
 	{
 		switch (v.getId())

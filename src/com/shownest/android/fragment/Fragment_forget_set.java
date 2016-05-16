@@ -64,12 +64,6 @@ public class Fragment_forget_set extends DEBUG_Fragment
 		return _view;
 	}
 
-	@Override
-	protected String get_class()
-	{
-		return this.getClass().toString();
-	}
-
 	public void show_wait()
 	{
 		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() != RelativeLayout.VISIBLE)

@@ -20,10 +20,4 @@ public class Fragment_title extends DEBUG_Fragment
 		return _view;
 
 	}
-
-	@Override
-	protected String get_class()
-	{
-		return this.getClass().toString();
-	}
 }

@@ -84,12 +84,6 @@ public class Fragment_forget extends DEBUG_Fragment
 		return _view;
 	}
 
-	@Override
-	protected String get_class()
-	{
-		return this.getClass().toString();
-	}
-
 	public void mobilcode_change()
 	{
 		switch (_mobilecode_wait)

@@ -51,10 +51,4 @@ public class Fragment_activity_publish_yezhu extends DEBUG_Fragment
 		});
 		return _view;
 	}
-
-	@Override
-	protected String get_class()
-	{
-		return this.getClass().toString();
-	}
 }

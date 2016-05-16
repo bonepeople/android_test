@@ -39,12 +39,6 @@ public class Fragment_my_center extends DEBUG_Fragment implements View.OnClickLi
 	}
 
 	@Override
-	protected String get_class()
-	{
-		return this.getClass().toString();
-	}
-
-	@Override
 	public void onResume()
 	{
 		setContent();

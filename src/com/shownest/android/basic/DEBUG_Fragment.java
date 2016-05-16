@@ -14,7 +14,7 @@ public abstract class DEBUG_Fragment extends Fragment
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		if (DEBUG)
-			System.out.println(get_class() + "-onCreateView");
+			System.out.println(this.getClass().getName() + "-onCreateView");
 		return null;
 	}
 
@@ -22,7 +22,7 @@ public abstract class DEBUG_Fragment extends Fragment
 	public void onResume()
 	{
 		if (DEBUG)
-			System.out.println(get_class() + "-onResume");
+			System.out.println(this.getClass().getName() + "-onResume");
 		super.onResume();
 	}
 
@@ -30,7 +30,7 @@ public abstract class DEBUG_Fragment extends Fragment
 	public void onPause()
 	{
 		if (DEBUG)
-			System.out.println(get_class() + "-onPause");
+			System.out.println(this.getClass().getName() + "-onPause");
 		super.onPause();
 	}
 
@@ -38,7 +38,7 @@ public abstract class DEBUG_Fragment extends Fragment
 	public void onStop()
 	{
 		if (DEBUG)
-			System.out.println(get_class() + "-onStop");
+			System.out.println(this.getClass().getName() + "-onStop");
 		super.onStop();
 	}
 
@@ -46,9 +46,7 @@ public abstract class DEBUG_Fragment extends Fragment
 	public void onDestroy()
 	{
 		if (DEBUG)
-			System.out.println(get_class() + "-onDestroy");
+			System.out.println(this.getClass().getName() + "-onDestroy");
 		super.onDestroy();
 	}
-
-	protected abstract String get_class();
 }

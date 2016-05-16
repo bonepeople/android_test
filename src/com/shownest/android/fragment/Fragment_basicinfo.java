@@ -38,12 +38,6 @@ public class Fragment_basicinfo extends DEBUG_Fragment
 		return _view;
 	}
 
-	@Override
-	protected String get_class()
-	{
-		return this.getClass().toString();
-	}
-
 	private void setContent()
 	{
 		// 进入本页面之前就应该已经将用户信息获取到了
