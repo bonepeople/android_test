@@ -61,12 +61,6 @@ public class Activity_change_phone extends DEBUG_Activity
 			_timer.interrupt();
 	}
 
-	@Override
-	protected String get_class()
-	{
-		return this.getClass().toString();
-	}
-
 	private static void handle_string(int _message, String _str)
 	{
 		handle_msg(_instance, _str);

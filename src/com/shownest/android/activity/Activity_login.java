@@ -69,10 +69,4 @@ public class Activity_login extends DEBUG_Activity
 			e.printStackTrace();
 		}
 	}
-
-	@Override
-	protected String get_class()
-	{
-		return this.getClass().toString();
-	}
 }

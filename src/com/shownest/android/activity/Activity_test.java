@@ -49,12 +49,6 @@ public class Activity_test extends DEBUG_Activity
 		_context = this.getApplicationContext();
 	}
 
-	@Override
-	protected String get_class()
-	{
-		return this.getClass().toString();
-	}
-
 	private static void handle_string(String str)
 	{
 		handle_msg(_instance, str);

@@ -49,12 +49,6 @@ public class Activity_change_pwd extends DEBUG_Activity
 		_fragment_change_pwd = (Fragment_change_pwd) getFragmentManager().findFragmentById(R.id.fragment_change_pwd);
 	}
 
-	@Override
-	protected String get_class()
-	{
-		return this.getClass().toString();
-	}
-
 	private static void handle_string(String str)
 	{
 		handle_msg(_instance, str);

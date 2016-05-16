@@ -13,11 +13,4 @@ public class Activity_basicinfo_yezhu extends DEBUG_Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_basicinfo_yezhu);
 	}
-
-	@Override
-	protected String get_class()
-	{
-		return this.getClass().toString();
-	}
-
 }

@@ -103,10 +103,4 @@ public class Activity_regist extends DEBUG_Activity
 		}
 
 	}
-
-	@Override
-	protected String get_class()
-	{
-		return this.getClass().toString();
-	}
 }

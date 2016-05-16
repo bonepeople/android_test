@@ -57,12 +57,6 @@ public class Activity_select_role extends DEBUG_Activity
 		finish();
 	}
 
-	@Override
-	protected String get_class()
-	{
-		return this.getClass().toString();
-	}
-
 	private static void handle_string(String str)
 	{
 		handle_msg(_instance, str);

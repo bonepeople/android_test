@@ -142,12 +142,6 @@ public class Activity_forget extends DEBUG_Activity
 		return _code;
 	}
 
-	@Override
-	protected String get_class()
-	{
-		return this.getClass().toString();
-	}
-
 	public static String get_forget_phone()
 	{
 		return _forget_phone;

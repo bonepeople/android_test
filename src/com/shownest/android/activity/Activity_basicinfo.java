@@ -13,11 +13,4 @@ public class Activity_basicinfo extends DEBUG_Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_basicinfo);
 	}
-
-	@Override
-	protected String get_class()
-	{
-		return this.getClass().toString();
-	}
-
 }

@@ -79,7 +79,4 @@ public abstract class DEBUG_Activity extends Activity
 			System.out.println(_class + "-handle msg:" + _msg);
 		}
 	}
-
-	protected abstract String get_class();
-
 }

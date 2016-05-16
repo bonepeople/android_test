@@ -102,12 +102,6 @@ public class Activity_my_center extends DEBUG_Activity
 		}
 	}
 
-	@Override
-	protected String get_class()
-	{
-		return this.getClass().toString();
-	}
-
 	public static UserInfo get_userinfo()
 	{
 		return _info;

@@ -24,10 +24,4 @@ public class Activity_publish_yezhu extends DEBUG_Activity
 		// FragmentTransaction tx = fm.beginTransaction();
 
 	}
-
-	@Override
-	protected String get_class()
-	{
-		return this.getClass().toString();
-	}
 }
