@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import com.shownest.android.R;
 
 import android.content.Context;
+import android.graphics.Point;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -59,6 +61,11 @@ public class LinearLayout_style extends LinearLayout implements View.OnClickList
 		this._count_max = _max;
 		this.setOrientation(LinearLayout.VERTICAL);
 
+		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+		Point outSize = new Point(0, 0);
+		wm.getDefaultDisplay().getSize(outSize);
+		int screen_width = outSize.x;
+
 		TextView _textview_name = new TextView(context);
 		_textview_name.setText(_name);
 		_textview_name.setTextSize(18);
@@ -90,8 +97,8 @@ public class LinearLayout_style extends LinearLayout implements View.OnClickList
 			_textview_item.setOnClickListener(this);
 			_params = new GridLayout.LayoutParams();
 			_params.setMargins(10, 10, 10, 10);
-			_params.width = 120;
-			_params.height = 50;
+			_params.width = (screen_width - 60) / 3;
+			_params.height = (screen_width - 60) / 6;
 			_gridlayout.addView(_textview_item, _params);
 			_id++;
 		}
