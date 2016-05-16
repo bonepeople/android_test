@@ -22,7 +22,8 @@
 
         <include
             android:id="@+id/relativelayout_wait"
-            layout="@layout/widget_wait" />
+            layout="@layout/widget_wait" 
+            android:visibility="visible"/>
     </FrameLayout>
 
 </LinearLayout>

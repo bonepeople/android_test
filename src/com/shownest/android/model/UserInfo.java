@@ -47,25 +47,27 @@ public class UserInfo
 
 	public UserInfo(JSONObject _json) throws JSONException
 	{
-		this._userId = _json.getString("userId");
-		this._userName = _json.getString("userName");
-		this._userPhone = _json.getString("userPhone");
-		this._userShowName = _json.getString("userShowName");
-		this._userType = _json.getInt("userType");
-		this._total = _json.getInt("total");
-		this._headerIcon = _json.getString("headerIcon");
-		this._gradePraise = _json.getDouble("gradePraise");
-		this._createDate = _json.getLong("createDate");
-		this._checkPhone = _json.getString("checkPhone").equals("y") ? true : false;
-		this._checkUsername = _json.getString("checkUsername").equals("y") ? true : false;
-		this._checkEmail = _json.getString("checkEmail").equals("y") ? true : false;
-		this._blogNum = _json.getInt("blogNum");
-		this._money = _json.getDouble("money");
-		this._ukey = _json.getString("ukey");
-		this._ownerName = _json.getString("ownerName");
-		this._likeStyle = _json.getString("likeStyle");
-		this._realName = _json.getString("realName");
-		this._realSex = _json.getInt("realSex");
+		this._userId = _json.has("userId") ? _json.getString("userId") : "";
+		this._userName = _json.has("userName") ? _json.getString("userName") : "";
+		this._userPhone = _json.has("userPhone") ? _json.getString("userPhone") : "";
+		this._userShowName = _json.has("userShowName") ? _json.getString("userShowName") : "";
+		this._userType = _json.has("userType") ? _json.getInt("userType") : 100;
+		this._total = _json.has("total") ? _json.getInt("total") : 100;
+		this._headerIcon = _json.has("headerIcon") ? _json.getString("headerIcon") : "";// 需要一个正确的初始值
+		this._gradePraise = _json.has("gradePraise") ? _json.getDouble("gradePraise") : 0.0;
+		this._createDate = _json.has("createDate") ? _json.getLong("createDate") : System.currentTimeMillis();
+		this._checkPhone = _json.has("checkPhone") ? _json.getString("checkPhone").equals("y") ? true : false : false;
+
+		this._checkUsername = _json.has("checkUsername") ? _json.getString("checkUsername").equals("y") ? true : false : false;
+		this._checkEmail = _json.has("checkEmail") ? _json.getString("checkEmail").equals("y") ? true : false : false;
+		this._blogNum = _json.has("blogNum") ? _json.getInt("blogNum") : 0;
+		this._money = _json.has("money") ? _json.getDouble("money") : 0.0;
+		this._ukey = _json.has("ukey") ? _json.getString("ukey") : "";
+		this._ownerName = _json.has("ownerName") ? _json.getString("ownerName") : "";
+
+		this._likeStyle = _json.has("likeStyle") ? _json.getString("likeStyle") : "";
+		this._realName = _json.has("realName") ? _json.getString("realName") : "";
+		this._realSex = _json.has("realSex") ? _json.getInt("realSex") : 0;
 	}
 
 	public String get_userId()

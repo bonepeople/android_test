@@ -7,6 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:baselineAligned="false"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="20dp" >
@@ -139,12 +140,14 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/textview_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FF8888"
         android:drawableRight="@drawable/clickable_flag_dark"
         android:gravity="center_vertical"
         android:padding="5dp"
+        android:visibility="gone"
         android:text="选择身份，享受更多功能" />
 
     <LinearLayout
@@ -174,7 +177,6 @@
                     android:src="@drawable/passwords_seled" />
 
                 <TextView
-                    android:id="@+id/textView1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/imageview_info"
@@ -183,7 +185,6 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"

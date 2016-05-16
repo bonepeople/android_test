@@ -12,6 +12,7 @@ import com.shownest.android.utils.HttpUtil;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.RelativeLayout;
@@ -58,7 +59,6 @@ public class Activity_my_center extends DEBUG_Activity
 		_context = this.getApplicationContext();
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 
-		show_wait();
 		HttpUtil.get_userinfo(_handler, LOGIN_SUCCESSFUL, LOGIN_FAILED);
 	}
 
@@ -80,7 +80,6 @@ public class Activity_my_center extends DEBUG_Activity
 			{
 				JSONObject _data = _obj.getJSONArray("data").getJSONObject(0);
 				_info = new UserInfo(_data);
-				// System.out.println(_info.toString());
 				Fragment_my_center _fragment_my_center = new Fragment_my_center();
 				FragmentManager fm = _instance.getFragmentManager();
 				FragmentTransaction tx = fm.beginTransaction();
@@ -88,7 +87,13 @@ public class Activity_my_center extends DEBUG_Activity
 				tx.commit();
 			}
 			else
+			{
 				Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
+				Intent _login = new Intent(_instance, Activity_login.class);
+				_instance.startActivity(_login);
+				_instance.finish();
+			}
+
 		}
 		catch (JSONException e)
 		{
