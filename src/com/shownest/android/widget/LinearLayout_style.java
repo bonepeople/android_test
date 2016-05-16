@@ -141,7 +141,7 @@ public class LinearLayout_style extends LinearLayout implements View.OnClickList
 
 	public String getData()
 	{
-		StringBuffer _string = new StringBuffer();
+		StringBuilder _string = new StringBuilder();
 
 		for (int _temp_i = 0; _temp_i < _choose.size(); _temp_i++)
 		{

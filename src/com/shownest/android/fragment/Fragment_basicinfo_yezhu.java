@@ -1,7 +1,9 @@
 package com.shownest.android.fragment;
 
 import com.shownest.android.R;
+import com.shownest.android.activity.Activity_basicinfo_yezhu;
 import com.shownest.android.basic.DEBUG_Fragment;
+import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.widget.LinearLayout_style;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 
@@ -48,10 +50,19 @@ public class Fragment_basicinfo_yezhu extends DEBUG_Fragment
 			{
 				String _string_showname = _showname.getData();
 				String _string_realname = _realname.getData();
-				String _string_sex = _sex.getData();
+				String _string_sex = _sex.getData().equals("男") ? "1" : "0";
 				String _string_style = _style.getData();
 
-				Toast.makeText(getActivity(), _string_showname + _string_realname + _string_sex + _string_style, Toast.LENGTH_SHORT).show();
+				if (_string_showname.length() < 4 || _string_showname.length() > 20)
+				{
+					Toast.makeText(getActivity(), "显示昵称长度为4-20位", Toast.LENGTH_SHORT).show();
+				}
+				else
+				{
+					Toast.makeText(getActivity(), _string_showname + _string_realname + _string_sex + _string_style, Toast.LENGTH_SHORT).show();
+					HttpUtil.change_bsaeinfo(Activity_basicinfo_yezhu._handler, _string_showname, _string_realname, _string_sex, _string_style, Activity_basicinfo_yezhu.CHANGE_SUCCESSFUL,
+							Activity_basicinfo_yezhu.CHANGE_FAILED);
+				}
 
 			}
 		});

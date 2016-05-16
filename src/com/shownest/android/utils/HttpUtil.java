@@ -29,6 +29,29 @@ public class HttpUtil
 
 	// http://192.168.1.112:10000/shownest/html/test1.html
 	// http://192.168.1.112:10000/shownest/websubmitreg
+
+	public static void change_bsaeinfo(Handler _handler, String _showname, String _realname, String _sex, String _style, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "webPersonalBaseInfor";
+		String _message = "";
+
+		String _userShowName = "userShowName=" + _showname;
+		String _realName = "realName=" + _realname;
+		String _realSex = "realSex=" + _sex;
+		StringBuilder _professionGrade = new StringBuilder();
+		_professionGrade.append("professionGrade=&");
+		String[] _temp_string = _style.split(",");
+		for (int _temp_i = 0; _temp_i < _temp_string.length; _temp_i++)
+		{
+			_professionGrade.append("styles[" + _temp_i + "]=" + _temp_string[_temp_i] + "&");
+		}
+		_professionGrade.deleteCharAt(_professionGrade.length() - 1);
+
+		_message = _userShowName + "&" + _realName + "&" + _realSex + "&" + _professionGrade;
+
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
+	}
+
 	/**
 	 * 设置用户类型
 	 * 

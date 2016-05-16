@@ -67,7 +67,7 @@ public class UserInfo
 
 		this._likeStyle = _json.has("likeStyle") ? _json.getString("likeStyle") : "";
 		this._realName = _json.has("realName") ? _json.getString("realName") : "";
-		this._realSex = _json.has("realSex") ? _json.getInt("realSex") : 0;
+		this._realSex = _json.has("realSex") ? _json.getInt("realSex") : 0;//男  1  女 0
 	}
 
 	public String get_userId()
