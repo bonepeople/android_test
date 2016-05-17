@@ -61,10 +61,8 @@ public class Fragment_setinfo_yezhu extends DEBUG_Fragment
 					HttpUtil.change_bsaeinfo(Activity_setinfo_yezhu._handler, _string_showname, _string_realname, _string_sex, _string_style, Activity_setinfo_yezhu.CHANGE_SUCCESSFUL,
 							Activity_setinfo_yezhu.CHANGE_FAILED);
 				}
-
 			}
 		});
-
 		return _view;
 	}
 }

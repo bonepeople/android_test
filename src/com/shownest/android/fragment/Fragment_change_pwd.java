@@ -13,12 +13,10 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class Fragment_change_pwd extends DEBUG_Fragment
 {
-	private RelativeLayout _relativelayout_wait = null;
 	private EditText _edittext_pwd_old, _edittext_pwd, _edittext_pwd_confirm;
 	private Button _button_change;
 
@@ -27,7 +25,6 @@ public class Fragment_change_pwd extends DEBUG_Fragment
 	{
 		super.onCreateView(inflater, container, savedInstanceState);
 		View _view = inflater.inflate(R.layout.fragment_change_pwd, container, false);
-		_relativelayout_wait = (RelativeLayout) _view.findViewById(R.id.relativelayout_wait);
 		_edittext_pwd_old = (EditText) _view.findViewById(R.id.edittext_password_old);
 		_edittext_pwd = (EditText) _view.findViewById(R.id.edittext_password);
 		_edittext_pwd_confirm = (EditText) _view.findViewById(R.id.edittext_password_confirm);
@@ -61,7 +58,7 @@ public class Fragment_change_pwd extends DEBUG_Fragment
 				}
 				else
 				{
-					show_wait();
+					Activity_change_pwd.get_instance().show_wait();
 					HttpUtil.set_pwd(Activity_change_pwd._handler, _pwd_old, _pwd, _pwd_confirm, Activity_change_pwd.CHANGE_SUCCESSFUL, Activity_change_pwd.CHANGE_FAILED);
 				}
 
@@ -69,17 +66,5 @@ public class Fragment_change_pwd extends DEBUG_Fragment
 		});
 
 		return _view;
-	}
-
-	public void show_wait()
-	{
-		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() != RelativeLayout.VISIBLE)
-			_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
-	}
-
-	public void close_wait()
-	{
-		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() == RelativeLayout.VISIBLE)
-			_relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
 	}
 }

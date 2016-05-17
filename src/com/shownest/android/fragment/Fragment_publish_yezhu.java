@@ -41,12 +41,10 @@ public class Fragment_publish_yezhu extends DEBUG_Fragment
 
 		_button_next.setOnClickListener(new OnClickListener()
 		{
-
 			@Override
 			public void onClick(View v)
 			{
 				Toast.makeText(getActivity(), "next", Toast.LENGTH_SHORT).show();
-
 			}
 		});
 		return _view;

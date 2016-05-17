@@ -46,7 +46,7 @@ public class Activity_regist extends DEBUG_Activity
 			case BUTTON_CHANGE:
 				_fragment_regist.mobilcode_change();
 			}
-			_fragment_regist.close_wait();
+			_instance.close_wait();
 			System.out.println(_string_result);
 		};
 	};
@@ -72,10 +72,6 @@ public class Activity_regist extends DEBUG_Activity
 			JSONObject _obj = new JSONObject(str);
 			String _result = _obj.getString("msg");
 
-			/*
-			 * if (_result.equals("用户名已经存在")) Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show(); if (_result.equals("用户名不存在")) { new
-			 * Thread_send_code(_fragment_regist.get_regist_phone()).start(); } if (_result.equals("手机验证码发送成功")) Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
-			 */
 			if (_result.equals("用户名不存在"))
 			{
 				HttpUtil.send_mobilecode(_handler, _fragment_regist.get_regist_phone(), SEND_SUCCESSFUL, SEND_FAILED);

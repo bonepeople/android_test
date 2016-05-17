@@ -13,12 +13,10 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class Fragment_forget extends DEBUG_Fragment
 {
-	private RelativeLayout _relativelayout_wait;
 	private EditText _edittext_phone, _edittext_code;
 	private Button _button_code, _button_next;
 	private int _mobilecode_wait = 0;
@@ -27,7 +25,6 @@ public class Fragment_forget extends DEBUG_Fragment
 	{
 		super.onCreateView(inflater, container, savedInstanceState);
 		View _view = inflater.inflate(R.layout.fragment_forget, container, false);
-		_relativelayout_wait = (RelativeLayout) _view.findViewById(R.id.relativelayout_wait);
 		_button_code = (Button) _view.findViewById(R.id.button_code);
 		_button_next = (Button) _view.findViewById(R.id.button_next);
 		_edittext_phone = (EditText) _view.findViewById(R.id.edittext_phone);
@@ -35,7 +32,6 @@ public class Fragment_forget extends DEBUG_Fragment
 
 		_button_code.setOnClickListener(new OnClickListener()
 		{
-
 			@Override
 			public void onClick(View v)
 			{
@@ -44,7 +40,7 @@ public class Fragment_forget extends DEBUG_Fragment
 					if (CommonUtil.isPhone(_string_phone))
 					{
 						Activity_forget.set_forget_phone(_string_phone);
-						show_wait();
+						Activity_forget.get_instance().show_wait();
 						HttpUtil.check_loginname(Activity_forget._handler, _string_phone, Activity_forget.CHECK_SUCCESSFUL, Activity_forget.CHECK_FAILED);
 					}
 					else
@@ -54,7 +50,6 @@ public class Fragment_forget extends DEBUG_Fragment
 
 		_button_next.setOnClickListener(new OnClickListener()
 		{
-
 			@Override
 			public void onClick(View v)
 			{
@@ -71,16 +66,13 @@ public class Fragment_forget extends DEBUG_Fragment
 				}
 				else
 				{
-					show_wait();
 					Activity_forget.set_forget_phone(_string_phone);
 					Activity_forget.set_forget_code(_code);
-					// 开下一个fragment
+					Activity_forget.get_instance().show_wait();
 					HttpUtil.check_mobcode(Activity_forget._handler, _string_phone, _code, Activity_forget.NEXT_SUCCESSFUL, Activity_forget.NEXT_FAILED);
 				}
-
 			}
 		});
-
 		return _view;
 	}
 
@@ -99,20 +91,6 @@ public class Fragment_forget extends DEBUG_Fragment
 		default:
 			_mobilecode_wait--;
 			_button_code.setText("重新发送(" + _mobilecode_wait + ")");
-
 		}
 	}
-
-	public void show_wait()
-	{
-		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() != RelativeLayout.VISIBLE)
-			_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
-	}
-
-	public void close_wait()
-	{
-		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() == RelativeLayout.VISIBLE)
-			_relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
-	}
-
 }

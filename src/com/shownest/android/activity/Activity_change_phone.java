@@ -10,6 +10,7 @@ import com.shownest.android.thread.Thread_time;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class Activity_change_phone extends DEBUG_Activity
@@ -41,7 +42,7 @@ public class Activity_change_phone extends DEBUG_Activity
 			case BUTTON_CHANGE:
 				_fragment_change_phone.mobilcode_change();
 			}
-			_fragment_change_phone.close_wait();
+			_instance.close_wait();
 			System.out.println(_string_result);
 		};
 	};
@@ -52,7 +53,8 @@ public class Activity_change_phone extends DEBUG_Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_basic);
 		_instance = this;
-
+		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
+		
 		_fragment_change_phone = new Fragment_change_phone();
 		add_fragment(this, _fragment_change_phone, false);
 		if (_timer != null)

@@ -66,8 +66,8 @@ public class Activity_select_role extends DEBUG_Activity
 			Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
 			if (_result.equals("用户身份类型修改成功"))
 			{
-				Intent _intent_back = new Intent(_instance, Activity_main.class);
-				_instance.startActivity(_intent_back);
+//				Intent _intent_back = new Intent(_instance, Activity_main.class);
+//				_instance.startActivity(_intent_back);
 				Intent _intent_set = new Intent(_instance, _fragment_select_role.get_intent_class());
 				_instance.startActivity(_intent_set);
 				_instance.finish();

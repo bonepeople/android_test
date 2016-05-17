@@ -9,6 +9,7 @@ import com.shownest.android.fragment.Fragment_login;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class Activity_login extends DEBUG_Activity
@@ -16,7 +17,6 @@ public class Activity_login extends DEBUG_Activity
 	public static final int LOGIN_FAILED = 0;
 	public static final int LOGIN_SUCCESSFUL = 1;
 	private static Activity_login _instance;
-	private static Fragment_login _fragment_login;
 	public static Handler _handler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)
@@ -31,7 +31,7 @@ public class Activity_login extends DEBUG_Activity
 				_string_result = (String) msg.obj;
 				handle_string(_string_result);
 			}
-			_fragment_login.close_wait();
+			_instance.close_wait();
 			System.out.println(_string_result);
 		};
 	};
@@ -42,9 +42,9 @@ public class Activity_login extends DEBUG_Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_basic);
 		_instance = this;
-
-		_fragment_login = new Fragment_login();
-		add_fragment(this, _fragment_login, false);
+		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
+		
+		add_fragment(this, new Fragment_login(), false);
 	}
 
 	private static void handle_string(String str)

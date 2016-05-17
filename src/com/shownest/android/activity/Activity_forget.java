@@ -27,7 +27,6 @@ public class Activity_forget extends DEBUG_Activity
 	public static final int NEXT_SUCCESSFUL = 8;
 	private static Activity_forget _instance;
 	private static Fragment_forget _fragment_forget;
-	private static Fragment_forget_set _fragment_forget_set = null;
 	private static String _forget_phone = "";
 	private static String _forget_code = "";
 	private static Thread_time _timer = null;
@@ -54,9 +53,7 @@ public class Activity_forget extends DEBUG_Activity
 			case BUTTON_CHANGE:
 				_fragment_forget.mobilcode_change();
 			}
-			_fragment_forget.close_wait();
-			if (_fragment_forget_set != null && msg.what != NEXT_SUCCESSFUL)
-				_fragment_forget_set.close_wait();
+			_instance.close_wait();
 			System.out.println(_string_result);
 		};
 	};
@@ -99,8 +96,7 @@ public class Activity_forget extends DEBUG_Activity
 				{
 					Toast.makeText(_instance, "验证成功，设置密码", Toast.LENGTH_SHORT).show();
 
-					_fragment_forget_set = new Fragment_forget_set();
-					add_fragment(_instance, _fragment_forget_set, true);
+					add_fragment(_instance, new Fragment_forget_set(), true);
 				}
 				else
 				{

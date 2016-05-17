@@ -15,13 +15,11 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Fragment_login extends DEBUG_Fragment
 {
-	private RelativeLayout _relativelayout_wait;
 	private EditText _edittext_username, _edittext_password;
 	private TextView _textview_forget;
 	private Button _button_login;
@@ -30,7 +28,6 @@ public class Fragment_login extends DEBUG_Fragment
 	{
 		super.onCreateView(inflater, container, savedInstanceState);
 		View _view = inflater.inflate(R.layout.fragment_login, container, false);
-		_relativelayout_wait = (RelativeLayout) _view.findViewById(R.id.relativelayout_wait);
 		_button_login = (Button) _view.findViewById(R.id.button_login);
 		_edittext_username = (EditText) _view.findViewById(R.id.edittext_username);
 		_edittext_password = (EditText) _view.findViewById(R.id.edittext_password);
@@ -38,7 +35,6 @@ public class Fragment_login extends DEBUG_Fragment
 
 		_button_login.setOnClickListener(new OnClickListener()
 		{
-
 			@Override
 			public void onClick(View v)
 			{
@@ -54,7 +50,7 @@ public class Fragment_login extends DEBUG_Fragment
 				}
 				else
 				{
-					show_wait();
+					Activity_login.get_instance().show_wait();
 					HttpUtil.user_login(Activity_login._handler, _string_username, _string_password, Activity_login.LOGIN_SUCCESSFUL, Activity_login.LOGIN_FAILED);
 				}
 			}
@@ -62,7 +58,6 @@ public class Fragment_login extends DEBUG_Fragment
 
 		_textview_forget.setOnClickListener(new OnClickListener()
 		{
-
 			@Override
 			public void onClick(View v)
 			{
@@ -71,17 +66,5 @@ public class Fragment_login extends DEBUG_Fragment
 			}
 		});
 		return _view;
-	}
-
-	public void show_wait()
-	{
-		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() != RelativeLayout.VISIBLE)
-			_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
-	}
-
-	public void close_wait()
-	{
-		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() == RelativeLayout.VISIBLE)
-			_relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
 	}
 }

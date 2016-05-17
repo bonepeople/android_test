@@ -13,12 +13,10 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class Fragment_forget_set extends DEBUG_Fragment
 {
-	private RelativeLayout _relativelayout_wait;
 	private EditText _edittext_password, _edittext_password_confirm;
 	private Button _button_commit;
 
@@ -26,14 +24,12 @@ public class Fragment_forget_set extends DEBUG_Fragment
 	{
 		super.onCreateView(inflater, container, savedInstanceState);
 		View _view = inflater.inflate(R.layout.fragment_forget_set, container, false);
-		_relativelayout_wait = (RelativeLayout) _view.findViewById(R.id.relativelayout_wait);
 		_button_commit = (Button) _view.findViewById(R.id.button_commit);
 		_edittext_password = (EditText) _view.findViewById(R.id.edittext_password);
 		_edittext_password_confirm = (EditText) _view.findViewById(R.id.edittext_password_confirm);
 
 		_button_commit.setOnClickListener(new OnClickListener()
 		{
-
 			@Override
 			public void onClick(View v)
 			{
@@ -54,25 +50,12 @@ public class Fragment_forget_set extends DEBUG_Fragment
 				}
 				else
 				{
-					show_wait();
+					Activity_forget.get_instance().show_wait();
 					HttpUtil.forget_pwd(Activity_forget._handler, Activity_forget.get_forget_phone(), Activity_forget.get_forget_code(), _password, _password_confirm,
 							Activity_forget.FORGET_SUCCESSFUL, Activity_forget.FORGET_FAILED);
 				}
 			}
 		});
-
 		return _view;
-	}
-
-	public void show_wait()
-	{
-		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() != RelativeLayout.VISIBLE)
-			_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
-	}
-
-	public void close_wait()
-	{
-		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() == RelativeLayout.VISIBLE)
-			_relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
 	}
 }

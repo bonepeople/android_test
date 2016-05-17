@@ -14,13 +14,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Fragment_regist extends DEBUG_Fragment
 {
-	private RelativeLayout _relativelayout_wait;
 	private EditText _edittext_phone, _edittext_code, _edittext_pwd;
 	private TextView _textview_agreement;
 	private CheckBox _checkbox_agree;
@@ -32,7 +30,6 @@ public class Fragment_regist extends DEBUG_Fragment
 	{
 		super.onCreateView(inflater, container, savedInstanceState);
 		View _view = inflater.inflate(R.layout.fragment_regist, container, false);
-		_relativelayout_wait = (RelativeLayout) _view.findViewById(R.id.relativelayout_wait);
 		_button_code = (Button) _view.findViewById(R.id.button_code);
 		_button_next = (Button) _view.findViewById(R.id.button_next);
 		_edittext_phone = (EditText) _view.findViewById(R.id.edittext_phone);
@@ -43,7 +40,6 @@ public class Fragment_regist extends DEBUG_Fragment
 
 		_button_code.setOnClickListener(new OnClickListener()
 		{
-
 			@Override
 			public void onClick(View v)
 			{
@@ -52,7 +48,7 @@ public class Fragment_regist extends DEBUG_Fragment
 					if (CommonUtil.isPhone(_string_phone))
 					{
 						_regist_phone = _string_phone;
-						show_wait();
+						Activity_regist.get_instance().show_wait();
 						HttpUtil.check_loginname(Activity_regist._handler, _string_phone, Activity_regist.CHECK_SUCCESSFUL, Activity_regist.CHECK_FAILED);
 					}
 					else
@@ -62,7 +58,6 @@ public class Fragment_regist extends DEBUG_Fragment
 
 		_button_next.setOnClickListener(new OnClickListener()
 		{
-
 			@Override
 			public void onClick(View v)
 			{
@@ -92,16 +87,14 @@ public class Fragment_regist extends DEBUG_Fragment
 				}
 				else
 				{
-					show_wait();
+					Activity_regist.get_instance().show_wait();
 					HttpUtil.submit_reg(Activity_regist._handler, _string_phone, _code, _password, Activity_regist.REGIST_SUCCESSFUL, Activity_regist.REGIST_FAILED);
 				}
-
 			}
 		});
 
 		_textview_agreement.setOnClickListener(new OnClickListener()
 		{
-
 			@Override
 			public void onClick(View v)
 			{
@@ -126,7 +119,6 @@ public class Fragment_regist extends DEBUG_Fragment
 		default:
 			_mobilecode_wait--;
 			_button_code.setText("重新发送(" + _mobilecode_wait + ")");
-
 		}
 	}
 
@@ -135,15 +127,4 @@ public class Fragment_regist extends DEBUG_Fragment
 		return _regist_phone;
 	}
 
-	public void show_wait()
-	{
-		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() != RelativeLayout.VISIBLE)
-			_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
-	}
-
-	public void close_wait()
-	{
-		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() == RelativeLayout.VISIBLE)
-			_relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
-	}
 }

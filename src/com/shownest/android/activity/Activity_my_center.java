@@ -20,7 +20,6 @@ public class Activity_my_center extends DEBUG_Activity
 	public static final int LOGIN_FAILED = 0;
 	public static final int LOGIN_SUCCESSFUL = 1;
 	private static Activity_my_center _instance;
-	private RelativeLayout _relativelayout_wait;
 	private static UserInfo _info;
 
 	public static Handler _handler = new Handler()
@@ -97,18 +96,6 @@ public class Activity_my_center extends DEBUG_Activity
 	public static UserInfo get_userinfo()
 	{
 		return _info;
-	}
-
-	public void show_wait()
-	{
-		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() != RelativeLayout.VISIBLE)
-			_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
-	}
-
-	public void close_wait()
-	{
-		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() == RelativeLayout.VISIBLE)
-			_relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
 	}
 
 	public static Activity_my_center get_instance()

@@ -98,12 +98,20 @@ public abstract class DEBUG_Activity extends Activity
 
 	public void show_wait()
 	{
+		if (_relativelayout_wait == null)
+			System.out.println("_relativelayout_wait is null");
+		else
+			System.out.println("_relativelayout_wait not null");
 		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() != RelativeLayout.VISIBLE)
 			_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
 	}
 
 	public void close_wait()
 	{
+		if (_relativelayout_wait == null)
+			System.out.println("_relativelayout_wait is null");
+		else
+			System.out.println("_relativelayout_wait not null");
 		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() == RelativeLayout.VISIBLE)
 			_relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
 	}

@@ -26,7 +26,7 @@ public class Fragment_basicinfo extends DEBUG_Fragment implements View.OnClickLi
 {
 	private TextView _name, _showname, _role, _phone;
 	private SmartImageView _imageview_header;
-	private RelativeLayout _item_name, _item_password, _item_role, _item_phone, _relativelayout_wait;
+	private RelativeLayout _item_name, _item_password, _item_role, _item_phone;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -43,7 +43,6 @@ public class Fragment_basicinfo extends DEBUG_Fragment implements View.OnClickLi
 		_item_password = (RelativeLayout) _view.findViewById(R.id.relativelayout_password);
 		_item_role = (RelativeLayout) _view.findViewById(R.id.relativelayout_role);
 		_item_phone = (RelativeLayout) _view.findViewById(R.id.relativelayout_phone);
-		_relativelayout_wait = (RelativeLayout) _view.findViewById(R.id.relativelayout_wait);
 
 		setContent();
 		return _view;
