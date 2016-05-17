@@ -4,6 +4,7 @@
     <!-- shownest main's color -->
     <color name="main_color">#ff006a</color>
     <color name="text_gray">#808080</color>
+    <color name="text_black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="background_main">#e8e8e8</color>
 

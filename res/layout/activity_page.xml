@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <fragment
+        android:id="@+id/fragment_title"
+        android:name="com.shownest.android.fragment.Fragment_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height" />
+
+    <com.shownest.android.widget.Linearlayout_subtitle
+        android:id="@+id/linearlayout_subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </com.shownest.android.widget.Linearlayout_subtitle>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <FrameLayout
+            android:id="@+id/framelayout_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </FrameLayout>
+
+        <include
+            android:id="@+id/relativelayout_wait"
+            layout="@layout/widget_wait" />
+    </FrameLayout>
+
+</LinearLayout>
