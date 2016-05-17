@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-public class Fragment_activity_publish_yezhu extends DEBUG_Fragment
+public class Fragment_publish_yezhu extends DEBUG_Fragment
 {
 	private LinearLayout _linearlayout_body;
 	private Button _button_next;
@@ -21,7 +21,7 @@ public class Fragment_activity_publish_yezhu extends DEBUG_Fragment
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		super.onCreateView(inflater, container, savedInstanceState);
-		View _view = inflater.inflate(R.layout.fragment_activity_publish_yezhu, container, false);
+		View _view = inflater.inflate(R.layout.fragment_publish_yezhu, container, false);
 		_linearlayout_body = (LinearLayout) _view.findViewById(R.id.linearlayout_fragment_body);
 		_button_next = (Button) _view.findViewById(R.id.button_next);
 
