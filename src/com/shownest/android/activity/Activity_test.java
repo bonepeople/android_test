@@ -9,8 +9,6 @@ import com.shownest.android.fragment.Fragment_test;
 import com.shownest.android.model.UserInfo;
 import com.shownest.android.utils.HttpUtil;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -21,7 +19,6 @@ public class Activity_test extends DEBUG_Activity
 	public static final int TEST_FAILED = 0;
 	public static final int TEST_SUCCESSFUL = 1;
 	private static Activity_test _instance;
-	private static Context _context;
 	public static Handler _handler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)
@@ -30,7 +27,7 @@ public class Activity_test extends DEBUG_Activity
 			switch (msg.what)
 			{
 			case TEST_FAILED:
-				Toast.makeText(_context, "连接服务器失败。", Toast.LENGTH_SHORT).show();
+				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 				_string_result = (String) msg.obj;
 				break;
 			case TEST_SUCCESSFUL:
@@ -47,7 +44,6 @@ public class Activity_test extends DEBUG_Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_basic);
 		_instance = this;
-		_context = this.getApplicationContext();
 
 		add_fragment(this, new Fragment_test(), false);
 	}
@@ -59,7 +55,7 @@ public class Activity_test extends DEBUG_Activity
 		{
 			JSONObject _obj = new JSONObject(str);
 			String _result = _obj.getString("msg");
-			Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
+			Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
 
 			JSONObject _data = _obj.getJSONArray("data").getJSONObject(0);
 			UserInfo _info = new UserInfo(_data);

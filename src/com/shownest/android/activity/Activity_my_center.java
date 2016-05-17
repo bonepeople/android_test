@@ -9,7 +9,6 @@ import com.shownest.android.fragment.Fragment_my_center;
 import com.shownest.android.model.UserInfo;
 import com.shownest.android.utils.HttpUtil;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,7 +21,6 @@ public class Activity_my_center extends DEBUG_Activity
 	public static final int LOGIN_SUCCESSFUL = 1;
 	private static Activity_my_center _instance;
 	private RelativeLayout _relativelayout_wait;
-	private static Context _context;
 	private static UserInfo _info;
 
 	public static Handler _handler = new Handler()
@@ -35,7 +33,7 @@ public class Activity_my_center extends DEBUG_Activity
 			switch (msg.what)
 			{
 			case LOGIN_FAILED:
-				Toast.makeText(_context, "连接服务器失败。", Toast.LENGTH_SHORT).show();
+				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 				_string_result = (String) msg.obj;
 				_instance.finish();
 				break;
@@ -54,7 +52,7 @@ public class Activity_my_center extends DEBUG_Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_basic);
 		_instance = this;
-		_context = this.getApplicationContext();
+
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 
 		show_wait();
@@ -83,17 +81,16 @@ public class Activity_my_center extends DEBUG_Activity
 			}
 			else
 			{
-				Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
+				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
 				Intent _login = new Intent(_instance, Activity_login.class);
 				_instance.startActivity(_login);
 				_instance.finish();
 			}
-
 		}
 		catch (JSONException e)
 		{
 			e.printStackTrace();
-			Toast.makeText(_context, "网络连接异常", Toast.LENGTH_SHORT).show();
+			Toast.makeText(_instance, "网络连接异常", Toast.LENGTH_SHORT).show();
 		}
 	}
 

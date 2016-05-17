@@ -9,7 +9,6 @@ import com.shownest.android.fragment.Fragment_regist;
 import com.shownest.android.thread.Thread_time;
 import com.shownest.android.utils.HttpUtil;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
@@ -24,7 +23,6 @@ public class Activity_regist extends DEBUG_Activity
 	public static final int CHECK_SUCCESSFUL = 5;
 	public static final int BUTTON_CHANGE = 6;
 	private static Activity_regist _instance;
-	private static Context _context;
 	private static Fragment_regist _fragment_regist;
 	private static Thread_time _timer = null;
 	public static Handler _handler = new Handler()
@@ -37,7 +35,7 @@ public class Activity_regist extends DEBUG_Activity
 			case CHECK_FAILED:
 			case SEND_FAILED:
 			case REGIST_FAILED:
-				Toast.makeText(_context, "连接服务器失败。", Toast.LENGTH_SHORT).show();
+				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 				break;
 			case CHECK_SUCCESSFUL:
 			case SEND_SUCCESSFUL:
@@ -57,9 +55,8 @@ public class Activity_regist extends DEBUG_Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		_instance = this;
-		_context = this.getApplicationContext();
 		setContentView(R.layout.activity_basic);
+		_instance = this;
 
 		_fragment_regist = new Fragment_regist();
 		add_fragment(this, _fragment_regist, false);
@@ -85,23 +82,21 @@ public class Activity_regist extends DEBUG_Activity
 			}
 			else if (_result.equals("注册成功"))
 			{
-				Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
+				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
 				_instance.finish();
 			}
 			else if (_result.equals("手机验证码发送成功"))
 			{
 				_timer = new Thread_time(_handler, BUTTON_CHANGE, 61, 1);
 				_timer.start();
-				Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
+				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
 			}
 			else
-				Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
-
+				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
 		}
 		catch (JSONException e)
 		{
 			e.printStackTrace();
 		}
-
 	}
 }

@@ -26,7 +26,7 @@ public class Thread_http extends Thread
 	{
 		try
 		{
-			sleep(2000);
+			sleep(1000);
 		}
 		catch (InterruptedException e)
 		{

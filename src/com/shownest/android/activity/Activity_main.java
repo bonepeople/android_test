@@ -16,7 +16,6 @@ public class Activity_main extends DEBUG_Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
 	}
 
 	public void login(View v)
@@ -73,7 +72,6 @@ public class Activity_main extends DEBUG_Activity
 		Toast.makeText(this, "select_role", Toast.LENGTH_SHORT).show();
 		Intent intent = new Intent(this, Activity_select_role.class);
 		startActivity(intent);
-		finish();
 	}
 
 	public void basicinfo(View v)

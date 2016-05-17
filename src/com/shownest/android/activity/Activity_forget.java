@@ -10,9 +10,6 @@ import com.shownest.android.fragment.Fragment_forget_set;
 import com.shownest.android.thread.Thread_time;
 import com.shownest.android.utils.HttpUtil;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
@@ -29,7 +26,6 @@ public class Activity_forget extends DEBUG_Activity
 	public static final int NEXT_FAILED = 7;
 	public static final int NEXT_SUCCESSFUL = 8;
 	private static Activity_forget _instance;
-	private static Context _context;
 	private static Fragment_forget _fragment_forget;
 	private static Fragment_forget_set _fragment_forget_set = null;
 	private static String _forget_phone = "";
@@ -46,7 +42,7 @@ public class Activity_forget extends DEBUG_Activity
 			case SEND_FAILED:
 			case NEXT_FAILED:
 			case FORGET_FAILED:
-				Toast.makeText(_context, "连接服务器失败。", Toast.LENGTH_SHORT).show();
+				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 				break;
 			case CHECK_SUCCESSFUL:
 			case SEND_SUCCESSFUL:
@@ -69,9 +65,8 @@ public class Activity_forget extends DEBUG_Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		_instance = this;
-		_context = this.getApplicationContext();
 		setContentView(R.layout.activity_basic);
+		_instance = this;
 
 		_fragment_forget = new Fragment_forget();
 		add_fragment(this, _fragment_forget, false);
@@ -96,25 +91,25 @@ public class Activity_forget extends DEBUG_Activity
 			{
 				_timer = new Thread_time(_handler, BUTTON_CHANGE, 61, 1);
 				_timer.start();
-				Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
+				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
 			}
 			else if (_result.equals("验证成功"))
 			{
 				if (_message == NEXT_SUCCESSFUL)
 				{
-					Toast.makeText(_context, "验证成功，设置密码", Toast.LENGTH_SHORT).show();
+					Toast.makeText(_instance, "验证成功，设置密码", Toast.LENGTH_SHORT).show();
 
 					_fragment_forget_set = new Fragment_forget_set();
 					add_fragment(_instance, _fragment_forget_set, true);
 				}
 				else
 				{
-					Toast.makeText(_context, "设置成功", Toast.LENGTH_SHORT).show();
+					Toast.makeText(_instance, "设置成功", Toast.LENGTH_SHORT).show();
 					_instance.finish();
 				}
 			}
 			else
-				Toast.makeText(_context, _result, Toast.LENGTH_SHORT).show();
+				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
 
 		}
 		catch (JSONException e)
@@ -122,21 +117,6 @@ public class Activity_forget extends DEBUG_Activity
 			e.printStackTrace();
 		}
 
-	}
-
-	private static int get_code(String _json)
-	{
-		int _code = 0;
-		try
-		{
-			JSONObject _obj = new JSONObject(_json);
-			_code = _obj.getInt("state");
-		}
-		catch (Exception e)
-		{
-			// TODO: handle exception
-		}
-		return _code;
 	}
 
 	public static String get_forget_phone()
