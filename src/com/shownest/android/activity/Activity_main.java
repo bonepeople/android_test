@@ -81,10 +81,17 @@ public class Activity_main extends DEBUG_Activity
 		startActivity(intent);
 	}
 
-	public void basicinfo_yezhu(View v)
+	public void setinfo_yezhu(View v)
 	{
-		Toast.makeText(this, "basicinfo_yezhu", Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, "setinfo_yezhu", Toast.LENGTH_SHORT).show();
 		Intent intent = new Intent(this, Activity_setinfo_yezhu.class);
+		startActivity(intent);
+	}
+	
+	public void setinfo_shigongdui(View v)
+	{
+		Toast.makeText(this, "setinfo_shigongdui", Toast.LENGTH_SHORT).show();
+		Intent intent = new Intent(this, Activity_setinfo_shigongdui.class);
 		startActivity(intent);
 	}
 
