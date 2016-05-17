@@ -44,9 +44,10 @@ public class Activity_login extends DEBUG_Activity
 		super.onCreate(savedInstanceState);
 		_instance = this;
 		_context = this.getApplicationContext();
-		setContentView(R.layout.activity_login);
+		setContentView(R.layout.activity_basic);
 
-		_fragment_login = (Fragment_login) getFragmentManager().findFragmentById(R.id.fragment_login);
+		_fragment_login = new Fragment_login();
+		add_fragment(this, _fragment_login, false);
 
 	}
 
