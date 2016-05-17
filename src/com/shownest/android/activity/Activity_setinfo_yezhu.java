@@ -7,8 +7,6 @@ import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_setinfo_yezhu;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.RelativeLayout;
@@ -43,14 +41,11 @@ public class Activity_setinfo_yezhu extends DEBUG_Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_setinfo);
+		setContentView(R.layout.activity_basic);
 		_instance = this;
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 
-		FragmentManager fm = getFragmentManager();
-		FragmentTransaction tx = fm.beginTransaction();
-		tx.add(R.id.framelayout_content, new Fragment_setinfo_yezhu(), null);
-		tx.commit();
+		add_fragment(this, new Fragment_setinfo_yezhu(), false);
 	}
 
 	private static void handle_string(int _message, String _str)
