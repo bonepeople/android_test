@@ -57,7 +57,7 @@ public class Activity_change_phone extends DEBUG_Activity
 		setContentView(R.layout.activity_basic);
 
 		_fragment_change_phone = new Fragment_change_phone();
-		add_fragment(this, _fragment_change_phone);
+		add_fragment(this, _fragment_change_phone, false);
 		if (_timer != null)
 			_timer.interrupt();
 	}

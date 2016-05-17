@@ -71,9 +71,10 @@ public class Activity_forget extends DEBUG_Activity
 		super.onCreate(savedInstanceState);
 		_instance = this;
 		_context = this.getApplicationContext();
-		setContentView(R.layout.activity_forget);
+		setContentView(R.layout.activity_basic);
 
-		_fragment_forget = (Fragment_forget) getFragmentManager().findFragmentById(R.id.fragment_forget);
+		_fragment_forget = new Fragment_forget();
+		add_fragment(this, _fragment_forget, false);
 		if (_timer != null)
 			_timer.interrupt();
 
@@ -104,11 +105,7 @@ public class Activity_forget extends DEBUG_Activity
 					Toast.makeText(_context, "验证成功，设置密码", Toast.LENGTH_SHORT).show();
 
 					_fragment_forget_set = new Fragment_forget_set();
-					FragmentManager fm = _instance.getFragmentManager();
-					FragmentTransaction tx = fm.beginTransaction();
-					tx.add(R.id.framelayout_content, _fragment_forget_set, "SET");
-					tx.addToBackStack(null);
-					tx.commit();
+					add_fragment(_instance, _fragment_forget_set, true);
 				}
 				else
 				{

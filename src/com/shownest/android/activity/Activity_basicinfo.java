@@ -14,6 +14,6 @@ public class Activity_basicinfo extends DEBUG_Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_basic);
 
-		add_fragment(this, new Fragment_basicinfo());
+		add_fragment(this, new Fragment_basicinfo(), false);
 	}
 }

@@ -45,9 +45,9 @@ public class Activity_change_pwd extends DEBUG_Activity
 		_instance = this;
 		_context = this.getApplicationContext();
 		setContentView(R.layout.activity_basic);
-		
+
 		_fragment_change_pwd = new Fragment_change_pwd();
-		add_fragment(this, _fragment_change_pwd);
+		add_fragment(this, _fragment_change_pwd, false);
 	}
 
 	private static void handle_string(String str)
