@@ -43,19 +43,20 @@ public class Activity_select_role extends DEBUG_Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_select_role);
+		setContentView(R.layout.activity_basic);
 		_instance = this;
 		_context = this.getApplicationContext();
-		_fragment_select_role = (Fragment_select_role) getFragmentManager().findFragmentById(R.id.fragment_select_role);
+		_fragment_select_role = new Fragment_select_role();
+		add_fragment(this, _fragment_select_role, false);
 	}
 
-//	@Override
-//	public void onBackPressed()
-//	{
-//		Intent _intent_back = new Intent(_context, Activity_main.class);
-//		_instance.startActivity(_intent_back);
-//		finish();
-//	}
+	// @Override
+	// public void onBackPressed()
+	// {
+	// Intent _intent_back = new Intent(_context, Activity_main.class);
+	// _instance.startActivity(_intent_back);
+	// finish();
+	// }
 
 	private static void handle_string(String str)
 	{
