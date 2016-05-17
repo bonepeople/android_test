@@ -2,6 +2,7 @@ package com.shownest.android.activity;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
+import com.shownest.android.fragment.Fragment_activity_publish_yezhu;
 
 import android.os.Bundle;
 
@@ -18,10 +19,8 @@ public class Activity_publish_yezhu extends DEBUG_Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_publish_yezhu);
+		setContentView(R.layout.activity_basic);
 
-		// FragmentManager fm = getFragmentManager();
-		// FragmentTransaction tx = fm.beginTransaction();
-
+		add_fragment(this, new Fragment_activity_publish_yezhu(), false);
 	}
 }
