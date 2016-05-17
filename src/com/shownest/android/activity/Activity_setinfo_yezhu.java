@@ -16,7 +16,6 @@ public class Activity_setinfo_yezhu extends DEBUG_Activity
 {
 	public static final int CHANGE_FAILED = 0;
 	public static final int CHANGE_SUCCESSFUL = 1;
-	private static RelativeLayout _relativelayout_wait;
 	private static Activity_setinfo_yezhu _instance;
 	public static Handler _handler = new Handler()
 	{
@@ -33,7 +32,7 @@ public class Activity_setinfo_yezhu extends DEBUG_Activity
 				handle_string(CHANGE_SUCCESSFUL, _string_result);
 				break;
 			}
-			close_wait();
+			_instance.close_wait();
 		};
 	};
 
@@ -71,15 +70,10 @@ public class Activity_setinfo_yezhu extends DEBUG_Activity
 		}
 	}
 
-	public static void show_wait()
+	public static Activity_setinfo_yezhu get_instance()
 	{
-		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() != RelativeLayout.VISIBLE)
-			_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
+		return _instance;
 	}
 
-	public static void close_wait()
-	{
-		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() == RelativeLayout.VISIBLE)
-			_relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
-	}
+	
 }

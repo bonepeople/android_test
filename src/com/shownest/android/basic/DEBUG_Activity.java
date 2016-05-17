@@ -6,10 +6,12 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.widget.RelativeLayout;
 
 public abstract class DEBUG_Activity extends Activity
 {
 	private static boolean DEBUG = true;
+	protected RelativeLayout _relativelayout_wait;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -92,5 +94,17 @@ public abstract class DEBUG_Activity extends Activity
 		if (_back)
 			tx.addToBackStack(null);
 		tx.commit();
+	}
+
+	public void show_wait()
+	{
+		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() != RelativeLayout.VISIBLE)
+			_relativelayout_wait.setVisibility(RelativeLayout.VISIBLE);
+	}
+
+	public void close_wait()
+	{
+		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() == RelativeLayout.VISIBLE)
+			_relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
 	}
 }

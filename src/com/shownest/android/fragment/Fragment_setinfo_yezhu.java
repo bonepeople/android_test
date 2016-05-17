@@ -57,7 +57,7 @@ public class Fragment_setinfo_yezhu extends DEBUG_Fragment
 				else
 				{
 					Toast.makeText(getActivity(), _string_showname + _string_realname + _string_sex + _string_style, Toast.LENGTH_SHORT).show();
-					Activity_setinfo_yezhu.show_wait();
+					Activity_setinfo_yezhu.get_instance().show_wait();
 					HttpUtil.change_bsaeinfo(Activity_setinfo_yezhu._handler, _string_showname, _string_realname, _string_sex, _string_style, Activity_setinfo_yezhu.CHANGE_SUCCESSFUL,
 							Activity_setinfo_yezhu.CHANGE_FAILED);
 				}
