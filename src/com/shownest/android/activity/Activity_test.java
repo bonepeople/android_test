@@ -72,4 +72,9 @@ public class Activity_test extends DEBUG_Activity
 		Toast.makeText(this, "test", Toast.LENGTH_SHORT).show();
 		HttpUtil.get_userinfo(_handler, TEST_SUCCESSFUL, TEST_FAILED);
 	}
+
+	public static Activity_test get_instance()
+	{
+		return _instance;
+	}
 }

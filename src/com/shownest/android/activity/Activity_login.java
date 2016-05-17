@@ -65,4 +65,9 @@ public class Activity_login extends DEBUG_Activity
 			e.printStackTrace();
 		}
 	}
+
+	public static Activity_login get_instance()
+	{
+		return _instance;
+	}
 }

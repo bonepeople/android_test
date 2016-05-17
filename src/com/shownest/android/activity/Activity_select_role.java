@@ -78,4 +78,9 @@ public class Activity_select_role extends DEBUG_Activity
 			e.printStackTrace();
 		}
 	}
+
+	public static Activity_select_role get_instance()
+	{
+		return _instance;
+	}
 }

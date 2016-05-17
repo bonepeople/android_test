@@ -99,4 +99,9 @@ public class Activity_regist extends DEBUG_Activity
 			e.printStackTrace();
 		}
 	}
+
+	public static Activity_regist get_instance()
+	{
+		return _instance;
+	}
 }

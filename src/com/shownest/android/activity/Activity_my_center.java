@@ -110,4 +110,9 @@ public class Activity_my_center extends DEBUG_Activity
 		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() == RelativeLayout.VISIBLE)
 			_relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
 	}
+
+	public static Activity_my_center get_instance()
+	{
+		return _instance;
+	}
 }

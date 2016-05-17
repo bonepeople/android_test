@@ -89,4 +89,9 @@ public class Activity_change_phone extends DEBUG_Activity
 
 	}
 
+	public static Activity_change_phone get_instance()
+	{
+		return _instance;
+	}
+
 }

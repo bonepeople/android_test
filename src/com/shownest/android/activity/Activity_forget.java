@@ -138,4 +138,9 @@ public class Activity_forget extends DEBUG_Activity
 	{
 		_forget_code = _forget_code_new;
 	}
+
+	public static Activity_forget get_instance()
+	{
+		return _instance;
+	}
 }

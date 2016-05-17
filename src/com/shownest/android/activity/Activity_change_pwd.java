@@ -66,4 +66,9 @@ public class Activity_change_pwd extends DEBUG_Activity
 			e.printStackTrace();
 		}
 	}
+
+	public static Activity_change_pwd get_instance()
+	{
+		return _instance;
+	}
 }
