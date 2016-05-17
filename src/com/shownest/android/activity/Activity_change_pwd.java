@@ -44,9 +44,10 @@ public class Activity_change_pwd extends DEBUG_Activity
 		super.onCreate(savedInstanceState);
 		_instance = this;
 		_context = this.getApplicationContext();
-
-		setContentView(R.layout.activity_change_pwd);
-		_fragment_change_pwd = (Fragment_change_pwd) getFragmentManager().findFragmentById(R.id.fragment_change_pwd);
+		setContentView(R.layout.activity_basic);
+		
+		_fragment_change_pwd = new Fragment_change_pwd();
+		add_fragment(this, _fragment_change_pwd);
 	}
 
 	private static void handle_string(String str)
