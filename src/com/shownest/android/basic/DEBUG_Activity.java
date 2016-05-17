@@ -1,6 +1,10 @@
 package com.shownest.android.basic;
 
+import com.shownest.android.R;
+
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 
 public abstract class DEBUG_Activity extends Activity
@@ -78,5 +82,13 @@ public abstract class DEBUG_Activity extends Activity
 			String _class = _activity.getClass().getName();
 			System.out.println(_class + "-handle msg:" + _msg);
 		}
+	}
+
+	public static void add_fragment(DEBUG_Activity _activity, DEBUG_Fragment _fragment)
+	{
+		FragmentManager fm = _activity.getFragmentManager();
+		FragmentTransaction tx = fm.beginTransaction();
+		tx.add(R.id.framelayout_content, _fragment, null);
+		tx.commit();
 	}
 }
