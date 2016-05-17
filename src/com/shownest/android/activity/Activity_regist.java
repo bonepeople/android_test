@@ -59,9 +59,10 @@ public class Activity_regist extends DEBUG_Activity
 		super.onCreate(savedInstanceState);
 		_instance = this;
 		_context = this.getApplicationContext();
-		setContentView(R.layout.activity_regist);
+		setContentView(R.layout.activity_basic);
 
-		_fragment_regist = (Fragment_regist) getFragmentManager().findFragmentById(R.id.fragment_regist);
+		_fragment_regist = new Fragment_regist();
+		add_fragment(this, _fragment_regist, false);
 		if (_timer != null)
 			_timer.interrupt();
 	}
