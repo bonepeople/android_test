@@ -9,8 +9,6 @@ import com.shownest.android.fragment.Fragment_my_center;
 import com.shownest.android.model.UserInfo;
 import com.shownest.android.utils.HttpUtil;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -54,11 +52,12 @@ public class Activity_my_center extends DEBUG_Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_my_center);
+		setContentView(R.layout.activity_basic);
 		_instance = this;
 		_context = this.getApplicationContext();
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 
+		show_wait();
 		HttpUtil.get_userinfo(_handler, LOGIN_SUCCESSFUL, LOGIN_FAILED);
 	}
 
@@ -80,11 +79,7 @@ public class Activity_my_center extends DEBUG_Activity
 			{
 				JSONObject _data = _obj.getJSONArray("data").getJSONObject(0);
 				_info = new UserInfo(_data);
-				Fragment_my_center _fragment_my_center = new Fragment_my_center();
-				FragmentManager fm = _instance.getFragmentManager();
-				FragmentTransaction tx = fm.beginTransaction();
-				tx.add(R.id.framelayout_content, _fragment_my_center, "center");
-				tx.commit();
+				add_fragment(_instance, new Fragment_my_center(), false);
 			}
 			else
 			{
