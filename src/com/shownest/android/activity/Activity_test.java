@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
+import com.shownest.android.fragment.Fragment_test;
 import com.shownest.android.model.UserInfo;
 import com.shownest.android.utils.HttpUtil;
 
@@ -44,9 +45,11 @@ public class Activity_test extends DEBUG_Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_test);
+		setContentView(R.layout.activity_basic);
 		_instance = this;
 		_context = this.getApplicationContext();
+
+		add_fragment(this, new Fragment_test(), false);
 	}
 
 	private static void handle_string(String str)
