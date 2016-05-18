@@ -1,5 +1,6 @@
 package com.shownest.android.widget;
 
+import com.shownest.android.R;
 import com.shownest.android.model.OnSelectListener;
 
 import android.content.Context;
@@ -44,11 +45,12 @@ public class LinearLayout_idcard extends LinearLayout implements View.OnClickLis
 			System.out.println("LinearLayout_idcard super");
 
 		this.setOrientation(LinearLayout.VERTICAL);
-
+		this.setBackgroundColor(getResources().getColor(R.color.background_main));
+		
 		_textview_name = new TextView(context);
 		_textview_name.setText(_name);
-		_textview_name.setTextSize(18);
-		_textview_name.setPadding(10, 0, 0, 0);
+//		_textview_name.setTextSize(18);
+		_textview_name.setPadding(5, 0, 0, 0);
 		this.addView(_textview_name);
 	}
 
