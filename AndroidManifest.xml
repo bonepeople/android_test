@@ -50,6 +50,8 @@
         </activity>
         <activity android:name="com.shownest.android.activity.Activity_setinfo_shejishi" >
         </activity>
+        <activity android:name="com.shownest.android.activity.Activity_setinfo_jianli" >
+        </activity>
     </application>
 
 </manifest>

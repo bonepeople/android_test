@@ -175,7 +175,7 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 			_radiobutton_left = (RadioButton) _childview.findViewById(R.id.radiobutton_widget_left);
 			_radiobutton_right = (RadioButton) _childview.findViewById(R.id.radiobutton_widget_right);
 			RadioGroup _group = (RadioGroup) _childview.findViewById(R.id.radiogroup_widget);
-
+			_group.setOrientation(RadioGroup.VERTICAL);
 			_textview_name.setText(args[0]);
 			_radiobutton_left.setText(args[1]);
 			_radiobutton_right.setText(args[2]);
