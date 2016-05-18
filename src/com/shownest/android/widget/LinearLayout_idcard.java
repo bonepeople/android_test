@@ -50,7 +50,7 @@ public class LinearLayout_idcard extends LinearLayout implements View.OnClickLis
 		_textview_name = new TextView(context);
 		_textview_name.setText(_name);
 //		_textview_name.setTextSize(18);
-		_textview_name.setPadding(5, 0, 0, 0);
+		_textview_name.setPadding(5, 5, 0, 0);
 		this.addView(_textview_name);
 	}
 
