@@ -21,11 +21,11 @@ import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-public class Activity_setinfo_shigongdui extends DEBUG_Activity implements OnSelectListener
+public class Activity_setinfo_shejishi extends DEBUG_Activity implements OnSelectListener
 {
 	public static final int CHANGE_FAILED = 0;
 	public static final int CHANGE_SUCCESSFUL = 1;
-	private static Activity_setinfo_shigongdui _instance;
+	private static Activity_setinfo_shejishi _instance;
 	private Linearlayout_subtitle _subtitle;
 	private ArrayList<DEBUG_Fragment> _array_fragment = new ArrayList<DEBUG_Fragment>(4);
 	private int _selected = 1;
@@ -89,7 +89,7 @@ public class Activity_setinfo_shigongdui extends DEBUG_Activity implements OnSel
 		}
 	}
 
-	public static Activity_setinfo_shigongdui get_instance()
+	public static Activity_setinfo_shejishi get_instance()
 	{
 		return _instance;
 	}

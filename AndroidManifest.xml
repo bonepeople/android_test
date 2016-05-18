@@ -48,6 +48,8 @@
         </activity>
         <activity android:name="com.shownest.android.activity.Activity_setinfo_shigongdui" >
         </activity>
+        <activity android:name="com.shownest.android.activity.Activity_setinfo_shejishi" >
+        </activity>
     </application>
 
 </manifest>

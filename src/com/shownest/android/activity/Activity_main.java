@@ -87,11 +87,18 @@ public class Activity_main extends DEBUG_Activity
 		Intent intent = new Intent(this, Activity_setinfo_yezhu.class);
 		startActivity(intent);
 	}
-	
+
 	public void setinfo_shigongdui(View v)
 	{
 		Toast.makeText(this, "setinfo_shigongdui", Toast.LENGTH_SHORT).show();
 		Intent intent = new Intent(this, Activity_setinfo_shigongdui.class);
+		startActivity(intent);
+	}
+
+	public void setinfo_shejishi(View v)
+	{
+		Toast.makeText(this, "setinfo_shejishi", Toast.LENGTH_SHORT).show();
+		Intent intent = new Intent(this, Activity_setinfo_shejishi.class);
 		startActivity(intent);
 	}
 
