@@ -29,9 +29,7 @@ public class Linearlayout_subtitle extends LinearLayout implements View.OnClickL
 	public Linearlayout_subtitle(Context context, AttributeSet attrs)
 	{
 		super(context, attrs);
-		System.out.println("subtitle con");
 		View.inflate(context, R.layout.widget_subtitle, this);
-		System.out.println("subtitle inflate");
 		_text[0] = (TextView) findViewById(R.id.textview_subtitle_1);
 		_text[1] = (TextView) findViewById(R.id.textview_subtitle_2);
 		_text[2] = (TextView) findViewById(R.id.textview_subtitle_3);

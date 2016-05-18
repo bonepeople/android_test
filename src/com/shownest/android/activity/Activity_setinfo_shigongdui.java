@@ -1,24 +1,35 @@
 package com.shownest.android.activity;
 
+import java.util.ArrayList;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
+import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.fragment.Fragment_setinfo_shigongdui_step1;
 import com.shownest.android.fragment.Fragment_setinfo_shigongdui_step2;
 import com.shownest.android.fragment.Fragment_setinfo_shigongdui_step3;
+import com.shownest.android.model.OnSelectListener;
+import com.shownest.android.widget.Linearlayout_subtitle;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-public class Activity_setinfo_shigongdui extends DEBUG_Activity
+public class Activity_setinfo_shigongdui extends DEBUG_Activity implements OnSelectListener
 {
 	public static final int CHANGE_FAILED = 0;
 	public static final int CHANGE_SUCCESSFUL = 1;
 	private static Activity_setinfo_shigongdui _instance;
+	private Linearlayout_subtitle _subtitle;
+	private ArrayList<DEBUG_Fragment> _arr_fragment = new ArrayList<DEBUG_Fragment>(4);
+	private int _selected = 1;
+
 	public static Handler _handler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)
@@ -45,8 +56,15 @@ public class Activity_setinfo_shigongdui extends DEBUG_Activity
 		setContentView(R.layout.activity_page);
 		_instance = this;
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
+		_subtitle = (Linearlayout_subtitle) findViewById(R.id.linearlayout_subtitle);
 
-		add_fragment(this, new Fragment_setinfo_shigongdui_step3(), false);
+		_subtitle.setOnSelectListener(this);
+		_arr_fragment.add(null);
+		_arr_fragment.add(null);
+		_arr_fragment.add(null);
+		_arr_fragment.add(null);
+		_arr_fragment.set(1, new Fragment_setinfo_shigongdui_step1());
+		add_fragment(this, _arr_fragment.get(1), false);
 	}
 
 	private static void handle_string(int _message, String _str)
@@ -74,5 +92,31 @@ public class Activity_setinfo_shigongdui extends DEBUG_Activity
 	public static Activity_setinfo_shigongdui get_instance()
 	{
 		return _instance;
+	}
+
+	@Override
+	public void onSelect(int _index)
+	{
+		FragmentManager _manager = getFragmentManager();
+		FragmentTransaction _transaction = _manager.beginTransaction();
+
+		_transaction.hide(_arr_fragment.get(_selected));
+		if (_index == 2 && _arr_fragment.get(2) == null)
+		{
+			DEBUG_Fragment _temp_fragment = new Fragment_setinfo_shigongdui_step2();
+			_arr_fragment.set(2, _temp_fragment);
+			add_fragment(this, _temp_fragment, false);
+		}
+		else if (_index == 3 && _arr_fragment.get(3) == null)
+		{
+			DEBUG_Fragment _temp_fragment = new Fragment_setinfo_shigongdui_step3();
+			_arr_fragment.set(3, _temp_fragment);
+			add_fragment(this, _temp_fragment, false);
+		}
+		else
+			_transaction.show(_arr_fragment.get(_index));
+		_selected = _index;
+
+		_transaction.commit();
 	}
 }

@@ -88,12 +88,12 @@ public abstract class DEBUG_Activity extends Activity
 
 	public static void add_fragment(DEBUG_Activity _activity, DEBUG_Fragment _fragment, boolean _back)
 	{
-		FragmentManager fm = _activity.getFragmentManager();
-		FragmentTransaction tx = fm.beginTransaction();
-		tx.add(R.id.framelayout_content, _fragment, null);
+		FragmentManager _manager = _activity.getFragmentManager();
+		FragmentTransaction _transaction = _manager.beginTransaction();
+		_transaction.add(R.id.framelayout_content, _fragment, null);
 		if (_back)
-			tx.addToBackStack(null);
-		tx.commit();
+			_transaction.addToBackStack(null);
+		_transaction.commit();
 	}
 
 	public void show_wait()
