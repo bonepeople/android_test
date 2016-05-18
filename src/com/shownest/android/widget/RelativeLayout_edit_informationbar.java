@@ -1,6 +1,7 @@
 package com.shownest.android.widget;
 
 import com.shownest.android.R;
+import com.shownest.android.model.OnSelectListener;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,13 +23,14 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 	private static boolean DEBUG = true;
 	private Context _context;
 	private int _style;
+	private OnSelectListener _listener;
 	private ViewGroup _rootview;
 	private TextView _textview_name, _textview_left, _textview_right;
 	private ImageView _imageview_right;
 	private boolean _clickable;
 	private RadioButton _radiobutton_left, _radiobutton_right;
 	private AlertDialog _dialog;
-	EditText _edittext_dialog;
+	private EditText _edittext_dialog;
 
 	public RelativeLayout_edit_informationbar(Context context)
 	{
@@ -171,6 +174,7 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 			_textview_name = (TextView) _childview.findViewById(R.id.textview_widget_name);
 			_radiobutton_left = (RadioButton) _childview.findViewById(R.id.radiobutton_widget_left);
 			_radiobutton_right = (RadioButton) _childview.findViewById(R.id.radiobutton_widget_right);
+			RadioGroup _group = (RadioGroup) _childview.findViewById(R.id.radiogroup_widget);
 
 			_textview_name.setText(args[0]);
 			_radiobutton_left.setText(args[1]);
@@ -183,7 +187,23 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 			{
 				_radiobutton_right.setChecked(true);
 			}
-
+			_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+			{
+				@Override
+				public void onCheckedChanged(RadioGroup group, int checkedId)
+				{
+					if (_listener != null)
+						switch (checkedId)
+						{
+						case R.id.radiobutton_widget_left:
+							_listener.onSelect(1);
+							break;
+						case R.id.radiobutton_widget_right:
+							_listener.onSelect(2);
+							break;
+						}
+				}
+			});
 			break;
 		}
 		if (this._style != 6)
@@ -195,6 +215,11 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 			}
 			else if (_childview != null)
 				_childview.setOnClickListener(this);
+	}
+
+	public void setOnSelectListener(OnSelectListener _select_listener)
+	{
+		_listener = _select_listener;
 	}
 
 	public void setData(String[] args)
@@ -260,6 +285,7 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 		switch (v.getId())
 		{
 		case R.id.button_commit:
+			// 可以在这里检测输入的合理性
 			setData(new String[] { _edittext_dialog.getText().toString() });
 			_dialog.dismiss();
 			break;
