@@ -21,7 +21,7 @@ public class Fragment_setinfo_yezhu extends DEBUG_Fragment
 	private LinearLayout _body;
 	private Button _button_commit;
 	private RelativeLayout_edit_informationbar _showname, _realname, _sex;
-	LinearLayout_style _style;
+	private LinearLayout_style _style;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

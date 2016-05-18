@@ -8,9 +8,9 @@ import org.json.JSONObject;
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.basic.DEBUG_Fragment;
-import com.shownest.android.fragment.Fragment_setinfo_shigongdui_step1;
-import com.shownest.android.fragment.Fragment_setinfo_shigongdui_step2;
-import com.shownest.android.fragment.Fragment_setinfo_shigongdui_step3;
+import com.shownest.android.fragment.Fragment_setinfo_shejishi_step1;
+import com.shownest.android.fragment.Fragment_setinfo_shejishi_step2;
+import com.shownest.android.fragment.Fragment_setinfo_shejishi_step3;
 import com.shownest.android.model.OnSelectListener;
 import com.shownest.android.widget.Linearlayout_subtitle;
 
@@ -63,7 +63,7 @@ public class Activity_setinfo_shejishi extends DEBUG_Activity implements OnSelec
 		_array_fragment.add(null);
 		_array_fragment.add(null);
 		_array_fragment.add(null);
-		_array_fragment.set(1, new Fragment_setinfo_shigongdui_step1());
+		_array_fragment.set(1, new Fragment_setinfo_shejishi_step1());
 		add_fragment(this, _array_fragment.get(1), false);
 	}
 
@@ -103,13 +103,13 @@ public class Activity_setinfo_shejishi extends DEBUG_Activity implements OnSelec
 		_transaction.hide(_array_fragment.get(_selected));
 		if (_index == 2 && _array_fragment.get(2) == null)
 		{
-			DEBUG_Fragment _temp_fragment = new Fragment_setinfo_shigongdui_step2();
+			DEBUG_Fragment _temp_fragment = new Fragment_setinfo_shejishi_step2();
 			_array_fragment.set(2, _temp_fragment);
 			add_fragment(this, _temp_fragment, false);
 		}
 		else if (_index == 3 && _array_fragment.get(3) == null)
 		{
-			DEBUG_Fragment _temp_fragment = new Fragment_setinfo_shigongdui_step3();
+			DEBUG_Fragment _temp_fragment = new Fragment_setinfo_shejishi_step3();
 			_array_fragment.set(3, _temp_fragment);
 			add_fragment(this, _temp_fragment, false);
 		}
