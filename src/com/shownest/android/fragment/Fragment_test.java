@@ -21,8 +21,6 @@ public class Fragment_test extends DEBUG_Fragment
 
 		LinearLayout _body = (LinearLayout) _view.findViewById(R.id.linearlayout_content);
 
-		new Linearlayout_edittext(getActivity(), _body, new String[] { "111", "123" });
-
 		return _view;
 	}
 }

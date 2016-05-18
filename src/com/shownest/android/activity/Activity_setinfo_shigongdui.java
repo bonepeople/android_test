@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_setinfo_shigongdui_step1;
+import com.shownest.android.fragment.Fragment_setinfo_shigongdui_step2;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -44,7 +45,7 @@ public class Activity_setinfo_shigongdui extends DEBUG_Activity
 		_instance = this;
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 
-		add_fragment(this, new Fragment_setinfo_shigongdui_step1(), false);
+		add_fragment(this, new Fragment_setinfo_shigongdui_step2(), false);
 	}
 
 	private static void handle_string(int _message, String _str)

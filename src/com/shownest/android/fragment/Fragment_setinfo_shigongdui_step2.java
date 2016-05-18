@@ -10,14 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
-public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment
+public class Fragment_setinfo_shigongdui_step2 extends DEBUG_Fragment
 {
 	private LinearLayout _body;
 	private Button _button_commit;
-	private RelativeLayout_edit_informationbar _showname, _phone, _location, _sex;
-	private Linearlayout_edittext _edit;
+	private RelativeLayout_edit_informationbar _date, _number, _location, _address, _service;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -28,12 +28,12 @@ public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment
 		_button_commit = (Button) _view.findViewById(R.id.button_commit);
 		_button_commit.setText("保存");
 
-		new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "身份类型", "施工队" }, false);
-		_showname = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "工队昵称", "sn1234" }, true);
-		_phone = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "联系手机", "13029411209" }, true);
-		_location = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "工长籍贯", "" }, true);
-		_sex = new RelativeLayout_edit_informationbar(getActivity(), _body, 6, new String[] { "工长性别", "男", "女", "1" }, false);
-		_edit = new Linearlayout_edittext(getActivity(), _body, new String[] { "工队介绍", "简单的说说你们的竞争优势。", "" });
+		_date = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "从业年份", "" }, true);
+		_number = new RelativeLayout_edit_informationbar(getActivity(), _body, 3, new String[] { "工队人数", "", "人" }, true);
+		_location = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "办公地址", "" }, true);
+		_address = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "完善地址", "" }, true);
+		_service = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "服务区域", "" }, true);
+
 
 		return _view;
 	}
