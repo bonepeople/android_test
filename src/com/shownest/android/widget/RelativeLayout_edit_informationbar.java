@@ -21,6 +21,7 @@ import android.widget.Toast;
 public class RelativeLayout_edit_informationbar extends RelativeLayout implements View.OnClickListener
 {
 	private static boolean DEBUG = false;
+	private static int _count = 0;
 	private Context _context;
 	private int _id;
 	private int _style;
@@ -231,7 +232,10 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 			}
 			else if (_childview != null)
 			{
-				_id = _childview.getId();
+				if (_count > 9999)
+					_count = 0;
+				_id = ++_count;
+				_childview.setId(_id);
 				if (this._click_listener != null)
 					_childview.setOnClickListener(_click_listener);
 				else

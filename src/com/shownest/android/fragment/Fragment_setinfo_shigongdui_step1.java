@@ -2,7 +2,7 @@ package com.shownest.android.fragment;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_change_phone;
-import com.shownest.android.activity.Activity_test;
+import com.shownest.android.activity.Activity_location;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.utils.CommonUtil;
 import com.shownest.android.widget.Linearlayout_edittext;
@@ -51,16 +51,27 @@ public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements
 	{
 		if (resultCode == -1)
 		{
-			try
+			switch (requestCode)
 			{
-				String _result = data.getStringExtra("phone");
-				_phone.setData(new String[] { CommonUtil.showPhone(_result) });
+			case REQUEST_PHONE:
+				try
+				{
+					String _result = data.getStringExtra("phone");
+					_phone.setData(new String[] { CommonUtil.showPhone(_result) });
+				}
+				catch (Exception e)
+				{
+					Toast.makeText(getActivity(), "返回异常", Toast.LENGTH_SHORT).show();
+					e.printStackTrace();
+				}
+				break;
+			case REQUEST_LOCATION:
+				System.out.println("cityId=" + data.getIntExtra("cityId", 0));
+				System.out.println("provinceId=" + data.getIntExtra("provinceId", 0));
+				System.out.println("countyId=" + data.getIntExtra("countyId", 0));
+				break;
 			}
-			catch (Exception e)
-			{
-				Toast.makeText(getActivity(), "返回异常", Toast.LENGTH_SHORT).show();
-				e.printStackTrace();
-			}
+
 		}
 		else
 			System.out.println("resultCode=" + resultCode);
@@ -71,6 +82,7 @@ public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements
 	public void onClick(View v)
 	{
 		int _id = v.getId();
+		System.out.println("v-id" + _id + "phone id" + _phone.get_id() + "location-id" + _location.get_id());
 		if (_id == _phone.get_id())
 		{
 			Intent _change_phone = new Intent(getActivity(), Activity_change_phone.class);
@@ -78,8 +90,8 @@ public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements
 		}
 		else if (_id == _location.get_id())
 		{
-			Intent _change_phone = new Intent(getActivity(), Activity_change_phone.class);
-			startActivityForResult(_change_phone, REQUEST_PHONE);
+			Intent _location = new Intent(getActivity(), Activity_location.class);
+			startActivityForResult(_location, REQUEST_LOCATION);
 		}
 	}
 }
