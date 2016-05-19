@@ -35,6 +35,7 @@ public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements
 		_body = (LinearLayout) _view.findViewById(R.id.linearlayout_content);
 		_button_commit = (Button) _view.findViewById(R.id.button_commit);
 		_button_commit.setText("保存");
+		_button_commit.setOnClickListener(this);
 
 		new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "身份类型", "施工队" }, false);
 		_showname = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "工队昵称", "sn1234" }, true);
@@ -71,7 +72,6 @@ public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements
 				System.out.println("countyId=" + data.getIntExtra("countyId", 0));
 				break;
 			}
-
 		}
 		else
 			System.out.println("resultCode=" + resultCode);
@@ -82,8 +82,11 @@ public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements
 	public void onClick(View v)
 	{
 		int _id = v.getId();
-		System.out.println("v-id" + _id + "phone id" + _phone.get_id() + "location-id" + _location.get_id());
-		if (_id == _phone.get_id())
+		if (_id == R.id.button_commit)
+		{
+			Toast.makeText(getActivity(), "commit", Toast.LENGTH_SHORT).show();
+		}
+		else if (_id == _phone.get_id())
 		{
 			Intent _change_phone = new Intent(getActivity(), Activity_change_phone.class);
 			startActivityForResult(_change_phone, REQUEST_PHONE);
