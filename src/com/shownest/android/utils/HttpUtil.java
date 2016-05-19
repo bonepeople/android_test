@@ -34,7 +34,7 @@ public class HttpUtil
 
 	public static void set_PersonalIntroduce(Handler _handler, ContentValues _value, int _successful, int _failed)
 	{
-		String _address = BASEADDRESS + "webSetUseType";
+		String _address = BASEADDRESS + "webPersonalBaseInfor";
 		String _message = "";
 
 		_message = values(_value);

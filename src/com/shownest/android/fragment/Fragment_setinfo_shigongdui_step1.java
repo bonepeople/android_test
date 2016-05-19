@@ -3,11 +3,14 @@ package com.shownest.android.fragment;
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_change_phone;
 import com.shownest.android.activity.Activity_location;
+import com.shownest.android.activity.Activity_setinfo_shigongdui;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.utils.CommonUtil;
+import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.widget.Linearlayout_edittext;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -84,7 +87,14 @@ public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements
 		int _id = v.getId();
 		if (_id == R.id.button_commit)
 		{
-			Toast.makeText(getActivity(), "commit", Toast.LENGTH_SHORT).show();
+			ContentValues _value = new ContentValues();
+			_value.put("userShowName", _showname.getData());
+			_value.put("nativePlace", _location.getData());// 需要变更
+			_value.put("realSex", _sex.getData());// 需要变更
+			_value.put("introduces", _edit.getData());
+
+			Activity_setinfo_shigongdui.get_instance().show_wait();
+			HttpUtil.set_PersonalIntroduce(Activity_setinfo_shigongdui._handler, _value, Activity_setinfo_shigongdui.CHANGE_SUCCESSFUL, Activity_setinfo_shigongdui.CHANGE_FAILED);
 		}
 		else if (_id == _phone.get_id())
 		{
