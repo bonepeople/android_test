@@ -30,9 +30,29 @@ public class HttpUtil
 	private static String BASEADDRESS = "http://t.shownest.com:86/";
 
 	// http://192.168.1.112:10000/shownest/html/test1.html
-	// http://192.168.1.112:10000/shownest/websubmitreg /webPersonalIntroduce
+	// http://192.168.1.112:10000/shownest/websubmitreg
+
+	public static void set_PersonalProve(Handler _handler, ContentValues _value, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "webPersonalProve";
+		String _message = "";
+
+		_message = values(_value);
+
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
+	}
 
 	public static void set_PersonalIntroduce(Handler _handler, ContentValues _value, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "webPersonalIntroduce";
+		String _message = "";
+
+		_message = values(_value);
+
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
+	}
+
+	public static void set_PersonalBaseInfor(Handler _handler, ContentValues _value, int _successful, int _failed)
 	{
 		String _address = BASEADDRESS + "webPersonalBaseInfor";
 		String _message = "";

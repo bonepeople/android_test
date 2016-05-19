@@ -94,7 +94,7 @@ public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements
 			_value.put("introduces", _edit.getData());
 
 			Activity_setinfo_shigongdui.get_instance().show_wait();
-			HttpUtil.set_PersonalIntroduce(Activity_setinfo_shigongdui._handler, _value, Activity_setinfo_shigongdui.CHANGE_SUCCESSFUL, Activity_setinfo_shigongdui.CHANGE_FAILED);
+			HttpUtil.set_PersonalBaseInfor(Activity_setinfo_shigongdui._handler, _value, Activity_setinfo_shigongdui.CHANGE_SUCCESSFUL, Activity_setinfo_shigongdui.CHANGE_FAILED);
 		}
 		else if (_id == _phone.get_id())
 		{
