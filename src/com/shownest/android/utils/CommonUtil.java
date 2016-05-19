@@ -49,6 +49,20 @@ public class CommonUtil
 		return false;
 	}
 
+	public static String showPhone(String _phone)
+	{
+		StringBuilder _builder = new StringBuilder();
+		int _temp_i = 0;
+		for (_temp_i = 0; _temp_i < _phone.length(); _temp_i++)
+		{
+			if (_temp_i < 3 || _temp_i > _phone.length() - 3)
+				_builder.append(_phone.charAt(_temp_i));
+			else
+				_builder.append('*');
+		}
+		return _builder.toString();
+	}
+
 	public static String parseImgSrc(String str)
 	{
 

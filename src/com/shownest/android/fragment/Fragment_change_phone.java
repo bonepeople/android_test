@@ -69,6 +69,7 @@ public class Fragment_change_phone extends DEBUG_Fragment
 				else
 				{
 					Activity_change_phone.get_instance().show_wait();
+					Activity_change_phone.get_instance().set_phone(_string_phone);
 					HttpUtil.modify_Phone(Activity_change_phone._handler, _string_phone, _code, Activity_change_phone.CHANGE_SUCCESSFUL, Activity_change_phone.CHANGE_FAILED);
 				}
 

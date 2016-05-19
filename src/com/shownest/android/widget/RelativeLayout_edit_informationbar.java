@@ -20,10 +20,12 @@ import android.widget.Toast;
 
 public class RelativeLayout_edit_informationbar extends RelativeLayout implements View.OnClickListener
 {
-	private static boolean DEBUG = true;
+	private static boolean DEBUG = false;
 	private Context _context;
+	private int _id;
 	private int _style;
-	private OnSelectListener _listener;
+	private OnSelectListener _select_listener;
+	private OnClickListener _click_listener;
 	private ViewGroup _rootview;
 	private TextView _textview_name, _textview_left, _textview_right;
 	private ImageView _imageview_right;
@@ -70,6 +72,20 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 		this._style = style;
 		this._rootview = root;
 		this._clickable = _clickable;
+		setContentView(args);
+
+	}
+
+	public RelativeLayout_edit_informationbar(Context context, ViewGroup root, int style, String[] args, boolean _clickable, OnClickListener _listener)
+	{
+		super(context);
+		if (DEBUG)
+			System.out.println("relativelayout super:" + style);
+		this._context = context;
+		this._style = style;
+		this._rootview = root;
+		this._clickable = _clickable;
+		this._click_listener = _listener;
 		setContentView(args);
 
 	}
@@ -192,14 +208,14 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 				@Override
 				public void onCheckedChanged(RadioGroup group, int checkedId)
 				{
-					if (_listener != null)
+					if (_select_listener != null)
 						switch (checkedId)
 						{
 						case R.id.radiobutton_widget_left:
-							_listener.onSelect(1);
+							_select_listener.onSelect(1);
 							break;
 						case R.id.radiobutton_widget_right:
-							_listener.onSelect(2);
+							_select_listener.onSelect(2);
 							break;
 						}
 				}
@@ -214,12 +230,19 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 					_textview_left.setTextColor(getResources().getColor(R.color.text_gray));
 			}
 			else if (_childview != null)
-				_childview.setOnClickListener(this);
+			{
+				_id = _childview.getId();
+				if (this._click_listener != null)
+					_childview.setOnClickListener(_click_listener);
+				else
+					_childview.setOnClickListener(this);
+			}
+
 	}
 
-	public void setOnSelectListener(OnSelectListener _select_listener)
+	public void setOnSelectListener(OnSelectListener _listener)
 	{
-		_listener = _select_listener;
+		_select_listener = _listener;
 	}
 
 	public void setData(String[] args)
@@ -250,6 +273,11 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 			break;
 		}
 
+	}
+
+	public int get_id()
+	{
+		return this._id;
 	}
 
 	public String getData()

@@ -8,6 +8,7 @@ import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_change_phone;
 import com.shownest.android.thread.Thread_time;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.RelativeLayout;
@@ -23,6 +24,7 @@ public class Activity_change_phone extends DEBUG_Activity
 	private static Activity_change_phone _instance;
 	private static Fragment_change_phone _fragment_change_phone;
 	private static Thread_time _timer = null;
+	private String _phone;
 	public static Handler _handler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)
@@ -54,7 +56,7 @@ public class Activity_change_phone extends DEBUG_Activity
 		setContentView(R.layout.activity_basic);
 		_instance = this;
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
-		
+
 		_fragment_change_phone = new Fragment_change_phone();
 		add_fragment(this, _fragment_change_phone, false);
 		if (_timer != null)
@@ -78,6 +80,9 @@ public class Activity_change_phone extends DEBUG_Activity
 			else if (_result.equals("操作成功"))
 			{
 				Toast.makeText(_instance, "认证手机修改成功", Toast.LENGTH_SHORT).show();
+				Intent _intent = new Intent();
+				_intent.putExtra("phone", _instance._phone);
+				_instance.setResult(RESULT_OK, _intent);
 				_instance.finish();
 			}
 			else
@@ -94,6 +99,11 @@ public class Activity_change_phone extends DEBUG_Activity
 	public static Activity_change_phone get_instance()
 	{
 		return _instance;
+	}
+
+	public void set_phone(String _phone)
+	{
+		this._phone = _phone;
 	}
 
 }
