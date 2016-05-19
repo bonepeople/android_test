@@ -9,9 +9,11 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Map.Entry;
 
 import com.shownest.android.thread.Thread_http;
 
+import android.content.ContentValues;
 import android.os.Handler;
 import android.os.Message;
 
@@ -28,7 +30,17 @@ public class HttpUtil
 	private static String BASEADDRESS = "http://t.shownest.com:86/";
 
 	// http://192.168.1.112:10000/shownest/html/test1.html
-	// http://192.168.1.112:10000/shownest/websubmitreg
+	// http://192.168.1.112:10000/shownest/websubmitreg /webPersonalIntroduce
+
+	public static void set_PersonalIntroduce(Handler _handler, ContentValues _value, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "webSetUseType";
+		String _message = "";
+
+		_message = values(_value);
+
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
+	}
 
 	public static void change_bsaeinfo(Handler _handler, String _showname, String _realname, String _sex, String _style, int _successful, int _failed)
 	{
@@ -341,6 +353,24 @@ public class HttpUtil
 			if (_connection != null)
 				_connection.disconnect();
 		}
+	}
+
+	private static String values(ContentValues _value)
+	{
+		StringBuilder _builder = new StringBuilder();
+
+		for (Entry<String, Object> item : _value.valueSet())
+		{
+			// ht.put(item.getKey(), item.getValue().toString());
+			_builder.append(item.getKey());
+			_builder.append('=');
+			_builder.append(item.getValue());
+			_builder.append('&');
+		}
+		if (_builder.length() > 1)
+			_builder.deleteCharAt(_builder.length() - 1);
+
+		return _builder.toString();
 	}
 
 	private static String encode(String _str)
