@@ -26,7 +26,6 @@ import android.widget.Toast;
 public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements OnClickListener
 {
 	private static final int REQUEST_PHONE = 1;
-	private static final int REQUEST_LOCATION = 2;
 	private LinearLayout _body;
 	private Button _button_commit;
 	private RelativeLayout_edit_informationbar _showname, _phone, _location, _sex;
@@ -70,11 +69,6 @@ public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements
 					Toast.makeText(getActivity(), "返回异常", Toast.LENGTH_SHORT).show();
 					e.printStackTrace();
 				}
-				break;
-			case REQUEST_LOCATION:
-				System.out.println("cityId=" + data.getIntExtra("cityId", 0));
-				System.out.println("provinceId=" + data.getIntExtra("provinceId", 0));
-				System.out.println("countyId=" + data.getIntExtra("countyId", 0));
 				break;
 			}
 		}

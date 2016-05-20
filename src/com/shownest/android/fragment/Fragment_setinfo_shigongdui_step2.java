@@ -22,10 +22,13 @@ import android.widget.LinearLayout;
 
 public class Fragment_setinfo_shigongdui_step2 extends DEBUG_Fragment implements OnClickListener
 {
-	private static final int REQUEST_LOCATION = 2;
+	private static final int LOCATION_WORK = 1;
+	private static final int LOCATION_SERVICE = 2;
 	private LinearLayout _body;
 	private Button _button_commit;
 	private RelativeLayout_edit_informationbar _date, _number, _location, _address, _service, _serviceItem;
+	private int cityId = 0, provinceId = 0, countyId = 0;
+	private String serviceRegion = "";
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -51,13 +54,25 @@ public class Fragment_setinfo_shigongdui_step2 extends DEBUG_Fragment implements
 	{
 		if (resultCode == -1)
 		{
+			cityId = data.getIntExtra("cityId", 0);
+			System.out.println("cityId=" + cityId);
+
+			provinceId = data.getIntExtra("provinceId", 0);
+			System.out.println("provinceId=" + provinceId);
+
+			countyId = data.getIntExtra("countyId", 0);
+			System.out.println("countyId=" + countyId);
+			String _temp_str = "provinceId=" + provinceId + "cityId=" + cityId + "countyId=" + countyId;
+
 			switch (requestCode)
 			{
-			case REQUEST_LOCATION:
-				System.out.println("cityId=" + data.getIntExtra("cityId", 0));
-				System.out.println("provinceId=" + data.getIntExtra("provinceId", 0));
-				System.out.println("countyId=" + data.getIntExtra("countyId", 0));
+			case LOCATION_WORK:
+				_location.setData(new String[] { _temp_str });
 				break;
+			case LOCATION_SERVICE:
+				serviceRegion = String.valueOf(provinceId) + "," + String.valueOf(cityId) + "," + String.valueOf(countyId);
+				System.out.println("serviceRegion=" + serviceRegion);
+				_service.setData(new String[] { serviceRegion });
 			}
 		}
 		else
@@ -73,12 +88,12 @@ public class Fragment_setinfo_shigongdui_step2 extends DEBUG_Fragment implements
 			ContentValues _value = new ContentValues();
 			_value.put("workYear", _date.getData());
 			_value.put("peopleNum", _number.getData());
-			_value.put("workProvince", _location.getData());// 需要变更
-			_value.put("workCounty", _location.getData());// 需要变更
-			_value.put("workCity", _location.getData());// 需要变更
+			_value.put("workProvince", provinceId);
+			_value.put("workCounty", countyId);
+			_value.put("workCity", cityId);
 			_value.put("workAddress", _address.getData());
-			_value.put("serviceRegion", _service.getData());// 需要变更 serviceRegion //服务区域 1004,100401,10040101|
-			_value.put("serviceItem", _serviceItem.getData());// 需要变更
+			_value.put("serviceRegion", serviceRegion);
+			_value.put("serviceItem", _serviceItem.getData());
 
 			Activity_setinfo_shigongdui.get_instance().show_wait();
 			HttpUtil.set_PersonalIntroduce(Activity_setinfo_shigongdui._handler, _value, Activity_setinfo_shigongdui.CHANGE_SUCCESSFUL, Activity_setinfo_shigongdui.CHANGE_FAILED);
@@ -104,12 +119,12 @@ public class Fragment_setinfo_shigongdui_step2 extends DEBUG_Fragment implements
 		else if (_id == _location.get_id())
 		{
 			Intent _location = new Intent(getActivity(), Activity_location.class);
-			startActivityForResult(_location, REQUEST_LOCATION);
+			startActivityForResult(_location, LOCATION_WORK);
 		}
 		else if (_id == _service.get_id())
 		{
 			Intent _location = new Intent(getActivity(), Activity_location.class);
-			startActivityForResult(_location, REQUEST_LOCATION);
+			startActivityForResult(_location, LOCATION_SERVICE);
 		}
 		else if (_id == _serviceItem.get_id())
 		{
