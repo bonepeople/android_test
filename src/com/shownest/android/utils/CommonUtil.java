@@ -19,9 +19,15 @@ public class CommonUtil
 	public static final String REG_EMAIL = "\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
 	public static final String REG_PHONE = "^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
 	public static final String REG_PASSWORD = "\\w+";
+	public static final String REG_ID_NUMBER= "^(\\d{15}$|^\\d{18}$|^\\d{17}(\\d|X|x))$";
 	public static final String REG_COMMENT_NAME = "「(.*)」";
 	public static String REG_WEB_URL = "[^\u4e00-\u9fa5\\s|^\uFE30-\uFFA0\\s|^\\]]*?\\.(com|net|cn|me|tw|fr)[^\u4e00-\u9fa5\\s|^\uFE30-\uFFA0\\s|^\\[|^\\<|^@]*";
 
+	public static boolean isIDNumber(String id)
+	{
+		return Pattern.matches(REG_ID_NUMBER, id);
+	}
+	
 	public static boolean isPhone(String phone)
 	{
 		Pattern phonePattern = Pattern.compile(REG_PHONE);

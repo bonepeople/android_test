@@ -30,6 +30,8 @@ public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements
 	private Button _button_commit;
 	private RelativeLayout_edit_informationbar _showname, _phone, _location, _sex;
 	private Linearlayout_edittext _edit;
+	private int[] _PlaceID = new int[] { 1, 1013, 1012, 1011, 1018, 1019, 1016, 1006, 1022, 1004, 1005, 1015, -1 };
+	// { "安徽", "浙江", "江苏", "湖北", "湖南", "山东", "山西", "四川", "重庆", "河北", "江西", "其他" };
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -82,14 +84,22 @@ public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements
 		int _id = v.getId();
 		if (_id == R.id.button_commit)
 		{
-			ContentValues _value = new ContentValues();
-			_value.put("userShowName", _showname.getData());
-			_value.put("nativePlace", _location.getData());// 需要变更
-			_value.put("realSex", _sex.getData().equals("男") ? 1 : 0);
-			_value.put("introduces", _edit.getData());
+			String _str_place = _location.getData();
+			if (_str_place.isEmpty())
+			{
+				Toast.makeText(getActivity(), "请选择籍贯", Toast.LENGTH_SHORT).show();
+			}
+			else
+			{
+				ContentValues _value = new ContentValues();
+				_value.put("userShowName", _showname.getData());
+				_value.put("nativePlace", _PlaceID[_PlaceID[0]]);
+				_value.put("realSex", _sex.getData().equals("男") ? 1 : 0);
+				_value.put("introduces", _edit.getData());
 
-			Activity_setinfo_shigongdui.get_instance().show_wait();
-			HttpUtil.set_PersonalBaseInfor(Activity_setinfo_shigongdui._handler, _value, Activity_setinfo_shigongdui.CHANGE_SUCCESSFUL, Activity_setinfo_shigongdui.CHANGE_FAILED);
+				Activity_setinfo_shigongdui.get_instance().show_wait();
+				HttpUtil.set_PersonalBaseInfor(Activity_setinfo_shigongdui._handler, _value, Activity_setinfo_shigongdui.CHANGE_SUCCESSFUL, Activity_setinfo_shigongdui.CHANGE_FAILED);
+			}
 		}
 		else if (_id == _phone.get_id())
 		{
@@ -107,6 +117,7 @@ public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements
 				@Override
 				public void onClick(DialogInterface dialog, int which)
 				{
+					_PlaceID[0] = which + 1;
 					_location.setData(new String[] { _place[which] });
 				}
 			});

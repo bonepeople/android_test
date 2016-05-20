@@ -13,6 +13,7 @@ import android.app.AlertDialog.Builder;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.DialogInterface.OnMultiChoiceClickListener;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class Fragment_setinfo_shejishi_step2 extends DEBUG_Fragment implements OnClickListener
 {
@@ -31,6 +33,7 @@ public class Fragment_setinfo_shejishi_step2 extends DEBUG_Fragment implements O
 	private LinearLayout_style _style;
 	private int cityId = 0, provinceId = 0, countyId = 0;
 	private String serviceRegion = "";
+	private boolean[][] _service_select = new boolean[][] { { false, false, false }, { false, false, false } };
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -91,18 +94,35 @@ public class Fragment_setinfo_shejishi_step2 extends DEBUG_Fragment implements O
 		int _id = v.getId();
 		if (_id == R.id.button_commit)
 		{
-			ContentValues _value = new ContentValues();
-			_value.put("workYear", _date.getData());
-			_value.put("workProvince", provinceId);
-			_value.put("workCounty", countyId);
-			_value.put("workCity", cityId);
-			_value.put("workAddress", _address.getData());
-			_value.put("serviceRegion", serviceRegion);
-			_value.put("serviceItem", _serviceItem.getData());
-			_value.put("designStyle", _style.getData());
+			String _str_service = _serviceItem.getData();
+			if (_str_service.isEmpty())
+			{
+				Toast.makeText(getActivity(), "请选择至少一项服务范围", Toast.LENGTH_SHORT).show();
+			}
+			else
+			{
+				StringBuilder _str_builder = new StringBuilder();
+				for (int i = 0; i < 3; i++)
+				{
+					if (_service_select[0][i])
+						_str_builder.append(String.valueOf(i + 1) + ",");
+				}
+				if (_str_builder.length() > 1)
+					_str_builder.deleteCharAt(_str_builder.length() - 1);
 
-			Activity_setinfo_shejishi.get_instance().show_wait();
-			HttpUtil.set_PersonalIntroduce(Activity_setinfo_shejishi._handler, _value, Activity_setinfo_shejishi.CHANGE_SUCCESSFUL, Activity_setinfo_shejishi.CHANGE_FAILED);
+				ContentValues _value = new ContentValues();
+				_value.put("workYear", _date.getData());
+				_value.put("workProvince", provinceId);
+				_value.put("workCounty", countyId);
+				_value.put("workCity", cityId);
+				_value.put("workAddress", _address.getData());
+				_value.put("serviceRegion", serviceRegion);
+				_value.put("serviceItem", _str_builder.toString());
+				_value.put("designStyle", _style.getData());
+
+				Activity_setinfo_shejishi.get_instance().show_wait();
+				HttpUtil.set_PersonalIntroduce(Activity_setinfo_shejishi._handler, _value, Activity_setinfo_shejishi.CHANGE_SUCCESSFUL, Activity_setinfo_shejishi.CHANGE_FAILED);
+			}
 		}
 		else if (_id == _date.get_id())
 		{
@@ -137,12 +157,32 @@ public class Fragment_setinfo_shejishi_step2 extends DEBUG_Fragment implements O
 
 			AlertDialog.Builder _builder = new Builder(getActivity());
 			_builder.setTitle("服务范围");
-			_builder.setItems(_temp_str, new DialogInterface.OnClickListener()
+			for (int i = 0; i < 3; i++)
+				_service_select[1][i] = _service_select[0][i];
+			_builder.setMultiChoiceItems(_temp_str, _service_select[1], new OnMultiChoiceClickListener()
 			{
+				@Override
+				public void onClick(DialogInterface dialog, int which, boolean isChecked)
+				{
+					// 这个监听不需要添加代码，但一定要保留，有这个监听_service_select[1]才会被系统更改。
+				}
+			});
+			_builder.setPositiveButton("确定", new DialogInterface.OnClickListener()
+			{
+
 				@Override
 				public void onClick(DialogInterface dialog, int which)
 				{
-					_serviceItem.setData(new String[] { _temp_str[which] });
+					StringBuilder _builder = new StringBuilder();
+					for (int i = 0; i < 3; i++)
+					{
+						_service_select[0][i] = _service_select[1][i];
+						if (_service_select[1][i])
+							_builder.append(_temp_str[i] + ",");
+					}
+					if (_builder.length() > 1)
+						_builder.deleteCharAt(_builder.length() - 1);
+					_serviceItem.setData(new String[] { _builder.toString() });
 				}
 			});
 

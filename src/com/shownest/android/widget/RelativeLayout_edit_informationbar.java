@@ -318,7 +318,15 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 		{
 		case R.id.button_commit:
 			// 可以在这里检测输入的合理性
-			setData(new String[] { _edittext_dialog.getText().toString() });
+			if (this._style == 3)
+			{
+				String _temp_str = _edittext_dialog.getText().toString();
+				if (_temp_str.length() < 6)
+					setData(new String[] { Integer.valueOf(_temp_str).toString() });
+			}
+			else
+
+				setData(new String[] { _edittext_dialog.getText().toString() });
 			_dialog.dismiss();
 			break;
 
@@ -361,7 +369,7 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 		Button _button_cancel = (Button) _view.findViewById(R.id.button_cancel);
 		_edittext_dialog = (EditText) _view.findViewById(R.id.edittext_dialog);
 		_edittext_dialog.setText(_value);
-		if(number==1)
+		if (number == 1)
 			_edittext_dialog.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
 
 		_button_commit.setOnClickListener(this);

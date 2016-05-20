@@ -11,6 +11,7 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnMultiChoiceClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class Fragment_setinfo_shigongdui_step2 extends DEBUG_Fragment implements OnClickListener
 {
@@ -29,6 +31,7 @@ public class Fragment_setinfo_shigongdui_step2 extends DEBUG_Fragment implements
 	private RelativeLayout_edit_informationbar _date, _number, _location, _address, _service, _serviceItem;
 	private int cityId = 0, provinceId = 0, countyId = 0;
 	private String serviceRegion = "";
+	private boolean[][] _service_select = new boolean[][] { { false, false, false }, { false, false, false } };
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -40,8 +43,8 @@ public class Fragment_setinfo_shigongdui_step2 extends DEBUG_Fragment implements
 		_button_commit.setText("保存");
 		_button_commit.setOnClickListener(this);
 
-		_date = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "从业年份", "" }, true, this);
-		_number = new RelativeLayout_edit_informationbar(getActivity(), _body, 3, new String[] { "工队人数", "", "人" }, true);
+		_date = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "从业年份", "2016" }, true, this);
+		_number = new RelativeLayout_edit_informationbar(getActivity(), _body, 3, new String[] { "工队人数", "1", "人" }, true);
 		_location = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "办公地址", "" }, true, this);
 		_address = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "完善地址", "" }, true);
 		_service = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "服务区域", "" }, true, this);
@@ -85,19 +88,40 @@ public class Fragment_setinfo_shigongdui_step2 extends DEBUG_Fragment implements
 		int _id = v.getId();
 		if (_id == R.id.button_commit)
 		{
-			ContentValues _value = new ContentValues();
-			_value.put("workYear", _date.getData());
-			_value.put("peopleNum", _number.getData());
-			_value.put("workProvince", provinceId);
-			_value.put("workCounty", countyId);
-			_value.put("workCity", cityId);
-			_value.put("workAddress", _address.getData());
-			_value.put("serviceRegion", serviceRegion);
-			_value.put("serviceItem", _serviceItem.getData());
+			String _str_service = _serviceItem.getData();
+			String _str_number = _number.getData();
+			if (_str_service.isEmpty())
+			{
+				Toast.makeText(getActivity(), "请选择至少一项服务范围", Toast.LENGTH_SHORT).show();
+			}
+			else if (_str_number.equals("0"))
+			{
+				Toast.makeText(getActivity(), "工队至少包含1名工人", Toast.LENGTH_SHORT).show();
+			}
+			else
+			{
+				StringBuilder _str_builder = new StringBuilder();
+				for (int i = 0; i < 3; i++)
+				{
+					if (_service_select[0][i])
+						_str_builder.append(i + ",");
+				}
+				if (_str_builder.length() > 1)
+					_str_builder.deleteCharAt(_str_builder.length() - 1);
 
-			Activity_setinfo_shigongdui.get_instance().show_wait();
-			HttpUtil.set_PersonalIntroduce(Activity_setinfo_shigongdui._handler, _value, Activity_setinfo_shigongdui.CHANGE_SUCCESSFUL, Activity_setinfo_shigongdui.CHANGE_FAILED);
+				ContentValues _value = new ContentValues();
+				_value.put("workYear", _date.getData());
+				_value.put("peopleNum", _str_number);
+				_value.put("workProvince", provinceId);
+				_value.put("workCounty", countyId);
+				_value.put("workCity", cityId);
+				_value.put("workAddress", _address.getData());
+				_value.put("serviceRegion", serviceRegion);
+				_value.put("serviceItem", _str_builder.toString());
 
+				Activity_setinfo_shigongdui.get_instance().show_wait();
+				HttpUtil.set_PersonalIntroduce(Activity_setinfo_shigongdui._handler, _value, Activity_setinfo_shigongdui.CHANGE_SUCCESSFUL, Activity_setinfo_shigongdui.CHANGE_FAILED);
+			}
 		}
 		else if (_id == _date.get_id())
 		{
@@ -132,16 +156,43 @@ public class Fragment_setinfo_shigongdui_step2 extends DEBUG_Fragment implements
 
 			AlertDialog.Builder _builder = new Builder(getActivity());
 			_builder.setTitle("服务范围");
-			_builder.setItems(_temp_str, new DialogInterface.OnClickListener()
+			for (int i = 0; i < 3; i++)
+				_service_select[1][i] = _service_select[0][i];
+			_builder.setMultiChoiceItems(_temp_str, _service_select[1], new OnMultiChoiceClickListener()
 			{
+				@Override
+				public void onClick(DialogInterface dialog, int which, boolean isChecked)
+				{
+					// 这个监听不需要添加代码，但一定要保留，有这个监听_service_select[1]才会被系统更改。
+				}
+			});
+			_builder.setPositiveButton("确定", new DialogInterface.OnClickListener()
+			{
+
 				@Override
 				public void onClick(DialogInterface dialog, int which)
 				{
-					_serviceItem.setData(new String[] { _temp_str[which] });
+					StringBuilder _builder = new StringBuilder();
+					for (int i = 0; i < 3; i++)
+					{
+						_service_select[0][i] = _service_select[1][i];
+						if (_service_select[1][i])
+							_builder.append(_temp_str[i] + ",");
+					}
+					if (_builder.length() > 1)
+						_builder.deleteCharAt(_builder.length() - 1);
+					_serviceItem.setData(new String[] { _builder.toString() });
 				}
 			});
 
 			_builder.show();
+
+			// 1 new AlertDialog.Builder(self)
+			// 2 .setTitle("多选框")
+			// 3 .setMultiChoiceItems(new String[] {"选项1","选项2","选项3","选项4"}, null, null)
+			// 4 .setPositiveButton("确定", null)
+			// 5 .setNegativeButton("取消", null)
+			// 6 .show();
 		}
 	}
 }
