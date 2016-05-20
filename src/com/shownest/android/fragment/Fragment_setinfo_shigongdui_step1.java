@@ -80,7 +80,6 @@ public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements
 		}
 		else
 			System.out.println("resultCode=" + resultCode);
-
 	}
 
 	@Override

@@ -78,7 +78,6 @@ public class Activity_setinfo_shejishi extends DEBUG_Activity implements OnSelec
 			if (_result.equals("提交成功"))
 			{
 				Toast.makeText(_instance, "提交成功", Toast.LENGTH_SHORT).show();
-				_instance.finish();
 			}
 			else
 				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
