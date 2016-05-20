@@ -38,8 +38,7 @@ public class Fragment_setinfo_shigongdui_step3 extends DEBUG_Fragment implements
 		_type = new RelativeLayout_edit_informationbar(getActivity(), _body, 6, new String[] { "认证类型", "独立工队", "装修公司工队", "1" }, false);
 		_name = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "工长姓名", "222" }, true);
 		_id_number = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "身份证号", "" }, true);
-		_idcard = new LinearLayout_idcard(getActivity(), "工长身份证");
-		_body.addView(_idcard);
+		_idcard = new LinearLayout_idcard(getActivity(), _body, "工长身份证", this);
 
 		_type.setOnSelectListener(_idcard);
 		return _view;
@@ -68,6 +67,18 @@ public class Fragment_setinfo_shigongdui_step3 extends DEBUG_Fragment implements
 				Activity_setinfo_shigongdui.get_instance().show_wait();
 				HttpUtil.set_PersonalProve(Activity_setinfo_shigongdui._handler, _value, Activity_setinfo_shigongdui.CHANGE_SUCCESSFUL, Activity_setinfo_shigongdui.CHANGE_FAILED);
 			}
+		}
+		else if (_id == R.id.imageview_widget_left)
+		{
+			Toast.makeText(getActivity(), "left click", Toast.LENGTH_SHORT).show();
+		}
+		else if (_id == R.id.imageview_widget_right)
+		{
+			Toast.makeText(getActivity(), "right click", Toast.LENGTH_SHORT).show();
+		}
+		else if (_id == R.id.imageview_widget_bottom)
+		{
+			Toast.makeText(getActivity(), "bottom click", Toast.LENGTH_SHORT).show();
 		}
 	}
 }

@@ -39,8 +39,7 @@ public class Fragment_setinfo_jianli_step3 extends DEBUG_Fragment implements OnC
 		_name = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "真实姓名", "222" }, true);
 		_id_number = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "身份证号", "" }, true);
 
-		_idcard = new LinearLayout_idcard(getActivity(), "监理身份证");
-		_body.addView(_idcard);
+		_idcard = new LinearLayout_idcard(getActivity(), _body, "监理身份证", this);
 
 		_type.setOnSelectListener(_idcard);
 		return _view;
@@ -69,6 +68,18 @@ public class Fragment_setinfo_jianli_step3 extends DEBUG_Fragment implements OnC
 				Activity_setinfo_jianli.get_instance().show_wait();
 				HttpUtil.set_PersonalProve(Activity_setinfo_jianli._handler, _value, Activity_setinfo_jianli.CHANGE_SUCCESSFUL, Activity_setinfo_jianli.CHANGE_FAILED);
 			}
+		}
+		else if (_id == R.id.imageview_widget_left)
+		{
+			Toast.makeText(getActivity(), "left click", Toast.LENGTH_SHORT).show();
+		}
+		else if (_id == R.id.imageview_widget_right)
+		{
+			Toast.makeText(getActivity(), "right click", Toast.LENGTH_SHORT).show();
+		}
+		else if (_id == R.id.imageview_widget_bottom)
+		{
+			Toast.makeText(getActivity(), "bottom click", Toast.LENGTH_SHORT).show();
 		}
 	}
 }

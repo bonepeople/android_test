@@ -1,10 +1,13 @@
 package com.shownest.android.widget;
 
+import com.shownest.android.R;
 import com.shownest.android.model.OnSelectListener;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -12,6 +15,8 @@ public class LinearLayout_idcard extends LinearLayout implements View.OnClickLis
 {
 	private static boolean DEBUG = true;
 	private TextView _textview_name;
+	private ImageView _imageview_left, _imageview_right, _imageview_bottom;
+	private LinearLayout _linearlayout_bottom;
 
 	public LinearLayout_idcard(Context context)
 	{
@@ -37,23 +42,36 @@ public class LinearLayout_idcard extends LinearLayout implements View.OnClickLis
 	 * @param _name
 	 *            控件标题
 	 */
-	public LinearLayout_idcard(Context context, String _name)
+	public LinearLayout_idcard(Context context, ViewGroup root, String _name, OnClickListener _lintener)
 	{
 		super(context);
 		if (DEBUG)
 			System.out.println("LinearLayout_idcard super");
 
-		this.setOrientation(LinearLayout.VERTICAL);
+		// float scale = context.getResources().getDisplayMetrics().density;
+		// int padding = (int) (5 * scale + 0.5f);
 
-		_textview_name = new TextView(context);
+		ViewGroup _view = (ViewGroup) View.inflate(context, R.layout.widget_idcard, root);
+		View _childview = _view.getChildAt(_view.getChildCount() - 1);
+
+		_textview_name = (TextView) _childview.findViewById(R.id.textview_name);
+		_imageview_left = (ImageView) _childview.findViewById(R.id.imageview_widget_left);
+		_imageview_right = (ImageView) _childview.findViewById(R.id.imageview_widget_right);
+		_imageview_bottom = (ImageView) _childview.findViewById(R.id.imageview_widget_bottom);
+		_linearlayout_bottom = (LinearLayout) _childview.findViewById(R.id.linearlayout_idcard_bottom);
+
+		if (_textview_name == null)
+			System.out.println("name  is null");
 		_textview_name.setText(_name);
-		// _textview_name.setTextSize(18);
-
-		float scale = context.getResources().getDisplayMetrics().density;
-		int padding = (int) (5 * scale + 0.5f);
-
-		_textview_name.setPadding(padding, padding, 0, 0);
-		this.addView(_textview_name);
+		_imageview_left.setOnClickListener(_lintener);
+		_imageview_right.setOnClickListener(_lintener);
+		_imageview_bottom.setOnClickListener(_lintener);
+		_linearlayout_bottom.setVisibility(LinearLayout.INVISIBLE);
+		// _childview = _view.getChildAt(_view.getChildCount() - 1);
+		//
+		// _textview_name.setText(args[0]);
+		// _textview_left.setText(args[1]);
+		// _textview_right.setText(args[2]);
 	}
 
 	@Override
@@ -65,6 +83,9 @@ public class LinearLayout_idcard extends LinearLayout implements View.OnClickLis
 	@Override
 	public void onSelect(int _index)
 	{
-		_textview_name.setText("selected : " + _index);
+		if (_index == 1)
+			_linearlayout_bottom.setVisibility(LinearLayout.INVISIBLE);
+		else
+			_linearlayout_bottom.setVisibility(LinearLayout.VISIBLE);
 	}
 }
