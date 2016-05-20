@@ -336,13 +336,13 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 				Toast.makeText(_context, "跳转", Toast.LENGTH_SHORT).show();
 				break;
 			case 3:
-				show_dialog(getData());
+				show_dialog(getData(), 1);
 				break;
 			case 4:
 				Toast.makeText(_context, "显示滚轮", Toast.LENGTH_SHORT).show();
 				break;
 			case 5:
-				show_dialog(getData());
+				show_dialog(getData(), 0);
 				break;
 			}
 		}
@@ -350,7 +350,7 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 		// Toast.makeText(_context, "clicked", Toast.LENGTH_SHORT).show();
 	}
 
-	private void show_dialog(String _value)
+	private void show_dialog(String _value, int number)
 	{
 		View _view = View.inflate(_context, R.layout.dialog_edit, null);
 		AlertDialog.Builder _builder = new Builder(_context);
@@ -361,6 +361,8 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 		Button _button_cancel = (Button) _view.findViewById(R.id.button_cancel);
 		_edittext_dialog = (EditText) _view.findViewById(R.id.edittext_dialog);
 		_edittext_dialog.setText(_value);
+		if(number==1)
+			_edittext_dialog.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
 
 		_button_commit.setOnClickListener(this);
 		_button_cancel.setOnClickListener(this);

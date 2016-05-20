@@ -114,7 +114,6 @@ public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements
 				@Override
 				public void onClick(DialogInterface dialog, int which)
 				{
-					System.out.println("which=" + which);
 					_location.setData(new String[] { _place[which] });
 				}
 			});
