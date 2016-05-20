@@ -1,8 +1,6 @@
 package com.shownest.android.fragment;
 
 import com.shownest.android.R;
-import com.shownest.android.activity.Activity_change_phone;
-import com.shownest.android.activity.Activity_location;
 import com.shownest.android.activity.Activity_setinfo_shigongdui;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.utils.HttpUtil;
@@ -10,7 +8,6 @@ import com.shownest.android.widget.LinearLayout_idcard;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 
 import android.content.ContentValues;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +15,6 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 public class Fragment_setinfo_shigongdui_step3 extends DEBUG_Fragment implements OnClickListener
 {
@@ -54,11 +50,11 @@ public class Fragment_setinfo_shigongdui_step3 extends DEBUG_Fragment implements
 		if (_id == R.id.button_commit)
 		{
 			ContentValues _value = new ContentValues();
-			_value.put("authenticationType", _type.getData());// 需要变更
-			_value.put("authenticationName", _name.getData());// 需要变更
-			_value.put("authenticationCode", _id_number.getData());// 需要变更
-			_value.put("authenticationCardPicF", _idcard.toString());// 需要变更
-			_value.put("authenticationCardPicB", _idcard.toString());// 需要变更
+			_value.put("authenticationType", _type.getData());
+			_value.put("authenticationName", _name.getData());
+			_value.put("authenticationCode", _id_number.getData());
+			_value.put("authenticationCardPicF", "正面路径");// 需要变更
+			_value.put("authenticationCardPicB", "反面路径");// 需要变更
 
 			Activity_setinfo_shigongdui.get_instance().show_wait();
 			HttpUtil.set_PersonalProve(Activity_setinfo_shigongdui._handler, _value, Activity_setinfo_shigongdui.CHANGE_SUCCESSFUL, Activity_setinfo_shigongdui.CHANGE_FAILED);
