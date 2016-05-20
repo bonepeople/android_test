@@ -2,7 +2,6 @@ package com.shownest.android.fragment;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_change_phone;
-import com.shownest.android.activity.Activity_location;
 import com.shownest.android.activity.Activity_setinfo_shigongdui;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.utils.CommonUtil;
@@ -10,7 +9,10 @@ import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.widget.Linearlayout_edittext;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -90,7 +92,7 @@ public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements
 			ContentValues _value = new ContentValues();
 			_value.put("userShowName", _showname.getData());
 			_value.put("nativePlace", _location.getData());// 需要变更
-			_value.put("realSex", _sex.getData());// 需要变更
+			_value.put("realSex", _sex.getData().equals("男") ? 1 : 0);
 			_value.put("introduces", _edit.getData());
 
 			Activity_setinfo_shigongdui.get_instance().show_wait();
@@ -103,8 +105,21 @@ public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements
 		}
 		else if (_id == _location.get_id())
 		{
-			Intent _location = new Intent(getActivity(), Activity_location.class);
-			startActivityForResult(_location, REQUEST_LOCATION);
+			final String[] _place = new String[] { "安徽", "浙江", "江苏", "湖北", "湖南", "山东", "山西", "四川", "重庆", "河北", "江西", "其他" };
+
+			AlertDialog.Builder _builder = new Builder(getActivity());
+			_builder.setTitle("工长籍贯");
+			_builder.setItems(_place, new DialogInterface.OnClickListener()
+			{
+				@Override
+				public void onClick(DialogInterface dialog, int which)
+				{
+					System.out.println("which=" + which);
+					_location.setData(new String[] { _place[which] });
+				}
+			});
+
+			_builder.show();
 		}
 	}
 }
