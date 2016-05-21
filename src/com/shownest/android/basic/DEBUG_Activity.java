@@ -1,6 +1,7 @@
 package com.shownest.android.basic;
 
 import com.shownest.android.R;
+import com.shownest.android.fragment.Fragment_title;
 
 import android.app.Activity;
 import android.app.FragmentManager;
@@ -11,6 +12,7 @@ import android.widget.RelativeLayout;
 public abstract class DEBUG_Activity extends Activity
 {
 	private static boolean DEBUG = true;
+	protected Fragment_title _fragment_title;
 	protected RelativeLayout _relativelayout_wait;
 
 	@Override
@@ -77,6 +79,20 @@ public abstract class DEBUG_Activity extends Activity
 		super.onDestroy();
 	}
 
+	protected void setTitle(String _title)
+	{
+		if (_fragment_title == null)
+			_fragment_title = (Fragment_title) getFragmentManager().findFragmentById(R.id.fragment_title);
+		_fragment_title.setTitle(_title);
+	}
+
+	protected void setMenu(String _menu)
+	{
+		if (_fragment_title == null)
+			_fragment_title = (Fragment_title) getFragmentManager().findFragmentById(R.id.fragment_title);
+		_fragment_title.setMenu(_menu);
+	}
+
 	protected static void handle_msg(DEBUG_Activity _activity, String _msg)
 	{
 		if (DEBUG)
@@ -114,5 +130,11 @@ public abstract class DEBUG_Activity extends Activity
 			System.out.println("_relativelayout_wait not null");
 		if (_relativelayout_wait != null && _relativelayout_wait.getVisibility() == RelativeLayout.VISIBLE)
 			_relativelayout_wait.setVisibility(RelativeLayout.INVISIBLE);
+	}
+
+	// protected abstract void back();
+	public void menu_click()
+	{
+		
 	}
 }

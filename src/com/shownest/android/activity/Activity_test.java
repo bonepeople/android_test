@@ -45,6 +45,7 @@ public class Activity_test extends DEBUG_Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_basic);
 		_instance = this;
+		setTitle("测试");
 		_intent = getIntent();
 
 		add_fragment(this, new Fragment_test(), false);
@@ -72,7 +73,7 @@ public class Activity_test extends DEBUG_Activity
 	public void test(View v)
 	{
 		String _str = "result";
-		_intent.putExtra("phone",_str);
+		_intent.putExtra("phone", _str);
 		setResult(RESULT_OK, _intent); // intent为A传来的带有Bundle的intent，当然也可以自己定义新的Bundle
 		finish();// 此处一定要调用finish()方法
 	}

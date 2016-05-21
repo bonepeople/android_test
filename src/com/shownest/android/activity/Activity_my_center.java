@@ -51,11 +51,18 @@ public class Activity_my_center extends DEBUG_Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_basic);
 		_instance = this;
-
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
+		setTitle("个人中心");
+		setMenu("设置");
 
 		show_wait();
 		HttpUtil.get_userinfo(_handler, LOGIN_SUCCESSFUL, LOGIN_FAILED);
+	}
+
+	@Override
+	public void menu_click()
+	{
+		Toast.makeText(this, "设置", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override

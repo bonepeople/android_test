@@ -56,7 +56,8 @@ public class Activity_change_phone extends DEBUG_Activity
 		setContentView(R.layout.activity_basic);
 		_instance = this;
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
-
+		setTitle("更换手机号");
+		
 		_fragment_change_phone = new Fragment_change_phone();
 		add_fragment(this, _fragment_change_phone, false);
 		if (_timer != null)

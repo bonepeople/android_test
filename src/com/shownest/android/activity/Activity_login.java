@@ -43,8 +43,16 @@ public class Activity_login extends DEBUG_Activity
 		setContentView(R.layout.activity_basic);
 		_instance = this;
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
-		
+		setTitle("登录");
+		setMenu("注册");
+
 		add_fragment(this, new Fragment_login(), false);
+	}
+
+	@Override
+	public void menu_click()
+	{
+		Toast.makeText(this, "注册", Toast.LENGTH_SHORT).show();
 	}
 
 	private static void handle_string(String str)

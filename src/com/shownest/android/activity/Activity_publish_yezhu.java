@@ -5,6 +5,7 @@ import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_publish_yezhu;
 
 import android.os.Bundle;
+import android.widget.RelativeLayout;
 
 /**
  * 业主-发布招标
@@ -20,7 +21,9 @@ public class Activity_publish_yezhu extends DEBUG_Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_basic);
-
+		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
+		setTitle("发布招标");
+		
 		add_fragment(this, new Fragment_publish_yezhu(), false);
 	}
 }

@@ -19,7 +19,8 @@ public class Activity_location extends DEBUG_Activity
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_location);
-
+		setTitle("选择地址");
+		
 		_province = (EditText) findViewById(R.id.edittext_province);
 		_county = (EditText) findViewById(R.id.edittext_county);
 		_city = (EditText) findViewById(R.id.edittext_city);

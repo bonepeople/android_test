@@ -5,7 +5,7 @@
     android:background="@color/main_color" >
 
     <ImageView
-        android:id="@+id/imageview_fragment_title_back"
+        android:id="@+id/imageview_back"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentLeft="true"
@@ -15,25 +15,38 @@
         android:src="@drawable/go_back" />
 
     <TextView
-        android:id="@+id/textview_fragment_title_center"
+        android:id="@+id/textview_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="秀巢网"
         android:singleLine="true"
+        android:text="秀巢网"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <ImageView
-        android:id="@+id/imageview_fragment_title_more"
+        android:id="@+id/imageview_more"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
         android:scaleType="center"
-        android:visibility="visible"
-        android:src="@drawable/add" />
+        android:src="@drawable/add"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/textview_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:singleLine="true"
+        android:text="注册"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:visibility="invisible" />
 
 </RelativeLayout>

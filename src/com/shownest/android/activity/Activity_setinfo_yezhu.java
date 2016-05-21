@@ -43,6 +43,7 @@ public class Activity_setinfo_yezhu extends DEBUG_Activity
 		setContentView(R.layout.activity_basic);
 		_instance = this;
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
+		setTitle("身份认证");
 
 		add_fragment(this, new Fragment_setinfo_yezhu(), false);
 	}

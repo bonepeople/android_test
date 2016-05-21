@@ -43,7 +43,8 @@ public class Activity_change_pwd extends DEBUG_Activity
 		setContentView(R.layout.activity_basic);
 		_instance = this;
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
-
+		setTitle("修改密码");
+		
 		add_fragment(this, new Fragment_change_pwd(), false);
 	}
 

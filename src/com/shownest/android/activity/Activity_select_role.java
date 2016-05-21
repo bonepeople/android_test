@@ -43,7 +43,8 @@ public class Activity_select_role extends DEBUG_Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_basic);
 		_instance = this;
-
+		setTitle("选择身份类型");
+		
 		_fragment_select_role = new Fragment_select_role();
 		add_fragment(this, _fragment_select_role, false);
 	}

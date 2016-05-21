@@ -12,6 +12,7 @@ import com.shownest.android.utils.HttpUtil;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class Activity_forget extends DEBUG_Activity
@@ -64,7 +65,9 @@ public class Activity_forget extends DEBUG_Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_basic);
 		_instance = this;
-
+		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
+		setTitle("密码找回");
+		
 		_fragment_forget = new Fragment_forget();
 		add_fragment(this, _fragment_forget, false);
 		if (_timer != null)
