@@ -44,11 +44,11 @@ public class Fragment_basicinfo extends DEBUG_Fragment implements View.OnClickLi
 		_item_role = (RelativeLayout) _view.findViewById(R.id.relativelayout_role);
 		_item_phone = (RelativeLayout) _view.findViewById(R.id.relativelayout_phone);
 
-		setContent();
 		return _view;
 	}
 
-	private void setContent()
+	@Override
+	public void setContent()
 	{
 		UserInfo _info = Activity_my_center.get_userinfo();
 		String _url = "http://t.shownest.com:86/_resources/upload/headerIcon/" + _info.get_headerIcon();

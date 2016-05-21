@@ -23,6 +23,7 @@ public abstract class DEBUG_Fragment extends Fragment
 	{
 		if (DEBUG)
 			System.out.println(this.getClass().getName() + "-onResume");
+		setContent();
 		super.onResume();
 	}
 
@@ -48,5 +49,10 @@ public abstract class DEBUG_Fragment extends Fragment
 		if (DEBUG)
 			System.out.println(this.getClass().getName() + "-onDestroy");
 		super.onDestroy();
+	}
+	
+	public void setContent()
+	{
+		//在fragment的onResume中会被调用，需要设置初始数据的fragment只需重写此方法。
 	}
 }

@@ -42,19 +42,13 @@ public class Fragment_my_center extends DEBUG_Fragment implements View.OnClickLi
 	}
 
 	@Override
-	public void onResume()
-	{
-		setContent();
-		super.onResume();
-	}
-
-	private void setContent()
+	public void setContent()
 	{
 		UserInfo _info = Activity_my_center.get_userinfo();
 		_textview_money.setText(String.valueOf(_info.get_money()));
 		_textview_name.setText(_info.get_userName());
 		_number_bowen.setText(String.valueOf(_info.get_blogNum()));
-		String _url = "http://t.shownest.com:86/_resources/upload/headerIcon/" + Activity_my_center.get_userinfo().get_headerIcon();
+		String _url = "http://t.shownest.com:86/_resources/upload/headerIcon/" + _info.get_headerIcon();
 		_imageview_header.setImageUrl(_url);
 
 		switch (_info.get_userType())
@@ -88,7 +82,7 @@ public class Fragment_my_center extends DEBUG_Fragment implements View.OnClickLi
 			getActivity().startActivity(_select_role);
 			break;
 		case R.id.item_info:
-			Intent _my_info = new Intent(getActivity(), Activity_basicinfo.class	);
+			Intent _my_info = new Intent(getActivity(), Activity_basicinfo.class);
 			getActivity().startActivity(_my_info);
 			break;
 

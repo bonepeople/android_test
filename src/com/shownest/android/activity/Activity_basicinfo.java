@@ -16,14 +16,7 @@ public class Activity_basicinfo extends DEBUG_Activity
 		setContentView(R.layout.activity_basic);
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 		setTitle("个人资料");
-		
+
 		add_fragment(this, new Fragment_basicinfo(), false);
-	}
-	
-	@Override
-	protected void onResume()
-	{
-		Activity_my_center.refreshData();
-		super.onResume();
 	}
 }
