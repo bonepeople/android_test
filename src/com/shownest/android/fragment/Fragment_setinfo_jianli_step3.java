@@ -78,6 +78,9 @@ public class Fragment_setinfo_jianli_step3 extends DEBUG_Fragment implements OnC
 		int _id = v.getId();
 		if (_id == R.id.button_commit)
 		{
+			String _pic_name = "show" + String.valueOf(System.currentTimeMillis()) + String.valueOf(_image_where[3]) + String.valueOf((int) (Math.random() * 3000)) + ".jpg";
+			System.out.println(_pic_name);
+
 			String _str_id = _id_number.getData();
 			int _str_type = _type.getData().equals("独立监理") ? 1 : 2;
 			if (_str_type == 2 && _image_where[2] == 0)

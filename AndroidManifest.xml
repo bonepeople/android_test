@@ -9,8 +9,8 @@
         android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -26,35 +26,65 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.shownest.android.activity.Activity_login" >
+        <activity
+            android:name="com.shownest.android.activity.Activity_login"
+            android:theme="@style/ActivityTheme_notitle" >
         </activity>
-        <activity android:name="com.shownest.android.activity.Activity_regist" >
+        <activity
+            android:name="com.shownest.android.activity.Activity_regist"
+            android:theme="@style/ActivityTheme_notitle" >
         </activity>
-        <activity android:name="com.shownest.android.activity.Activity_publish_yezhu" >
+        <activity
+            android:name="com.shownest.android.activity.Activity_publish_yezhu"
+            android:theme="@style/ActivityTheme_notitle" >
         </activity>
-        <activity android:name="com.shownest.android.activity.Activity_forget" >
+        <activity
+            android:name="com.shownest.android.activity.Activity_forget"
+            android:theme="@style/ActivityTheme_notitle" >
         </activity>
-        <activity android:name="com.shownest.android.activity.Activity_test" >
+        <activity
+            android:name="com.shownest.android.activity.Activity_test"
+            android:theme="@style/ActivityTheme_notitle" >
         </activity>
-        <activity android:name="com.shownest.android.activity.Activity_change_pwd" >
+        <activity
+            android:name="com.shownest.android.activity.Activity_change_pwd"
+            android:theme="@style/ActivityTheme_notitle" >
         </activity>
-        <activity android:name="com.shownest.android.activity.Activity_change_phone" >
+        <activity
+            android:name="com.shownest.android.activity.Activity_change_phone"
+            android:theme="@style/ActivityTheme_notitle" >
         </activity>
-        <activity android:name="com.shownest.android.activity.Activity_select_role" >
+        <activity
+            android:name="com.shownest.android.activity.Activity_select_role"
+            android:theme="@style/ActivityTheme_notitle" >
         </activity>
-        <activity android:name="com.shownest.android.activity.Activity_basicinfo" >
+        <activity
+            android:name="com.shownest.android.activity.Activity_basicinfo"
+            android:theme="@style/ActivityTheme_notitle" >
         </activity>
-        <activity android:name="com.shownest.android.activity.Activity_setinfo_yezhu" >
+        <activity
+            android:name="com.shownest.android.activity.Activity_setinfo_yezhu"
+            android:theme="@style/ActivityTheme_notitle" >
         </activity>
-        <activity android:name="com.shownest.android.activity.Activity_my_center" >
+        <activity
+            android:name="com.shownest.android.activity.Activity_my_center"
+            android:theme="@style/ActivityTheme_notitle" >
         </activity>
-        <activity android:name="com.shownest.android.activity.Activity_setinfo_shigongdui" >
+        <activity
+            android:name="com.shownest.android.activity.Activity_setinfo_shigongdui"
+            android:theme="@style/ActivityTheme_notitle" >
         </activity>
-        <activity android:name="com.shownest.android.activity.Activity_setinfo_shejishi" >
+        <activity
+            android:name="com.shownest.android.activity.Activity_setinfo_shejishi"
+            android:theme="@style/ActivityTheme_notitle" >
         </activity>
-        <activity android:name="com.shownest.android.activity.Activity_setinfo_jianli" >
+        <activity
+            android:name="com.shownest.android.activity.Activity_setinfo_jianli"
+            android:theme="@style/ActivityTheme_notitle" >
         </activity>
-        <activity android:name="com.shownest.android.activity.Activity_location" >
+        <activity
+            android:name="com.shownest.android.activity.Activity_location"
+            android:theme="@style/ActivityTheme_notitle" >
         </activity>
     </application>
 
