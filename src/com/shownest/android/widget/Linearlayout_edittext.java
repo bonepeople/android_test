@@ -73,4 +73,9 @@ public class Linearlayout_edittext extends LinearLayout
 	{
 		return _text.getText().toString();
 	}
+	
+	public void setData(String _data)
+	{
+		_text.setText(_data);
+	}
 }

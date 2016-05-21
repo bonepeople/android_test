@@ -3,8 +3,10 @@ package com.shownest.android.fragment;
 import java.io.File;
 
 import com.shownest.android.R;
+import com.shownest.android.activity.Activity_my_center;
 import com.shownest.android.activity.Activity_setinfo_shigongdui;
 import com.shownest.android.basic.DEBUG_Fragment;
+import com.shownest.android.model.UserInfo;
 import com.shownest.android.utils.CommonUtil;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.widget.LinearLayout_idcard;
@@ -48,7 +50,7 @@ public class Fragment_setinfo_shigongdui_step3 extends DEBUG_Fragment implements
 		_button_commit.setOnClickListener(this);
 
 		_type = new RelativeLayout_edit_informationbar(getActivity(), _body, 6, new String[] { "认证类型", "独立工队", "装修公司工队", "1" }, false);
-		_name = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "工长姓名", "222" }, true);
+		_name = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "工长姓名", "" }, true);
 		_id_number = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "身份证号", "" }, true);
 		_idcard = new LinearLayout_idcard(getActivity(), _body, "工长身份证", this);
 
@@ -193,5 +195,14 @@ public class Fragment_setinfo_shigongdui_step3 extends DEBUG_Fragment implements
 			}
 		});
 		_builder.show();
+	}
+
+	@Override
+	public void setContent()
+	{
+		UserInfo _info = Activity_my_center.get_userinfo();
+		_type.setData(new String[] { String.valueOf(_info.get_authenticationType()) });
+		_name.setData(new String[] { _info.get_authenticationName() });
+		_id_number.setData(new String[] { _info.get_authenticationCode() });
 	}
 }

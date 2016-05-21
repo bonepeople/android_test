@@ -39,8 +39,8 @@ public class Fragment_setinfo_jianli_step1 extends DEBUG_Fragment implements OnC
 		_button_commit.setOnClickListener(this);
 
 		new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "身份类型", "监理" }, false);
-		_showname = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "秀巢昵称", "sn1234" }, true);
-		_phone = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "联系手机", CommonUtil.showPhone("13029411209") }, true,this);
+		_showname = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "秀巢昵称", "" }, true);
+		_phone = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "联系手机", "" }, true,this);
 		_profession = new RelativeLayout_edit_informationbar(getActivity(), _body, 6, new String[] { "监理等级", "室内装饰监理师", "高级室内装饰监理师", "1" }, false);
 		_edit = new Linearlayout_edittext(getActivity(), _body, new String[] { "自我介绍", "简单的说说你的竞争优势。", "" });
 

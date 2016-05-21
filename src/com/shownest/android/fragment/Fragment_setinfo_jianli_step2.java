@@ -40,7 +40,7 @@ public class Fragment_setinfo_jianli_step2 extends DEBUG_Fragment implements OnC
 		_button_commit.setText("保存");
 		_button_commit.setOnClickListener(this);
 
-		_date = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "从业年份", "" }, true, this);
+		_date = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "从业年份", "2016" }, true, this);
 		_location = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "办公地址", "" }, true, this);
 		_address = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "完善地址", "" }, true);
 		_service = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "服务区域", "" }, true, this);

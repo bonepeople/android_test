@@ -33,6 +33,7 @@ public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements
 	private RelativeLayout_edit_informationbar _showname, _phone, _location, _sex;
 	private Linearlayout_edittext _edit;
 	private int[] _PlaceID = new int[] { 1, 1013, 1012, 1011, 1018, 1019, 1016, 1006, 1022, 1004, 1005, 1015, -1 };
+	private String[] _place = new String[] { "安徽", "浙江", "江苏", "湖北", "湖南", "山东", "山西", "四川", "重庆", "河北", "江西", "其他" };
 	// { "安徽", "浙江", "江苏", "湖北", "湖南", "山东", "山西", "四川", "重庆", "河北", "江西", "其他" };
 
 	@Override
@@ -46,8 +47,8 @@ public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements
 		_button_commit.setOnClickListener(this);
 
 		new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "身份类型", "施工队" }, false);
-		_showname = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "工队昵称", "sn1234" }, true);
-		_phone = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "联系手机", CommonUtil.showPhone("15210196421") }, true, this);
+		_showname = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "工队昵称", "" }, true);
+		_phone = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "联系手机", "" }, true, this);
 		_location = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "工长籍贯", "" }, true, this);
 		_sex = new RelativeLayout_edit_informationbar(getActivity(), _body, 6, new String[] { "工长性别", "男", "女", "1" }, false);
 		_edit = new Linearlayout_edittext(getActivity(), _body, new String[] { "工队介绍", "简单的说说你们的竞争优势。", "" });
@@ -110,7 +111,6 @@ public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements
 		}
 		else if (_id == _location.get_id())
 		{
-			final String[] _place = new String[] { "安徽", "浙江", "江苏", "湖北", "湖南", "山东", "山西", "四川", "重庆", "河北", "江西", "其他" };
 
 			AlertDialog.Builder _builder = new Builder(getActivity());
 			_builder.setTitle("工长籍贯");
@@ -132,6 +132,17 @@ public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements
 	public void setContent()
 	{
 		UserInfo _info = Activity_my_center.get_userinfo();
+		_showname.setData(new String[] { _info.get_userShowName() });
+		_phone.setData(new String[] { CommonUtil.showPhone(_info.get_userPhone()) });
+		int location = _info.get_nativePlace();
+		for (int i = 0; i < _PlaceID.length; i++)
+			if (location == _PlaceID[i])
+			{
+				_location.setData(new String[] { _place[i - 1] });
+				break;
+			}
+		_sex.setData(new String[] { _info.get_realSex() == 1 ? "1" : "2" });
+		_edit.setData(_info.get_introduces());
 	}
 
 }

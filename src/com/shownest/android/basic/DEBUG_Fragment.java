@@ -17,13 +17,21 @@ public abstract class DEBUG_Fragment extends Fragment
 			System.out.println(this.getClass().getName() + "-onCreateView");
 		return null;
 	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState)
+	{
+		if (DEBUG)
+			System.out.println(this.getClass().getName() + "-onActivityCreated");
+		setContent();
+		super.onActivityCreated(savedInstanceState);
+	}
 
 	@Override
 	public void onResume()
 	{
 		if (DEBUG)
 			System.out.println(this.getClass().getName() + "-onResume");
-		setContent();
 		super.onResume();
 	}
 

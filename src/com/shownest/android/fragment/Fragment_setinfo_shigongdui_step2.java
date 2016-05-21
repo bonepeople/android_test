@@ -2,8 +2,10 @@ package com.shownest.android.fragment;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_location;
+import com.shownest.android.activity.Activity_my_center;
 import com.shownest.android.activity.Activity_setinfo_shigongdui;
 import com.shownest.android.basic.DEBUG_Fragment;
+import com.shownest.android.model.UserInfo;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 
@@ -32,6 +34,7 @@ public class Fragment_setinfo_shigongdui_step2 extends DEBUG_Fragment implements
 	private int cityId = 0, provinceId = 0, countyId = 0;
 	private String serviceRegion = "";
 	private boolean[][] _service_select = new boolean[][] { { false, false, false }, { false, false, false } };
+	private String[] _str_item = new String[] { "半包", "全包", "清包" };
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -152,13 +155,11 @@ public class Fragment_setinfo_shigongdui_step2 extends DEBUG_Fragment implements
 		}
 		else if (_id == _serviceItem.get_id())
 		{
-			final String[] _temp_str = new String[] { "半包", "全包", "清包" };
-
 			AlertDialog.Builder _builder = new Builder(getActivity());
 			_builder.setTitle("服务范围");
 			for (int i = 0; i < 3; i++)
 				_service_select[1][i] = _service_select[0][i];
-			_builder.setMultiChoiceItems(_temp_str, _service_select[1], new OnMultiChoiceClickListener()
+			_builder.setMultiChoiceItems(_str_item, _service_select[1], new OnMultiChoiceClickListener()
 			{
 				@Override
 				public void onClick(DialogInterface dialog, int which, boolean isChecked)
@@ -168,7 +169,6 @@ public class Fragment_setinfo_shigongdui_step2 extends DEBUG_Fragment implements
 			});
 			_builder.setPositiveButton("确定", new DialogInterface.OnClickListener()
 			{
-
 				@Override
 				public void onClick(DialogInterface dialog, int which)
 				{
@@ -177,22 +177,38 @@ public class Fragment_setinfo_shigongdui_step2 extends DEBUG_Fragment implements
 					{
 						_service_select[0][i] = _service_select[1][i];
 						if (_service_select[1][i])
-							_builder.append(_temp_str[i] + ",");
+							_builder.append(_str_item[i] + ",");
 					}
 					if (_builder.length() > 1)
 						_builder.deleteCharAt(_builder.length() - 1);
 					_serviceItem.setData(new String[] { _builder.toString() });
 				}
 			});
-
 			_builder.show();
-
-			// 1 new AlertDialog.Builder(self)
-			// 2 .setTitle("多选框")
-			// 3 .setMultiChoiceItems(new String[] {"选项1","选项2","选项3","选项4"}, null, null)
-			// 4 .setPositiveButton("确定", null)
-			// 5 .setNegativeButton("取消", null)
-			// 6 .show();
 		}
+	}
+
+	@Override
+	public void setContent()
+	{
+		UserInfo _info = Activity_my_center.get_userinfo();
+		_date.setData(new String[] { String.valueOf(_info.get_workYear()) });
+		_number.setData(new String[] { String.valueOf(_info.get_peopleNum()) });
+		_address.setData(new String[] { _info.get_workAddress() });
+
+		StringBuilder _builder = new StringBuilder();
+		String _temp_str[] = _info.get_serviceItem().split(",");
+		for (String string : _temp_str)
+		{
+			int _temp_num = Integer.parseInt(string);
+			if (_temp_num > -1 && _temp_num < 3)
+			{
+				_builder.append(_str_item[_temp_num] + ",");
+				_service_select[0][_temp_num] = true;
+			}
+		}
+		if (_builder.length() > 1)
+			_builder.deleteCharAt(_builder.length() - 1);
+		_serviceItem.setData(new String[] { _builder.toString() });
 	}
 }

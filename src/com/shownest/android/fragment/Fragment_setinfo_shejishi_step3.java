@@ -48,7 +48,7 @@ public class Fragment_setinfo_shejishi_step3 extends DEBUG_Fragment implements O
 		_button_commit.setOnClickListener(this);
 
 		_type = new RelativeLayout_edit_informationbar(getActivity(), _body, 6, new String[] { "认证类型", "独立设计师", "装修公司设计师", "1" }, false);
-		_name = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "真实姓名", "222" }, true);
+		_name = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "真实姓名", "" }, true);
 		_id_number = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "身份证号", "" }, true);
 		_idcard = new LinearLayout_idcard(getActivity(), _body, "设计师身份证", this);
 

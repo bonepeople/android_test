@@ -74,11 +74,6 @@ public class LinearLayout_idcard extends LinearLayout implements OnSelectListene
 		_imageview_right.setOnClickListener(_lintener);
 		_imageview_bottom.setOnClickListener(_lintener);
 		_linearlayout_bottom.setVisibility(LinearLayout.INVISIBLE);
-		// _childview = _view.getChildAt(_view.getChildCount() - 1);
-		//
-		// _textview_name.setText(args[0]);
-		// _textview_left.setText(args[1]);
-		// _textview_right.setText(args[2]);
 	}
 
 	@Override
@@ -99,9 +94,6 @@ public class LinearLayout_idcard extends LinearLayout implements OnSelectListene
 
 			System.out.println(_imagefile.getAbsolutePath());
 			image = getSmallBitmap(_imagefile.getAbsolutePath());
-
-			// image = BitmapFactory.decodeFile(_imagefile.getAbsolutePath());
-			// BitmapFactory.Options _option = new BitmapFactory.Options();
 
 			System.out.println("file size is " + _imagefile.length());
 
@@ -155,7 +147,6 @@ public class LinearLayout_idcard extends LinearLayout implements OnSelectListene
 	// 把bitmap转换成String
 	public static String bitmapToString(String filePath)
 	{
-
 		Bitmap bm = getSmallBitmap(filePath);
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		bm.compress(Bitmap.CompressFormat.JPEG, 40, baos);// 40是压缩值，100为不压缩
