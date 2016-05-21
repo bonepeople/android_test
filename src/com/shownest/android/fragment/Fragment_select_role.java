@@ -1,8 +1,11 @@
 package com.shownest.android.fragment;
 
 import com.shownest.android.R;
-import com.shownest.android.activity.Activity_main;
 import com.shownest.android.activity.Activity_select_role;
+import com.shownest.android.activity.Activity_setinfo_jianli;
+import com.shownest.android.activity.Activity_setinfo_shejishi;
+import com.shownest.android.activity.Activity_setinfo_shigongdui;
+import com.shownest.android.activity.Activity_setinfo_yezhu;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.widget.Linearlayout_role;
@@ -22,7 +25,7 @@ public class Fragment_select_role extends DEBUG_Fragment implements View.OnClick
 	private AlertDialog _dialog;
 	private String _role_name = "";
 	private int _role_code = 100;
-	private Class<?> _intent_class = Activity_main.class;// 默认为主页，选择不同角色时切换不同的class
+	private Class<?> _intent_class = null;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -55,37 +58,37 @@ public class Fragment_select_role extends DEBUG_Fragment implements View.OnClick
 		case R.id.linearlayout_role_yezhu:
 			_role_name = "业主";
 			_role_code = 11;
-			_intent_class = Activity_main.class;
+			_intent_class = Activity_setinfo_yezhu.class;
 			show_dialog();
 			break;
 		case R.id.linearlayout_role_shejishi:
 			_role_name = "设计师";
 			_role_code = 12;
-			_intent_class = Activity_main.class;
+			_intent_class = Activity_setinfo_shejishi.class;
 			show_dialog();
 			break;
 		case R.id.linearlayout_role_shigongdui:
 			_role_name = "施工队";
 			_role_code = 13;
-			_intent_class = Activity_main.class;
+			_intent_class = Activity_setinfo_shigongdui.class;
 			show_dialog();
 			break;
 		case R.id.linearlayout_role_jianli:
 			_role_name = "监理";
 			_role_code = 14;
-			_intent_class = Activity_main.class;
+			_intent_class = Activity_setinfo_jianli.class;
 			show_dialog();
 			break;
 		case R.id.linearlayout_role_zhuangxiugongsi:
 			_role_name = "装修公司";
 			_role_code = 15;
-			_intent_class = Activity_main.class;
+			_intent_class = null;
 			show_dialog();
 			break;
 		case R.id.linearlayout_role_doubushi:
 			_role_name = "路人甲";
 			_role_code = 100;
-			_intent_class = Activity_main.class;
+			_intent_class = null;
 			show_dialog();
 			break;
 		case R.id.button_commit:

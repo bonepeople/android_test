@@ -32,7 +32,6 @@ public class Activity_select_role extends DEBUG_Activity
 				_string_result = (String) msg.obj;
 				handle_string(_string_result);
 			}
-			// _fragment_select_role.close_wait();
 			System.out.println(_string_result);
 		};
 	};
@@ -44,18 +43,10 @@ public class Activity_select_role extends DEBUG_Activity
 		setContentView(R.layout.activity_basic);
 		_instance = this;
 		setTitle("选择身份类型");
-		
+
 		_fragment_select_role = new Fragment_select_role();
 		add_fragment(this, _fragment_select_role, false);
 	}
-
-	// @Override
-	// public void onBackPressed()
-	// {
-	// Intent _intent_back = new Intent(_context, Activity_main.class);
-	// _instance.startActivity(_intent_back);
-	// finish();
-	// }
 
 	private static void handle_string(String str)
 	{
@@ -67,10 +58,11 @@ public class Activity_select_role extends DEBUG_Activity
 			Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
 			if (_result.equals("用户身份类型修改成功"))
 			{
-//				Intent _intent_back = new Intent(_instance, Activity_main.class);
-//				_instance.startActivity(_intent_back);
-				Intent _intent_set = new Intent(_instance, _fragment_select_role.get_intent_class());
-				_instance.startActivity(_intent_set);
+				if (_fragment_select_role.get_intent_class() != null)
+				{
+					Intent _intent_set = new Intent(_instance, _fragment_select_role.get_intent_class());
+					_instance.startActivity(_intent_set);
+				}
 				_instance.finish();
 			}
 		}

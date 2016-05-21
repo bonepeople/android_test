@@ -19,4 +19,11 @@ public class Activity_basicinfo extends DEBUG_Activity
 		
 		add_fragment(this, new Fragment_basicinfo(), false);
 	}
+	
+	@Override
+	protected void onResume()
+	{
+		Activity_my_center.refreshData();
+		super.onResume();
+	}
 }

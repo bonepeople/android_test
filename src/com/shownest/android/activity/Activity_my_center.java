@@ -20,7 +20,7 @@ public class Activity_my_center extends DEBUG_Activity
 	public static final int LOGIN_FAILED = 0;
 	public static final int LOGIN_SUCCESSFUL = 1;
 	private static Activity_my_center _instance;
-	private static UserInfo _info;
+	private static UserInfo _info;//需要一个标记，代表目前是否正在更新
 
 	public static Handler _handler = new Handler()
 	{
@@ -60,6 +60,13 @@ public class Activity_my_center extends DEBUG_Activity
 	}
 
 	@Override
+	protected void onResume()
+	{
+		refreshData();
+		super.onResume();
+	}
+	
+	@Override
 	public void menu_click()
 	{
 		Toast.makeText(this, "设置", Toast.LENGTH_SHORT).show();
@@ -98,6 +105,11 @@ public class Activity_my_center extends DEBUG_Activity
 			e.printStackTrace();
 			Toast.makeText(_instance, "网络连接异常", Toast.LENGTH_SHORT).show();
 		}
+	}
+	public static void refreshData()
+	{
+		_instance.show_wait();
+		HttpUtil.get_userinfo(_handler, LOGIN_SUCCESSFUL, LOGIN_FAILED);
 	}
 
 	public static UserInfo get_userinfo()

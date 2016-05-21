@@ -7,6 +7,7 @@ import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.RelativeLayout;
@@ -52,7 +53,8 @@ public class Activity_login extends DEBUG_Activity
 	@Override
 	public void menu_click()
 	{
-		Toast.makeText(this, "注册", Toast.LENGTH_SHORT).show();
+		Intent _regist = new Intent(this, Activity_regist.class);
+		startActivity(_regist);
 	}
 
 	private static void handle_string(String str)
