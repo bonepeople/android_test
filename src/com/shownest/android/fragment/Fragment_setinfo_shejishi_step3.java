@@ -1,5 +1,7 @@
 package com.shownest.android.fragment;
 
+import java.io.File;
+
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_setinfo_shejishi;
 import com.shownest.android.basic.DEBUG_Fragment;
@@ -8,8 +10,16 @@ import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.widget.LinearLayout_idcard;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +34,8 @@ public class Fragment_setinfo_shejishi_step3 extends DEBUG_Fragment implements O
 	private Button _button_commit;
 	private RelativeLayout_edit_informationbar _type, _name, _id_number;
 	private LinearLayout_idcard _idcard;
+	private Uri[] _image_uri = new Uri[3];
+	private int _image_where[] = new int[] { 0, 0, 0, 0 };// 前三个分别代表3个图片是否已选择，最后一个数字表示当前选择是的哪个图片
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -38,10 +50,25 @@ public class Fragment_setinfo_shejishi_step3 extends DEBUG_Fragment implements O
 		_type = new RelativeLayout_edit_informationbar(getActivity(), _body, 6, new String[] { "认证类型", "独立设计师", "装修公司设计师", "1" }, false);
 		_name = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "真实姓名", "222" }, true);
 		_id_number = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "身份证号", "" }, true);
-		_idcard = new LinearLayout_idcard(getActivity(),_body, "设计师身份证", this);
+		_idcard = new LinearLayout_idcard(getActivity(), _body, "设计师身份证", this);
 
 		_type.setOnSelectListener(_idcard);
 		return _view;
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		System.out.println("requestCode=" + requestCode + "resultCode=" + resultCode);
+		if (resultCode == -1)
+		{
+			if (requestCode == 2)
+			{
+				_image_uri[_image_where[3]] = data.getData();
+			}
+			_idcard.setData(_image_uri[_image_where[3]], _image_where[3]);
+			_image_where[_image_where[3]] = 1;
+		}
 	}
 
 	@Override
@@ -51,7 +78,16 @@ public class Fragment_setinfo_shejishi_step3 extends DEBUG_Fragment implements O
 		if (_id == R.id.button_commit)
 		{
 			String _str_id = _id_number.getData();
-			if (!CommonUtil.isIDNumber(_str_id))
+			int _str_type = _type.getData().equals("独立设计师") ? 1 : 2;
+			if (_str_type == 2 && _image_where[2] == 0)
+			{
+				Toast.makeText(getActivity(), "请选择公司名片或介绍信", Toast.LENGTH_SHORT).show();
+			}
+			else if (_image_where[0] == 0 || _image_where[1] == 0)
+			{
+				Toast.makeText(getActivity(), "请选择自己的身份证图片", Toast.LENGTH_SHORT).show();
+			}
+			else if (!CommonUtil.isIDNumber(_str_id))
 			{
 				Toast.makeText(getActivity(), "身份证号码格式不正确", Toast.LENGTH_SHORT).show();
 			}
@@ -70,15 +106,92 @@ public class Fragment_setinfo_shejishi_step3 extends DEBUG_Fragment implements O
 		}
 		else if (_id == R.id.imageview_widget_left)
 		{
-			Toast.makeText(getActivity(), "left click", Toast.LENGTH_SHORT).show();
+			_image_where[3] = 0;
+			File _file_dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/shownest_cache");
+			File _file;
+			if (_file_dir.mkdirs() || _file_dir.isDirectory())
+			{
+				_file = new File(_file_dir, "left.tmp");
+				_image_uri[_image_where[3]] = Uri.fromFile(_file);
+				show_dialog();
+			}
+			else
+				Toast.makeText(getActivity(), "获取缓存失败", Toast.LENGTH_SHORT).show();
 		}
 		else if (_id == R.id.imageview_widget_right)
 		{
-			Toast.makeText(getActivity(), "right click", Toast.LENGTH_SHORT).show();
+			_image_where[3] = 1;
+			File _file_dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/shownest_cache");
+			File _file;
+			if (_file_dir.mkdirs() || _file_dir.isDirectory())
+			{
+				_file = new File(_file_dir, "right.tmp");
+				_image_uri[_image_where[3]] = Uri.fromFile(_file);
+				show_dialog();
+			}
+			else
+				Toast.makeText(getActivity(), "获取缓存失败", Toast.LENGTH_SHORT).show();
 		}
 		else if (_id == R.id.imageview_widget_bottom)
 		{
-			Toast.makeText(getActivity(), "bottom click", Toast.LENGTH_SHORT).show();
+			_image_where[3] = 2;
+			File _file_dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/shownest_cache");
+			File _file;
+			if (_file_dir.mkdirs() || _file_dir.isDirectory())
+			{
+				_file = new File(_file_dir, "bottom.tmp");
+				_image_uri[_image_where[3]] = Uri.fromFile(_file);
+				show_dialog();
+			}
+			else
+				Toast.makeText(getActivity(), "获取缓存失败", Toast.LENGTH_SHORT).show();
 		}
+	}
+
+	private void show_dialog()
+	{
+		final String[] _temp_str = new String[] { "拍摄照片", "选取照片", "取消" };
+
+		AlertDialog.Builder _builder = new Builder(getActivity());
+		_builder.setItems(_temp_str, new DialogInterface.OnClickListener()
+		{
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				switch (which)
+				{
+				case 0:
+					try
+					{
+						Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+						intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+						intent.putExtra(MediaStore.EXTRA_OUTPUT, _image_uri[_image_where[3]]);
+						startActivityForResult(intent, 1);
+					}
+					catch (Exception e)
+					{
+						e.printStackTrace();
+						Toast.makeText(getActivity(), "您的手机不具备拍照功能", Toast.LENGTH_SHORT).show();
+					}
+					break;
+				case 1:
+					try
+					{
+						Intent intent = new Intent();
+						intent.setType("image/*");
+						intent.setAction(Intent.ACTION_GET_CONTENT);
+						startActivityForResult(intent, 2);// data.getExtras()
+					}
+					catch (ActivityNotFoundException e)
+					{
+						Toast.makeText(getActivity(), "您的手机不具备选择图片的功能", Toast.LENGTH_SHORT).show();
+					}
+					break;
+				case 2:
+					break;
+				}
+			}
+		});
+		_builder.show();
 	}
 }
