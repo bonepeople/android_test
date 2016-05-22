@@ -3,8 +3,10 @@ package com.shownest.android.fragment;
 import java.io.File;
 
 import com.shownest.android.R;
+import com.shownest.android.activity.Activity_my_center;
 import com.shownest.android.activity.Activity_setinfo_shejishi;
 import com.shownest.android.basic.DEBUG_Fragment;
+import com.shownest.android.model.UserInfo;
 import com.shownest.android.utils.CommonUtil;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.widget.LinearLayout_idcard;
@@ -193,5 +195,14 @@ public class Fragment_setinfo_shejishi_step3 extends DEBUG_Fragment implements O
 			}
 		});
 		_builder.show();
+	}
+	
+	@Override
+	public void setContent()
+	{
+		UserInfo _info = Activity_my_center.get_userinfo();
+		_type.setData(new String[] { String.valueOf(_info.get_authenticationType()) });
+		_name.setData(new String[] { _info.get_authenticationName() });
+		_id_number.setData(new String[] { _info.get_authenticationCode() });
 	}
 }

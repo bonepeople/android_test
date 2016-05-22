@@ -2,8 +2,10 @@ package com.shownest.android.fragment;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_change_phone;
+import com.shownest.android.activity.Activity_my_center;
 import com.shownest.android.activity.Activity_setinfo_jianli;
 import com.shownest.android.basic.DEBUG_Fragment;
+import com.shownest.android.model.UserInfo;
 import com.shownest.android.utils.CommonUtil;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.widget.Linearlayout_edittext;
@@ -40,7 +42,7 @@ public class Fragment_setinfo_jianli_step1 extends DEBUG_Fragment implements OnC
 
 		new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "身份类型", "监理" }, false);
 		_showname = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "秀巢昵称", "" }, true);
-		_phone = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "联系手机", "" }, true,this);
+		_phone = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "联系手机", "" }, true, this);
 		_profession = new RelativeLayout_edit_informationbar(getActivity(), _body, 6, new String[] { "监理等级", "室内装饰监理师", "高级室内装饰监理师", "1" }, false);
 		_edit = new Linearlayout_edittext(getActivity(), _body, new String[] { "自我介绍", "简单的说说你的竞争优势。", "" });
 
@@ -71,7 +73,7 @@ public class Fragment_setinfo_jianli_step1 extends DEBUG_Fragment implements OnC
 		else
 			System.out.println("resultCode=" + resultCode);
 	}
-	
+
 	@Override
 	public void onClick(View v)
 	{
@@ -91,5 +93,14 @@ public class Fragment_setinfo_jianli_step1 extends DEBUG_Fragment implements OnC
 			Intent _change_phone = new Intent(getActivity(), Activity_change_phone.class);
 			startActivityForResult(_change_phone, REQUEST_PHONE);
 		}
+	}
+
+	@Override
+	public void setContent()
+	{
+		UserInfo _info = Activity_my_center.get_userinfo();
+		_showname.setData(new String[] { _info.get_userShowName() });
+		_phone.setData(new String[] { CommonUtil.showPhone(_info.get_userPhone()) });
+		_edit.setData(_info.get_introduces());
 	}
 }

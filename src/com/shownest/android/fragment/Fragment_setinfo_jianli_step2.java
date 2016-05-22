@@ -2,8 +2,10 @@ package com.shownest.android.fragment;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_location;
+import com.shownest.android.activity.Activity_my_center;
 import com.shownest.android.activity.Activity_setinfo_jianli;
 import com.shownest.android.basic.DEBUG_Fragment;
+import com.shownest.android.model.UserInfo;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 
@@ -121,5 +123,13 @@ public class Fragment_setinfo_jianli_step2 extends DEBUG_Fragment implements OnC
 			Intent _location = new Intent(getActivity(), Activity_location.class);
 			startActivityForResult(_location, LOCATION_SERVICE);
 		}
+	}
+	
+	@Override
+	public void setContent()
+	{
+		UserInfo _info = Activity_my_center.get_userinfo();
+		_date.setData(new String[] { String.valueOf(_info.get_workYear()) });
+		_address.setData(new String[] { _info.get_workAddress() });
 	}
 }

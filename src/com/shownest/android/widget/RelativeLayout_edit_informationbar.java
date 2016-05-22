@@ -354,8 +354,6 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 				break;
 			}
 		}
-
-		// Toast.makeText(_context, "clicked", Toast.LENGTH_SHORT).show();
 	}
 
 	private void show_dialog(String _value, int number)

@@ -2,7 +2,6 @@ package com.shownest.android.fragment;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Fragment;
-import com.shownest.android.widget.Linearlayout_edittext;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

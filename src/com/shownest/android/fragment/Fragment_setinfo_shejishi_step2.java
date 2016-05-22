@@ -2,8 +2,10 @@ package com.shownest.android.fragment;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_location;
+import com.shownest.android.activity.Activity_my_center;
 import com.shownest.android.activity.Activity_setinfo_shejishi;
 import com.shownest.android.basic.DEBUG_Fragment;
+import com.shownest.android.model.UserInfo;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.widget.LinearLayout_style;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
@@ -34,6 +36,7 @@ public class Fragment_setinfo_shejishi_step2 extends DEBUG_Fragment implements O
 	private int cityId = 0, provinceId = 0, countyId = 0;
 	private String serviceRegion = "";
 	private boolean[][] _service_select = new boolean[][] { { false, false, false }, { false, false, false } };
+	private String[] _str_item = new String[] { "设计图服务", "硬装全程设计服务", "硬装软装全程设计服务" };
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -52,7 +55,7 @@ public class Fragment_setinfo_shejishi_step2 extends DEBUG_Fragment implements O
 		_serviceItem = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "服务范围", "" }, true, this);
 
 		String[] _items = new String[] { "简约", "现代", "中式", "欧式", "美式", "日式", "东南亚", "地中海", "混搭", "新古典", "田园", "其他" };
-		_style = new LinearLayout_style(getActivity(), "设计风格(最多选择三项)", _items, 3, new int[] {});
+		_style = new LinearLayout_style(getActivity(), "设计风格(最多选择三项)", _items, 3, "");
 		_body.addView(_style);
 
 		return _view;
@@ -153,13 +156,11 @@ public class Fragment_setinfo_shejishi_step2 extends DEBUG_Fragment implements O
 		}
 		else if (_id == _serviceItem.get_id())
 		{
-			final String[] _temp_str = new String[] { "设计图服务", "硬装全程设计服务", "硬装软装全程设计服务" };
-
 			AlertDialog.Builder _builder = new Builder(getActivity());
 			_builder.setTitle("服务范围");
 			for (int i = 0; i < 3; i++)
 				_service_select[1][i] = _service_select[0][i];
-			_builder.setMultiChoiceItems(_temp_str, _service_select[1], new OnMultiChoiceClickListener()
+			_builder.setMultiChoiceItems(_str_item, _service_select[1], new OnMultiChoiceClickListener()
 			{
 				@Override
 				public void onClick(DialogInterface dialog, int which, boolean isChecked)
@@ -178,7 +179,7 @@ public class Fragment_setinfo_shejishi_step2 extends DEBUG_Fragment implements O
 					{
 						_service_select[0][i] = _service_select[1][i];
 						if (_service_select[1][i])
-							_builder.append(_temp_str[i] + ",");
+							_builder.append(_str_item[i] + ",");
 					}
 					if (_builder.length() > 1)
 						_builder.deleteCharAt(_builder.length() - 1);
@@ -188,5 +189,28 @@ public class Fragment_setinfo_shejishi_step2 extends DEBUG_Fragment implements O
 
 			_builder.show();
 		}
+	}
+
+	@Override
+	public void setContent()
+	{
+		UserInfo _info = Activity_my_center.get_userinfo();
+		_date.setData(new String[] { String.valueOf(_info.get_workYear()) });
+		_address.setData(new String[] { _info.get_workAddress() });
+
+		StringBuilder _builder = new StringBuilder();
+		String _temp_str[] = _info.get_serviceItem().split(",");
+		for (String string : _temp_str)
+		{
+			int _temp_num = Integer.parseInt(string);
+			if (_temp_num > 0 && _temp_num < 4)
+			{
+				_builder.append(_str_item[_temp_num - 1] + ",");
+				_service_select[0][_temp_num - 1] = true;
+			}
+		}
+		if (_builder.length() > 1)
+			_builder.deleteCharAt(_builder.length() - 1);
+		_serviceItem.setData(new String[] { _builder.toString() });
 	}
 }

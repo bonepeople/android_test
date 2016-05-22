@@ -50,9 +50,9 @@ public class LinearLayout_style extends LinearLayout implements View.OnClickList
 	 * @param _max
 	 *            可选数量
 	 * @param _choose
-	 *            已被选择的控件序号。例：{1，3，7}
+	 *            已被选择的控件序号。例："1，3，7"
 	 */
-	public LinearLayout_style(Context context, String _name, String[] _args, int _max, int[] _choose)
+	public LinearLayout_style(Context context, String _name, String[] _args, int _max, String _choose)
 	{
 		super(context);
 		if (DEBUG)
@@ -127,15 +127,24 @@ public class LinearLayout_style extends LinearLayout implements View.OnClickList
 		}
 	}
 
-	private boolean isChecked(int _id, int[] _choose)
+	/**
+	 * 判断所给id是否已被选中
+	 * 
+	 * @param _choose
+	 *            已被选择的控件序号。例：{1，3，7}
+	 */
+	private boolean isChecked(int _id, String _choose)
 	{
-		for (int i : _choose)
-		{
-			if (_id == i)
+		String[] _number = _choose.split(",");
+		for (String string : _number)
+			try
 			{
-				return true;
+				if (_id == Integer.parseInt(string))
+					return true;
 			}
-		}
+			catch (Exception e)
+			{
+			}
 		return false;
 	}
 
@@ -154,5 +163,29 @@ public class LinearLayout_style extends LinearLayout implements View.OnClickList
 		if (_string.length() != 0)
 			_string.deleteCharAt(_string.length() - 1);
 		return _string.toString();
+	}
+
+	/**
+	 * 设置风格选框中的已选样式
+	 * 
+	 * @param _choose
+	 *            已被选择的控件序号。例："1，3，7"
+	 */
+	public void setData(String _choose)
+	{
+		int _id = 0;
+		for (; _id < this._choose.size(); _id++)
+		{
+			if (isChecked(_id + 1, _choose) && this._choose.get(_id) == 0)
+			{
+				_text.get(_id).setBackgroundResource(R.drawable.background_button);
+				this._choose.set(_id, 1);
+			}
+			else if (!isChecked(_id + 1, _choose) && this._choose.get(_id) == 1)
+			{
+				_text.get(_id).setBackgroundResource(R.drawable.background_button_gray);
+				this._choose.set(_id, 0);
+			}
+		}
 	}
 }
