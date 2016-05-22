@@ -6,9 +6,11 @@ import com.shownest.android.model.OnSelectListener;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.graphics.Point;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -192,7 +194,6 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 			_radiobutton_left = (RadioButton) _childview.findViewById(R.id.radiobutton_widget_left);
 			_radiobutton_right = (RadioButton) _childview.findViewById(R.id.radiobutton_widget_right);
 			RadioGroup _group = (RadioGroup) _childview.findViewById(R.id.radiogroup_widget);
-			_group.setOrientation(RadioGroup.VERTICAL);
 			_textview_name.setText(args[0]);
 			_radiobutton_left.setText(args[1]);
 			_radiobutton_right.setText(args[2]);
@@ -204,6 +205,16 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 			{
 				_radiobutton_right.setChecked(true);
 			}
+			WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+			Point outSize = new Point(0, 0);
+			wm.getDefaultDisplay().getSize(outSize);
+			int screen_width = outSize.x;
+			int _width_name = (int) _textview_name.getPaint().measureText(args[0]);
+			int _width_left = (int) _radiobutton_left.getPaint().measureText(args[1]);
+			int _width_right = (int) _radiobutton_right.getPaint().measureText(args[2]);
+			if (_width_name + _width_left + _width_right > screen_width * 0.8)
+				_group.setOrientation(RadioGroup.VERTICAL);
+
 			_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
 			{
 				@Override
