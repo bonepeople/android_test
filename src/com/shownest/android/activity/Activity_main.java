@@ -108,6 +108,12 @@ public class Activity_main extends DEBUG_Activity
 		Intent intent = new Intent(this, Activity_setinfo_jianli.class);
 		startActivity(intent);
 	}
+	
+	public void setinfo_offer_auto(View v)
+	{
+		Intent intent = new Intent(this, Activity_offer_auto.class);
+		startActivity(intent);
+	}
 
 	public void my_center(View v)
 	{

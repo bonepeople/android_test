@@ -135,6 +135,6 @@ public abstract class DEBUG_Activity extends Activity
 	// protected abstract void back();
 	public void menu_click()
 	{
-		
+		//当前activity标题栏右侧按钮被点击时会调用的函数，需要进行处理的activity要重写此函数
 	}
 }

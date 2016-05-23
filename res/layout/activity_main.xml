@@ -117,7 +117,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="5dp"
-        android:background="@drawable/background_button"
+        android:background="@drawable/background_button_gray"
         android:onClick="setinfo_shejishi"
         android:text="设计师认证" />
       
@@ -126,8 +126,17 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="5dp"
-        android:background="@drawable/background_button"
+        android:background="@drawable/background_button_gray"
         android:onClick="setinfo_jianli"
         android:text="监理认证" />
+       
+       <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:background="@drawable/background_button"
+        android:onClick="setinfo_offer_auto"
+        android:text="只能报价" />
 
 </GridLayout>
