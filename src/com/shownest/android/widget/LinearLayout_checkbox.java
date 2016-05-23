@@ -41,7 +41,7 @@ public class LinearLayout_checkbox extends LinearLayout implements View.OnClickL
 	}
 
 	/**
-	 * 初始化一个多选风格控件
+	 * 初始化一个可选列表
 	 * 
 	 * @param _name
 	 *            控件标题
@@ -98,7 +98,7 @@ public class LinearLayout_checkbox extends LinearLayout implements View.OnClickL
 			_params = new GridLayout.LayoutParams();
 			_params.setMargins(10, 10, 10, 10);
 			_params.width = (screen_width - 60) / 3;
-			_params.height = (screen_width - 60) / 6;
+			_params.height = _params.width * 2 / 5;
 			_gridlayout.addView(_textview_item, _params);
 			_id++;
 		}
