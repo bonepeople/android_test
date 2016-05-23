@@ -16,10 +16,11 @@ import android.widget.LinearLayout;
 
 public class Fragment_offer_auto extends DEBUG_Fragment implements OnClickListener
 {
+	private static final int LOCATION = 1;
 	private LinearLayout _body;
 	private Button _button_commit;
 	private LinearLayout_checkbox _state, _type, _mode;
-	private RelativeLayout_edit_informationbar _area, _frame;
+	private RelativeLayout_edit_informationbar _name, _region, _area, _frame;
 	private Linearlayout_listview _list;
 
 	@Override
@@ -32,6 +33,8 @@ public class Fragment_offer_auto extends DEBUG_Fragment implements OnClickListen
 		_button_commit.setText("保存");
 		_button_commit.setOnClickListener(this);
 
+		_name = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "小区名称", "" }, true);
+		_region = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "所在区域", "" }, true, this);
 		_state = new LinearLayout_checkbox(getActivity(), "房屋状态", new String[] { "二手旧房", "毛坯新房" }, 1, "1");
 		_body.addView(_state);
 		_type = new LinearLayout_checkbox(getActivity(), "房屋类型", new String[] { "平层住宅", "复试住宅", "别墅", "商业" }, 1, "1");
@@ -40,11 +43,11 @@ public class Fragment_offer_auto extends DEBUG_Fragment implements OnClickListen
 		_body.addView(_mode);
 		_area = new RelativeLayout_edit_informationbar(getActivity(), _body, 3, new String[] { "建筑面积", "0", "㎡" }, true);
 		_frame = new RelativeLayout_edit_informationbar(getActivity(), _body, 4, new String[] { "户型结构", "1", "1", "1", "1", "1" }, true);
-		_list = new Linearlayout_listview(getActivity(), _body, new String[] {"具体面积","信息填写详细，会使您获得更精准的报价"});
-		
+		_list = new Linearlayout_listview(getActivity(), _body, new String[] { "具体面积", "信息填写详细，会使您获得更精准的报价" });
+
 		_area.setOnChangetListener(_list);
 		_frame.setOnChangetListener(_list);
-		
+
 		return _view;
 	}
 
@@ -70,6 +73,10 @@ public class Fragment_offer_auto extends DEBUG_Fragment implements OnClickListen
 			// Activity_setinfo_shigongdui.get_instance().show_wait();
 			// HttpUtil.set_PersonalBaseInfor(Activity_setinfo_shigongdui._handler, _value, Activity_setinfo_shigongdui.CHANGE_SUCCESSFUL,
 			// Activity_setinfo_shigongdui.CHANGE_FAILED);
+
+		}
+		else if (_id == _region.get_id())
+		{
 
 		}
 	}
