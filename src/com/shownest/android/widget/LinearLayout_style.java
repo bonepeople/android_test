@@ -109,21 +109,28 @@ public class LinearLayout_style extends LinearLayout implements View.OnClickList
 	@Override
 	public void onClick(View v)
 	{
-		TextView _temp_textview = _text.get(v.getId());
-		if (_choose.get(v.getId()) == 0)
+		if (_count_max != 1)
 		{
-			if (_count < _count_max)
+			TextView _temp_textview = _text.get(v.getId());
+			if (_choose.get(v.getId()) == 0)
 			{
-				_temp_textview.setBackgroundResource(R.drawable.background_button);
-				_choose.set(v.getId(), 1);
-				_count++;
+				if (_count < _count_max)
+				{
+					_temp_textview.setBackgroundResource(R.drawable.background_button);
+					_choose.set(v.getId(), 1);
+					_count++;
+				}
+			}
+			else
+			{
+				_temp_textview.setBackgroundResource(R.drawable.background_button_gray);
+				_choose.set(v.getId(), 0);
+				_count--;
 			}
 		}
 		else
 		{
-			_temp_textview.setBackgroundResource(R.drawable.background_button_gray);
-			_choose.set(v.getId(), 0);
-			_count--;
+			setData(String.valueOf(v.getId() + 1));
 		}
 	}
 

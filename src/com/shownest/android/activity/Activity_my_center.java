@@ -87,7 +87,6 @@ public class Activity_my_center extends DEBUG_Activity
 			}
 			else
 			{
-				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
 				Intent _login = new Intent(_instance, Activity_login.class);
 				_instance.startActivity(_login);
 				_instance.finish();
