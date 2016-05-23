@@ -286,7 +286,7 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 			break;
 		}
 		if (_change_listener != null)
-			_change_listener.onChange(args);
+			_change_listener.onChange("style" + this._style, args);
 
 	}
 

@@ -1,6 +1,7 @@
 package com.shownest.android.widget;
 
 import com.shownest.android.R;
+import com.shownest.android.model.OnChangeListener;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -10,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class Linearlayout_listview extends LinearLayout implements View.OnClickListener
+public class Linearlayout_listview extends LinearLayout implements View.OnClickListener, OnChangeListener
 {
 	private static boolean DEBUG = false;
 	private ViewGroup _rootview;
@@ -185,5 +186,20 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 				}
 			}
 		}.start();
+	}
+
+	@Override
+	public void onChange(String tag, String[] args)
+	{
+		switch (tag)
+		{
+		case "style3":
+			System.out.println(args[0] + "m2");
+			break;
+
+		case "style4":
+			System.out.println("4444");
+			break;
+		}
 	}
 }

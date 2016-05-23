@@ -41,6 +41,10 @@ public class Fragment_offer_auto extends DEBUG_Fragment implements OnClickListen
 		_area = new RelativeLayout_edit_informationbar(getActivity(), _body, 3, new String[] { "建筑面积", "0", "㎡" }, true);
 		_frame = new RelativeLayout_edit_informationbar(getActivity(), _body, 4, new String[] { "户型结构", "1", "1", "1", "1", "1" }, true);
 		_list = new Linearlayout_listview(getActivity(), _body, new String[] {"具体面积","信息填写详细，会使您获得更精准的报价"});
+		
+		_area.setOnChangetListener(_list);
+		_frame.setOnChangetListener(_list);
+		
 		return _view;
 	}
 

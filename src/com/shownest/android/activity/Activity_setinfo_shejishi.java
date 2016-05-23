@@ -95,7 +95,7 @@ public class Activity_setinfo_shejishi extends DEBUG_Activity implements OnChang
 	}
 
 	@Override
-	public void onChange(String[] args)
+	public void onChange(String tag, String[] args)
 	{
 		int _index = Integer.parseInt(args[0]);
 		FragmentManager _manager = getFragmentManager();
