@@ -36,6 +36,7 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 	private RadioButton _radiobutton_left, _radiobutton_right;
 	private AlertDialog _dialog;
 	private EditText _edittext_dialog;
+	private String[] _house_num = new String[5];
 
 	public RelativeLayout_edit_informationbar(Context context)
 	{
@@ -161,7 +162,9 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 			_textview_right = (TextView) _childview.findViewById(R.id.textview_widget_right);
 
 			_textview_name.setText(args[0]);
-			_textview_right.setText(args[1] + "室" + args[2] + "厅" + args[3] + "厨" + args[4] + "卫" + args[5] + "阳台");
+			for (int _temp_i = 0; _temp_i < 5; _temp_i++)
+				_house_num[_temp_i] = args[_temp_i + 1];
+			setData(_house_num);
 			break;
 		case 5:
 			if (args.length != 2)
@@ -310,7 +313,7 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 			_data = this._textview_left.getText().toString();
 			break;
 		case 4:
-			_data = this._textview_right.getText().toString();
+			_data = _house_num[0] + "," + _house_num[1] + "," + _house_num[2] + "," + _house_num[3] + "," + _house_num[4];// 1,1,1,1,1
 			break;
 		case 5:
 			_data = this._textview_right.getText().toString();
