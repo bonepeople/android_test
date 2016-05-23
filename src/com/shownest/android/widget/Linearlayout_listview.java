@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class Linearlayout_listview extends LinearLayout implements View.OnClickListener, OnChangeListener
@@ -16,7 +17,8 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 	private static boolean DEBUG = false;
 	private ViewGroup _rootview;
 	private LinearLayout _title;
-	private TextView _text_name, _text_hint, _text_change, _body;
+	private TextView _text_name, _text_hint, _text_change;
+	private ListView _list;
 	private ImageView _image_flag;
 	private boolean _collapse = false;
 
@@ -84,20 +86,25 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 		_text_hint = (TextView) _childview.findViewById(R.id.textview_hint);
 		_text_change = (TextView) _childview.findViewById(R.id.textview_change);
 		_image_flag = (ImageView) _childview.findViewById(R.id.imageview_more);
-		_body = (TextView) _childview.findViewById(R.id.listview);
+		_list = (ListView) _childview.findViewById(R.id.listview_widget);
 
 		_text_name.setText(args[0]);
 		_text_hint.setText(args[1]);
 		_title.setOnClickListener(this);
 	}
 
+	// ViewGroup.LayoutParams params = listView.getLayoutParams();
+	//
+	// params.height = totalHeight
+	// + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+
 	@Override
 	public void onClick(View v)
 	{
 		if (_collapse)
-			_body.setHeight(50);
+			_list.setVisibility(ListView.VISIBLE);
 		else
-			_body.setHeight(0);
+			_list.setVisibility(ListView.GONE);
 		_collapse = !_collapse;
 	}
 
