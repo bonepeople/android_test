@@ -1,7 +1,7 @@
 package com.shownest.android.widget;
 
 import com.shownest.android.R;
-import com.shownest.android.model.OnSelectListener;
+import com.shownest.android.model.OnChangeListener;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class Linearlayout_subtitle extends LinearLayout implements View.OnClickListener
 {
-	private OnSelectListener _listener;
+	private OnChangeListener _listener;
 	private int _selected = 1;
 	private TextView[] _text = new TextView[3];
 	private View[] _line = new View[3];
@@ -21,9 +21,9 @@ public class Linearlayout_subtitle extends LinearLayout implements View.OnClickL
 		super(context);
 	}
 
-	public void setOnSelectListener(OnSelectListener _select_listener)
+	public void setOnChangeListener(OnChangeListener _change_listener)
 	{
-		_listener = _select_listener;
+		_listener = _change_listener;
 	}
 
 	public Linearlayout_subtitle(Context context, AttributeSet attrs)

@@ -1,7 +1,7 @@
 package com.shownest.android.widget;
 
 import com.shownest.android.R;
-import com.shownest.android.model.OnSelectListener;
+import com.shownest.android.model.OnChangeListener;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -27,7 +27,7 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 	private Context _context;
 	private int _id;
 	private int _style;
-	private OnSelectListener _select_listener;
+	private OnChangeListener _change_listener;
 	private OnClickListener _click_listener;
 	private ViewGroup _rootview;
 	private TextView _textview_name, _textview_left, _textview_right;
@@ -220,14 +220,14 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 				@Override
 				public void onCheckedChanged(RadioGroup group, int checkedId)
 				{
-					if (_select_listener != null)
+					if (_change_listener != null)
 						switch (checkedId)
 						{
 						case R.id.radiobutton_widget_left:
-							_select_listener.onSelect(1);
+							_change_listener.onSelect(1);
 							break;
 						case R.id.radiobutton_widget_right:
-							_select_listener.onSelect(2);
+							_change_listener.onSelect(2);
 							break;
 						}
 				}
@@ -255,9 +255,9 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 
 	}
 
-	public void setOnSelectListener(OnSelectListener _listener)
+	public void setOnChangetListener(OnChangeListener _listener)
 	{
-		_select_listener = _listener;
+		_change_listener = _listener;
 	}
 
 	public void setData(String[] args)

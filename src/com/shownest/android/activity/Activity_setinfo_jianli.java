@@ -11,7 +11,7 @@ import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.fragment.Fragment_setinfo_jianli_step1;
 import com.shownest.android.fragment.Fragment_setinfo_jianli_step2;
 import com.shownest.android.fragment.Fragment_setinfo_jianli_step3;
-import com.shownest.android.model.OnSelectListener;
+import com.shownest.android.model.OnChangeListener;
 import com.shownest.android.widget.Linearlayout_subtitle;
 
 import android.app.FragmentManager;
@@ -21,7 +21,7 @@ import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-public class Activity_setinfo_jianli extends DEBUG_Activity implements OnSelectListener
+public class Activity_setinfo_jianli extends DEBUG_Activity implements OnChangeListener
 {
 	public static final int CHANGE_FAILED = 0;
 	public static final int CHANGE_SUCCESSFUL = 1;
@@ -59,7 +59,7 @@ public class Activity_setinfo_jianli extends DEBUG_Activity implements OnSelectL
 		setTitle("身份认证");
 		_subtitle = (Linearlayout_subtitle) findViewById(R.id.linearlayout_subtitle);
 
-		_subtitle.setOnSelectListener(this);
+		_subtitle.setOnChangeListener(this);
 		_array_fragment.add(null);
 		_array_fragment.add(null);
 		_array_fragment.add(null);
@@ -118,5 +118,10 @@ public class Activity_setinfo_jianli extends DEBUG_Activity implements OnSelectL
 		_selected = _index;
 
 		_transaction.commit();
+	}
+
+	@Override
+	public void onChange(String[] args)
+	{
 	}
 }

@@ -4,7 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 import com.shownest.android.R;
-import com.shownest.android.model.OnSelectListener;
+import com.shownest.android.model.OnChangeListener;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class LinearLayout_idcard extends LinearLayout implements OnSelectListener
+public class LinearLayout_idcard extends LinearLayout implements OnChangeListener
 {
 	private static boolean DEBUG = true;
 	private TextView _textview_name;
@@ -85,6 +85,10 @@ public class LinearLayout_idcard extends LinearLayout implements OnSelectListene
 			_linearlayout_bottom.setVisibility(LinearLayout.VISIBLE);
 	}
 
+	@Override
+	public void onChange(String[] args)
+	{
+	}
 	public void setData(Uri _uri, int _where)
 	{
 		if (_uri != null)
