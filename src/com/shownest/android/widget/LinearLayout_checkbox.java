@@ -68,7 +68,7 @@ public class LinearLayout_checkbox extends LinearLayout implements View.OnClickL
 
 		TextView _textview_name = new TextView(context);
 		_textview_name.setText(_name);
-		_textview_name.setTextSize(18);
+//		_textview_name.setTextSize(18);
 		_textview_name.setPadding(10, 0, 0, 0);
 		this.addView(_textview_name);
 
