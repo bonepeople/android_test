@@ -7,7 +7,7 @@ import com.shownest.android.activity.Activity_setinfo_shejishi;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.UserInfo;
 import com.shownest.android.utils.HttpUtil;
-import com.shownest.android.widget.LinearLayout_style;
+import com.shownest.android.widget.LinearLayout_checkbox;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 
 import android.app.AlertDialog;
@@ -32,7 +32,7 @@ public class Fragment_setinfo_shejishi_step2 extends DEBUG_Fragment implements O
 	private LinearLayout _body;
 	private Button _button_commit;
 	private RelativeLayout_edit_informationbar _date, _location, _address, _service, _serviceItem;
-	private LinearLayout_style _style;
+	private LinearLayout_checkbox _style;
 	private int cityId = 0, provinceId = 0, countyId = 0;
 	private String serviceRegion = "";
 	private boolean[][] _service_select = new boolean[][] { { false, false, false }, { false, false, false } };
@@ -55,7 +55,7 @@ public class Fragment_setinfo_shejishi_step2 extends DEBUG_Fragment implements O
 		_serviceItem = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "服务范围", "" }, true, this);
 
 		String[] _items = new String[] { "简约", "现代", "中式", "欧式", "美式", "日式", "东南亚", "地中海", "混搭", "新古典", "田园", "其他" };
-		_style = new LinearLayout_style(getActivity(), "设计风格(最多选择三项)", _items, 3, "");
+		_style = new LinearLayout_checkbox(getActivity(), "设计风格(最多选择三项)", _items, 3, "");
 		_body.addView(_style);
 
 		return _view;

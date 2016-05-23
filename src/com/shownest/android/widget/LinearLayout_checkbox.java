@@ -14,7 +14,7 @@ import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class LinearLayout_style extends LinearLayout implements View.OnClickListener
+public class LinearLayout_checkbox extends LinearLayout implements View.OnClickListener
 {
 	private static boolean DEBUG = true;
 	private int _count_max = 0;
@@ -22,19 +22,19 @@ public class LinearLayout_style extends LinearLayout implements View.OnClickList
 	private ArrayList<TextView> _text = new ArrayList<TextView>();
 	private ArrayList<Integer> _choose = new ArrayList<Integer>();
 
-	public LinearLayout_style(Context context)
+	public LinearLayout_checkbox(Context context)
 	{
 		super(context);
 		// TODO Auto-generated constructor stub
 	}
 
-	public LinearLayout_style(Context context, AttributeSet attrs)
+	public LinearLayout_checkbox(Context context, AttributeSet attrs)
 	{
 		super(context, attrs);
 		// TODO Auto-generated constructor stub
 	}
 
-	public LinearLayout_style(Context context, AttributeSet attrs, int defStyleAttr)
+	public LinearLayout_checkbox(Context context, AttributeSet attrs, int defStyleAttr)
 	{
 		super(context, attrs, defStyleAttr);
 		// TODO Auto-generated constructor stub
@@ -52,7 +52,7 @@ public class LinearLayout_style extends LinearLayout implements View.OnClickList
 	 * @param _choose
 	 *            已被选择的控件序号。例："1，3，7"
 	 */
-	public LinearLayout_style(Context context, String _name, String[] _args, int _max, String _choose)
+	public LinearLayout_checkbox(Context context, String _name, String[] _args, int _max, String _choose)
 	{
 		super(context);
 		if (DEBUG)

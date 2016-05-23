@@ -6,7 +6,7 @@ import com.shownest.android.activity.Activity_setinfo_yezhu;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.UserInfo;
 import com.shownest.android.utils.HttpUtil;
-import com.shownest.android.widget.LinearLayout_style;
+import com.shownest.android.widget.LinearLayout_checkbox;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 
 import android.os.Bundle;
@@ -23,7 +23,7 @@ public class Fragment_setinfo_yezhu extends DEBUG_Fragment
 	private LinearLayout _body;
 	private Button _button_commit;
 	private RelativeLayout_edit_informationbar _showname, _realname, _sex;
-	private LinearLayout_style _style;
+	private LinearLayout_checkbox _style;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -40,7 +40,7 @@ public class Fragment_setinfo_yezhu extends DEBUG_Fragment
 		_sex = new RelativeLayout_edit_informationbar(getActivity(), _body, 6, new String[] { "性别", "男", "女", "1" }, false);
 
 		String[] _items = new String[] { "简约", "现代", "中式", "欧式", "美式", "日式", "东南亚", "地中海", "混搭", "新古典", "田园", "其他" };
-		_style = new LinearLayout_style(getActivity(), "倾向风格(可多选)", _items, 12, "");
+		_style = new LinearLayout_checkbox(getActivity(), "倾向风格(可多选)", _items, 12, "");
 		_body.addView(_style);
 
 		_button_commit.setOnClickListener(new OnClickListener()
