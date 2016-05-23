@@ -48,6 +48,8 @@ public class Fragment_my_center extends DEBUG_Fragment implements View.OnClickLi
 		_textview_money.setText(String.valueOf(_info.get_money()));
 		_textview_name.setText(_info.get_userName());
 		_number_bowen.setText(String.valueOf(_info.get_blogNum()));
+		_number_guanzhu.setText(String.valueOf(_info.get_bookNum()));
+		_number_xiuyou.setText(String.valueOf(_info.get_fansNum()));
 		String _url = "http://t.shownest.com:86/_resources/upload/headerIcon/" + _info.get_headerIcon();
 		_imageview_header.setImageUrl(_url);
 
