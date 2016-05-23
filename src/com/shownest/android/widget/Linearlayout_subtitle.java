@@ -75,7 +75,7 @@ public class Linearlayout_subtitle extends LinearLayout implements View.OnClickL
 			_line[_select - 1].setVisibility(View.VISIBLE);
 			_selected = _select;
 			if (_listener != null)
-				_listener.onSelect(_select);
+				_listener.onChange(new String[] { String.valueOf(_select) });
 		}
 	}
 }

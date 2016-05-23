@@ -95,8 +95,9 @@ public class Activity_setinfo_shigongdui extends DEBUG_Activity implements OnCha
 	}
 
 	@Override
-	public void onSelect(int _index)
+	public void onChange(String[] args)
 	{
+		int _index = Integer.parseInt(args[0]);
 		FragmentManager _manager = getFragmentManager();
 		FragmentTransaction _transaction = _manager.beginTransaction();
 
@@ -118,10 +119,5 @@ public class Activity_setinfo_shigongdui extends DEBUG_Activity implements OnCha
 		_selected = _index;
 
 		_transaction.commit();
-	}
-	
-	@Override
-	public void onChange(String[] args)
-	{
 	}
 }

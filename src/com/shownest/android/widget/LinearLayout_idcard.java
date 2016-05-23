@@ -77,18 +77,14 @@ public class LinearLayout_idcard extends LinearLayout implements OnChangeListene
 	}
 
 	@Override
-	public void onSelect(int _index)
+	public void onChange(String[] args)
 	{
-		if (_index == 1)
+		if (args[0].equals("1"))
 			_linearlayout_bottom.setVisibility(LinearLayout.INVISIBLE);
 		else
 			_linearlayout_bottom.setVisibility(LinearLayout.VISIBLE);
 	}
 
-	@Override
-	public void onChange(String[] args)
-	{
-	}
 	public void setData(Uri _uri, int _where)
 	{
 		if (_uri != null)

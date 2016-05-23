@@ -40,19 +40,16 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 	public RelativeLayout_edit_informationbar(Context context)
 	{
 		super(context);
-		// TODO Auto-generated constructor stub
 	}
 
 	public RelativeLayout_edit_informationbar(Context context, AttributeSet attrs)
 	{
 		super(context, attrs);
-		// TODO Auto-generated constructor stub
 	}
 
 	public RelativeLayout_edit_informationbar(Context context, AttributeSet attrs, int defStyleAttr)
 	{
 		super(context, attrs, defStyleAttr);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -220,16 +217,15 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 				@Override
 				public void onCheckedChanged(RadioGroup group, int checkedId)
 				{
-					if (_change_listener != null)
-						switch (checkedId)
-						{
-						case R.id.radiobutton_widget_left:
-							_change_listener.onSelect(1);
-							break;
-						case R.id.radiobutton_widget_right:
-							_change_listener.onSelect(2);
-							break;
-						}
+					switch (checkedId)
+					{
+					case R.id.radiobutton_widget_left:
+						setData(new String[] { "1" });
+						break;
+					case R.id.radiobutton_widget_right:
+						setData(new String[] { "2" });
+						break;
+					}
 				}
 			});
 			break;
@@ -240,6 +236,8 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 				_textview_right.setTextColor(getResources().getColor(R.color.text_gray));
 				if (_textview_left != null)
 					_textview_left.setTextColor(getResources().getColor(R.color.text_gray));
+				if (_imageview_right != null)
+					_imageview_right.setVisibility(ImageView.INVISIBLE);
 			}
 			else if (_childview != null)
 			{
@@ -287,6 +285,8 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 				_radiobutton_right.setChecked(true);
 			break;
 		}
+		if (_change_listener != null)
+			_change_listener.onChange(args);
 
 	}
 
