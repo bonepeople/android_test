@@ -10,9 +10,9 @@ public class HouseArea
 	// 左边的float代表当前房间的面积，右侧的数字0表示未被用户修改，1表示已被用户修改，用户最后均衡面试使用
 	private HashMap<Float, Integer> _room = new HashMap<Float, Integer>();// 卧室
 	private HashMap<Float, Integer> _parlour = new HashMap<Float, Integer>();// 客厅
+	private HashMap<Float, Integer> _kitchen = new HashMap<Float, Integer>();// 厨房
 	private HashMap<Float, Integer> _toilet = new HashMap<Float, Integer>();// 卫生间
 	private HashMap<Float, Integer> _balcony = new HashMap<Float, Integer>();// 阳台
-	private HashMap<Float, Integer> _kitchen = new HashMap<Float, Integer>();// 厨房
 
 	public HouseArea()
 	{

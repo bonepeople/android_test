@@ -1,6 +1,7 @@
 package com.shownest.android.widget;
 
 import com.shownest.android.R;
+import com.shownest.android.adapter.Adapter_offer_auto;
 import com.shownest.android.model.OnChangeListener;
 
 import android.content.Context;
@@ -19,8 +20,9 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 	private LinearLayout _title;
 	private TextView _text_name, _text_hint, _text_change;
 	private ListView _list;
+	private Adapter_offer_auto _adapter;
 	private ImageView _image_flag;
-	private boolean _collapse = false;
+	private boolean _collapse = true;
 
 	private int layoutHeight = -1;
 	private int OPEN_LAYOUT_TIMES = 20;
@@ -90,21 +92,36 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 
 		_text_name.setText(args[0]);
 		_text_hint.setText(args[1]);
+		_adapter = new Adapter_offer_auto(getContext());
+		_list.setAdapter(_adapter);
+
 		_title.setOnClickListener(this);
 	}
-
-	// ViewGroup.LayoutParams params = listView.getLayoutParams();
-	//
-	// params.height = totalHeight
-	// + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
 
 	@Override
 	public void onClick(View v)
 	{
+		int totalHeight = 0;
+		int adaptCount = _adapter.getCount();
+		for (int i = 0; i < adaptCount; i++)
+		{
+			View temp = _adapter.getView(i, null, _list);
+			temp.measure(0, 0);
+			totalHeight += temp.getMeasuredHeight();
+		}
+		ViewGroup.LayoutParams params = _list.getLayoutParams();
 		if (_collapse)
+		{
+			// 展开
+			params.height = totalHeight + _list.getDividerHeight() * (_adapter.getCount() - 1);
+			_list.setLayoutParams(params);
 			_list.setVisibility(ListView.VISIBLE);
+		}
 		else
+		{
+			// 收起
 			_list.setVisibility(ListView.GONE);
+		}
 		_collapse = !_collapse;
 	}
 
@@ -201,11 +218,11 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 		switch (tag)
 		{
 		case "style3":
-			System.out.println(args[0] + "m2");
+			_adapter.set_area(Float.parseFloat(args[0]));
 			break;
 
 		case "style4":
-			System.out.println("4444");
+			_adapter.set_num(args[0]);
 			break;
 		}
 	}
