@@ -64,6 +64,13 @@ public class Adapter_offer_auto extends BaseAdapter
 		refresh_data();
 	}
 
+	public void set_acreage(String number, int position)
+	{
+		_areas.set(position, Float.valueOf(number));
+		System.out.println("get=" + number + "in" + position);
+		notifyDataSetChanged();
+	}
+
 	private void refresh_data()
 	{
 		_areas.clear();
@@ -75,14 +82,12 @@ public class Adapter_offer_auto extends BaseAdapter
 	@Override
 	public int getCount()
 	{
-//		System.out.println("size::::" + _areas.size());
 		return _areas.size();
 	}
 
 	@Override
 	public String getItem(int position)
 	{
-//		System.out.println("getItem::::" + position);
 		String _result = "";
 		int _temp_i = 0, _temp_j = 1;
 
@@ -179,7 +184,6 @@ public class Adapter_offer_auto extends BaseAdapter
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
-//		System.out.println("getView::::" + position);
 		View _view = convertView;
 		ViewHolder _holder;
 
@@ -199,9 +203,60 @@ public class Adapter_offer_auto extends BaseAdapter
 		}
 		String _temp_name = getItem(position);
 		_holder._text_name.setText(_temp_name);
-		_holder._text_left.setText(String.valueOf(_every_area));
+		_holder._text_left.setText(String.valueOf(_areas.get(position)));
 
 		return _view;
+	}
+
+	public int get_number(String _name)
+	{
+		int _result = 1;
+		switch (_name)
+		{
+		case "room":
+			_result = _room;
+			break;
+		case "parlour":
+			_result = _parlour;
+			break;
+		case "kitchen":
+			_result = _kitchen;
+			break;
+		case "toilet":
+			_result = _toilet;
+			break;
+		case "balcony":
+			_result = _balcony;
+			break;
+		}
+		return _result;
+	}
+
+	public String get_acreage(String _name)
+	{
+		StringBuilder _builder = new StringBuilder();
+		int _temp_i, _min = 0, _max = 0;
+		switch (_name)
+		{
+		case "balcony":
+			_min += _toilet;
+			_max += _balcony;
+		case "toilet":
+			_min += _kitchen;
+			_max += _toilet;
+		case "kitchen":
+			_min += _parlour;
+			_max += _kitchen;
+		case "parlour":
+			_min += _room;
+			_max += _parlour;
+		case "room":
+			_max += _room;
+		}
+		for (_temp_i = _min; _temp_i < _max; _temp_i++)
+			_builder.append(_areas.get(_temp_i).toString() + ",");
+		_builder.deleteCharAt(_builder.length() - 1);
+		return _builder.toString();
 	}
 
 }

@@ -1,13 +1,18 @@
 package com.shownest.android.fragment;
 
 import com.shownest.android.R;
+import com.shownest.android.activity.Activity_location;
+import com.shownest.android.activity.Activity_offer_auto;
 import com.shownest.android.basic.DEBUG_Fragment;
+import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.widget.LinearLayout_checkbox;
 import com.shownest.android.widget.Linearlayout_listview;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.content.ContentValues;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +32,8 @@ public class Fragment_offer_auto extends DEBUG_Fragment implements OnClickListen
 	private Linearlayout_listview _list;
 	private AlertDialog _dialog;
 	private NumberPicker _room, _parlour, _kitchen, _toilet, _balcony;
+	private int cityId = 0, provinceId = 0, countyId = 0;
+	private String serviceRegion = "";
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -57,34 +64,63 @@ public class Fragment_offer_auto extends DEBUG_Fragment implements OnClickListen
 	}
 
 	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		if (resultCode == -1)
+		{
+			cityId = data.getIntExtra("cityId", 0);
+			System.out.println("cityId=" + cityId);
+
+			provinceId = data.getIntExtra("provinceId", 0);
+			System.out.println("provinceId=" + provinceId);
+
+			countyId = data.getIntExtra("countyId", 0);
+			System.out.println("countyId=" + countyId);
+
+			switch (requestCode)
+			{
+			case LOCATION:
+				serviceRegion = String.valueOf(provinceId) + "," + String.valueOf(cityId) + "," + String.valueOf(countyId);
+				System.out.println("serviceRegion=" + serviceRegion);
+				_region.setData(new String[] { serviceRegion });
+			}
+		}
+		else
+			System.out.println("resultCode=" + resultCode);
+	}
+
+	@Override
 	public void onClick(View v)
 	{
 		int _id = v.getId();
 		if (_id == R.id.button_commit)
 		{
-			String _str_name = _name.getData();
-			String _str_region = _region.getData();
-			String _str_state = _state.getData();
-			String _str_type = _type.getData();
-			String _str_mode = _mode.getData();
-			String _str_area = _area.getData();
-			String _str_house = _house.getData();
-			String _str_list = "";
+			ContentValues _value = new ContentValues();
+			_value.put("areaName", _name.getData());
+			_value.put("houseRegion", serviceRegion);
+			_value.put("houseState", _state.getData());
+			_value.put("houseType", _type.getData());
+			_value.put("houseMode", _mode.getData());
+			_value.put("houseSq", _area.getData());
+			_value.put("roomNum", _list._adapter.get_number("room"));
+			_value.put("parlourNum", _list._adapter.get_number("parlour"));
+			_value.put("kitchenNum", _list._adapter.get_number("kitchen"));
+			_value.put("toiletNum", _list._adapter.get_number("toilet"));
+			_value.put("balconyNum", _list._adapter.get_number("balcony"));
+			_value.put("roomAcreage", _list._adapter.get_acreage("room"));
+			_value.put("parlourAcreage", _list._adapter.get_acreage("parlour"));
+			_value.put("kitchenAcreage", _list._adapter.get_acreage("kitchen"));
+			_value.put("toiletAcreage", _list._adapter.get_acreage("toilet"));
+			_value.put("balconyAcreage", _list._adapter.get_acreage("balcony"));
 
-			// ContentValues _value = new ContentValues();
-			// _value.put("userShowName", _showname.getData());
-			// _value.put("nativePlace", _PlaceID[_PlaceID[0]]);
-			// _value.put("realSex", _sex.getData().equals("男") ? 1 : 0);
-			// _value.put("introduces", _edit.getData());
-			//
-			// Activity_setinfo_shigongdui.get_instance().show_wait();
-			// HttpUtil.set_PersonalBaseInfor(Activity_setinfo_shigongdui._handler, _value, Activity_setinfo_shigongdui.CHANGE_SUCCESSFUL,
-			// Activity_setinfo_shigongdui.CHANGE_FAILED);
+			Activity_offer_auto.get_instance().show_wait();
+			HttpUtil.set_PersonalBaseInfor(Activity_offer_auto._handler, _value, Activity_offer_auto.NEXT_SUCCESSFUL, Activity_offer_auto.NEXT_FAILED);
 
 		}
 		else if (_id == _region.get_id())
 		{
-
+			Intent _location = new Intent(getActivity(), Activity_location.class);
+			startActivityForResult(_location, LOCATION);
 		}
 		else if (_id == _house.get_id())
 		{
