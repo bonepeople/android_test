@@ -8,15 +8,22 @@ import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_test;
 import com.shownest.android.model.UserInfo;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.NumberPicker;
 import android.widget.Toast;
 
 public class Activity_test extends DEBUG_Activity
 {
 	private Intent _intent;
+	private AlertDialog _dialog;
+	private NumberPicker _room, _parlour, _kitchen, _toilet, _balcony;
 	public static final int TEST_FAILED = 0;
 	public static final int TEST_SUCCESSFUL = 1;
 	private static Activity_test _instance;
@@ -73,9 +80,50 @@ public class Activity_test extends DEBUG_Activity
 	public void test(View v)
 	{
 		String _str = "result";
-		_intent.putExtra("phone", _str);
-		setResult(RESULT_OK, _intent); // intent为A传来的带有Bundle的intent，当然也可以自己定义新的Bundle
-		finish();// 此处一定要调用finish()方法
+		show_dialog();
+	}
+
+	private void show_dialog()
+	{
+		View _view = View.inflate(this, R.layout.dialog_house, null);
+		AlertDialog.Builder _builder = new Builder(this);
+		_dialog = _builder.create();
+		_dialog.setView(_view, 0, 0, 0, 0);
+
+		Button _button_commit = (Button) _view.findViewById(R.id.button_commit);
+
+		_room = (NumberPicker) _view.findViewById(R.id.number_room);
+		_parlour = (NumberPicker) _view.findViewById(R.id.number_parlour);
+		_kitchen = (NumberPicker) _view.findViewById(R.id.number_kitchen);
+		_toilet = (NumberPicker) _view.findViewById(R.id.number_toilet);
+		_balcony = (NumberPicker) _view.findViewById(R.id.number_balcony);
+
+		_room.setMinValue(1);
+		_room.setMaxValue(9);
+
+		_parlour.setMinValue(1);
+		_parlour.setMaxValue(9);
+
+		_kitchen.setMinValue(1);
+		_kitchen.setMaxValue(9);
+
+		_toilet.setMinValue(1);
+		_toilet.setMaxValue(9);
+
+		_balcony.setMinValue(1);
+		_balcony.setMaxValue(9);
+
+		_button_commit.setOnClickListener(new OnClickListener()
+		{
+
+			@Override
+			public void onClick(View v)
+			{
+				String _result = _room.getValue() + "," + _parlour.getValue() + "," + _kitchen.getValue() + "," + _toilet.getValue() + "," + _balcony.getValue();
+				Toast.makeText(Activity_test.this, _result, Toast.LENGTH_SHORT).show();
+			}
+		});
+		_dialog.show();
 	}
 
 	public static Activity_test get_instance()

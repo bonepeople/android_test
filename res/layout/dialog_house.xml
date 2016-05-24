@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <NumberPicker
+            android:id="@+id/number_room"
+            android:layout_width="40dp"
+            android:layout_height="120dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="室" />
+
+        <NumberPicker
+            android:id="@+id/number_parlour"
+            android:layout_width="40dp"
+            android:layout_height="120dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="厅" />
+
+        <NumberPicker
+            android:id="@+id/number_kitchen"
+            android:layout_width="40dp"
+            android:layout_height="120dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="厨" />
+
+        <NumberPicker
+            android:id="@+id/number_toilet"
+            android:layout_width="40dp"
+            android:layout_height="120dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="卫" />
+
+        <NumberPicker
+            android:id="@+id/number_balcony"
+            android:layout_width="40dp"
+            android:layout_height="120dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="阳台" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_commit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/background_button"
+        android:padding="10dp"
+        android:text="确定"
+        android:textColor="@color/main_color" />
+
+</LinearLayout>
