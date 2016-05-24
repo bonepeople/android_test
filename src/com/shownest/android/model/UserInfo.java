@@ -43,30 +43,6 @@ public class UserInfo
 	private int _fansNum;// ？？秀友
 	private int _bookNum;// ？？关注
 
-	// "priceHalf":"null",
-	// "priceAll":"null",
-	// "priceNone":"null",
-	// "payments":"null",
-	// "authorise":"null",
-	// "avgSq":"null",
-	// "doingNum":"null",
-	// "doneNum":"null",
-	// "beforeNum":"null",
-	// "gradeTech":"null",
-	// "gradeService":"null",
-	// "gradeEffic":"null",
-	// "gradeAnswer":"null",
-	// "gradePrice":"null",
-	// "gradeFriend":"null",
-	// "doingJob":"null",
-	// "doneJob":"null",
-	// "donePic":"null",
-	// "doingPic":"null",
-	// "commentNum":"null",
-	// "commentNumTeam":"null",
-	// "commentNumOther":"null",
-	// "recommend":"null",
-
 	public UserInfo(JSONObject _json) throws JSONException
 	{
 		this._userId = get_string(_json, "userId", "");
