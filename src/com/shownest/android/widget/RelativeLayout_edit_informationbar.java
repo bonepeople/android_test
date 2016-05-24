@@ -61,7 +61,7 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 	 * @param style
 	 *            类型（1-6）
 	 * @param name
-	 *            信息条内容 1-3,2-2,3-3,4-6,5-2,6-4
+	 *            信息条内容 1-3,2-2,3-3,4-2,5-2,6-4
 	 * 
 	 */
 	public RelativeLayout_edit_informationbar(Context context, ViewGroup root, int style, String[] args, boolean _clickable)
@@ -150,7 +150,7 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 			_textview_right.setText(args[2]);
 			break;
 		case 4:
-			if (args.length != 6)
+			if (args.length != 2)
 			{
 				System.out.println("relativelayout super:4-" + args.toString());
 				break;
@@ -162,9 +162,7 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 			_textview_right = (TextView) _childview.findViewById(R.id.textview_widget_right);
 
 			_textview_name.setText(args[0]);
-			for (int _temp_i = 0; _temp_i < 5; _temp_i++)
-				_house_num[_temp_i] = args[_temp_i + 1];
-			setData(_house_num);
+			setData(new String[] { args[1] });
 			break;
 		case 5:
 			if (args.length != 2)
@@ -276,7 +274,8 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 			_textview_left.setText(args[0]);
 			break;
 		case 4:
-			_textview_right.setText(args[0] + "室" + args[1] + "厅" + args[2] + "厨" + args[3] + "卫" + args[4] + "阳台");
+			_house_num = args[0].split(",");
+			_textview_right.setText(_house_num[0] + "室" + _house_num[1] + "厅" + _house_num[2] + "厨" + _house_num[3] + "卫" + _house_num[4] + "阳台");
 			break;
 		case 5:
 			_textview_right.setText(args[0]);

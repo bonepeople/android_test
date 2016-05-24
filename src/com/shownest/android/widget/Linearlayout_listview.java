@@ -223,6 +223,7 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 
 		case "style4":
 			_adapter.set_num(args[0]);
+			this.onClick(_title);
 			break;
 		}
 	}
