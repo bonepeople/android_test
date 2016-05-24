@@ -51,7 +51,7 @@ public class Fragment_offer_auto extends DEBUG_Fragment implements OnClickListen
 		_body.addView(_state);
 		_type = new LinearLayout_checkbox(getActivity(), "房屋类型", new String[] { "平层住宅", "复试住宅", "别墅", "商业" }, 1, "1");
 		_body.addView(_type);
-		_mode = new LinearLayout_checkbox(getActivity(), "装修方式", new String[] { "半包", "全包", "清包" }, 1, "1");
+		_mode = new LinearLayout_checkbox(getActivity(), "装修方式", new String[] { "半包", "全包", "清包" }, 0, "1");
 		_body.addView(_mode);
 		_area = new RelativeLayout_edit_informationbar(getActivity(), _body, 3, new String[] { "建筑面积", "0", "m²" }, true);
 		_house = new RelativeLayout_edit_informationbar(getActivity(), _body, 4, new String[] { "户型结构", "1,1,1,1,1" }, true, this);
@@ -100,7 +100,7 @@ public class Fragment_offer_auto extends DEBUG_Fragment implements OnClickListen
 			_value.put("houseRegion", serviceRegion);
 			_value.put("houseState", _state.getData());
 			_value.put("houseType", _type.getData());
-			_value.put("houseMode", _mode.getData());
+			_value.put("consType", Integer.parseInt(_mode.getData())-1);
 			_value.put("houseSq", _area.getData());
 			_value.put("roomNum", _list._adapter.get_number("room"));
 			_value.put("parlourNum", _list._adapter.get_number("parlour"));
@@ -114,7 +114,7 @@ public class Fragment_offer_auto extends DEBUG_Fragment implements OnClickListen
 			_value.put("balconyAcreage", _list._adapter.get_acreage("balcony"));
 
 			Activity_offer_auto.get_instance().show_wait();
-			HttpUtil.set_PersonalBaseInfor(Activity_offer_auto._handler, _value, Activity_offer_auto.NEXT_SUCCESSFUL, Activity_offer_auto.NEXT_FAILED);
+			HttpUtil.get_ownerquote(Activity_offer_auto._handler, _value, Activity_offer_auto.NEXT_SUCCESSFUL, Activity_offer_auto.NEXT_FAILED);
 
 		}
 		else if (_id == _region.get_id())

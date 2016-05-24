@@ -56,7 +56,7 @@ public class Activity_offer_auto extends DEBUG_Activity
 			JSONObject _obj = new JSONObject(str);
 			String _result = _obj.getString("msg");
 			Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
-			if (_result.equals("用户登录成功"))
+			if (_result.equals("获取结果"))
 			{
 				_instance.finish();
 			}
