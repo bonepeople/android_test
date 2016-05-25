@@ -14,7 +14,7 @@ import org.json.JSONObject;
  */
 public class OfferBill
 {
-	private int _quotationId;//报价单ID
+	private int _quotationId;// 报价单ID
 	private double _allTotal;// 总报价
 	private double _costTotal;// 杂费
 	private double _taxTotal;// 税费
@@ -51,19 +51,19 @@ public class OfferBill
 			switch (_name)
 			{
 			case "room":
-				_room.add(_array.getDouble(_temp_i));
+				_room.add(_array.getJSONObject(_temp_i).getDouble("roomTotal" + (_temp_i + 1)));
 				break;
 			case "parlour":
-				_parlour.add(_array.getDouble(_temp_i));
+				_parlour.add(_array.getJSONObject(_temp_i).getDouble("parlourTotal" + (_temp_i + 1)));
 				break;
 			case "kitchen":
-				_kitchen.add(_array.getDouble(_temp_i));
+				_kitchen.add(_array.getJSONObject(_temp_i).getDouble("kitchenTotal" + (_temp_i + 1)));
 				break;
 			case "toilet":
-				_toilet.add(_array.getDouble(_temp_i));
+				_toilet.add(_array.getJSONObject(_temp_i).getDouble("toiletTotal" + (_temp_i + 1)));
 				break;
 			case "balcony":
-				_balcony.add(_array.getDouble(_temp_i));
+				_balcony.add(_array.getJSONObject(_temp_i).getDouble("balconyTotal" + (_temp_i + 1)));
 				break;
 			}
 		}

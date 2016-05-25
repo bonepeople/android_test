@@ -1,36 +1,29 @@
 package com.shownest.android.fragment;
 
-import java.util.ArrayList;
-
 import com.shownest.android.R;
-import com.shownest.android.activity.Activity_location;
 import com.shownest.android.activity.Activity_offer_auto;
 import com.shownest.android.basic.DEBUG_Fragment;
-import com.shownest.android.utils.HttpUtil;
-import com.shownest.android.widget.LinearLayout_checkbox;
-import com.shownest.android.widget.Linearlayout_listview;
+import com.shownest.android.model.OfferBill;
+import com.shownest.android.model.Package;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.NumberPicker;
 
 public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickListener
 {
 	private static final int LOCATION = 1;
 	private LinearLayout _body;
 	private Button _button_commit, _button_other;
-	private RelativeLayout_edit_informationbar _title;
-	private ArrayList<RelativeLayout_edit_informationbar> _items = new ArrayList<RelativeLayout_edit_informationbar>();
+	private SparseArray<Package> _items = new SparseArray<Package>();
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -45,6 +38,7 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 		_button_other.setText("保存");
 		_button_other.setVisibility(Button.VISIBLE);
 		_button_other.setOnClickListener(this);
+
 		return _view;
 	}
 
@@ -81,4 +75,14 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 		}
 	}
 
+	@Override
+	public void setContent()
+	{
+		OfferBill _data = Activity_offer_auto.get_data();
+		if (_data != null)
+		{
+			RelativeLayout_edit_informationbar _title = new RelativeLayout_edit_informationbar(getActivity(), _body, 3, new String[] { "总报价", String.valueOf(_data.get_allTotal()), "元" }, false);
+			_items.put(_title.get_id(), new Package(_title, "all", 1));
+		}
+	}
 }
