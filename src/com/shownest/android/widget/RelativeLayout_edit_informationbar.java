@@ -10,6 +10,7 @@ import android.graphics.Point;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -259,6 +260,14 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 		_change_listener = _listener;
 	}
 
+	public void set_textcolor(int _color)
+	{
+		if (_textview_left != null)
+			_textview_left.setTextColor(_color);
+		if (_textview_right != null)
+			_textview_right.setTextColor(_color);
+	}
+
 	public void setData(String[] args)
 	{
 		switch (this._style)
@@ -334,7 +343,7 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 			if (this._style == 3)
 			{
 				String _temp_str = _edittext_dialog.getText().toString();
-				if (_temp_str.length() < 6)
+				if (_temp_str.length() < 6 && _temp_str.length() > 0)
 					setData(new String[] { Integer.valueOf(_temp_str).toString() });
 			}
 			else
@@ -369,14 +378,6 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 		}
 	}
 
-	public void set_textcolor(int _color)
-	{
-		if (_textview_left != null)
-			_textview_left.setTextColor(_color);
-		if (_textview_right != null)
-			_textview_right.setTextColor(_color);
-	}
-
 	private void show_dialog(String _value, int number)
 	{
 		View _view = View.inflate(_context, R.layout.dialog_edit, null);
@@ -390,10 +391,16 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 		_edittext_dialog.setText(_value);
 		if (number == 1)
 			_edittext_dialog.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
-
+		_edittext_dialog.selectAll();
 		_button_commit.setOnClickListener(this);
 		_button_cancel.setOnClickListener(this);
 		_dialog.show();
+		
+		Window window = _dialog.getWindow();
+		android.view.WindowManager.LayoutParams params = window.getAttributes();
+		params.softInputMode = android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE;// 显示dialog的时候,就显示软键盘
+		params.flags = android.view.WindowManager.LayoutParams.FLAG_DIM_BEHIND;// 就是这个属性导致不能获取焦点,默认的是FLAG_NOT_FOCUSABLE,故名思义不能获取输入焦点,
+		window.setAttributes(params);
 	}
 
 }

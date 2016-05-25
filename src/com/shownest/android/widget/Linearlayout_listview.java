@@ -10,6 +10,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -153,7 +155,7 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 		case R.id.button_commit:
 			// 可以在这里检测输入的合理性
 			String _temp_str = _edittext_dialog.getText().toString();
-			if (_temp_str.length() < 7)
+			if (_temp_str.length() < 7 && _temp_str.length() > 0)
 				_adapter.set_acreage(_temp_str, _selected);
 			_dialog.dismiss();
 			break;
@@ -176,10 +178,16 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 		_edittext_dialog = (EditText) _view.findViewById(R.id.edittext_dialog);
 		_edittext_dialog.setText(_value);
 		_edittext_dialog.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
-
+		_edittext_dialog.selectAll();
 		_button_commit.setOnClickListener(this);
 		_button_cancel.setOnClickListener(this);
 		_dialog.show();
+
+		Window window = _dialog.getWindow();
+		android.view.WindowManager.LayoutParams params = window.getAttributes();
+		params.softInputMode = android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE;// 显示dialog的时候,就显示软键盘
+		params.flags = android.view.WindowManager.LayoutParams.FLAG_DIM_BEHIND;// 就是这个属性导致不能获取焦点,默认的是FLAG_NOT_FOCUSABLE,故名思义不能获取输入焦点,
+		window.setAttributes(params);
 	}
 
 	public void collapse()
