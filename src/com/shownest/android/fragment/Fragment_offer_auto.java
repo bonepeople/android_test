@@ -21,6 +21,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
+import android.widget.Toast;
 
 public class Fragment_offer_auto extends DEBUG_Fragment implements OnClickListener
 {
@@ -53,7 +54,7 @@ public class Fragment_offer_auto extends DEBUG_Fragment implements OnClickListen
 		_body.addView(_type);
 		_mode = new LinearLayout_checkbox(getActivity(), "装修方式", new String[] { "半包", "全包", "清包" }, 0, "1");
 		_body.addView(_mode);
-		_area = new RelativeLayout_edit_informationbar(getActivity(), _body, 3, new String[] { "建筑面积", "0", "m²" }, true);
+		_area = new RelativeLayout_edit_informationbar(getActivity(), _body, 3, new String[] { "建筑面积", "0", " m²" }, true);
 		_house = new RelativeLayout_edit_informationbar(getActivity(), _body, 4, new String[] { "户型结构", "1,1,1,1,1" }, true, this);
 		_list = new Linearlayout_listview(getActivity(), _body, new String[] { "具体面积", "信息填写详细，会使您获得更精准的报价" });
 
@@ -95,27 +96,41 @@ public class Fragment_offer_auto extends DEBUG_Fragment implements OnClickListen
 		int _id = v.getId();
 		if (_id == R.id.button_commit)
 		{
-			ContentValues _value = new ContentValues();
-			_value.put("areaName", _name.getData());
-			_value.put("houseRegion", serviceRegion);
-			_value.put("houseState", _state.getData());
-			_value.put("houseType", _type.getData());
-			_value.put("consType", Integer.parseInt(_mode.getData()) - 1);
-			_value.put("houseSq", _area.getData());
-			_value.put("roomNum", _list._adapter.get_number("room"));
-			_value.put("parlourNum", _list._adapter.get_number("parlour"));
-			_value.put("kitchenNum", _list._adapter.get_number("kitchen"));
-			_value.put("toiletNum", _list._adapter.get_number("toilet"));
-			_value.put("balconyNum", _list._adapter.get_number("balcony"));
-			_value.put("roomAcreage", _list._adapter.get_acreage("room"));
-			_value.put("parlourAcreage", _list._adapter.get_acreage("parlour"));
-			_value.put("kitchenAcreage", _list._adapter.get_acreage("kitchen"));
-			_value.put("toiletAcreage", _list._adapter.get_acreage("toilet"));
-			_value.put("balconyAcreage", _list._adapter.get_acreage("balcony"));
+			if (_name.getData().isEmpty())
+			{
+				Toast.makeText(getActivity(), "小区名称不能为空", Toast.LENGTH_SHORT).show();
+			}
+			else if (serviceRegion.isEmpty())
+			{
+				Toast.makeText(getActivity(), "请选择所在区域", Toast.LENGTH_SHORT).show();
+			}
+			else if (_area.getData().equals("0"))
+			{
+				Toast.makeText(getActivity(), "请输入房屋的建筑面积", Toast.LENGTH_SHORT).show();
+			}
+			else
+			{
+				ContentValues _value = new ContentValues();
+				_value.put("areaName", _name.getData());
+				_value.put("houseRegion", serviceRegion);
+				_value.put("houseState", _state.getData());
+				_value.put("houseType", _type.getData());
+				_value.put("consType", Integer.parseInt(_mode.getData()) - 1);
+				_value.put("houseSq", _area.getData());
+				_value.put("roomNum", _list._adapter.get_number("room"));
+				_value.put("parlourNum", _list._adapter.get_number("parlour"));
+				_value.put("kitchenNum", _list._adapter.get_number("kitchen"));
+				_value.put("toiletNum", _list._adapter.get_number("toilet"));
+				_value.put("balconyNum", _list._adapter.get_number("balcony"));
+				_value.put("roomAcreage", _list._adapter.get_acreage("room"));
+				_value.put("parlourAcreage", _list._adapter.get_acreage("parlour"));
+				_value.put("kitchenAcreage", _list._adapter.get_acreage("kitchen"));
+				_value.put("toiletAcreage", _list._adapter.get_acreage("toilet"));
+				_value.put("balconyAcreage", _list._adapter.get_acreage("balcony"));
 
-			Activity_offer_auto.get_instance().show_wait();
-			HttpUtil.get_ownerquote(Activity_offer_auto._handler, _value, Activity_offer_auto.NEXT_SUCCESSFUL, Activity_offer_auto.NEXT_FAILED);
-
+				Activity_offer_auto.get_instance().show_wait();
+				HttpUtil.get_ownerquote(Activity_offer_auto._handler, _value, Activity_offer_auto.NEXT_SUCCESSFUL, Activity_offer_auto.NEXT_FAILED);
+			}
 		}
 		else if (_id == _region.get_id())
 		{

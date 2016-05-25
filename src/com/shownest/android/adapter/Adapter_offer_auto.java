@@ -193,7 +193,7 @@ public class Adapter_offer_auto extends BaseAdapter
 			_holder._text_name = (TextView) _view.findViewById(R.id.textview_widget_name);
 			_holder._text_left = (TextView) _view.findViewById(R.id.textview_widget_left);
 			_holder._text_right = (TextView) _view.findViewById(R.id.textview_widget_right);
-			_holder._text_right.setText("m²");
+			_holder._text_right.setText(" m²");
 			_view.setTag(_holder);
 		}
 		else
