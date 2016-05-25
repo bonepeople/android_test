@@ -28,7 +28,7 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 {
 	private static final int LOCATION = 1;
 	private LinearLayout _body;
-	private Button _button_commit,_button_other;
+	private Button _button_commit, _button_other;
 	private RelativeLayout_edit_informationbar _title;
 	private ArrayList<RelativeLayout_edit_informationbar> _items = new ArrayList<RelativeLayout_edit_informationbar>();
 
@@ -43,6 +43,7 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 		_button_commit.setOnClickListener(this);
 		_button_other = (Button) _view.findViewById(R.id.button_other);
 		_button_other.setText("保存");
+		_button_other.setVisibility(Button.VISIBLE);
 		_button_other.setOnClickListener(this);
 		return _view;
 	}
