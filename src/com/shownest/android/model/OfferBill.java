@@ -92,4 +92,124 @@ public class OfferBill
 		}
 		return _result;
 	}
+
+	public int get_quotationId()
+	{
+		return _quotationId;
+	}
+
+	public void set_quotationId(int _quotationId)
+	{
+		this._quotationId = _quotationId;
+	}
+
+	public double get_allTotal()
+	{
+		return _allTotal;
+	}
+
+	public void set_allTotal(double _allTotal)
+	{
+		this._allTotal = _allTotal;
+	}
+
+	public double get_costTotal()
+	{
+		return _costTotal;
+	}
+
+	public void set_costTotal(double _costTotal)
+	{
+		this._costTotal = _costTotal;
+	}
+
+	public double get_taxTotal()
+	{
+		return _taxTotal;
+	}
+
+	public void set_taxTotal(double _taxTotal)
+	{
+		this._taxTotal = _taxTotal;
+	}
+
+	public double get_hydropowerTotal()
+	{
+		return _hydropowerTotal;
+	}
+
+	public void set_hydropowerTotal(double _hydropowerTotal)
+	{
+		this._hydropowerTotal = _hydropowerTotal;
+	}
+
+	public double get_mountTotal()
+	{
+		return _mountTotal;
+	}
+
+	public void set_mountTotal(double _mountTotal)
+	{
+		this._mountTotal = _mountTotal;
+	}
+
+	public double get_teshuTotal()
+	{
+		return _teshuTotal;
+	}
+
+	public void set_teshuTotal(double _teshuTotal)
+	{
+		this._teshuTotal = _teshuTotal;
+	}
+
+	public ArrayList<Double> get_room()
+	{
+		return _room;
+	}
+
+	public void set_room(ArrayList<Double> _room)
+	{
+		this._room = _room;
+	}
+
+	public ArrayList<Double> get_parlour()
+	{
+		return _parlour;
+	}
+
+	public void set_parlour(ArrayList<Double> _parlour)
+	{
+		this._parlour = _parlour;
+	}
+
+	public ArrayList<Double> get_kitchen()
+	{
+		return _kitchen;
+	}
+
+	public void set_kitchen(ArrayList<Double> _kitchen)
+	{
+		this._kitchen = _kitchen;
+	}
+
+	public ArrayList<Double> get_toilet()
+	{
+		return _toilet;
+	}
+
+	public void set_toilet(ArrayList<Double> _toilet)
+	{
+		this._toilet = _toilet;
+	}
+
+	public ArrayList<Double> get_balcony()
+	{
+		return _balcony;
+	}
+
+	public void set_balcony(ArrayList<Double> _balcony)
+	{
+		this._balcony = _balcony;
+	}
 }

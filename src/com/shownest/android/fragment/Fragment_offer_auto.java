@@ -42,7 +42,7 @@ public class Fragment_offer_auto extends DEBUG_Fragment implements OnClickListen
 		View _view = inflater.inflate(R.layout.fragment_setinfo, container, false);
 		_body = (LinearLayout) _view.findViewById(R.id.linearlayout_content);
 		_button_commit = (Button) _view.findViewById(R.id.button_commit);
-		_button_commit.setText("保存");
+		_button_commit.setText("获取报价");
 		_button_commit.setOnClickListener(this);
 
 		_name = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "小区名称", "" }, true);
@@ -100,7 +100,7 @@ public class Fragment_offer_auto extends DEBUG_Fragment implements OnClickListen
 			_value.put("houseRegion", serviceRegion);
 			_value.put("houseState", _state.getData());
 			_value.put("houseType", _type.getData());
-			_value.put("consType", Integer.parseInt(_mode.getData())-1);
+			_value.put("consType", Integer.parseInt(_mode.getData()) - 1);
 			_value.put("houseSq", _area.getData());
 			_value.put("roomNum", _list._adapter.get_number("room"));
 			_value.put("parlourNum", _list._adapter.get_number("parlour"));
