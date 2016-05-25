@@ -138,11 +138,13 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 				params.height = totalHeight + _list.getDividerHeight() * (_adapter.getCount() - 1);
 				_list.setLayoutParams(params);
 				_list.setVisibility(ListView.VISIBLE);
+				_image_flag.setImageResource(R.drawable.arrow_up);
 			}
 			else
 			{
 				// 收起
 				_list.setVisibility(ListView.GONE);
+				_image_flag.setImageResource(R.drawable.arrow_down);
 			}
 			_collapse = !_collapse;
 

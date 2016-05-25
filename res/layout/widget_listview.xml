@@ -38,7 +38,7 @@
             android:id="@+id/imageview_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/clickable_flag_dark" />
+            android:src="@drawable/arrow_down" />
     </LinearLayout>
 
     <ListView
