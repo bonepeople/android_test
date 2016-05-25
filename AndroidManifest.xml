@@ -90,6 +90,10 @@
             android:name="com.shownest.android.activity.Activity_offer_auto"
             android:theme="@style/ActivityTheme_notitle" >
         </activity>
+        <activity
+            android:name="com.shownest.android.activity.Activity_quotation"
+            android:theme="@style/ActivityTheme_notitle" >
+        </activity>
     </application>
 
 </manifest>

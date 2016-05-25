@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_my_center;
 import com.shownest.android.activity.Activity_offer_auto;
+import com.shownest.android.activity.Activity_quotation;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.OfferBill;
 import com.shownest.android.model.Package;
@@ -94,7 +95,10 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 		else
 		{
 			Package _package = _items.get(_id);
-			System.out.println(_package._tag1 + "-" + _package._int1);
+			Intent _select = new Intent(getActivity(), Activity_quotation.class);
+			_select.putExtra("part", _package._tag1);
+			_select.putExtra("index", _package._int1);
+			startActivity(_select);
 		}
 	}
 
@@ -122,7 +126,6 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 			_temp_bar = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "税费", String.valueOf(_data.get_taxTotal()) + " 元" }, true, this);
 			_items.put(_temp_bar.get_id(), new Package(_temp_bar, "tax", 1));
 
-			
 			int padding = NumberUtil.get_px(getActivity(), 5);
 			TextView _hint = new TextView(getActivity());
 			_hint.setText("以上报价仅供参考，以实际工长报价为主");
