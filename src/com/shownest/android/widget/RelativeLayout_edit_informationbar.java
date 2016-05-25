@@ -369,6 +369,14 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 		}
 	}
 
+	public void set_textcolor(int _color)
+	{
+		if (_textview_left != null)
+			_textview_left.setTextColor(_color);
+		if (_textview_right != null)
+			_textview_right.setTextColor(_color);
+	}
+
 	private void show_dialog(String _value, int number)
 	{
 		View _view = View.inflate(_context, R.layout.dialog_edit, null);

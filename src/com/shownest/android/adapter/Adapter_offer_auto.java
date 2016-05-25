@@ -67,7 +67,6 @@ public class Adapter_offer_auto extends BaseAdapter
 	public void set_acreage(String number, int position)
 	{
 		_areas.set(position, Float.valueOf(number));
-		System.out.println("get=" + number + "in" + position);
 		notifyDataSetChanged();
 	}
 

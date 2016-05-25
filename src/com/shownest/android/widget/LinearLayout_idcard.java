@@ -55,9 +55,6 @@ public class LinearLayout_idcard extends LinearLayout implements OnChangeListene
 		if (DEBUG)
 			System.out.println("LinearLayout_idcard super");
 
-		// float scale = context.getResources().getDisplayMetrics().density;
-		// int padding = (int) (5 * scale + 0.5f);
-
 		ViewGroup _view = (ViewGroup) View.inflate(context, R.layout.widget_idcard, root);
 		View _childview = _view.getChildAt(_view.getChildCount() - 1);
 
