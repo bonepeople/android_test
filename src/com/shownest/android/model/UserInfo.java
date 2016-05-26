@@ -3,6 +3,8 @@ package com.shownest.android.model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.shownest.android.utils.JsonUtil;
+
 /**
  * 用户基本信息
  * <p>
@@ -52,43 +54,43 @@ public class UserInfo
 
 	public UserInfo(JSONObject _json) throws JSONException
 	{
-		this._userId = get_string(_json, "userId", "");
-		this._userName = get_string(_json, "userName", "");
-		this._userPhone = get_string(_json, "userPhone", "");
-		this._userShowName = get_string(_json, "userShowName", "");
-		this._userType = get_int(_json, "userType", 100);
-		this._total = get_int(_json, "total", 0);
-		this._headerIcon = get_string(_json, "headerIcon", "");// 需要一个正确的初始值
-		this._gradePraise = get_double(_json, "gradePraise", 0);
-		this._createDate = get_long(_json, "createDate", System.currentTimeMillis());
-		this._checkPhone = get_bool(_json, "checkPhone", false);
-		this._checkUsername = get_bool(_json, "checkUsername", false);
-		this._checkEmail = get_bool(_json, "checkEmail", false);
-		this._blogNum = get_int(_json, "blogNum", 0);
-		this._money = get_double(_json, "money", 0);
-		this._ukey = get_string(_json, "ukey", "");
-		this._ownerName = get_string(_json, "ownerName", "");
-		this._likeStyle = get_string(_json, "likeStyle", "");
-		this._realName = get_string(_json, "realName", "");
-		this._realSex = get_int(_json, "realSex", 1);
-		this._nativePlace = get_int(_json, "nativePlace", -1);
-		this._serviceRegion = get_string(_json, "serviceRegion", "");
-		this._peopleNum = get_int(_json, "peopleNum", 1);
-		this._introduces = get_string(_json, "introduces", "");
-		this._workYear = get_int(_json, "workYear", 2016);
-		this._workProvince = get_int(_json, "workProvince", 1004);
-		this._workCity = get_int(_json, "workCity", 100401);
-		this._workCounty = get_int(_json, "workCounty", 10040101);
-		this._workAddress = get_string(_json, "workAddress", "");
-		this._serviceItem = get_string(_json, "serviceItem", "");
-		this._authenticationType = get_int(_json, "authenticationType", 1);
-		this._authenticationName = get_string(_json, "authenticationName", "");
-		this._authenticationCode = get_string(_json, "authenticationCode", "");
-		this._authenticationCardPicF = get_string(_json, "authenticationCardPicF", "");
-		this._authenticationCardPicB = get_string(_json, "authenticationCardPicB", "");
-		this._businessLicensPicpath = get_string(_json, "businessLicensPicpath", "");
-		this._fansNum = get_int(_json, "fansNum", 0);
-		this._bookNum = get_int(_json, "bookNum", 0);
+		this._userId = JsonUtil.get_string(_json, "userId", "");
+		this._userName = JsonUtil.get_string(_json, "userName", "");
+		this._userPhone = JsonUtil.get_string(_json, "userPhone", "");
+		this._userShowName = JsonUtil.get_string(_json, "userShowName", "");
+		this._userType = JsonUtil.get_int(_json, "userType", 100);
+		this._total = JsonUtil.get_int(_json, "total", 0);
+		this._headerIcon = JsonUtil.get_string(_json, "headerIcon", "");// 需要一个正确的初始值
+		this._gradePraise = JsonUtil.get_double(_json, "gradePraise", 0);
+		this._createDate = JsonUtil.get_long(_json, "createDate", System.currentTimeMillis());
+		this._checkPhone = JsonUtil.get_bool(_json, "checkPhone", false);
+		this._checkUsername = JsonUtil.get_bool(_json, "checkUsername", false);
+		this._checkEmail = JsonUtil.get_bool(_json, "checkEmail", false);
+		this._blogNum = JsonUtil.get_int(_json, "blogNum", 0);
+		this._money = JsonUtil.get_double(_json, "money", 0);
+		this._ukey = JsonUtil.get_string(_json, "ukey", "");
+		this._ownerName = JsonUtil.get_string(_json, "ownerName", "");
+		this._likeStyle = JsonUtil.get_string(_json, "likeStyle", "");
+		this._realName = JsonUtil.get_string(_json, "realName", "");
+		this._realSex = JsonUtil.get_int(_json, "realSex", 1);
+		this._nativePlace = JsonUtil.get_int(_json, "nativePlace", -1);
+		this._serviceRegion = JsonUtil.get_string(_json, "serviceRegion", "");
+		this._peopleNum = JsonUtil.get_int(_json, "peopleNum", 1);
+		this._introduces = JsonUtil.get_string(_json, "introduces", "");
+		this._workYear = JsonUtil.get_int(_json, "workYear", 2016);
+		this._workProvince = JsonUtil.get_int(_json, "workProvince", 1004);
+		this._workCity = JsonUtil.get_int(_json, "workCity", 100401);
+		this._workCounty = JsonUtil.get_int(_json, "workCounty", 10040101);
+		this._workAddress = JsonUtil.get_string(_json, "workAddress", "");
+		this._serviceItem = JsonUtil.get_string(_json, "serviceItem", "");
+		this._authenticationType = JsonUtil.get_int(_json, "authenticationType", 1);
+		this._authenticationName = JsonUtil.get_string(_json, "authenticationName", "");
+		this._authenticationCode = JsonUtil.get_string(_json, "authenticationCode", "");
+		this._authenticationCardPicF = JsonUtil.get_string(_json, "authenticationCardPicF", "");
+		this._authenticationCardPicB = JsonUtil.get_string(_json, "authenticationCardPicB", "");
+		this._businessLicensPicpath = JsonUtil.get_string(_json, "businessLicensPicpath", "");
+		this._fansNum = JsonUtil.get_int(_json, "fansNum", 0);
+		this._bookNum = JsonUtil.get_int(_json, "bookNum", 0);
 	}
 
 	public String get_userId()
@@ -472,63 +474,4 @@ public class UserInfo
 				+ (_realName != null ? "_realName=" + _realName + ", " : "") + "_realSex=" + _realSex + "]";
 	}
 
-	private String get_string(JSONObject _json, String _name, String _default) throws JSONException
-	{
-		String _result = _default;
-		if (_json.has(_name))
-		{
-			String _temp_str = _json.getString(_name);
-			if (!_temp_str.equals("null"))
-				_result = _temp_str;
-		}
-		return _result;
-	}
-
-	private int get_int(JSONObject _json, String _name, int _default) throws JSONException
-	{
-		int _result = _default;
-		if (_json.has(_name))
-		{
-			String _temp_str = _json.getString(_name);
-			if (!_temp_str.equals("null"))
-				_result = _json.getInt(_name);
-		}
-		return _result;
-	}
-
-	private double get_double(JSONObject _json, String _name, double _default) throws JSONException
-	{
-		double _result = _default;
-		if (_json.has(_name))
-		{
-			String _temp_str = _json.getString(_name);
-			if (!_temp_str.equals("null"))
-				_result = _json.getDouble(_name);
-		}
-		return _result;
-	}
-
-	private long get_long(JSONObject _json, String _name, long _default) throws JSONException
-	{
-		long _result = _default;
-		if (_json.has(_name))
-		{
-			String _temp_str = _json.getString(_name);
-			if (!_temp_str.equals("null"))
-				_result = _json.getLong(_name);
-		}
-		return _result;
-	}
-
-	private boolean get_bool(JSONObject _json, String _name, boolean _default) throws JSONException
-	{
-		boolean _result = _default;
-		if (_json.has(_name))
-		{
-			String _temp_str = _json.getString(_name);
-			if (!_temp_str.equals("null"))
-				_result = _temp_str.equals("y") ? true : false;
-		}
-		return _result;
-	}
 }

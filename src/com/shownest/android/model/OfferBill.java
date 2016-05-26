@@ -6,6 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.shownest.android.utils.JsonUtil;
+
 /**
  * 报价单的汇总
  * <p>
@@ -30,13 +32,13 @@ public class OfferBill
 
 	public OfferBill(JSONObject _json) throws JSONException
 	{
-		this._quotationId = get_int(_json, "quotationId", 0);
-		this._costTotal = get_double(_json, "costTotal", 0);
-		this._allTotal = get_double(_json, "allTotal", 0);
-		this._hydropowerTotal = get_double(_json, "hydropowerTotal", 0);
-		this._mountTotal = get_double(_json, "mountTotal", 0);
-		this._taxTotal = get_double(_json, "taxTotal", 0);
-		this._teshuTotal = get_double(_json, "teshuTotal", 0);
+		this._quotationId = JsonUtil.get_int(_json, "quotationId", 0);
+		this._costTotal = JsonUtil.get_double(_json, "costTotal", 0);
+		this._allTotal = JsonUtil.get_double(_json, "allTotal", 0);
+		this._hydropowerTotal = JsonUtil.get_double(_json, "hydropowerTotal", 0);
+		this._mountTotal = JsonUtil.get_double(_json, "mountTotal", 0);
+		this._taxTotal = JsonUtil.get_double(_json, "taxTotal", 0);
+		this._teshuTotal = JsonUtil.get_double(_json, "teshuTotal", 0);
 
 		set_rooms(_json.getJSONArray("roomsTotalList"), "room");
 		set_rooms(_json.getJSONArray("parloursTotalList"), "parlour");
@@ -68,30 +70,6 @@ public class OfferBill
 				break;
 			}
 		}
-	}
-
-	private int get_int(JSONObject _json, String _name, int _default) throws JSONException
-	{
-		int _result = _default;
-		if (_json.has(_name))
-		{
-			String _temp_str = _json.getString(_name);
-			if (!_temp_str.equals("null"))
-				_result = _json.getInt(_name);
-		}
-		return _result;
-	}
-
-	private double get_double(JSONObject _json, String _name, double _default) throws JSONException
-	{
-		double _result = _default;
-		if (_json.has(_name))
-		{
-			String _temp_str = _json.getString(_name);
-			if (!_temp_str.equals("null"))
-				_result = _json.getDouble(_name);
-		}
-		return _result;
 	}
 
 	public int get_quotationId()

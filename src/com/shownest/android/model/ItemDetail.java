@@ -3,6 +3,8 @@ package com.shownest.android.model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.shownest.android.utils.JsonUtil;
+
 /**
  * 工艺详细信息
  * 
@@ -27,17 +29,17 @@ public class ItemDetail
 
 	public ItemDetail(JSONObject _json) throws JSONException
 	{
-		this._common = get_int(_json, "common", 1);
-		this._delMarks = get_int(_json, "delMarks", 1);
-		this._itemId = get_int(_json, "itemId", 0);
-		this._itemName = get_string(_json, "itemName", "");
-		this._material = get_string(_json, "material", "");
-		this._metricUnit = get_string(_json, "metricUnit", "");
-		this._number = get_double(_json, "number", 1);
-		this._price = get_double(_json, "price", 0);
+		this._common = JsonUtil.get_int(_json, "common", 1);
+		this._delMarks = JsonUtil.get_int(_json, "delMarks", 1);
+		this._itemId = JsonUtil.get_int(_json, "itemId", 0);
+		this._itemName = JsonUtil.get_string(_json, "itemName", "");
+		this._material = JsonUtil.get_string(_json, "material", "");
+		this._metricUnit = JsonUtil.get_string(_json, "metricUnit", "");
+		this._number = JsonUtil.get_double(_json, "number", 1);
+		this._price = JsonUtil.get_double(_json, "price", 0);
 		set_total();
-		this._technics = get_string(_json, "technics", "");
-		this._unit = get_string(_json, "unit", "元");
+		this._technics = JsonUtil.get_string(_json, "technics", "");
+		this._unit = JsonUtil.get_string(_json, "unit", "元");
 	}
 
 	public int get_common()
@@ -150,41 +152,5 @@ public class ItemDetail
 	public void set_unit(String _unit)
 	{
 		this._unit = _unit;
-	}
-
-	private String get_string(JSONObject _json, String _name, String _default) throws JSONException
-	{
-		String _result = _default;
-		if (_json.has(_name))
-		{
-			String _temp_str = _json.getString(_name);
-			if (!_temp_str.equals("null"))
-				_result = _temp_str;
-		}
-		return _result;
-	}
-
-	private int get_int(JSONObject _json, String _name, int _default) throws JSONException
-	{
-		int _result = _default;
-		if (_json.has(_name))
-		{
-			String _temp_str = _json.getString(_name);
-			if (!_temp_str.equals("null"))
-				_result = _json.getInt(_name);
-		}
-		return _result;
-	}
-
-	private double get_double(JSONObject _json, String _name, double _default) throws JSONException
-	{
-		double _result = _default;
-		if (_json.has(_name))
-		{
-			String _temp_str = _json.getString(_name);
-			if (!_temp_str.equals("null"))
-				_result = _json.getDouble(_name);
-		}
-		return _result;
 	}
 }
