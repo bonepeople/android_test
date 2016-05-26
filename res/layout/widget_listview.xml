@@ -41,7 +41,8 @@
     <com.shownest.android.widget.Listview_maxheight
         android:id="@+id/listview_widget"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:visibility="gone" >
     </com.shownest.android.widget.Listview_maxheight>
 
 </LinearLayout>

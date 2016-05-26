@@ -5,15 +5,21 @@ import java.util.ArrayList;
 import com.shownest.android.R;
 import com.shownest.android.model.OnChangeListener;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
-public class Adapter_offer_auto extends BaseAdapter implements OnChangeListener
+public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListener, OnChangeListener
 {
+	private Context _context;
 	private LayoutInflater _inflater;
 	private float _total_area = 0;
 	private int _total_num = 5;
@@ -25,6 +31,10 @@ public class Adapter_offer_auto extends BaseAdapter implements OnChangeListener
 	private int _balcony = 1;
 	private ArrayList<Float> _areas = new ArrayList<Float>();
 
+	private AlertDialog _dialog;
+	private EditText _edittext_dialog;
+	private int _selected = 0;
+
 	private static class ViewHolder
 	{
 		public TextView _text_name;
@@ -34,49 +44,11 @@ public class Adapter_offer_auto extends BaseAdapter implements OnChangeListener
 
 	public Adapter_offer_auto(Context _context)
 	{
+		this._context = _context;
 		_inflater = LayoutInflater.from(_context);
-		refresh_data();
-	}
-
-	public void set_area(float _area)
-	{
-		_total_area = _area;
-		_every_area = _total_area / _total_num;
-		refresh_data();
-	}
-
-	/**
-	 * 设置户型结构
-	 * 
-	 * @param _num
-	 *            3,2,2,2,4 室，厅，厨，卫，阳台
-	 */
-	public void set_num(String _num)
-	{
-		String[] _nums = _num.split(",");
-		_room = Integer.parseInt(_nums[0]);
-		_parlour = Integer.parseInt(_nums[1]);
-		_kitchen = Integer.parseInt(_nums[2]);
-		_toilet = Integer.parseInt(_nums[3]);
-		_balcony = Integer.parseInt(_nums[4]);
-
-		_total_num = _room + _parlour + _kitchen + _balcony + _toilet;
-		_every_area = _total_area / _total_num;
-		refresh_data();
-	}
-
-	public void set_acreage(String number, int position)
-	{
-		_areas.set(position, Float.valueOf(number));
-		notifyDataSetChanged();
-	}
-
-	private void refresh_data()
-	{
-		_areas.clear();
 		for (int _temp_i = 0; _temp_i < _total_num; _temp_i++)
 			_areas.add(_every_area);
-		notifyDataSetChanged();
+
 	}
 
 	@Override
@@ -195,6 +167,7 @@ public class Adapter_offer_auto extends BaseAdapter implements OnChangeListener
 			_holder._text_left = (TextView) _view.findViewById(R.id.textview_widget_left);
 			_holder._text_right = (TextView) _view.findViewById(R.id.textview_widget_right);
 			_holder._text_right.setText(" m²");
+			_view.setOnClickListener(this);
 			_view.setTag(_holder);
 		}
 		else
@@ -206,6 +179,15 @@ public class Adapter_offer_auto extends BaseAdapter implements OnChangeListener
 		_holder._text_left.setText(String.valueOf(_areas.get(position)));
 
 		return _view;
+	}
+
+
+	private void refresh_data()
+	{
+		_areas.clear();
+		for (int _temp_i = 0; _temp_i < _total_num; _temp_i++)
+			_areas.add(_every_area);
+		notifyDataSetChanged();
 	}
 
 	public int get_number(String _name)
@@ -259,11 +241,75 @@ public class Adapter_offer_auto extends BaseAdapter implements OnChangeListener
 		return _builder.toString();
 	}
 
+	private void show_dialog(String _value)
+	{
+		View _view = View.inflate(_context, R.layout.dialog_edit, null);
+		AlertDialog.Builder _builder = new Builder(_context);
+		_dialog = _builder.create();
+		_dialog.setView(_view, 0, 0, 0, 0);
+
+		Button _button_commit = (Button) _view.findViewById(R.id.button_commit);
+		Button _button_cancel = (Button) _view.findViewById(R.id.button_cancel);
+		_edittext_dialog = (EditText) _view.findViewById(R.id.edittext_dialog);
+		_edittext_dialog.setText(_value);
+		_edittext_dialog.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
+		_edittext_dialog.selectAll();
+		_button_commit.setOnClickListener(this);
+		_button_cancel.setOnClickListener(this);
+		_dialog.show();
+
+		Window window = _dialog.getWindow();
+		android.view.WindowManager.LayoutParams params = window.getAttributes();
+		params.softInputMode = android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE;// 显示dialog的时候,就显示软键盘
+		params.flags = android.view.WindowManager.LayoutParams.FLAG_DIM_BEHIND;// 就是这个属性导致不能获取焦点,默认的是FLAG_NOT_FOCUSABLE,故名思义不能获取输入焦点,
+		window.setAttributes(params);
+	}
+
+	@Override
+	public void onClick(View v)
+	{
+		// TODO Auto-generated method stub
+		switch (v.getId())
+		{
+		case R.id.button_commit:
+			// 可以在这里检测输入的合理性
+//			String _temp_str = _edittext_dialog.getText().toString();
+//			if (_temp_str.length() < 7 && _temp_str.length() > 0)
+//			_areas.set(_selected, Float.valueOf(_temp_str))
+//			_dialog.dismiss();
+			break;
+		case R.id.button_cancel:
+//			_dialog.dismiss();
+			break;
+			default:
+//				show_dialog(v.getdata);
+				break;
+		}
+	}
+
 	@Override
 	public void onChange(String tag, String[] args)
 	{
-		// TODO Auto-generated method stub
-		
-	}
+		switch (tag)
+		{
+		case "style3":
+			_total_area = Float.parseFloat(args[0]);
+			_every_area = _total_area / _total_num;
+			refresh_data();
+			break;
 
+		case "style4":
+			String[] _nums = args[0].split(",");
+			_room = Integer.parseInt(_nums[0]);
+			_parlour = Integer.parseInt(_nums[1]);
+			_kitchen = Integer.parseInt(_nums[2]);
+			_toilet = Integer.parseInt(_nums[3]);
+			_balcony = Integer.parseInt(_nums[4]);
+
+			_total_num = _room + _parlour + _kitchen + _balcony + _toilet;
+			_every_area = _total_area / _total_num;
+			refresh_data();
+			break;
+		}
+	}
 }

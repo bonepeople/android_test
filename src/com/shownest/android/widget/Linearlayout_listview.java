@@ -16,21 +16,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class Linearlayout_listview extends LinearLayout implements View.OnClickListener, OnChangeListener
+public class Linearlayout_listview extends LinearLayout implements View.OnClickListener
 {
 	private static boolean DEBUG = false;
 	private ViewGroup _rootview;
 	private LinearLayout _title;
 	private TextView _text_name, _text_hint, _text_change;
 	private ListView _list;
-	public Adapter_offer_auto _adapter;
+	private ListAdapter _adapter;
 	private ImageView _image_flag;
-	private AlertDialog _dialog;
-	private EditText _edittext_dialog;
-	private int _selected = 0;
 	private boolean _collapse = true;
 
 	public Linearlayout_listview(Context context)
@@ -43,12 +41,13 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 		super(context, attrs);
 	}
 
-	public Linearlayout_listview(Context context, ViewGroup root, String[] args)
+	public Linearlayout_listview(Context context, ViewGroup root, String[] args, ListAdapter _adapter)
 	{
 		super(context);
 		if (DEBUG)
 			System.out.println("Linearlayout_listview super");
 		this._rootview = root;
+		this._adapter = _adapter;
 		setContentView(args);
 	}
 
@@ -67,19 +66,7 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 
 		_text_name.setText(args[0]);
 		_text_hint.setText(args[1]);
-		_adapter = new Adapter_offer_auto(getContext());
 		_list.setAdapter(_adapter);
-		_list.setOnItemClickListener(new AdapterView.OnItemClickListener()
-		{
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-			{
-				_selected = position;
-				TextView _number = (TextView) view.findViewById(R.id.textview_widget_left);
-				show_dialog(_number.getText().toString());
-			}
-		});
 
 		_title.setOnClickListener(this);
 	}
@@ -104,57 +91,9 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 			}
 			_collapse = !_collapse;
 			break;
-			
-		case R.id.button_commit:
-			// 可以在这里检测输入的合理性
-			String _temp_str = _edittext_dialog.getText().toString();
-			if (_temp_str.length() < 7 && _temp_str.length() > 0)
-				_adapter.set_acreage(_temp_str, _selected);
-			_dialog.dismiss();
-			break;
-		case R.id.button_cancel:
-			_dialog.dismiss();
-			break;
+
 		}
 
 	}
 
-	private void show_dialog(String _value)
-	{
-		View _view = View.inflate(getContext(), R.layout.dialog_edit, null);
-		AlertDialog.Builder _builder = new Builder(getContext());
-		_dialog = _builder.create();
-		_dialog.setView(_view, 0, 0, 0, 0);
-
-		Button _button_commit = (Button) _view.findViewById(R.id.button_commit);
-		Button _button_cancel = (Button) _view.findViewById(R.id.button_cancel);
-		_edittext_dialog = (EditText) _view.findViewById(R.id.edittext_dialog);
-		_edittext_dialog.setText(_value);
-		_edittext_dialog.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
-		_edittext_dialog.selectAll();
-		_button_commit.setOnClickListener(this);
-		_button_cancel.setOnClickListener(this);
-		_dialog.show();
-
-		Window window = _dialog.getWindow();
-		android.view.WindowManager.LayoutParams params = window.getAttributes();
-		params.softInputMode = android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE;// 显示dialog的时候,就显示软键盘
-		params.flags = android.view.WindowManager.LayoutParams.FLAG_DIM_BEHIND;// 就是这个属性导致不能获取焦点,默认的是FLAG_NOT_FOCUSABLE,故名思义不能获取输入焦点,
-		window.setAttributes(params);
-	}
-
-	@Override
-	public void onChange(String tag, String[] args)
-	{
-		switch (tag)
-		{
-		case "style3":
-			_adapter.set_area(Float.parseFloat(args[0]));
-			break;
-
-		case "style4":
-			_adapter.set_num(args[0]);
-			break;
-		}
-	}
 }

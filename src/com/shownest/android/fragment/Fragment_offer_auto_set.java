@@ -3,6 +3,7 @@ package com.shownest.android.fragment;
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_location;
 import com.shownest.android.activity.Activity_offer_auto;
+import com.shownest.android.adapter.Adapter_offer_auto;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.widget.LinearLayout_checkbox;
@@ -30,7 +31,7 @@ public class Fragment_offer_auto_set extends DEBUG_Fragment implements OnClickLi
 	private Button _button_commit;
 	private LinearLayout_checkbox _state, _type, _mode;
 	private RelativeLayout_edit_informationbar _name, _region, _area, _house;
-	private Linearlayout_listview _list;
+	private Adapter_offer_auto _adapter;
 	private AlertDialog _dialog;
 	private NumberPicker _room, _parlour, _kitchen, _toilet, _balcony;
 	private int cityId = 0, provinceId = 0, countyId = 0;
@@ -56,10 +57,11 @@ public class Fragment_offer_auto_set extends DEBUG_Fragment implements OnClickLi
 		_body.addView(_mode);
 		_area = new RelativeLayout_edit_informationbar(getActivity(), _body, 3, new String[] { "建筑面积", "0", " m²" }, true);
 		_house = new RelativeLayout_edit_informationbar(getActivity(), _body, 4, new String[] { "户型结构", "1,1,1,1,1" }, true, this);
-		_list = new Linearlayout_listview(getActivity(), _body, new String[] { "具体面积", "信息填写详细，会使您获得更精准的报价" });
+		_adapter = new Adapter_offer_auto(getActivity());
+		new Linearlayout_listview(getActivity(), _body, new String[] { "具体面积", "信息填写详细，会使您获得更精准的报价" }, _adapter);
 
-		_area.setOnChangetListener(_list);
-		_house.setOnChangetListener(_list);
+		_area.setOnChangetListener(_adapter);
+		_house.setOnChangetListener(_adapter);
 
 		return _view;
 	}
@@ -117,16 +119,16 @@ public class Fragment_offer_auto_set extends DEBUG_Fragment implements OnClickLi
 				_value.put("houseType", _type.getData());
 				_value.put("consType", Integer.parseInt(_mode.getData()) - 1);
 				_value.put("houseSq", _area.getData());
-				_value.put("roomNum", _list._adapter.get_number("room"));
-				_value.put("parlourNum", _list._adapter.get_number("parlour"));
-				_value.put("kitchenNum", _list._adapter.get_number("kitchen"));
-				_value.put("toiletNum", _list._adapter.get_number("toilet"));
-				_value.put("balconyNum", _list._adapter.get_number("balcony"));
-				_value.put("roomAcreage", _list._adapter.get_acreage("room"));
-				_value.put("parlourAcreage", _list._adapter.get_acreage("parlour"));
-				_value.put("kitchenAcreage", _list._adapter.get_acreage("kitchen"));
-				_value.put("toiletAcreage", _list._adapter.get_acreage("toilet"));
-				_value.put("balconyAcreage", _list._adapter.get_acreage("balcony"));
+				_value.put("roomNum", _adapter.get_number("room"));
+				_value.put("parlourNum", _adapter.get_number("parlour"));
+				_value.put("kitchenNum", _adapter.get_number("kitchen"));
+				_value.put("toiletNum", _adapter.get_number("toilet"));
+				_value.put("balconyNum", _adapter.get_number("balcony"));
+				_value.put("roomAcreage", _adapter.get_acreage("room"));
+				_value.put("parlourAcreage", _adapter.get_acreage("parlour"));
+				_value.put("kitchenAcreage", _adapter.get_acreage("kitchen"));
+				_value.put("toiletAcreage", _adapter.get_acreage("toilet"));
+				_value.put("balconyAcreage", _adapter.get_acreage("balcony"));
 
 				Activity_offer_auto.get_instance().show_wait();
 				HttpUtil.get_ownerquote(Activity_offer_auto._handler, _value, Activity_offer_auto.NEXT_SUCCESSFUL, Activity_offer_auto.NEXT_FAILED);
