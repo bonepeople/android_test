@@ -15,6 +15,7 @@ import com.shownest.android.utils.JsonUtil;
  */
 public class ItemDetail
 {
+	private String _tag;
 	private int _common;// 工艺标志，1常用 2非常用
 	private int _delMarks;// 删除修改标记,1修改 0删除
 	private int _itemId;// 工艺ID
@@ -29,8 +30,9 @@ public class ItemDetail
 	private String _technics;// 工艺说明
 	private String _unit;// 货币单位：元
 
-	public ItemDetail(JSONObject _json) throws JSONException
+	public ItemDetail(JSONObject _json, String _tag) throws JSONException
 	{
+		this._tag = _tag;
 		this._common = JsonUtil.get_int(_json, "common", 1);
 		this._delMarks = JsonUtil.get_int(_json, "delMarks", 1);
 		this._itemId = JsonUtil.get_int(_json, "itemId", 0);
@@ -44,6 +46,16 @@ public class ItemDetail
 		set_total();
 		this._technics = JsonUtil.get_string(_json, "technics", "");
 		this._unit = JsonUtil.get_string(_json, "unit", "元");
+	}
+
+	public String get_tag()
+	{
+		return _tag;
+	}
+
+	public void set_tag(String _tag)
+	{
+		this._tag = _tag;
 	}
 
 	public int get_common()

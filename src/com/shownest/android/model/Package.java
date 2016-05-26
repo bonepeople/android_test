@@ -51,4 +51,12 @@ public class Package
 		this._tag1 = _str;
 		this._int1 = _int;
 	}
+
+	public Package(Object _data, String _str1, String _str2, int _int)
+	{
+		this._data = _data;
+		this._tag1 = _str1;
+		this._tag2 = _str2;
+		this._int1 = _int;
+	}
 }

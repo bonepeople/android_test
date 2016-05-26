@@ -31,91 +31,56 @@ public class HttpUtil
 
 	// http://192.168.1.112:10000/shownest/html/test1.html
 	// http://192.168.1.112:10000/shownest/websubmitreg
-	
-	
-	
-//	webOwnerViewOneQuotationItemHydropower quotationId:1
-//	webOwnerViewOneQuotationItemMount  quotationId:1
-//	webOwnerViewOneQuotationItemCost  quotationId:1
-//	webOwnerViewOneQuotationItemTax  quotationId:1
-	
-	
-	
-	
-	
-	
-	public static void get_quotation_balcony(Handler _handler, ContentValues _value, int _successful, int _failed)
-	{
-		String _address = BASEADDRESS + "webOwnerViewOneQuotationItemBalcony";
-		String _message = "";
 
-//		quotationId:1  阳台
-//		balcony:1
-		
+	public static void get_quotation_item(Handler _handler, String _item, ContentValues _value, int _successful, int _failed)
+	{
+		String _address = "", _message;
+		switch (_item)
+		{
+		case "room":
+			_address = BASEADDRESS + "webOwnerViewOneQuotationItemRoom";
+			break;
+		case "parlour":
+			_address = BASEADDRESS + "webOwnerViewOneQuotationItemParlour";
+			break;
+		case "kitchen":
+			_address = BASEADDRESS + "webOwnerViewOneQuotationItemKitchen";
+			break;
+		case "toilet":
+			_address = BASEADDRESS + "webOwnerViewOneQuotationItemToilet";
+			break;
+		case "balcony":
+			_address = BASEADDRESS + "webOwnerViewOneQuotationItemBalcony";
+			break;
+		case "hydropower":
+			_address = BASEADDRESS + "webOwnerViewOneQuotationItemHydropower";
+			break;
+		case "mount":
+			_address = BASEADDRESS + "webOwnerViewOneQuotationItemMount";
+			break;
+		case "cost":
+			_address = BASEADDRESS + "webOwnerViewOneQuotationItemCost";
+			break;
+		case "tax":
+			_address = BASEADDRESS + "webOwnerViewOneQuotationItemTax";
+			break;
+
+		}
 		_message = values(_value);
-		
+
 		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}
-	
-	public static void get_quotation_toilet(Handler _handler, ContentValues _value, int _successful, int _failed)
-	{
-		String _address = BASEADDRESS + "webOwnerViewOneQuotationItemToilet";
-		String _message = "";
 
-//		quotationId:1 
-//		toilet:1
-		
-		_message = values(_value);
-		
-		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
-	}
-	
-	public static void get_quotation_kitchen(Handler _handler, ContentValues _value, int _successful, int _failed)
-	{
-		String _address = BASEADDRESS + "webOwnerViewOneQuotationItemKitchen";
-		String _message = "";
-
-//		quotationId:1 厨
-//		kitchen:1
-		
-		_message = values(_value);
-		
-		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
-	}
-	
-	public static void get_quotation_parlour(Handler _handler, ContentValues _value, int _successful, int _failed)
-	{
-		String _address = BASEADDRESS + "webOwnerViewOneQuotationItemParlour";
-		String _message = "";
-		
-//		quotationId:1  厅
-//		parlour:1
-
-		_message = values(_value);
-		
-		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
-	}
-	
-	public static void get_quotation_room(Handler _handler, ContentValues _value, int _successful, int _failed)
-	{
-		String _address = BASEADDRESS + "webOwnerViewOneQuotationItemRoom";
-		String _message = "";
-
-		_message = values(_value);
-		
-		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
-	}
-	
 	public static void get_ownerquote(Handler _handler, ContentValues _value, int _successful, int _failed)
 	{
 		String _address = BASEADDRESS + "webOwnerQuoteMapping";
 		String _message = "";
 
 		_message = values(_value);
-		
+
 		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}
-	
+
 	public static void set_PersonalProve(Handler _handler, ContentValues _value, int _successful, int _failed)
 	{
 		String _address = BASEADDRESS + "webPersonalProve";
@@ -465,7 +430,6 @@ public class HttpUtil
 
 		for (Entry<String, Object> item : _value.valueSet())
 		{
-			// ht.put(item.getKey(), item.getValue().toString());
 			_builder.append(item.getKey());
 			_builder.append('=');
 			_builder.append(item.getValue());
@@ -477,7 +441,7 @@ public class HttpUtil
 		return _builder.toString();
 	}
 
-	private static String encode(String _str)
+	public static String encode(String _str)
 	{
 		String _result = "";
 		try

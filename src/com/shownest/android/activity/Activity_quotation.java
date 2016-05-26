@@ -65,16 +65,17 @@ public class Activity_quotation extends DEBUG_Activity
 		setTitle("room1");
 
 		String _type = _intent.getStringExtra("part");
+		String _title = _intent.getStringExtra("name");
 		String _id = _intent.getStringExtra("id");
 		int _number = _intent.getIntExtra("index", 1);
-
 		System.out.println("select from :" + _type + "-" + _number);
 
+		setTitle(_title);
 		show_wait();
 		ContentValues _value = new ContentValues();
 		_value.put("quotationId", _id);
-		_value.put("room", _number);
-		HttpUtil.get_quotation_room(_handler, _value, GET_SUCCESSFUL, GET_FAILED);
+		_value.put(_type, _number);
+		HttpUtil.get_quotation_item(_handler, _type, _value, GET_SUCCESSFUL, GET_FAILED);
 	}
 
 	private static void handle_string(String str)

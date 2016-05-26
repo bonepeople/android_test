@@ -82,7 +82,7 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 		int _id = v.getId();
 		if (_id == R.id.button_commit)
 		{
-			ContentValues _value = new ContentValues();
+//			ContentValues _value = new ContentValues();
 
 			Activity_offer_auto.get_instance().show_wait();
 			// HttpUtil.get_ownerquote(Activity_offer_auto._handler, _value, Activity_offer_auto.NEXT_SUCCESSFUL, Activity_offer_auto.NEXT_FAILED);
@@ -100,6 +100,7 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 
 			_select.putExtra("id", _quotationId);
 			_select.putExtra("part", _package._tag1);
+			_select.putExtra("name", _package._tag2);
 			_select.putExtra("index", _package._int1);
 			startActivity(_select);
 		}
@@ -115,20 +116,20 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 			RelativeLayout_edit_informationbar _temp_bar;
 			_temp_bar = new RelativeLayout_edit_informationbar(getActivity(), _body, 3, new String[] { "总报价", String.valueOf(_data.get_allTotal()), " 元" }, false);
 			_temp_bar.set_textcolor(getResources().getColor(R.color.main_color));
-			_items.put(_temp_bar.get_id(), new Package(_temp_bar, "all", 1));
+			_items.put(_temp_bar.get_id(), new Package(_temp_bar, "all", "总报价", 1));
 			set_part(_data.get_room(), "卧室", "room");
 			set_part(_data.get_parlour(), "客厅", "parlour");
 			set_part(_data.get_kitchen(), "厨房", "kitchen");
 			set_part(_data.get_toilet(), "卫生间", "toilet");
 			set_part(_data.get_balcony(), "阳台", "balcony");
 			_temp_bar = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "水电", String.valueOf(_data.get_hydropowerTotal()) + " 元" }, true, this);
-			_items.put(_temp_bar.get_id(), new Package(_temp_bar, "hydropower", 1));
+			_items.put(_temp_bar.get_id(), new Package(_temp_bar, "hydropower", "水电", 1));
 			_temp_bar = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "安装", String.valueOf(_data.get_mountTotal()) + " 元" }, true, this);
-			_items.put(_temp_bar.get_id(), new Package(_temp_bar, "mount", 1));
+			_items.put(_temp_bar.get_id(), new Package(_temp_bar, "mount", "安装", 1));
 			_temp_bar = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "杂费", String.valueOf(_data.get_costTotal()) + " 元" }, true, this);
-			_items.put(_temp_bar.get_id(), new Package(_temp_bar, "cost", 1));
+			_items.put(_temp_bar.get_id(), new Package(_temp_bar, "cost", "杂费", 1));
 			_temp_bar = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "税费", String.valueOf(_data.get_taxTotal()) + " 元" }, true, this);
-			_items.put(_temp_bar.get_id(), new Package(_temp_bar, "tax", 1));
+			_items.put(_temp_bar.get_id(), new Package(_temp_bar, "tax", "税费", 1));
 
 			int padding = NumberUtil.get_px(getActivity(), 5);
 			TextView _hint = new TextView(getActivity());
@@ -149,7 +150,7 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 				_name = _name + (_temp_i + 1);
 			String _value = String.valueOf(_parts.get(_temp_i)) + " 元";
 			RelativeLayout_edit_informationbar _room = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { _name, _value }, true, this);
-			_items.put(_room.get_id(), new Package(_room, _tag, _temp_i + 1));
+			_items.put(_room.get_id(), new Package(_room, _tag, _name, _temp_i + 1));
 		}
 	}
 }

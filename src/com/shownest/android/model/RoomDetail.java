@@ -46,49 +46,49 @@ public class RoomDetail
 		for (int _temp_i = 0; _temp_i < _array.length() && _array != null; _temp_i++)
 		{
 			JSONObject _obj = _array.getJSONObject(_temp_i);
-			ItemDetail _temp_item = new ItemDetail(_obj);
+			ItemDetail _temp_item = new ItemDetail(_obj, "wall");
 			_wall.put(_temp_i + 1, new Package(_temp_item, _temp_i + 1));
 		}
 		_array = JsonUtil.get_array(_json, "roof");
 		for (int _temp_i = 0; _temp_i < _array.length() && _array != null; _temp_i++)
 		{
 			JSONObject _obj = _array.getJSONObject(_temp_i);
-			ItemDetail _temp_item = new ItemDetail(_obj);
+			ItemDetail _temp_item = new ItemDetail(_obj, "roof");
 			_roof.put(_temp_i + 1, new Package(_temp_item, _temp_i + 1));
 		}
 		_array = JsonUtil.get_array(_json, "ground");
 		for (int _temp_i = 0; _temp_i < _array.length() && _array != null; _temp_i++)
 		{
 			JSONObject _obj = _array.getJSONObject(_temp_i);
-			ItemDetail _temp_item = new ItemDetail(_obj);
+			ItemDetail _temp_item = new ItemDetail(_obj, "ground");
 			_ground.put(_temp_i + 1, new Package(_temp_item, _temp_i + 1));
 		}
 		_array = JsonUtil.get_array(_json, "hydropower");
 		for (int _temp_i = 0; _temp_i < _array.length() && _array != null; _temp_i++)
 		{
 			JSONObject _obj = _array.getJSONObject(_temp_i);
-			ItemDetail _temp_item = new ItemDetail(_obj);
+			ItemDetail _temp_item = new ItemDetail(_obj, "hydropower");
 			_hydropower.put(_temp_i + 1, new Package(_temp_item, _temp_i + 1));
 		}
 		_array = JsonUtil.get_array(_json, "mount");
 		for (int _temp_i = 0; _temp_i < _array.length() && _array != null; _temp_i++)
 		{
 			JSONObject _obj = _array.getJSONObject(_temp_i);
-			ItemDetail _temp_item = new ItemDetail(_obj);
+			ItemDetail _temp_item = new ItemDetail(_obj, "mount");
 			_mount.put(_temp_i + 1, new Package(_temp_item, _temp_i + 1));
 		}
 		_array = JsonUtil.get_array(_json, "cost");
 		for (int _temp_i = 0; _temp_i < _array.length() && _array != null; _temp_i++)
 		{
 			JSONObject _obj = _array.getJSONObject(_temp_i);
-			ItemDetail _temp_item = new ItemDetail(_obj);
+			ItemDetail _temp_item = new ItemDetail(_obj, "cost");
 			_cost.put(_temp_i + 1, new Package(_temp_item, _temp_i + 1));
 		}
 		_array = JsonUtil.get_array(_json, "tax");
 		for (int _temp_i = 0; _temp_i < _array.length() && _array != null; _temp_i++)
 		{
 			JSONObject _obj = _array.getJSONObject(_temp_i);
-			ItemDetail _temp_item = new ItemDetail(_obj);
+			ItemDetail _temp_item = new ItemDetail(_obj, "tax");
 			_tax.put(_temp_i + 1, new Package(_temp_item, _temp_i + 1));
 		}
 	}
