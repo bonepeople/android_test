@@ -3,6 +3,13 @@ package com.shownest.android.model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * 用户基本信息
+ * <p>
+ * 在用户初次登陆之后返回的基本信息
+ * 
+ * @author bonepeople
+ */
 public class UserInfo
 {
 	private String _userId;// 用户ID
@@ -274,7 +281,6 @@ public class UserInfo
 		this._realSex = _realSex;
 	}
 
-
 	public int get_nativePlace()
 	{
 		return _nativePlace;
@@ -454,7 +460,6 @@ public class UserInfo
 	{
 		this._bookNum = _bookNum;
 	}
-	
 
 	@Override
 	public String toString()

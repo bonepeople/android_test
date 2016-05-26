@@ -8,9 +8,10 @@ import org.json.JSONObject;
 
 /**
  * 报价单的汇总
+ * <p>
+ * 将报价单各大块的信息展示给用户
  * 
  * @author bonepeople
- *
  */
 public class OfferBill
 {

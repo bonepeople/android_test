@@ -1,5 +1,12 @@
 package com.shownest.android.model;
 
+/**
+ * 个人的包装类
+ * <p>
+ * 用于将各种简单信息与业务Bean包装在一起
+ * 
+ * @author bonepeople
+ */
 public class Package
 {
 	public String _tag1 = "";
