@@ -17,7 +17,7 @@ import com.shownest.android.utils.JsonUtil;
  */
 public class OfferBill
 {
-	private int _quotationId;// 报价单ID
+	private String _quotationId;// 报价单ID
 	private double _allTotal;// 总报价
 	private double _costTotal;// 杂费
 	private double _taxTotal;// 税费
@@ -32,7 +32,7 @@ public class OfferBill
 
 	public OfferBill(JSONObject _json) throws JSONException
 	{
-		this._quotationId = JsonUtil.get_int(_json, "quotationId", 0);
+		this._quotationId = JsonUtil.get_string(_json, "quotationId", "");
 		this._costTotal = JsonUtil.get_double(_json, "costTotal", 0);
 		this._allTotal = JsonUtil.get_double(_json, "allTotal", 0);
 		this._hydropowerTotal = JsonUtil.get_double(_json, "hydropowerTotal", 0);
@@ -72,12 +72,12 @@ public class OfferBill
 		}
 	}
 
-	public int get_quotationId()
+	public String get_quotationId()
 	{
 		return _quotationId;
 	}
 
-	public void set_quotationId(int _quotationId)
+	public void set_quotationId(String _quotationId)
 	{
 		this._quotationId = _quotationId;
 	}

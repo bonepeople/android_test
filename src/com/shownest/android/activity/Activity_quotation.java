@@ -65,7 +65,7 @@ public class Activity_quotation extends DEBUG_Activity
 		setTitle("room1");
 
 		String _type = _intent.getStringExtra("part");
-		int _id = _intent.getIntExtra("id", 1);
+		String _id = _intent.getStringExtra("id");
 		int _number = _intent.getIntExtra("index", 1);
 
 		System.out.println("select from :" + _type + "-" + _number);

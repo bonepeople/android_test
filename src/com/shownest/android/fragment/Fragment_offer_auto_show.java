@@ -31,6 +31,7 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 	private static final int LOCATION = 1;
 	private LinearLayout _body, _buttons;
 	private Button _button_commit, _button_other;
+	private String _quotationId = "";
 	private SparseArray<Package> _items = new SparseArray<Package>();
 
 	@Override
@@ -96,7 +97,8 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 		{
 			Package _package = _items.get(_id);
 			Intent _select = new Intent(getActivity(), Activity_quotation.class);
-			
+
+			_select.putExtra("id", _quotationId);
 			_select.putExtra("part", _package._tag1);
 			_select.putExtra("index", _package._int1);
 			startActivity(_select);
@@ -109,6 +111,7 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 		OfferBill _data = Activity_offer_auto.get_data();
 		if (_data != null)
 		{
+			_quotationId = _data.get_quotationId();
 			RelativeLayout_edit_informationbar _temp_bar;
 			_temp_bar = new RelativeLayout_edit_informationbar(getActivity(), _body, 3, new String[] { "总报价", String.valueOf(_data.get_allTotal()), " 元" }, false);
 			_temp_bar.set_textcolor(getResources().getColor(R.color.main_color));

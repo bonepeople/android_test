@@ -19,11 +19,17 @@ public class RoomDetail
 	private double _wallTotals;// 墙面总价
 	private double _roofTotals;// 顶面总价
 	private double _groundTotals;// 地面总价
-	private double _hydropowerTotals;//水电总价
+	private double _hydropowerTotals;// 水电总价
+	private double _mountTotals;// 安装总价
+	private double _costTotals;// 杂费总价
+	private double _taxTotals;// 税费总价
 	private SparseArray<Package> _wall = new SparseArray<Package>();// 墙面工艺细节
 	private SparseArray<Package> _roof = new SparseArray<Package>();// 顶面工艺细节
 	private SparseArray<Package> _ground = new SparseArray<Package>();// 地面工艺细节
-	private SparseArray<Package> _hydropower = new SparseArray<Package>();// 地面工艺细节
+	private SparseArray<Package> _hydropower = new SparseArray<Package>();// 水电工艺细节
+	private SparseArray<Package> _mount = new SparseArray<Package>();// 安装工艺细节
+	private SparseArray<Package> _cost = new SparseArray<Package>();// 杂费工艺细节
+	private SparseArray<Package> _tax = new SparseArray<Package>();// 税费工艺细节
 
 	public RoomDetail(JSONObject _json) throws JSONException
 	{
@@ -31,6 +37,9 @@ public class RoomDetail
 		this._roofTotals = JsonUtil.get_double(_json, "roofTotals", 0);
 		this._groundTotals = JsonUtil.get_double(_json, "groundTotals", 0);
 		this._hydropowerTotals = JsonUtil.get_double(_json, "hydropowerTotals", 0);
+		this._mountTotals = JsonUtil.get_double(_json, "mountTotals", 0);
+		this._costTotals = JsonUtil.get_double(_json, "costTotals", 0);
+		this._taxTotals = JsonUtil.get_double(_json, "taxTotals", 0);
 
 		JSONArray _array;
 		_array = JsonUtil.get_array(_json, "wall");
@@ -60,6 +69,27 @@ public class RoomDetail
 			JSONObject _obj = _array.getJSONObject(_temp_i);
 			ItemDetail _temp_item = new ItemDetail(_obj);
 			_hydropower.put(_temp_i + 1, new Package(_temp_item, _temp_i + 1));
+		}
+		_array = JsonUtil.get_array(_json, "mount");
+		for (int _temp_i = 0; _temp_i < _array.length() && _array != null; _temp_i++)
+		{
+			JSONObject _obj = _array.getJSONObject(_temp_i);
+			ItemDetail _temp_item = new ItemDetail(_obj);
+			_mount.put(_temp_i + 1, new Package(_temp_item, _temp_i + 1));
+		}
+		_array = JsonUtil.get_array(_json, "cost");
+		for (int _temp_i = 0; _temp_i < _array.length() && _array != null; _temp_i++)
+		{
+			JSONObject _obj = _array.getJSONObject(_temp_i);
+			ItemDetail _temp_item = new ItemDetail(_obj);
+			_cost.put(_temp_i + 1, new Package(_temp_item, _temp_i + 1));
+		}
+		_array = JsonUtil.get_array(_json, "tax");
+		for (int _temp_i = 0; _temp_i < _array.length() && _array != null; _temp_i++)
+		{
+			JSONObject _obj = _array.getJSONObject(_temp_i);
+			ItemDetail _temp_item = new ItemDetail(_obj);
+			_tax.put(_temp_i + 1, new Package(_temp_item, _temp_i + 1));
 		}
 	}
 
@@ -93,6 +123,46 @@ public class RoomDetail
 		this._groundTotals = _groundTotals;
 	}
 
+	public double get_hydropowerTotals()
+	{
+		return _hydropowerTotals;
+	}
+
+	public void set_hydropowerTotals(double _hydropowerTotals)
+	{
+		this._hydropowerTotals = _hydropowerTotals;
+	}
+
+	public double get_mountTotals()
+	{
+		return _mountTotals;
+	}
+
+	public void set_mountTotals(double _mountTotals)
+	{
+		this._mountTotals = _mountTotals;
+	}
+
+	public double get_costTotals()
+	{
+		return _costTotals;
+	}
+
+	public void set_costTotals(double _costTotals)
+	{
+		this._costTotals = _costTotals;
+	}
+
+	public double get_taxTotals()
+	{
+		return _taxTotals;
+	}
+
+	public void set_taxTotals(double _taxTotals)
+	{
+		this._taxTotals = _taxTotals;
+	}
+
 	public SparseArray<Package> get_wall()
 	{
 		return _wall;
@@ -106,6 +176,26 @@ public class RoomDetail
 	public SparseArray<Package> get_ground()
 	{
 		return _ground;
+	}
+
+	public SparseArray<Package> get_hydropower()
+	{
+		return _hydropower;
+	}
+
+	public SparseArray<Package> get_mount()
+	{
+		return _mount;
+	}
+
+	public SparseArray<Package> get_cost()
+	{
+		return _cost;
+	}
+
+	public SparseArray<Package> get_tax()
+	{
+		return _tax;
 	}
 
 }
