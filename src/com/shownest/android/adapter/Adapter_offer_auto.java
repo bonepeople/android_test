@@ -25,7 +25,6 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 	private float _total_area = 0;
 	private float _every_area = 0;
 	private ArrayList<Package> _areas = new ArrayList<Package>();
-
 	private AlertDialog _dialog;
 	private EditText _edittext_dialog;
 	private int _selected = 0;
@@ -199,7 +198,7 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 		return _builder.toString();
 	}
 
-	private void show_dialog(String _value)
+	private void show_dialog()
 	{
 		View _view = View.inflate(_context, R.layout.dialog_edit, null);
 		AlertDialog.Builder _builder = new Builder(_context);
@@ -209,7 +208,7 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 		Button _button_commit = (Button) _view.findViewById(R.id.button_commit);
 		Button _button_cancel = (Button) _view.findViewById(R.id.button_cancel);
 		_edittext_dialog = (EditText) _view.findViewById(R.id.edittext_dialog);
-		_edittext_dialog.setText(_value);
+		_edittext_dialog.setText(_areas.get(_selected)._data.toString());
 		_edittext_dialog.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
 		_edittext_dialog.selectAll();
 		_button_commit.setOnClickListener(this);
@@ -231,16 +230,20 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 		{
 		case R.id.button_commit:
 			// 可以在这里检测输入的合理性
-			// String _temp_str = _edittext_dialog.getText().toString();
-			// if (_temp_str.length() < 7 && _temp_str.length() > 0)
-			// _areas.set(_selected, Float.valueOf(_temp_str))
-			// _dialog.dismiss();
+			String _temp_str = _edittext_dialog.getText().toString();
+			if (_temp_str.length() < 7 && _temp_str.length() > 0)
+			{
+				_areas.get(_selected)._data = Float.valueOf(_temp_str);
+				notifyDataSetChanged();
+			}
+			_dialog.dismiss();
 			break;
 		case R.id.button_cancel:
-			// _dialog.dismiss();
+			_dialog.dismiss();
 			break;
 		default:
-			// show_dialog(v.getdata);
+			_selected = v.getId();
+			show_dialog();
 			break;
 		}
 	}
