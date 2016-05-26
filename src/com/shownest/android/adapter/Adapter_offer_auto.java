@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.shownest.android.R;
 import com.shownest.android.model.OnChangeListener;
+import com.shownest.android.model.Package;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -22,14 +23,8 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 	private Context _context;
 	private LayoutInflater _inflater;
 	private float _total_area = 0;
-	private int _total_num = 5;
 	private float _every_area = 0;
-	private int _room = 1;
-	private int _parlour = 1;
-	private int _kitchen = 1;
-	private int _toilet = 1;
-	private int _balcony = 1;
-	private ArrayList<Float> _areas = new ArrayList<Float>();
+	private ArrayList<Package> _areas = new ArrayList<Package>();
 
 	private AlertDialog _dialog;
 	private EditText _edittext_dialog;
@@ -46,9 +41,85 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 	{
 		this._context = _context;
 		_inflater = LayoutInflater.from(_context);
-		for (int _temp_i = 0; _temp_i < _total_num; _temp_i++)
-			_areas.add(_every_area);
+		construct(1, 1, 1, 1, 1);
+	}
 
+	private void construct()
+	{
+		System.out.println("constructor in adapter");
+		int _temp_i;
+		for (_temp_i = 0; _temp_i < _areas.size(); _temp_i++)
+		{
+			_areas.get(_temp_i)._data = _every_area;
+		}
+	}
+
+	private void construct(int _room, int _parlour, int _kitchen, int _toilet, int _balcony)
+	{
+		System.out.println("constructor in adapter");
+		_areas.clear();
+		int _temp_i;
+		// room
+		for (_temp_i = 0; _temp_i < _room; _temp_i++)
+		{
+			if (_room == 1)
+			{
+				_areas.add(new Package(_every_area, "room", "卧室"));
+			}
+			else
+			{
+				_areas.add(new Package(_every_area, "room", "卧室" + (_temp_i + 1)));
+			}
+		}
+		// parlour
+		for (_temp_i = 0; _temp_i < _parlour; _temp_i++)
+		{
+			if (_parlour == 1)
+			{
+				_areas.add(new Package(_every_area, "parlour", "客厅"));
+			}
+			else
+			{
+				_areas.add(new Package(_every_area, "parlour", "客厅" + (_temp_i + 1)));
+			}
+		}
+		// kitchen
+		for (_temp_i = 0; _temp_i < _kitchen; _temp_i++)
+		{
+			if (_kitchen == 1)
+			{
+				_areas.add(new Package(_every_area, "kitchen", "厨房"));
+			}
+			else
+			{
+				_areas.add(new Package(_every_area, "kitchen", "厨房" + (_temp_i + 1)));
+			}
+		}
+		// toilet
+		for (_temp_i = 0; _temp_i < _toilet; _temp_i++)
+		{
+			if (_toilet == 1)
+			{
+				_areas.add(new Package(_every_area, "toilet", "卫生间"));
+			}
+			else
+			{
+				_areas.add(new Package(_every_area, "toilet", "卫生间" + (_temp_i + 1)));
+			}
+		}
+
+		// balcony
+		for (_temp_i = 0; _temp_i < _balcony; _temp_i++)
+		{
+			if (_balcony == 1)
+			{
+				_areas.add(new Package(_every_area, "balcony", "阳台"));
+			}
+			else
+			{
+				_areas.add(new Package(_every_area, "balcony", "阳台" + (_temp_i + 1)));
+			}
+		}
 	}
 
 	@Override
@@ -58,93 +129,9 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 	}
 
 	@Override
-	public String getItem(int position)
+	public Object getItem(int position)
 	{
-		String _result = "";
-		int _temp_i = 0, _temp_j = 1;
-
-		// room
-		while (_temp_j <= _room)
-			if (_temp_i == position)
-			{
-				if (_temp_j == _room && _room == 1)
-					_result = "卧室";
-				else
-					_result = "卧室" + _temp_j;
-				return _result;
-			}
-			else
-			{
-				_temp_i++;
-				_temp_j++;
-			}
-		// parlour
-		_temp_j = 1;
-		while (_temp_j <= _parlour)
-			if (_temp_i == position)
-			{
-				if (_temp_j == _parlour && _parlour == 1)
-					_result = "客厅";
-				else
-					_result = "客厅" + _temp_j;
-				return _result;
-			}
-			else
-			{
-				_temp_i++;
-				_temp_j++;
-			}
-		// kitchen
-		_temp_j = 1;
-		while (_temp_j <= _kitchen)
-			if (_temp_i == position)
-			{
-				if (_temp_j == _kitchen && _kitchen == 1)
-					_result = "厨房";
-				else
-					_result = "厨房" + _temp_j;
-				return _result;
-			}
-			else
-			{
-				_temp_i++;
-				_temp_j++;
-			}
-
-		// toilet
-		_temp_j = 1;
-		while (_temp_j <= _toilet)
-			if (_temp_i == position)
-			{
-				if (_temp_j == _toilet && _toilet == 1)
-					_result = "卫生间";
-				else
-					_result = "卫生间" + _temp_j;
-				return _result;
-			}
-			else
-			{
-				_temp_i++;
-				_temp_j++;
-			}
-		// balcony
-		_temp_j = 1;
-		while (_temp_j <= _balcony)
-			if (_temp_i == position)
-			{
-				if (_temp_j == _balcony && _balcony == 1)
-					_result = "阳台";
-				else
-					_result = "阳台" + _temp_j;
-				return _result;
-			}
-			else
-			{
-				_temp_i++;
-				_temp_j++;
-			}
-
-		return _result;
+		return null;
 	}
 
 	@Override
@@ -156,11 +143,13 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
+		System.out.println("get view - " + position);
 		View _view = convertView;
 		ViewHolder _holder;
 
 		if (convertView == null)
 		{
+			System.out.println("creat a new view - " + position);
 			_view = _inflater.inflate(R.layout.widget_edit_informationbar_style3, null);
 			_holder = new ViewHolder();
 			_holder._text_name = (TextView) _view.findViewById(R.id.textview_widget_name);
@@ -174,42 +163,23 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 		{
 			_holder = (ViewHolder) _view.getTag();
 		}
-		String _temp_name = getItem(position);
-		_holder._text_name.setText(_temp_name);
-		_holder._text_left.setText(String.valueOf(_areas.get(position)));
+		_view.setId(position);
+		_holder._text_name.setText(_areas.get(position)._tag2);
+		_holder._text_left.setText(_areas.get(position)._data.toString());
 
 		return _view;
 	}
 
-
-	private void refresh_data()
-	{
-		_areas.clear();
-		for (int _temp_i = 0; _temp_i < _total_num; _temp_i++)
-			_areas.add(_every_area);
-		notifyDataSetChanged();
-	}
-
 	public int get_number(String _name)
 	{
-		int _result = 1;
-		switch (_name)
+		int _result = 0;
+		int _temp_i = 0;
+		for (; _temp_i < _areas.size(); _temp_i++)
 		{
-		case "room":
-			_result = _room;
-			break;
-		case "parlour":
-			_result = _parlour;
-			break;
-		case "kitchen":
-			_result = _kitchen;
-			break;
-		case "toilet":
-			_result = _toilet;
-			break;
-		case "balcony":
-			_result = _balcony;
-			break;
+			if (_areas.get(_temp_i)._tag1.equals(_name))
+			{
+				_result++;
+			}
 		}
 		return _result;
 	}
@@ -217,26 +187,14 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 	public String get_acreage(String _name)
 	{
 		StringBuilder _builder = new StringBuilder();
-		int _temp_i, _min = 0, _max = 0;
-		switch (_name)
+		int _temp_i = 0;
+		for (; _temp_i < _areas.size(); _temp_i++)
 		{
-		case "balcony":
-			_min += _toilet;
-			_max += _balcony;
-		case "toilet":
-			_min += _kitchen;
-			_max += _toilet;
-		case "kitchen":
-			_min += _parlour;
-			_max += _kitchen;
-		case "parlour":
-			_min += _room;
-			_max += _parlour;
-		case "room":
-			_max += _room;
+			if (_areas.get(_temp_i)._tag1.equals(_name))
+			{
+				_builder.append(_areas.get(_temp_i)._data.toString() + ",");
+			}
 		}
-		for (_temp_i = _min; _temp_i < _max; _temp_i++)
-			_builder.append(_areas.get(_temp_i).toString() + ",");
 		_builder.deleteCharAt(_builder.length() - 1);
 		return _builder.toString();
 	}
@@ -268,22 +226,22 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 	@Override
 	public void onClick(View v)
 	{
-		// TODO Auto-generated method stub
+		System.out.println("click view id is " + v.getId());
 		switch (v.getId())
 		{
 		case R.id.button_commit:
 			// 可以在这里检测输入的合理性
-//			String _temp_str = _edittext_dialog.getText().toString();
-//			if (_temp_str.length() < 7 && _temp_str.length() > 0)
-//			_areas.set(_selected, Float.valueOf(_temp_str))
-//			_dialog.dismiss();
+			// String _temp_str = _edittext_dialog.getText().toString();
+			// if (_temp_str.length() < 7 && _temp_str.length() > 0)
+			// _areas.set(_selected, Float.valueOf(_temp_str))
+			// _dialog.dismiss();
 			break;
 		case R.id.button_cancel:
-//			_dialog.dismiss();
+			// _dialog.dismiss();
 			break;
-			default:
-//				show_dialog(v.getdata);
-				break;
+		default:
+			// show_dialog(v.getdata);
+			break;
 		}
 	}
 
@@ -294,22 +252,23 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 		{
 		case "style3":
 			_total_area = Float.parseFloat(args[0]);
-			_every_area = _total_area / _total_num;
-			refresh_data();
+			_every_area = _total_area / _areas.size();
+			construct();
 			break;
 
 		case "style4":
 			String[] _nums = args[0].split(",");
-			_room = Integer.parseInt(_nums[0]);
-			_parlour = Integer.parseInt(_nums[1]);
-			_kitchen = Integer.parseInt(_nums[2]);
-			_toilet = Integer.parseInt(_nums[3]);
-			_balcony = Integer.parseInt(_nums[4]);
+			int _room = Integer.parseInt(_nums[0]);
+			int _parlour = Integer.parseInt(_nums[1]);
+			int _kitchen = Integer.parseInt(_nums[2]);
+			int _toilet = Integer.parseInt(_nums[3]);
+			int _balcony = Integer.parseInt(_nums[4]);
 
-			_total_num = _room + _parlour + _kitchen + _balcony + _toilet;
-			_every_area = _total_area / _total_num;
-			refresh_data();
+			_every_area = _total_area / (_room + _parlour + _kitchen + _toilet + _balcony);
+			construct(_room, _parlour, _kitchen, _toilet, _balcony);
 			break;
 		}
+		notifyDataSetChanged();
 	}
+
 }
