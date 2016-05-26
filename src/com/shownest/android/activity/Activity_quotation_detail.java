@@ -120,6 +120,11 @@ public class Activity_quotation_detail extends DEBUG_Activity
 				_data = new RoomDetail(_obj.getJSONObject("data"), _intent.getStringExtra("part"));
 				add_fragment(_instance, new Fragment_quotation_detail(), false);
 			}
+			else if (_result.equals("未查询到数据"))
+			{
+				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
+				_instance.finish();
+			}
 			else
 				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
 		}
