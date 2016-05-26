@@ -2,6 +2,7 @@ package com.shownest.android.fragment;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_quotation_detail;
+import com.shownest.android.adapter.Adapter_quotation_detail;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.RoomDetail;
 import com.shownest.android.widget.Linearlayout_listview;
@@ -23,6 +24,7 @@ public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClick
 	private LinearLayout _body;
 	private Button _button_commit;
 	private Linearlayout_listview _list;
+	private Adapter_quotation_detail _adapter;
 	private AlertDialog _dialog;
 
 	@Override
@@ -34,9 +36,6 @@ public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClick
 		_button_commit = (Button) _view.findViewById(R.id.button_commit);
 		_button_commit.setText("保存");
 		_button_commit.setOnClickListener(this);
-
-//		_list = new Linearlayout_listview(getActivity(), _body, new String[] { "具体面积", "信息填写详细，会使您获得更精准的报价" });
-
 		return _view;
 	}
 
@@ -67,6 +66,8 @@ public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClick
 				break;
 
 			default:
+				_adapter = new Adapter_quotation_detail(getActivity(), _data.get_wall());
+				_list = new Linearlayout_listview(getActivity(), _body, new String[] { "墙面", "小计：" + _data.get_wallTotals() + "元" }, _adapter);
 
 				System.out.println("ground size is " + _data.get_ground().size());
 				break;
