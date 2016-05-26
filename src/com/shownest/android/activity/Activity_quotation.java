@@ -62,7 +62,7 @@ public class Activity_quotation extends DEBUG_Activity
 		_instance = this;
 		_intent = getIntent();
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
-		setTitle("加入秀巢网");
+		setTitle("room1");
 
 		String _type = _intent.getStringExtra("part");
 		int _id = _intent.getIntExtra("id", 1);
