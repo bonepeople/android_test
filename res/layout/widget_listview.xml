@@ -15,8 +15,7 @@
         <TextView
             android:id="@+id/textview_name"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="具体面积" />
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/textview_hint"
@@ -24,14 +23,12 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_weight="15"
-            android:singleLine="true"
-            android:text="xinxitianxiexiangxi,huishininhuodegengjingzhunbaojia" />
+            android:singleLine="true" />
 
         <TextView
             android:id="@+id/textview_change"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="xiugai"
             android:visibility="gone" />
 
         <ImageView
@@ -41,11 +38,10 @@
             android:src="@drawable/arrow_down" />
     </LinearLayout>
 
-    <ListView
+    <com.shownest.android.widget.Listview_maxheight
         android:id="@+id/listview_widget"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone" >
-    </ListView>
+        android:layout_height="match_parent" >
+    </com.shownest.android.widget.Listview_maxheight>
 
 </LinearLayout>

@@ -3,6 +3,7 @@ package com.shownest.android.adapter;
 import java.util.ArrayList;
 
 import com.shownest.android.R;
+import com.shownest.android.model.OnChangeListener;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class Adapter_offer_auto extends BaseAdapter
+public class Adapter_offer_auto extends BaseAdapter implements OnChangeListener
 {
 	private LayoutInflater _inflater;
 	private float _total_area = 0;
@@ -256,6 +257,13 @@ public class Adapter_offer_auto extends BaseAdapter
 			_builder.append(_areas.get(_temp_i).toString() + ",");
 		_builder.deleteCharAt(_builder.length() - 1);
 		return _builder.toString();
+	}
+
+	@Override
+	public void onChange(String tag, String[] args)
+	{
+		// TODO Auto-generated method stub
+		
 	}
 
 }

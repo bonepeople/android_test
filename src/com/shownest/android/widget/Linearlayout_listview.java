@@ -11,7 +11,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,40 +32,6 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 	private EditText _edittext_dialog;
 	private int _selected = 0;
 	private boolean _collapse = true;
-
-	private int layoutHeight = -1;
-	private int OPEN_LAYOUT_TIMES = 20;
-	private int SLEEP_TIME = 15;
-	private float layoutStep = 8;
-
-	private OnExpandFinishListener onExpand = null;
-	private OnCollapseFinishListener onCollapse = null;
-
-	public interface OnExpandFinishListener
-	{
-		public void onExpandFinish();
-	}
-
-	public interface OnCollapseFinishListener
-	{
-		public void onCollapseFinish();
-	}
-
-	public void setOnExpandFinishListener(OnExpandFinishListener oeListener)
-	{
-		onExpand = oeListener;
-	}
-
-	public void setOnCollapseFinishListener(OnCollapseFinishListener ocListener)
-	{
-		onCollapse = ocListener;
-	}
-
-	public void setLayoutHeight(int height)
-	{
-		layoutHeight = height;
-		layoutStep = 1.0f * layoutHeight / OPEN_LAYOUT_TIMES;
-	}
 
 	public Linearlayout_listview(Context context)
 	{
@@ -125,20 +90,9 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 		switch (v.getId())
 		{
 		case R.id.linearlayout_title:
-			int totalHeight = 0;
-			int adaptCount = _adapter.getCount();
-			for (int i = 0; i < adaptCount; i++)
-			{
-				View temp = _adapter.getView(i, null, _list);
-				temp.measure(0, 0);
-				totalHeight += temp.getMeasuredHeight();
-			}
-			ViewGroup.LayoutParams params = _list.getLayoutParams();
 			if (_collapse)
 			{
 				// 展开
-				params.height = totalHeight + _list.getDividerHeight() * (_adapter.getCount() - 1);
-				_list.setLayoutParams(params);
 				_list.setVisibility(ListView.VISIBLE);
 				_image_flag.setImageResource(R.drawable.arrow_up);
 			}
@@ -149,9 +103,8 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 				_image_flag.setImageResource(R.drawable.arrow_down);
 			}
 			_collapse = !_collapse;
-
 			break;
-
+			
 		case R.id.button_commit:
 			// 可以在这里检测输入的合理性
 			String _temp_str = _edittext_dialog.getText().toString();
@@ -201,7 +154,6 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 
 		case "style4":
 			_adapter.set_num(args[0]);
-			this.onClick(_title);
 			break;
 		}
 	}
