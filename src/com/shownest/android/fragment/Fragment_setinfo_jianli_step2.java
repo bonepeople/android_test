@@ -124,12 +124,15 @@ public class Fragment_setinfo_jianli_step2 extends DEBUG_Fragment implements OnC
 			startActivityForResult(_location, LOCATION_SERVICE);
 		}
 	}
-	
+
 	@Override
 	public void setContent()
 	{
 		UserInfo _info = Activity_my_center.get_userinfo();
-		_date.setData(new String[] { String.valueOf(_info.get_workYear()) });
-		_address.setData(new String[] { _info.get_workAddress() });
+		if (_info != null)
+		{
+			_date.setData(new String[] { String.valueOf(_info.get_workYear()) });
+			_address.setData(new String[] { _info.get_workAddress() });
+		}
 	}
 }

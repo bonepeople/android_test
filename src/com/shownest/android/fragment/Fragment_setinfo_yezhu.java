@@ -33,10 +33,10 @@ public class Fragment_setinfo_yezhu extends DEBUG_Fragment
 		_body = (LinearLayout) _view.findViewById(R.id.linearlayout_content);
 		_button_commit = (Button) _view.findViewById(R.id.button_commit);
 		_button_commit.setText("完成认证");
-		
+
 		new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "身份类型", "业主" }, false);
-		_showname = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "秀巢昵称", "sn1234" }, true);
-		_realname = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "真是姓名", "秀巢" }, true);
+		_showname = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "秀巢昵称", "" }, true);
+		_realname = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "真是姓名", "" }, true);
 		_sex = new RelativeLayout_edit_informationbar(getActivity(), _body, 6, new String[] { "性别", "男", "女", "1" }, false);
 
 		String[] _items = new String[] { "简约", "现代", "中式", "欧式", "美式", "日式", "东南亚", "地中海", "混搭", "新古典", "田园", "其他" };
@@ -68,14 +68,17 @@ public class Fragment_setinfo_yezhu extends DEBUG_Fragment
 		});
 		return _view;
 	}
-	
+
 	@Override
 	public void setContent()
 	{
 		UserInfo _info = Activity_my_center.get_userinfo();
-		_showname.setData(new String[] { _info.get_userShowName() });
-		_realname.setData(new String[]{_info.get_realName()});
-		_sex.setData(new String[] { _info.get_realSex() == 1 ? "1" : "2" });
-		_style.setData(_info.get_likeStyle());
+		if (_info != null)
+		{
+			_showname.setData(new String[] { _info.get_userShowName() });
+			_realname.setData(new String[] { _info.get_realName() });
+			_sex.setData(new String[] { _info.get_realSex() == 1 ? "1" : "2" });
+			_style.setData(_info.get_likeStyle());
+		}
 	}
 }

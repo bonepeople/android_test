@@ -196,13 +196,16 @@ public class Fragment_setinfo_shejishi_step3 extends DEBUG_Fragment implements O
 		});
 		_builder.show();
 	}
-	
+
 	@Override
 	public void setContent()
 	{
 		UserInfo _info = Activity_my_center.get_userinfo();
-		_type.setData(new String[] { String.valueOf(_info.get_authenticationType()) });
-		_name.setData(new String[] { _info.get_authenticationName() });
-		_id_number.setData(new String[] { _info.get_authenticationCode() });
+		if (_info != null)
+		{
+			_type.setData(new String[] { String.valueOf(_info.get_authenticationType()) });
+			_name.setData(new String[] { _info.get_authenticationName() });
+			_id_number.setData(new String[] { _info.get_authenticationCode() });
+		}
 	}
 }

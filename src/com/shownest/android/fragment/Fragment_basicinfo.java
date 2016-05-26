@@ -51,42 +51,45 @@ public class Fragment_basicinfo extends DEBUG_Fragment implements View.OnClickLi
 	public void setContent()
 	{
 		UserInfo _info = Activity_my_center.get_userinfo();
-		String _url = "http://t.shownest.com:86/_resources/upload/headerIcon/" + _info.get_headerIcon();
-		_imageview_header.setImageUrl(_url);
-		_name.setText(String.valueOf(_info.get_userName()));
-		_showname.setText(_info.get_userShowName());
-		_phone.setText(_info.get_userPhone());
-
-		_imageview_header.setOnClickListener(this);
-		if (_info.is_checkUsername())
-			_name.setTextColor(getResources().getColor(R.color.text_gray));
-		else
-			_item_name.setOnClickListener(this);
-		_item_password.setOnClickListener(this);
-		_role.setTextColor(getResources().getColor(R.color.text_gray));
-		switch (_info.get_userType())
+		if (_info != null)
 		{
-		case 11:
-			_role.setText("业主");
-			break;
-		case 12:
-			_role.setText("设计师");
-			break;
-		case 13:
-			_role.setText("施工队");
-			break;
-		case 14:
-			_role.setText("监理");
-			break;
-		case 15:
-			_role.setText("装修公司");
-			break;
-		case 100:
-			_role.setTextColor(getResources().getColor(R.color.main_color));
-			_item_role.setOnClickListener(this);
-			break;
+			String _url = "http://t.shownest.com:86/_resources/upload/headerIcon/" + _info.get_headerIcon();
+			_imageview_header.setImageUrl(_url);
+			_name.setText(String.valueOf(_info.get_userName()));
+			_showname.setText(_info.get_userShowName());
+			_phone.setText(_info.get_userPhone());
+
+			_imageview_header.setOnClickListener(this);
+			if (_info.is_checkUsername())
+				_name.setTextColor(getResources().getColor(R.color.text_gray));
+			else
+				_item_name.setOnClickListener(this);
+			_item_password.setOnClickListener(this);
+			_role.setTextColor(getResources().getColor(R.color.text_gray));
+			switch (_info.get_userType())
+			{
+			case 11:
+				_role.setText("业主");
+				break;
+			case 12:
+				_role.setText("设计师");
+				break;
+			case 13:
+				_role.setText("施工队");
+				break;
+			case 14:
+				_role.setText("监理");
+				break;
+			case 15:
+				_role.setText("装修公司");
+				break;
+			case 100:
+				_role.setTextColor(getResources().getColor(R.color.main_color));
+				_item_role.setOnClickListener(this);
+				break;
+			}
+			_item_phone.setOnClickListener(this);
 		}
-		_item_phone.setOnClickListener(this);
 	}
 
 	@Override

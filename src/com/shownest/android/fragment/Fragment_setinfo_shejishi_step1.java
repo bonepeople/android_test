@@ -99,9 +99,12 @@ public class Fragment_setinfo_shejishi_step1 extends DEBUG_Fragment implements O
 	public void setContent()
 	{
 		UserInfo _info = Activity_my_center.get_userinfo();
-		_showname.setData(new String[] { _info.get_userShowName() });
-		_phone.setData(new String[] { CommonUtil.showPhone(_info.get_userPhone()) });
-		_sex.setData(new String[] { _info.get_realSex() == 1 ? "1" : "2" });
-		_edit.setData(_info.get_introduces());
+		if (_info != null)
+		{
+			_showname.setData(new String[] { _info.get_userShowName() });
+			_phone.setData(new String[] { CommonUtil.showPhone(_info.get_userPhone()) });
+			_sex.setData(new String[] { _info.get_realSex() == 1 ? "1" : "2" });
+			_edit.setData(_info.get_introduces());
+		}
 	}
 }

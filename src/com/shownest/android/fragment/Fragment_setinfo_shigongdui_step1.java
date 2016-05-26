@@ -132,17 +132,19 @@ public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements
 	public void setContent()
 	{
 		UserInfo _info = Activity_my_center.get_userinfo();
-		_showname.setData(new String[] { _info.get_userShowName() });
-		_phone.setData(new String[] { CommonUtil.showPhone(_info.get_userPhone()) });
-		int location = _info.get_nativePlace();
-		for (int i = 0; i < _PlaceID.length; i++)
-			if (location == _PlaceID[i])
-			{
-				_location.setData(new String[] { _place[i - 1] });
-				break;
-			}
-		_sex.setData(new String[] { _info.get_realSex() == 1 ? "1" : "2" });
-		_edit.setData(_info.get_introduces());
+		if (_info != null)
+		{
+			_showname.setData(new String[] { _info.get_userShowName() });
+			_phone.setData(new String[] { CommonUtil.showPhone(_info.get_userPhone()) });
+			int location = _info.get_nativePlace();
+			for (int i = 0; i < _PlaceID.length; i++)
+				if (location == _PlaceID[i])
+				{
+					_location.setData(new String[] { _place[i - 1] });
+					break;
+				}
+			_sex.setData(new String[] { _info.get_realSex() == 1 ? "1" : "2" });
+			_edit.setData(_info.get_introduces());
+		}
 	}
-
 }

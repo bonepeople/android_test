@@ -192,23 +192,26 @@ public class Fragment_setinfo_shigongdui_step2 extends DEBUG_Fragment implements
 	public void setContent()
 	{
 		UserInfo _info = Activity_my_center.get_userinfo();
-		_date.setData(new String[] { String.valueOf(_info.get_workYear()) });
-		_number.setData(new String[] { String.valueOf(_info.get_peopleNum()) });
-		_address.setData(new String[] { _info.get_workAddress() });
-
-		StringBuilder _builder = new StringBuilder();
-		String _temp_str[] = _info.get_serviceItem().split(",");
-		for (String string : _temp_str)
+		if (_info != null)
 		{
-			int _temp_num = Integer.parseInt(string);
-			if (_temp_num > -1 && _temp_num < 3)
+			_date.setData(new String[] { String.valueOf(_info.get_workYear()) });
+			_number.setData(new String[] { String.valueOf(_info.get_peopleNum()) });
+			_address.setData(new String[] { _info.get_workAddress() });
+
+			StringBuilder _builder = new StringBuilder();
+			String _temp_str[] = _info.get_serviceItem().split(",");
+			for (String string : _temp_str)
 			{
-				_builder.append(_str_item[_temp_num] + ",");
-				_service_select[0][_temp_num] = true;
+				int _temp_num = Integer.parseInt(string);
+				if (_temp_num > -1 && _temp_num < 3)
+				{
+					_builder.append(_str_item[_temp_num] + ",");
+					_service_select[0][_temp_num] = true;
+				}
 			}
+			if (_builder.length() > 1)
+				_builder.deleteCharAt(_builder.length() - 1);
+			_serviceItem.setData(new String[] { _builder.toString() });
 		}
-		if (_builder.length() > 1)
-			_builder.deleteCharAt(_builder.length() - 1);
-		_serviceItem.setData(new String[] { _builder.toString() });
 	}
 }

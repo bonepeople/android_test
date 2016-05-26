@@ -56,7 +56,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_margin="10dp"
-                android:text="15210196421"
                 android:textSize="16sp" />
         </RelativeLayout>
 
@@ -87,7 +86,6 @@
                 android:layout_centerVertical="true"
                 android:layout_margin="10dp"
                 android:singleLine="true"
-                android:text="昵称"
                 android:textColor="@color/text_gray"
                 android:textSize="16sp" />
         </RelativeLayout>
@@ -177,7 +175,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_margin="10dp"
-                android:text="15210196421"
                 android:textSize="16sp" />
         </RelativeLayout>
     </LinearLayout>

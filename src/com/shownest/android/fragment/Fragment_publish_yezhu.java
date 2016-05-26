@@ -29,15 +29,15 @@ public class Fragment_publish_yezhu extends DEBUG_Fragment
 		RelativeLayout_edit_informationbar _item2 = new RelativeLayout_edit_informationbar(getActivity(), _linearlayout_body, 1, new String[] { "first", "left", "right" }, true);
 		RelativeLayout_edit_informationbar _item3 = new RelativeLayout_edit_informationbar(getActivity(), _linearlayout_body, 2, new String[] { "style2", "北京市 丰台区" }, true);
 		RelativeLayout_edit_informationbar _item4 = new RelativeLayout_edit_informationbar(getActivity(), _linearlayout_body, 3, new String[] { "style3", "number", "unit" }, true);
-		RelativeLayout_edit_informationbar _item5 = new RelativeLayout_edit_informationbar(getActivity(), _linearlayout_body, 4, new String[] { "style4", "1", "2", "3", "4", "5" }, true);
+		RelativeLayout_edit_informationbar _item5 = new RelativeLayout_edit_informationbar(getActivity(), _linearlayout_body, 4, new String[] { "style4", "1,2,3,4,5" }, true);
 
-		new RelativeLayout_edit_informationbar(getActivity(), _linearlayout_body, 4, new String[] { "name", "1", "2", "3", "4", "5" }, false);
+		new RelativeLayout_edit_informationbar(getActivity(), _linearlayout_body, 4, new String[] { "name", "1,1,1,2,1" }, false);
 		new RelativeLayout_edit_informationbar(getActivity(), _linearlayout_body, 2, new String[] { "style2", "" }, false);
 		new RelativeLayout_edit_informationbar(getActivity(), _linearlayout_body, 2, new String[] { "name", "value" }, false);
-		new RelativeLayout_edit_informationbar(getActivity(), _linearlayout_body, 4, new String[] { "style4", "1", "2", "3", "4", "5" }, false);
-		new RelativeLayout_edit_informationbar(getActivity(), _linearlayout_body, 4, new String[] { "style4", "1", "2", "3", "4", "5" }, false);
-		new RelativeLayout_edit_informationbar(getActivity(), _linearlayout_body, 4, new String[] { "style4", "99", "99", "99", "99", "90" }, false);
-		new RelativeLayout_edit_informationbar(getActivity(), _linearlayout_body, 4, new String[] { "style4", "1", "2", "3", "4", "5" }, false);
+		new RelativeLayout_edit_informationbar(getActivity(), _linearlayout_body, 4, new String[] { "style4", "2,1,2,1,4" }, false);
+		new RelativeLayout_edit_informationbar(getActivity(), _linearlayout_body, 4, new String[] { "style4", "5,22,5,1,5" }, false);
+		new RelativeLayout_edit_informationbar(getActivity(), _linearlayout_body, 4, new String[] { "style4", "99,21,4,4,32" }, false);
+		new RelativeLayout_edit_informationbar(getActivity(), _linearlayout_body, 4, new String[] { "style4", "1,1,1,1,1" }, false);
 
 		_button_next.setOnClickListener(new OnClickListener()
 		{
