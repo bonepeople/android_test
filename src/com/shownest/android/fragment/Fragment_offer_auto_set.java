@@ -53,7 +53,7 @@ public class Fragment_offer_auto_set extends DEBUG_Fragment implements OnClickLi
 		_body.addView(_state);
 		_type = new LinearLayout_checkbox(getActivity(), "房屋类型", new String[] { "平层住宅", "复试住宅", "别墅", "商业" }, 1, "1");
 		_body.addView(_type);
-		_mode = new LinearLayout_checkbox(getActivity(), "装修方式", new String[] { "半包", "全包", "清包" }, 0, "1");
+		_mode = new LinearLayout_checkbox(getActivity(), "装修方式", new String[] { "半包", "全包", "清包" }, 1, "1");
 		_body.addView(_mode);
 		_area = new RelativeLayout_edit_informationbar(getActivity(), _body, 3, new String[] { "建筑面积", "0", " m²" }, true);
 		_house = new RelativeLayout_edit_informationbar(getActivity(), _body, 4, new String[] { "户型结构", "1,1,1,1,1" }, true, this);
@@ -98,6 +98,7 @@ public class Fragment_offer_auto_set extends DEBUG_Fragment implements OnClickLi
 		int _id = v.getId();
 		if (_id == R.id.button_commit)
 		{
+			float _total = _adapter.get_totla_acreage();
 			if (_name.getData().isEmpty())
 			{
 				Toast.makeText(getActivity(), "小区名称不能为空", Toast.LENGTH_SHORT).show();
@@ -109,6 +110,10 @@ public class Fragment_offer_auto_set extends DEBUG_Fragment implements OnClickLi
 			else if (_area.getData().equals("0"))
 			{
 				Toast.makeText(getActivity(), "请输入房屋的建筑面积", Toast.LENGTH_SHORT).show();
+			}
+			else if (_total > Float.parseFloat(_area.getData()) + 1)
+			{
+				Toast.makeText(getActivity(), "输入的具体面积总和不应大于建筑面积", Toast.LENGTH_LONG).show();
 			}
 			else
 			{

@@ -198,6 +198,18 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 		return _builder.toString();
 	}
 
+	public float get_totla_acreage()
+	{
+		float _result = 0;
+		int _temp_i = 0;
+		for (; _temp_i < _areas.size(); _temp_i++)
+		{
+			_result += Float.parseFloat(_areas.get(_temp_i)._data.toString());
+
+		}
+		return _result;
+	}
+
 	private void show_dialog()
 	{
 		View _view = View.inflate(_context, R.layout.dialog_edit, null);
