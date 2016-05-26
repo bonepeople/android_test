@@ -20,7 +20,7 @@ import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-public class Activity_quotation extends DEBUG_Activity
+public class Activity_quotation_detail extends DEBUG_Activity
 {
 	public static final int GET_FAILED = 0;
 	public static final int GET_SUCCESSFUL = 1;
@@ -28,7 +28,7 @@ public class Activity_quotation extends DEBUG_Activity
 	public static final int SEND_SUCCESSFUL = 3;
 	public static final int CHECK_FAILED = 4;
 	public static final int CHECK_SUCCESSFUL = 5;
-	private static Activity_quotation _instance;
+	private static Activity_quotation_detail _instance;
 	private static Intent _intent;
 	public static Handler _handler = new Handler()
 	{
@@ -131,7 +131,7 @@ public class Activity_quotation extends DEBUG_Activity
 		}
 	}
 
-	public static Activity_quotation get_instance()
+	public static Activity_quotation_detail get_instance()
 	{
 		return _instance;
 	}

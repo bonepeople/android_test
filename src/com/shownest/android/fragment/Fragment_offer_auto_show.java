@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_my_center;
 import com.shownest.android.activity.Activity_offer_auto;
-import com.shownest.android.activity.Activity_quotation;
+import com.shownest.android.activity.Activity_quotation_detail;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.OfferBill;
 import com.shownest.android.model.Package;
@@ -96,7 +96,7 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 		else
 		{
 			Package _package = _items.get(_id);
-			Intent _select = new Intent(getActivity(), Activity_quotation.class);
+			Intent _select = new Intent(getActivity(), Activity_quotation_detail.class);
 
 			_select.putExtra("id", _quotationId);
 			_select.putExtra("part", _package._tag1);

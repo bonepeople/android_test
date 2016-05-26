@@ -23,7 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
-public class Fragment_offer_auto extends DEBUG_Fragment implements OnClickListener
+public class Fragment_offer_auto_set extends DEBUG_Fragment implements OnClickListener
 {
 	private static final int LOCATION = 1;
 	private LinearLayout _body;

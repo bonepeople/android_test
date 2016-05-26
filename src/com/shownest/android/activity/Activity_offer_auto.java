@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
-import com.shownest.android.fragment.Fragment_offer_auto;
+import com.shownest.android.fragment.Fragment_offer_auto_set;
 import com.shownest.android.fragment.Fragment_offer_auto_show;
 import com.shownest.android.model.OfferBill;
 import com.shownest.android.model.UserInfo;
@@ -50,7 +50,7 @@ public class Activity_offer_auto extends DEBUG_Activity
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 		setTitle("智能报价");
 
-		add_fragment(this, new Fragment_offer_auto(), false);
+		add_fragment(this, new Fragment_offer_auto_set(), false);
 	}
 
 	private static void handle_string(String str)
