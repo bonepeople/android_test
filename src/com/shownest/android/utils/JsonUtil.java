@@ -1,5 +1,6 @@
 package com.shownest.android.utils;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -11,6 +12,16 @@ import org.json.JSONObject;
  */
 public class JsonUtil
 {
+	public static JSONArray get_array(JSONObject _json, String _name) throws JSONException
+	{
+		JSONArray _array = null;
+		if (_json.has(_name))
+		{
+			_array = _json.getJSONArray(_name);
+		}
+		return _array;
+	}
+
 	public static String get_string(JSONObject _json, String _name, String _default) throws JSONException
 	{
 		String _result = _default;

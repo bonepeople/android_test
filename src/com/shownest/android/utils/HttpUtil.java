@@ -31,9 +31,74 @@ public class HttpUtil
 
 	// http://192.168.1.112:10000/shownest/html/test1.html
 	// http://192.168.1.112:10000/shownest/websubmitreg
+	
+	
+	
+//	webOwnerViewOneQuotationItemHydropower quotationId:1
+//	webOwnerViewOneQuotationItemMount  quotationId:1
+//	webOwnerViewOneQuotationItemCost  quotationId:1
+//	webOwnerViewOneQuotationItemTax  quotationId:1
+	
+	
+	
+	
+	
+	
+	public static void get_quotation_balcony(Handler _handler, ContentValues _value, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "webOwnerViewOneQuotationItemBalcony";
+		String _message = "";
+
+//		quotationId:1  阳台
+//		balcony:1
+		
+		_message = values(_value);
+		
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
+	}
+	
+	public static void get_quotation_toilet(Handler _handler, ContentValues _value, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "webOwnerViewOneQuotationItemToilet";
+		String _message = "";
+
+//		quotationId:1 
+//		toilet:1
+		
+		_message = values(_value);
+		
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
+	}
+	
+	public static void get_quotation_kitchen(Handler _handler, ContentValues _value, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "webOwnerViewOneQuotationItemKitchen";
+		String _message = "";
+
+//		quotationId:1 厨
+//		kitchen:1
+		
+		_message = values(_value);
+		
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
+	}
+	
+	public static void get_quotation_parlour(Handler _handler, ContentValues _value, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "webOwnerViewOneQuotationItemParlour";
+		String _message = "";
+		
+//		quotationId:1  厅
+//		parlour:1
+
+		_message = values(_value);
+		
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
+	}
+	
 	public static void get_quotation_room(Handler _handler, ContentValues _value, int _successful, int _failed)
 	{
-		String _address = BASEADDRESS + "webConsViewOneQuotationItemRoom";
+		String _address = BASEADDRESS + "webOwnerViewOneQuotationItemRoom";
 		String _message = "";
 
 		_message = values(_value);

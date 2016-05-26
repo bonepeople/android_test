@@ -16,8 +16,9 @@ import com.shownest.android.utils.JsonUtil;
 public class ItemDetail
 {
 	private int _common;// 工艺标志，1常用 2非常用
-	private int _delMarks;// 删除修改标记
+	private int _delMarks;// 删除修改标记,1修改 0删除
 	private int _itemId;// 工艺ID
+	private int _hydropowerWay;// 水电安装方式
 	private String _itemName;// 工艺名称
 	private String _material;// 辅材品牌型号
 	private String _metricUnit;// 计算单位
@@ -32,6 +33,7 @@ public class ItemDetail
 		this._common = JsonUtil.get_int(_json, "common", 1);
 		this._delMarks = JsonUtil.get_int(_json, "delMarks", 1);
 		this._itemId = JsonUtil.get_int(_json, "itemId", 0);
+		this._hydropowerWay = JsonUtil.get_int(_json, "hydropowerWay", 1);
 		this._itemName = JsonUtil.get_string(_json, "itemName", "");
 		this._material = JsonUtil.get_string(_json, "material", "");
 		this._metricUnit = JsonUtil.get_string(_json, "metricUnit", "");
@@ -70,6 +72,16 @@ public class ItemDetail
 	public void set_itemId(int _itemId)
 	{
 		this._itemId = _itemId;
+	}
+
+	public int get_hydropowerWay()
+	{
+		return _hydropowerWay;
+	}
+
+	public void set_hydropowerWay(int _hydropowerWay)
+	{
+		this._hydropowerWay = _hydropowerWay;
 	}
 
 	public String get_itemName()

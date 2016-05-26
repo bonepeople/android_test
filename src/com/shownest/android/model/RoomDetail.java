@@ -19,37 +19,47 @@ public class RoomDetail
 	private double _wallTotals;// 墙面总价
 	private double _roofTotals;// 顶面总价
 	private double _groundTotals;// 地面总价
+	private double _hydropowerTotals;//水电总价
 	private SparseArray<Package> _wall = new SparseArray<Package>();// 墙面工艺细节
 	private SparseArray<Package> _roof = new SparseArray<Package>();// 顶面工艺细节
 	private SparseArray<Package> _ground = new SparseArray<Package>();// 地面工艺细节
+	private SparseArray<Package> _hydropower = new SparseArray<Package>();// 地面工艺细节
 
 	public RoomDetail(JSONObject _json) throws JSONException
 	{
-		this._wallTotals = JsonUtil.get_double(_json, "wallTotals", 1);
-		this._roofTotals = JsonUtil.get_double(_json, "roofTotals", 1);
-		this._groundTotals = JsonUtil.get_double(_json, "groundTotals", 1);
+		this._wallTotals = JsonUtil.get_double(_json, "wallTotals", 0);
+		this._roofTotals = JsonUtil.get_double(_json, "roofTotals", 0);
+		this._groundTotals = JsonUtil.get_double(_json, "groundTotals", 0);
+		this._hydropowerTotals = JsonUtil.get_double(_json, "hydropowerTotals", 0);
 
 		JSONArray _array;
-		_array = _json.getJSONArray("wall");
-		for (int _temp_i = 0; _temp_i < _array.length(); _temp_i++)
+		_array = JsonUtil.get_array(_json, "wall");
+		for (int _temp_i = 0; _temp_i < _array.length() && _array != null; _temp_i++)
 		{
 			JSONObject _obj = _array.getJSONObject(_temp_i);
 			ItemDetail _temp_item = new ItemDetail(_obj);
 			_wall.put(_temp_i + 1, new Package(_temp_item, _temp_i + 1));
 		}
-		_array = _json.getJSONArray("roof");
-		for (int _temp_i = 0; _temp_i < _array.length(); _temp_i++)
+		_array = JsonUtil.get_array(_json, "roof");
+		for (int _temp_i = 0; _temp_i < _array.length() && _array != null; _temp_i++)
 		{
 			JSONObject _obj = _array.getJSONObject(_temp_i);
 			ItemDetail _temp_item = new ItemDetail(_obj);
 			_roof.put(_temp_i + 1, new Package(_temp_item, _temp_i + 1));
 		}
-		_array = _json.getJSONArray("ground");
-		for (int _temp_i = 0; _temp_i < _array.length(); _temp_i++)
+		_array = JsonUtil.get_array(_json, "ground");
+		for (int _temp_i = 0; _temp_i < _array.length() && _array != null; _temp_i++)
 		{
 			JSONObject _obj = _array.getJSONObject(_temp_i);
 			ItemDetail _temp_item = new ItemDetail(_obj);
 			_ground.put(_temp_i + 1, new Package(_temp_item, _temp_i + 1));
+		}
+		_array = JsonUtil.get_array(_json, "hydropower");
+		for (int _temp_i = 0; _temp_i < _array.length() && _array != null; _temp_i++)
+		{
+			JSONObject _obj = _array.getJSONObject(_temp_i);
+			ItemDetail _temp_item = new ItemDetail(_obj);
+			_hydropower.put(_temp_i + 1, new Package(_temp_item, _temp_i + 1));
 		}
 	}
 
