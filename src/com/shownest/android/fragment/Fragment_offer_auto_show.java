@@ -13,7 +13,6 @@ import com.shownest.android.model.UserInfo;
 import com.shownest.android.utils.NumberUtil;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -82,7 +81,7 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 		int _id = v.getId();
 		if (_id == R.id.button_commit)
 		{
-//			ContentValues _value = new ContentValues();
+			// ContentValues _value = new ContentValues();
 
 			Activity_offer_auto.get_instance().show_wait();
 			// HttpUtil.get_ownerquote(Activity_offer_auto._handler, _value, Activity_offer_auto.NEXT_SUCCESSFUL, Activity_offer_auto.NEXT_FAILED);

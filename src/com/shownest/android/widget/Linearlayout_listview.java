@@ -1,19 +1,11 @@
 package com.shownest.android.widget;
 
 import com.shownest.android.R;
-import com.shownest.android.adapter.Adapter_offer_auto;
-import com.shownest.android.model.OnChangeListener;
 
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
