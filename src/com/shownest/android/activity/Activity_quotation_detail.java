@@ -10,6 +10,8 @@ import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
+import com.shownest.android.fragment.Fragment_quotation_detail;
+import com.shownest.android.model.RoomDetail;
 import com.shownest.android.utils.HttpUtil;
 
 import android.content.ContentValues;
@@ -30,6 +32,10 @@ public class Activity_quotation_detail extends DEBUG_Activity
 	public static final int CHECK_SUCCESSFUL = 5;
 	private static Activity_quotation_detail _instance;
 	private static Intent _intent;
+	private static RoomDetail _data;
+	private static String _quotationId;
+	private static String _type;
+	private static int _number;
 	public static Handler _handler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)
@@ -62,18 +68,16 @@ public class Activity_quotation_detail extends DEBUG_Activity
 		_instance = this;
 		_intent = getIntent();
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
-		setTitle("room1");
 
-		String _type = _intent.getStringExtra("part");
-		String _title = _intent.getStringExtra("name");
-		String _id = _intent.getStringExtra("id");
-		int _number = _intent.getIntExtra("index", 1);
+		_type = _intent.getStringExtra("part");
+		_quotationId = _intent.getStringExtra("id");
+		_number = _intent.getIntExtra("index", 1);
 		System.out.println("select from :" + _type + "-" + _number);
 
-		setTitle(_title);
+		setTitle(_intent.getStringExtra("name"));
 		show_wait();
 		ContentValues _value = new ContentValues();
-		_value.put("quotationId", _id);
+		_value.put("quotationId", _quotationId);
 		_value.put(_type, _number);
 		HttpUtil.get_quotation_item(_handler, _type, _value, GET_SUCCESSFUL, GET_FAILED);
 	}
@@ -111,16 +115,10 @@ public class Activity_quotation_detail extends DEBUG_Activity
 			JSONObject _obj = new JSONObject(str);
 			String _result = _obj.getString("msg");
 
-			if (_result.equals("用户名不存在"))
+			if (_result.equals("智能报价单部分明细"))
 			{
-			}
-			else if (_result.equals("注册成功"))
-			{
-				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
-				_instance.finish();
-			}
-			else if (_result.equals("手机验证码发送成功"))
-			{
+				_data = new RoomDetail(_obj.getJSONObject("data"), _intent.getStringExtra("part"));
+				add_fragment(_instance, new Fragment_quotation_detail(), false);
 			}
 			else
 				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
@@ -129,6 +127,26 @@ public class Activity_quotation_detail extends DEBUG_Activity
 		{
 			e.printStackTrace();
 		}
+	}
+
+	public static RoomDetail get_data()
+	{
+		return _data;
+	}
+
+	public static String get_quotationId()
+	{
+		return _quotationId;
+	}
+
+	public static String get_type()
+	{
+		return _type;
+	}
+
+	public static int get_number()
+	{
+		return _number;
 	}
 
 	public static Activity_quotation_detail get_instance()

@@ -15,7 +15,7 @@ import com.shownest.android.utils.JsonUtil;
  */
 public class ItemDetail
 {
-	private String _tag;
+	private String _tag;//目前暂时无用，不过也保存了类型：wall，roof，ground，hydropower，mount，cost，tax
 	private int _common;// 工艺标志，1常用 2非常用
 	private int _delMarks;// 删除修改标记,1修改 0删除
 	private int _itemId;// 工艺ID

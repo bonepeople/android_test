@@ -16,6 +16,7 @@ import android.util.SparseArray;
  */
 public class RoomDetail
 {
+	private String _tag;// 目前暂时无用，不过也保存了类型：room，parlour，kitchen，toilet，balcony，hydropower，mount，cost，tax
 	private double _wallTotals;// 墙面总价
 	private double _roofTotals;// 顶面总价
 	private double _groundTotals;// 地面总价
@@ -31,8 +32,9 @@ public class RoomDetail
 	private SparseArray<Package> _cost = new SparseArray<Package>();// 杂费工艺细节
 	private SparseArray<Package> _tax = new SparseArray<Package>();// 税费工艺细节
 
-	public RoomDetail(JSONObject _json) throws JSONException
+	public RoomDetail(JSONObject _json, String _tag) throws JSONException
 	{
+		this._tag = _tag;
 		this._wallTotals = JsonUtil.get_double(_json, "wallTotals", 0);
 		this._roofTotals = JsonUtil.get_double(_json, "roofTotals", 0);
 		this._groundTotals = JsonUtil.get_double(_json, "groundTotals", 0);
@@ -43,54 +45,64 @@ public class RoomDetail
 
 		JSONArray _array;
 		_array = JsonUtil.get_array(_json, "wall");
-		for (int _temp_i = 0; _temp_i < _array.length() && _array != null; _temp_i++)
+		for (int _temp_i = 0; _array != null && _temp_i < _array.length(); _temp_i++)
 		{
 			JSONObject _obj = _array.getJSONObject(_temp_i);
 			ItemDetail _temp_item = new ItemDetail(_obj, "wall");
 			_wall.put(_temp_i + 1, new Package(_temp_item, _temp_i + 1));
 		}
 		_array = JsonUtil.get_array(_json, "roof");
-		for (int _temp_i = 0; _temp_i < _array.length() && _array != null; _temp_i++)
+		for (int _temp_i = 0; _array != null && _temp_i < _array.length(); _temp_i++)
 		{
 			JSONObject _obj = _array.getJSONObject(_temp_i);
 			ItemDetail _temp_item = new ItemDetail(_obj, "roof");
 			_roof.put(_temp_i + 1, new Package(_temp_item, _temp_i + 1));
 		}
 		_array = JsonUtil.get_array(_json, "ground");
-		for (int _temp_i = 0; _temp_i < _array.length() && _array != null; _temp_i++)
+		for (int _temp_i = 0; _array != null && _temp_i < _array.length(); _temp_i++)
 		{
 			JSONObject _obj = _array.getJSONObject(_temp_i);
 			ItemDetail _temp_item = new ItemDetail(_obj, "ground");
 			_ground.put(_temp_i + 1, new Package(_temp_item, _temp_i + 1));
 		}
 		_array = JsonUtil.get_array(_json, "hydropower");
-		for (int _temp_i = 0; _temp_i < _array.length() && _array != null; _temp_i++)
+		for (int _temp_i = 0; _array != null && _temp_i < _array.length(); _temp_i++)
 		{
 			JSONObject _obj = _array.getJSONObject(_temp_i);
 			ItemDetail _temp_item = new ItemDetail(_obj, "hydropower");
 			_hydropower.put(_temp_i + 1, new Package(_temp_item, _temp_i + 1));
 		}
 		_array = JsonUtil.get_array(_json, "mount");
-		for (int _temp_i = 0; _temp_i < _array.length() && _array != null; _temp_i++)
+		for (int _temp_i = 0; _array != null && _temp_i < _array.length(); _temp_i++)
 		{
 			JSONObject _obj = _array.getJSONObject(_temp_i);
 			ItemDetail _temp_item = new ItemDetail(_obj, "mount");
 			_mount.put(_temp_i + 1, new Package(_temp_item, _temp_i + 1));
 		}
 		_array = JsonUtil.get_array(_json, "cost");
-		for (int _temp_i = 0; _temp_i < _array.length() && _array != null; _temp_i++)
+		for (int _temp_i = 0; _array != null && _temp_i < _array.length(); _temp_i++)
 		{
 			JSONObject _obj = _array.getJSONObject(_temp_i);
 			ItemDetail _temp_item = new ItemDetail(_obj, "cost");
 			_cost.put(_temp_i + 1, new Package(_temp_item, _temp_i + 1));
 		}
 		_array = JsonUtil.get_array(_json, "tax");
-		for (int _temp_i = 0; _temp_i < _array.length() && _array != null; _temp_i++)
+		for (int _temp_i = 0; _array != null && _temp_i < _array.length(); _temp_i++)
 		{
 			JSONObject _obj = _array.getJSONObject(_temp_i);
 			ItemDetail _temp_item = new ItemDetail(_obj, "tax");
 			_tax.put(_temp_i + 1, new Package(_temp_item, _temp_i + 1));
 		}
+	}
+
+	public String get_tag()
+	{
+		return _tag;
+	}
+
+	public void set_tag(String _tag)
+	{
+		this._tag = _tag;
 	}
 
 	public double get_wallTotals()
@@ -197,5 +209,4 @@ public class RoomDetail
 	{
 		return _tax;
 	}
-
 }
