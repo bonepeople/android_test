@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class Adapter_quotation_detail extends BaseAdapter implements View.OnClickListener
@@ -33,7 +32,6 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 		public TextView _text_metricunit2;
 		public TextView _text_number;
 		public TextView _text_total;
-		public LinearLayout _linearlayout_fucai;
 	}
 
 	public Adapter_quotation_detail(Context _context, SparseArray<Package> _data)
@@ -84,7 +82,6 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 			_holder._text_metricunit2 = (TextView) _view.findViewById(R.id.textview_metricunit2);
 			_holder._text_number = (TextView) _view.findViewById(R.id.textview_number);
 			_holder._text_total = (TextView) _view.findViewById(R.id.textview_total);
-			_holder._linearlayout_fucai = (LinearLayout) _view.findViewById(R.id.linearlayout_fucai);
 
 			_holder._image_edit.setOnClickListener(this);
 			_view.setTag(_holder);
@@ -97,10 +94,7 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 		if (_temp_item == null)
 			System.out.println("_temp_item  is null");
 		_holder._text_name.setText(_temp_item.get_itemName());
-		if (_temp_item.get_material().equals(""))
-			_holder._linearlayout_fucai.setVisibility(LinearLayout.GONE);
-		else
-			_holder._text_fucai.setText(_temp_item.get_material());
+		_holder._text_fucai.setText(_temp_item.get_material());
 		_holder._text_shuoming.setText(_temp_item.get_technics());
 		_holder._text_price.setText(String.valueOf(_temp_item.get_price()));
 		_holder._text_unit1.setText(_temp_item.get_unit());

@@ -23,8 +23,9 @@ public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClick
 	private static final int LOCATION = 1;
 	private LinearLayout _body;
 	private Button _button_commit;
-	private Linearlayout_listview _list;
 	private Adapter_quotation_detail _adapter;
+	private Adapter_quotation_detail _adapter2;
+	private Adapter_quotation_detail _adapter3;
 	private AlertDialog _dialog;
 
 	@Override
@@ -66,8 +67,15 @@ public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClick
 				break;
 
 			default:
+				
+				_adapter3 = new Adapter_quotation_detail(getActivity(), _data.get_wall());
+				new Linearlayout_listview(getActivity(), _body, new String[] { "地面", "小计：" + _data.get_groundTotals() + "元" }, _adapter3);
+				
 				_adapter = new Adapter_quotation_detail(getActivity(), _data.get_wall());
-				_list = new Linearlayout_listview(getActivity(), _body, new String[] { "墙面", "小计：" + _data.get_wallTotals() + "元" }, _adapter);
+				new Linearlayout_listview(getActivity(), _body, new String[] { "墙面", "小计：" + _data.get_groundTotals() + "元" }, _adapter);
+				
+				_adapter2 = new Adapter_quotation_detail(getActivity(), _data.get_roof());
+				new Linearlayout_listview(getActivity(), _body, new String[] { "顶面", "小计：" + _data.get_roofTotals() + "元" }, _adapter2);
 
 				System.out.println("ground size is " + _data.get_ground().size());
 				break;

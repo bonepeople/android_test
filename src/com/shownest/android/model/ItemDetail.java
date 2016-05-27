@@ -15,7 +15,7 @@ import com.shownest.android.utils.JsonUtil;
  */
 public class ItemDetail
 {
-	private String _tag;//目前暂时无用，不过也保存了类型：wall，roof，ground，hydropower，mount，cost，tax
+	private String _tag;// 目前暂时无用，不过也保存了类型：wall，roof，ground，hydropower，mount，cost，tax
 	private int _common;// 工艺标志，1常用 2非常用
 	private int _delMarks;// 删除修改标记,1修改 0删除
 	private int _itemId;// 工艺ID
@@ -40,6 +40,8 @@ public class ItemDetail
 		this._typeName = JsonUtil.get_int(_json, "typeName", 1);
 		this._itemName = JsonUtil.get_string(_json, "itemName", "");
 		this._material = JsonUtil.get_string(_json, "material", "");
+		if (this._material.equals(""))
+			this._material = "无";
 		this._metricUnit = JsonUtil.get_string(_json, "metricUnit", "");
 		this._number = JsonUtil.get_double(_json, "number", 1);
 		this._price = JsonUtil.get_double(_json, "price", 0);
