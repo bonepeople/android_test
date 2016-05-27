@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_quotation_detail;
+import com.shownest.android.model.OnChangeListener;
 import com.shownest.android.model.RoomDetail;
 import com.shownest.android.utils.HttpUtil;
 
@@ -22,7 +23,7 @@ import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-public class Activity_quotation_detail extends DEBUG_Activity
+public class Activity_quotation_detail extends DEBUG_Activity implements OnChangeListener
 {
 	public static final int GET_FAILED = 0;
 	public static final int GET_SUCCESSFUL = 1;
@@ -131,6 +132,20 @@ public class Activity_quotation_detail extends DEBUG_Activity
 		catch (JSONException e)
 		{
 			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void onChange(String tag, String[] args)
+	{
+		switch (tag)
+		{
+		case "adapter change":
+			System.out.println("修改工艺：" + args[0] + "-" + args[1]);
+			break;
+		case "listview change":
+			System.out.println("增减工艺：" + args[0]);
+			break;
 		}
 	}
 

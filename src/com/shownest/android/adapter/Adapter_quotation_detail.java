@@ -2,6 +2,7 @@ package com.shownest.android.adapter;
 
 import com.shownest.android.R;
 import com.shownest.android.model.ItemDetail;
+import com.shownest.android.model.OnChangeListener;
 import com.shownest.android.model.Package;
 
 import android.content.Context;
@@ -17,7 +18,9 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 {
 	private Context _context;
 	private LayoutInflater _inflater;
+	private String _tag;
 	private SparseArray<Package> _data;
+	private OnChangeListener _listener;
 
 	private static class ViewHolder
 	{
@@ -34,11 +37,17 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 		public TextView _text_total;
 	}
 
-	public Adapter_quotation_detail(Context _context, SparseArray<Package> _data)
+	public Adapter_quotation_detail(Context _context, String _tag, SparseArray<Package> _data)
 	{
 		this._context = _context;
 		_inflater = LayoutInflater.from(_context);
+		this._tag = _tag;
 		this._data = _data;
+	}
+
+	public void setOnChangetListener(OnChangeListener _listener)
+	{
+		this._listener = _listener;
 	}
 
 	@Override
@@ -82,7 +91,7 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 			_holder._text_metricunit2 = (TextView) _view.findViewById(R.id.textview_metricunit2);
 			_holder._text_number = (TextView) _view.findViewById(R.id.textview_number);
 			_holder._text_total = (TextView) _view.findViewById(R.id.textview_total);
-
+			_holder._image_edit.setId(position);
 			_holder._image_edit.setOnClickListener(this);
 			_view.setTag(_holder);
 		}
@@ -121,8 +130,8 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 		case R.id.button_cancel:
 			break;
 		default:
+			_listener.onChange("adapter change", new String[] { _tag, String.valueOf(v.getId()) });
 			break;
 		}
 	}
-
 }

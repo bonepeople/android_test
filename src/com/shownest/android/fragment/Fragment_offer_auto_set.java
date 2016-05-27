@@ -58,7 +58,7 @@ public class Fragment_offer_auto_set extends DEBUG_Fragment implements OnClickLi
 		_area = new RelativeLayout_edit_informationbar(getActivity(), _body, 3, new String[] { "建筑面积", "0", " m²" }, true);
 		_house = new RelativeLayout_edit_informationbar(getActivity(), _body, 4, new String[] { "户型结构", "1,1,1,1,1" }, true, this);
 		_adapter = new Adapter_offer_auto(getActivity());
-		new Linearlayout_listview(getActivity(), _body, new String[] { "具体面积", "信息填写详细，会使您获得更精准的报价" }, _adapter);
+		new Linearlayout_listview(getActivity(), _body, "areas", new String[] { "具体面积", "信息填写详细，会使您获得更精准的报价" }, _adapter);
 
 		_area.setOnChangetListener(_adapter);
 		_house.setOnChangetListener(_adapter);

@@ -1,6 +1,7 @@
 package com.shownest.android.widget;
 
 import com.shownest.android.R;
+import com.shownest.android.model.OnChangeListener;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -16,11 +17,13 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 {
 	private static boolean DEBUG = false;
 	private ViewGroup _rootview;
+	private String _tag;
 	private LinearLayout _title;
 	private TextView _text_name, _text_hint, _text_change;
 	private ListView _list;
 	private ListAdapter _adapter;
 	private ImageView _image_flag;
+	private OnChangeListener _listener;
 	private boolean _collapse = true;
 
 	public Linearlayout_listview(Context context)
@@ -33,12 +36,13 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 		super(context, attrs);
 	}
 
-	public Linearlayout_listview(Context context, ViewGroup root, String[] args, ListAdapter _adapter)
+	public Linearlayout_listview(Context context, ViewGroup root, String _tag, String[] args, ListAdapter _adapter)
 	{
 		super(context);
 		if (DEBUG)
 			System.out.println("Linearlayout_listview super");
 		this._rootview = root;
+		this._tag = _tag;
 		this._adapter = _adapter;
 		setContentView(args);
 	}
@@ -63,6 +67,18 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 		_title.setOnClickListener(this);
 	}
 
+	public void setOnChangetListener(OnChangeListener _listener)
+	{
+		this._listener = _listener;
+	}
+
+	public void set_change(String _change)
+	{
+		_text_change.setText(_change);
+		_text_change.setVisibility(TextView.VISIBLE);
+		_text_change.setOnClickListener(this);
+	}
+
 	@Override
 	public void onClick(View v)
 	{
@@ -82,6 +98,10 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 				_image_flag.setImageResource(R.drawable.arrow_down);
 			}
 			_collapse = !_collapse;
+			break;
+		case R.id.textview_change:
+
+			_listener.onChange("listview change", new String[] { _tag });
 			break;
 
 		}
