@@ -81,6 +81,9 @@ public class HttpUtil
 		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}
 
+	/**
+	 * 认证资料提交（身份认证）
+	 */
 	public static void set_PersonalProve(Handler _handler, ContentValues _value, int _successful, int _failed)
 	{
 		String _address = BASEADDRESS + "webPersonalProve";
@@ -91,6 +94,9 @@ public class HttpUtil
 		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}
 
+	/**
+	 * 详细资料提交（身份认证）
+	 */
 	public static void set_PersonalIntroduce(Handler _handler, ContentValues _value, int _successful, int _failed)
 	{
 		String _address = BASEADDRESS + "webPersonalIntroduce";
@@ -101,6 +107,9 @@ public class HttpUtil
 		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}
 
+	/**
+	 * 基本资料提交（身份认证）
+	 */
 	public static void set_PersonalBaseInfor(Handler _handler, ContentValues _value, int _successful, int _failed)
 	{
 		String _address = BASEADDRESS + "webPersonalBaseInfor";
@@ -111,7 +120,7 @@ public class HttpUtil
 		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}
 
-	public static void change_bsaeinfo(Handler _handler, String _showname, String _realname, String _sex, String _style, int _successful, int _failed)
+	public static void change_baseinfo(Handler _handler, String _showname, String _realname, String _sex, String _style, int _successful, int _failed)
 	{
 		String _address = BASEADDRESS + "webPersonalBaseInfor";
 		String _message = "";
@@ -284,6 +293,14 @@ public class HttpUtil
 		String _message = "";
 
 		_message = "userName=" + _name;
+
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
+	}
+
+	public static void check_login(Handler _handler, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "webcheckloginuser";
+		String _message = "";
 
 		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}
