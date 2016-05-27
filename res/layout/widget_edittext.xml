@@ -11,8 +11,7 @@
         android:id="@+id/textview_widget_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:text="所在城市" />
+        android:singleLine="true" />
 
     <EditText
         android:id="@+id/edittext_widget"
