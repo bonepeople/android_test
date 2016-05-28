@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class Fragment_quotation_change extends DEBUG_Fragment implements OnClickListener
 {
@@ -28,11 +29,11 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		super.onCreateView(inflater, container, savedInstanceState);
-		View _view = inflater.inflate(R.layout.fragment_quotation_change, container, false);
-//		_body = (LinearLayout) _view.findViewById(R.id.linearlayout_content);
-//		_button_commit = (Button) _view.findViewById(R.id.button_commit);
-//		_button_commit.setText("保存");
-//		_button_commit.setOnClickListener(this);
+		View _view = inflater.inflate(R.layout.fragment_basic, container, false);
+		_body = (LinearLayout) _view.findViewById(R.id.linearlayout_content);
+		_button_commit = (Button) _view.findViewById(R.id.button_commit);
+		_button_commit.setText("确定");
+		_button_commit.setOnClickListener(this);
 		return _view;
 	}
 
@@ -123,6 +124,7 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 		if (_id == R.id.button_commit)
 		{
 			// Activity_quotation_detail.get_instance().finish();
+			Toast.makeText(getActivity(), "tijiao", Toast.LENGTH_SHORT).show();
 		}
 	}
 
