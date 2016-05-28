@@ -62,57 +62,26 @@ public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClick
 				break;
 
 			default:
-				if (_data.get_details("ground").size() != 0)
-				{
-					_adapter = new Adapter_quotation_detail(getActivity(), "ground", _data.get_details("ground"));
-					_list = new Linearlayout_listview(getActivity(), _body, "ground", new String[] { "地面", "小计：" + _data.get_totals("ground") + "元" }, _adapter);
-					_adapter.setOnChangetListener(Activity_quotation_detail.get_instance());
-					_list.setOnChangetListener(Activity_quotation_detail.get_instance());
-					_list.set_change("增减工艺");
-				}
-//				if (_data.get_wall().size() != 0)
-//				{
-//					_adapter = new Adapter_quotation_detail(getActivity(), "wall", _data.get_wall());
-//					_list = new Linearlayout_listview(getActivity(), _body, "wall", new String[] { "墙面", "小计：" + _data.get_totals("wall") + "元" }, _adapter);
-//					_adapter.setOnChangetListener(Activity_quotation_detail.get_instance());
-//					_list.setOnChangetListener(Activity_quotation_detail.get_instance());
-//					_list.set_change("增减工艺");
-//				}
-//				if (_data.get_roof().size() != 0)
-//				{
-//					_adapter = new Adapter_quotation_detail(getActivity(), "roof", _data.get_roof());
-//					_list = new Linearlayout_listview(getActivity(), _body, "roof", new String[] { "顶面", "小计：" + _data.get_totals("roof") + "元" }, _adapter);
-//					_adapter.setOnChangetListener(Activity_quotation_detail.get_instance());
-//					_list.setOnChangetListener(Activity_quotation_detail.get_instance());
-//					_list.set_change("增减工艺");
-//				}
-//				if (_data.get_hydropower().size() != 0)
-//				{
-//					_adapter = new Adapter_quotation_detail(getActivity(), "hydropower", _data.get_hydropower());
-//					_list = new Linearlayout_listview(getActivity(), _body, "hydropower", new String[] { "水电", "小计：" + _data.get_totals("hydropower") + "元" }, _adapter);
-//					_adapter.setOnChangetListener(Activity_quotation_detail.get_instance());
-//					_list.setOnChangetListener(Activity_quotation_detail.get_instance());
-//					_list.set_change("增减工艺");
-//				}
-//				if (_data.get_mount().size() != 0)
-//				{
-//					_adapter = new Adapter_quotation_detail(getActivity(), "mount", _data.get_mount());
-//					_list = new Linearlayout_listview(getActivity(), _body, "mount", new String[] { "安装", "小计：" + _data.get_totals("mount") + "元" }, _adapter);
-//					_adapter.setOnChangetListener(Activity_quotation_detail.get_instance());
-//					_list.setOnChangetListener(Activity_quotation_detail.get_instance());
-//					_list.set_change("增减工艺");
-//				}
-//				if (_data.get_cost().size() != 0)
-//				{
-//					_adapter = new Adapter_quotation_detail(getActivity(), "cost", _data.get_cost());
-//					_list = new Linearlayout_listview(getActivity(), _body, "cost", new String[] { "杂费", "小计：" + _data.get_totals("cost") + "元" }, _adapter);
-//					_adapter.setOnChangetListener(Activity_quotation_detail.get_instance());
-//					_list.setOnChangetListener(Activity_quotation_detail.get_instance());
-//					_list.set_change("增减工艺");
-//				}
-
+				set_list(_data, "ground", "地面");
+				set_list(_data, "wall", "墙面");
+				set_list(_data, "roof", "顶面");
+				set_list(_data, "hydropower", "水电");
+				set_list(_data, "mount", "安装");
+				set_list(_data, "cost", "杂费");
 				break;
 			}
+		}
+	}
+
+	private void set_list(RoomDetail _data, String _tag, String _name)
+	{
+		if (_data.get_details(_tag).size() != 0)
+		{
+			_adapter = new Adapter_quotation_detail(getActivity(), _tag, _data.get_details(_tag));
+			_list = new Linearlayout_listview(getActivity(), _body, _tag, new String[] { _name, "小计：" + _data.get_totals(_tag) + "元" }, _adapter);
+			_adapter.setOnChangetListener(Activity_quotation_detail.get_instance());
+			_list.setOnChangetListener(Activity_quotation_detail.get_instance());
+			_list.set_change("增减工艺");
 		}
 	}
 
