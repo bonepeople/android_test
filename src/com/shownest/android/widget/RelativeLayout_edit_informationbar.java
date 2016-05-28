@@ -62,7 +62,7 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 	 * @param style
 	 *            类型（1-6）
 	 * @param name
-	 *            信息条内容 1-3,2-2,3-3,4-2,5-2,6-4
+	 *            信息条内容 1-3,2-2,3-3,4-2,5-2,6-4,7-3
 	 * 
 	 */
 	public RelativeLayout_edit_informationbar(Context context, ViewGroup root, int style, String[] args, boolean _clickable)
@@ -133,6 +133,7 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 			_textview_name.setText(args[0]);
 			_textview_right.setText(args[1]);
 			break;
+		case 7:
 		case 3:
 			if (args.length != 3)
 			{
@@ -279,6 +280,7 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 		case 2:
 			_textview_right.setText(args[0]);
 			break;
+		case 7:
 		case 3:
 			_textview_left.setText(args[0]);
 			break;
@@ -317,6 +319,7 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 		case 2:
 			_data = this._textview_right.getText().toString();
 			break;
+		case 7:
 		case 3:
 			_data = this._textview_left.getText().toString();
 			break;
@@ -346,9 +349,15 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 				if (_temp_str.length() < 6 && _temp_str.length() > 0)
 					setData(new String[] { Integer.valueOf(_temp_str).toString() });
 			}
+			else if (this._style == 7)
+			{
+				String _temp_str = _edittext_dialog.getText().toString();
+				if (_temp_str.length() < 8 && _temp_str.length() > 0)
+					setData(new String[] { Float.valueOf(_temp_str).toString() });
+			}
 			else
-
 				setData(new String[] { _edittext_dialog.getText().toString() });
+
 			_dialog.dismiss();
 			break;
 
@@ -374,6 +383,9 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 			case 5:
 				show_dialog(getData(), 0);
 				break;
+			case 7:
+				show_dialog(getData(), 2);
+				break;
 			}
 		}
 	}
@@ -391,11 +403,13 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 		_edittext_dialog.setText(_value);
 		if (number == 1)
 			_edittext_dialog.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
+		else if (number == 2)
+			_edittext_dialog.setInputType(android.text.InputType.TYPE_CLASS_NUMBER | android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL);
 		_edittext_dialog.selectAll();
 		_button_commit.setOnClickListener(this);
 		_button_cancel.setOnClickListener(this);
 		_dialog.show();
-		
+
 		Window window = _dialog.getWindow();
 		android.view.WindowManager.LayoutParams params = window.getAttributes();
 		params.softInputMode = android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE;// 显示dialog的时候,就显示软键盘

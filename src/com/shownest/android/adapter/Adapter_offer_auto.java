@@ -265,7 +265,7 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 	{
 		switch (tag)
 		{
-		case "style3":
+		case "style7":
 			_total_area = Float.parseFloat(args[0]);
 			_every_area = _total_area / _areas.size();
 			construct();
