@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
+import com.shownest.android.fragment.Fragment_quotation_change;
 import com.shownest.android.fragment.Fragment_quotation_detail;
 import com.shownest.android.model.RoomDetail;
 
@@ -67,6 +68,7 @@ public class Activity_quotation_change extends DEBUG_Activity
 		_intent = getIntent();
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 
+		add_fragment(_instance, new Fragment_quotation_change(), false);
 		// _type = _intent.getStringExtra("part");
 		// _quotationId = _intent.getStringExtra("id");
 		// _number = _intent.getIntExtra("index", 1);
