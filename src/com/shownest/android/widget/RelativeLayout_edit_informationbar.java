@@ -2,6 +2,7 @@ package com.shownest.android.widget;
 
 import com.shownest.android.R;
 import com.shownest.android.model.OnChangeListener;
+import com.shownest.android.utils.NumberUtil;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -352,8 +353,9 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 			else if (this._style == 7)
 			{
 				String _temp_str = _edittext_dialog.getText().toString();
-				if (_temp_str.length() < 8 && _temp_str.length() > 0)
-					setData(new String[] { Float.valueOf(_temp_str).toString() });
+				double _temp_double = Double.parseDouble(_temp_str);
+				if (_temp_double < 9999)
+					setData(new String[] { String.valueOf(NumberUtil.double_format(_temp_double)) });
 			}
 			else
 				setData(new String[] { _edittext_dialog.getText().toString() });

@@ -13,6 +13,9 @@ public class NumberUtil
 		return _px;
 	}
 
+	/**
+	 * double类型的数字保留2位小数 5舍6入
+	 */
 	public static double double_format(double _number)
 	{
 		String _format = "%.2f";

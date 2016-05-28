@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.shownest.android.R;
 import com.shownest.android.model.OnChangeListener;
 import com.shownest.android.model.Package;
+import com.shownest.android.utils.NumberUtil;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -22,8 +23,8 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 {
 	private Context _context;
 	private LayoutInflater _inflater;
-	private float _total_area = 0;
-	private float _every_area = 0;
+	private double _total_area = 0;
+	private double _every_area = 0;
 	private ArrayList<Package> _areas = new ArrayList<Package>();
 	private AlertDialog _dialog;
 	private EditText _edittext_dialog;
@@ -221,7 +222,7 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 		Button _button_cancel = (Button) _view.findViewById(R.id.button_cancel);
 		_edittext_dialog = (EditText) _view.findViewById(R.id.edittext_dialog);
 		_edittext_dialog.setText(_areas.get(_selected)._data.toString());
-		_edittext_dialog.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
+		_edittext_dialog.setInputType(android.text.InputType.TYPE_CLASS_NUMBER | android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL);
 		_edittext_dialog.selectAll();
 		_button_commit.setOnClickListener(this);
 		_button_cancel.setOnClickListener(this);
@@ -243,9 +244,10 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 		case R.id.button_commit:
 			// 可以在这里检测输入的合理性
 			String _temp_str = _edittext_dialog.getText().toString();
-			if (_temp_str.length() < 7 && _temp_str.length() > 0)
+			double _temp_double = Double.parseDouble(_temp_str);
+			if (_temp_double < 9999)
 			{
-				_areas.get(_selected)._data = Float.valueOf(_temp_str);
+				_areas.get(_selected)._data = NumberUtil.double_format(_temp_double);
 				notifyDataSetChanged();
 			}
 			_dialog.dismiss();
@@ -266,8 +268,8 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 		switch (tag)
 		{
 		case "style7":
-			_total_area = Float.parseFloat(args[0]);
-			_every_area = _total_area / _areas.size();
+			_total_area = Double.parseDouble(args[0]);
+			_every_area = NumberUtil.double_format(_total_area / _areas.size());
 			construct();
 			break;
 
@@ -279,7 +281,7 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 			int _toilet = Integer.parseInt(_nums[3]);
 			int _balcony = Integer.parseInt(_nums[4]);
 
-			_every_area = _total_area / (_room + _parlour + _kitchen + _toilet + _balcony);
+			_every_area = NumberUtil.double_format(_total_area / (_room + _parlour + _kitchen + _toilet + _balcony));
 			construct(_room, _parlour, _kitchen, _toilet, _balcony);
 			break;
 		}
