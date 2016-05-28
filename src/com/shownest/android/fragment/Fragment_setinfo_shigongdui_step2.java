@@ -202,11 +202,17 @@ public class Fragment_setinfo_shigongdui_step2 extends DEBUG_Fragment implements
 			String _temp_str[] = _info.get_serviceItem().split(",");
 			for (String string : _temp_str)
 			{
-				int _temp_num = Integer.parseInt(string);
-				if (_temp_num > -1 && _temp_num < 3)
+				try
 				{
-					_builder.append(_str_item[_temp_num] + ",");
-					_service_select[0][_temp_num] = true;
+					int _temp_num = Integer.parseInt(string);
+					if (_temp_num > -1 && _temp_num < 3)
+					{
+						_builder.append(_str_item[_temp_num] + ",");
+						_service_select[0][_temp_num] = true;
+					}
+				}
+				catch (Exception e)
+				{
 				}
 			}
 			if (_builder.length() > 1)

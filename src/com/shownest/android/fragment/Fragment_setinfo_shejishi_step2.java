@@ -204,11 +204,17 @@ public class Fragment_setinfo_shejishi_step2 extends DEBUG_Fragment implements O
 			String _temp_str[] = _info.get_serviceItem().split(",");
 			for (String string : _temp_str)
 			{
-				int _temp_num = Integer.parseInt(string);
-				if (_temp_num > 0 && _temp_num < 4)
+				try
 				{
-					_builder.append(_str_item[_temp_num - 1] + ",");
-					_service_select[0][_temp_num - 1] = true;
+					int _temp_num = Integer.parseInt(string);
+					if (_temp_num > 0 && _temp_num < 4)
+					{
+						_builder.append(_str_item[_temp_num - 1] + ",");
+						_service_select[0][_temp_num - 1] = true;
+					}
+				}
+				catch (Exception e)
+				{
 				}
 			}
 			if (_builder.length() > 1)
