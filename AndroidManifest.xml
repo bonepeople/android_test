@@ -94,6 +94,10 @@
             android:name="com.shownest.android.activity.Activity_quotation_detail"
             android:theme="@style/ActivityTheme_notitle" >
         </activity>
+         <activity
+            android:name="com.shownest.android.activity.Activity_quotation_change"
+            android:theme="@style/ActivityTheme_notitle" >
+        </activity>
     </application>
 
 </manifest>
