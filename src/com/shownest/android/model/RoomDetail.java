@@ -19,13 +19,6 @@ import android.util.SparseArray;
 public class RoomDetail
 {
 	private String _tag;// 目前暂时无用，不过也保存了类型：room，parlour，kitchen，toilet，balcony，hydropower，mount，cost，tax
-	private double _wallTotals;// 墙面总价
-	private double _roofTotals;// 顶面总价
-	private double _groundTotals;// 地面总价
-	private double _hydropowerTotals;// 水电总价
-	private double _mountTotals;// 安装总价
-	private double _costTotals;// 杂费总价
-	private double _taxTotals;// 税费总价
 	private SparseArray<Package> _wall = new SparseArray<Package>();// 墙面工艺细节
 	private SparseArray<Package> _roof = new SparseArray<Package>();// 顶面工艺细节
 	private SparseArray<Package> _ground = new SparseArray<Package>();// 地面工艺细节
@@ -35,18 +28,11 @@ public class RoomDetail
 	private SparseArray<Package> _tax = new SparseArray<Package>();// 税费工艺细节
 
 	private HashMap<String, Double> _totals = new HashMap<>();
-	private HashMap<String, SparseArray<Package>> _details = new HashMap<String, SparseArray<Package>>();
+	private HashMap<String, SparseArray<ItemDetail>> _details = new HashMap<String, SparseArray<ItemDetail>>();
 
 	public RoomDetail(JSONObject _json, String _tag) throws JSONException
 	{
 		this._tag = _tag;
-		this._wallTotals = JsonUtil.get_double(_json, "wallTotals", 0);
-		this._roofTotals = JsonUtil.get_double(_json, "roofTotals", 0);
-		this._groundTotals = JsonUtil.get_double(_json, "groundTotals", 0);
-		this._hydropowerTotals = JsonUtil.get_double(_json, "hydropowerTotals", 0);
-		this._mountTotals = JsonUtil.get_double(_json, "mountTotals", 0);
-		this._costTotals = JsonUtil.get_double(_json, "costTotals", 0);
-		this._taxTotals = JsonUtil.get_double(_json, "taxTotals", 0);
 
 		// ==========
 		_totals.put("ground", JsonUtil.get_double(_json, "groundTotals", 0));
@@ -57,6 +43,14 @@ public class RoomDetail
 		_totals.put("cost", JsonUtil.get_double(_json, "costTotals", 0));
 		_totals.put("tax", JsonUtil.get_double(_json, "taxTotals", 0));
 		// ==========
+
+		creat_items(_json, "ground");
+		creat_items(_json, "wall");
+		creat_items(_json, "roof");
+		creat_items(_json, "hydropower");
+		creat_items(_json, "mount");
+		creat_items(_json, "cost");
+		creat_items(_json, "tax");
 
 		JSONArray _array;
 		_array = JsonUtil.get_array(_json, "wall");
@@ -110,6 +104,20 @@ public class RoomDetail
 		}
 	}
 
+	private void creat_items(JSONObject _json, String _tag) throws JSONException
+	{
+		JSONArray _json_array;
+		_json_array = JsonUtil.get_array(_json, _tag);
+		SparseArray<ItemDetail> _temp_array = new SparseArray<ItemDetail>();
+		for (int _temp_i = 0; _json_array != null && _temp_i < _json_array.length(); _temp_i++)
+		{
+			JSONObject _obj = _json_array.getJSONObject(_temp_i);
+			ItemDetail _temp_item = new ItemDetail(_obj, _tag);
+			_temp_array.put(_temp_i, _temp_item);
+		}
+		_details.put(_tag, _temp_array);
+	}
+
 	public String get_tag()
 	{
 		return _tag;
@@ -125,74 +133,9 @@ public class RoomDetail
 		_totals.put(_name, _number);
 	}
 
-	public double get_wallTotals()
+	public SparseArray<ItemDetail> get_details(String _name)
 	{
-		return _wallTotals;
-	}
-
-	public void set_wallTotals(double _wallTotals)
-	{
-		this._wallTotals = _wallTotals;
-	}
-
-	public double get_roofTotals()
-	{
-		return _roofTotals;
-	}
-
-	public void set_roofTotals(double _roofTotals)
-	{
-		this._roofTotals = _roofTotals;
-	}
-
-	public double get_groundTotals()
-	{
-		return _groundTotals;
-	}
-
-	public void set_groundTotals(double _groundTotals)
-	{
-		this._groundTotals = _groundTotals;
-	}
-
-	public double get_hydropowerTotals()
-	{
-		return _hydropowerTotals;
-	}
-
-	public void set_hydropowerTotals(double _hydropowerTotals)
-	{
-		this._hydropowerTotals = _hydropowerTotals;
-	}
-
-	public double get_mountTotals()
-	{
-		return _mountTotals;
-	}
-
-	public void set_mountTotals(double _mountTotals)
-	{
-		this._mountTotals = _mountTotals;
-	}
-
-	public double get_costTotals()
-	{
-		return _costTotals;
-	}
-
-	public void set_costTotals(double _costTotals)
-	{
-		this._costTotals = _costTotals;
-	}
-
-	public double get_taxTotals()
-	{
-		return _taxTotals;
-	}
-
-	public void set_taxTotals(double _taxTotals)
-	{
-		this._taxTotals = _taxTotals;
+		return _details.get(_name);
 	}
 
 	public SparseArray<Package> get_wall()

@@ -19,7 +19,7 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 	private Context _context;
 	private LayoutInflater _inflater;
 	private String _tag;
-	private SparseArray<Package> _data;
+	private SparseArray<ItemDetail> _data;
 	private OnChangeListener _listener;
 
 	private static class ViewHolder
@@ -37,7 +37,7 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 		public TextView _text_total;
 	}
 
-	public Adapter_quotation_detail(Context _context, String _tag, SparseArray<Package> _data)
+	public Adapter_quotation_detail(Context _context, String _tag, SparseArray<ItemDetail> _data)
 	{
 		this._context = _context;
 		_inflater = LayoutInflater.from(_context);
@@ -99,7 +99,7 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 		{
 			_holder = (ViewHolder) _view.getTag();
 		}
-		ItemDetail _temp_item = (ItemDetail) _data.get(position + 1)._data;
+		ItemDetail _temp_item = _data.get(position);
 		if (_temp_item == null)
 			System.out.println("_temp_item  is null");
 		_holder._text_name.setText(_temp_item.get_itemName());
