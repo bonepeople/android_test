@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.shownest.android.utils.JsonUtil;
+import com.shownest.android.utils.NumberUtil;
 
 /**
  * 工艺详细信息
@@ -169,7 +170,7 @@ public class ItemDetail
 
 	public void set_total()
 	{
-		this._total = this._number * this._price;
+		this._total = NumberUtil.double_format(this._number * this._price);
 	}
 
 	public String get_technics()

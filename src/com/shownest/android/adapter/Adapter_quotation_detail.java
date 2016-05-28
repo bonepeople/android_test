@@ -111,9 +111,7 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 		_holder._text_metricunit1.setText(_temp_item.get_metricUnit());
 		_holder._text_metricunit2.setText(_temp_item.get_metricUnit());
 		_holder._text_number.setText(String.valueOf(_temp_item.get_number()));
-		double _total = _temp_item.get_price() * _temp_item.get_number();
-		System.out.println("total is " + _total + "price:" + _temp_item.get_price() + "number" + _temp_item.get_number());
-		_holder._text_total.setText(String.format("%.2f", _total));
+		_holder._text_total.setText(String.valueOf(_temp_item.get_total()));
 
 		return _view;
 	}
