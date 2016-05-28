@@ -65,7 +65,7 @@ public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClick
 				if (_data.get_ground().size() != 0)
 				{
 					_adapter = new Adapter_quotation_detail(getActivity(), "ground", _data.get_ground());
-					_list = new Linearlayout_listview(getActivity(), _body, "ground", new String[] { "地面", "小计：" + _data.get_groundTotals() + "元" }, _adapter);
+					_list = new Linearlayout_listview(getActivity(), _body, "ground", new String[] { "地面", "小计：" + _data.get_totals("ground") + "元" }, _adapter);
 					_adapter.setOnChangetListener(Activity_quotation_detail.get_instance());
 					_list.setOnChangetListener(Activity_quotation_detail.get_instance());
 					_list.set_change("增减工艺");
@@ -73,7 +73,7 @@ public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClick
 				if (_data.get_wall().size() != 0)
 				{
 					_adapter = new Adapter_quotation_detail(getActivity(), "wall", _data.get_wall());
-					_list = new Linearlayout_listview(getActivity(), _body, "wall", new String[] { "墙面", "小计：" + _data.get_wallTotals() + "元" }, _adapter);
+					_list = new Linearlayout_listview(getActivity(), _body, "wall", new String[] { "墙面", "小计：" + _data.get_totals("wall") + "元" }, _adapter);
 					_adapter.setOnChangetListener(Activity_quotation_detail.get_instance());
 					_list.setOnChangetListener(Activity_quotation_detail.get_instance());
 					_list.set_change("增减工艺");
@@ -81,7 +81,7 @@ public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClick
 				if (_data.get_roof().size() != 0)
 				{
 					_adapter = new Adapter_quotation_detail(getActivity(), "roof", _data.get_roof());
-					_list = new Linearlayout_listview(getActivity(), _body, "roof", new String[] { "顶面", "小计：" + _data.get_roofTotals() + "元" }, _adapter);
+					_list = new Linearlayout_listview(getActivity(), _body, "roof", new String[] { "顶面", "小计：" + _data.get_totals("roof") + "元" }, _adapter);
 					_adapter.setOnChangetListener(Activity_quotation_detail.get_instance());
 					_list.setOnChangetListener(Activity_quotation_detail.get_instance());
 					_list.set_change("增减工艺");
@@ -89,7 +89,7 @@ public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClick
 				if (_data.get_hydropower().size() != 0)
 				{
 					_adapter = new Adapter_quotation_detail(getActivity(), "hydropower", _data.get_hydropower());
-					_list = new Linearlayout_listview(getActivity(), _body, "hydropower", new String[] { "水电", "小计：" + _data.get_hydropowerTotals() + "元" }, _adapter);
+					_list = new Linearlayout_listview(getActivity(), _body, "hydropower", new String[] { "水电", "小计：" + _data.get_totals("hydropower") + "元" }, _adapter);
 					_adapter.setOnChangetListener(Activity_quotation_detail.get_instance());
 					_list.setOnChangetListener(Activity_quotation_detail.get_instance());
 					_list.set_change("增减工艺");
@@ -97,7 +97,7 @@ public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClick
 				if (_data.get_mount().size() != 0)
 				{
 					_adapter = new Adapter_quotation_detail(getActivity(), "mount", _data.get_mount());
-					_list = new Linearlayout_listview(getActivity(), _body, "mount", new String[] { "安装", "小计：" + _data.get_mountTotals() + "元" }, _adapter);
+					_list = new Linearlayout_listview(getActivity(), _body, "mount", new String[] { "安装", "小计：" + _data.get_totals("mount") + "元" }, _adapter);
 					_adapter.setOnChangetListener(Activity_quotation_detail.get_instance());
 					_list.setOnChangetListener(Activity_quotation_detail.get_instance());
 					_list.set_change("增减工艺");
@@ -105,7 +105,7 @@ public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClick
 				if (_data.get_cost().size() != 0)
 				{
 					_adapter = new Adapter_quotation_detail(getActivity(), "cost", _data.get_cost());
-					_list = new Linearlayout_listview(getActivity(), _body, "cost", new String[] { "杂费", "小计：" + _data.get_costTotals() + "元" }, _adapter);
+					_list = new Linearlayout_listview(getActivity(), _body, "cost", new String[] { "杂费", "小计：" + _data.get_totals("cost") + "元" }, _adapter);
 					_adapter.setOnChangetListener(Activity_quotation_detail.get_instance());
 					_list.setOnChangetListener(Activity_quotation_detail.get_instance());
 					_list.set_change("增减工艺");

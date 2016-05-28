@@ -1,5 +1,7 @@
 package com.shownest.android.model;
 
+import java.util.HashMap;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,6 +34,9 @@ public class RoomDetail
 	private SparseArray<Package> _cost = new SparseArray<Package>();// 杂费工艺细节
 	private SparseArray<Package> _tax = new SparseArray<Package>();// 税费工艺细节
 
+	private HashMap<String, Double> _totals = new HashMap<>();
+	private HashMap<String, SparseArray<Package>> _details = new HashMap<String, SparseArray<Package>>();
+
 	public RoomDetail(JSONObject _json, String _tag) throws JSONException
 	{
 		this._tag = _tag;
@@ -42,6 +47,16 @@ public class RoomDetail
 		this._mountTotals = JsonUtil.get_double(_json, "mountTotals", 0);
 		this._costTotals = JsonUtil.get_double(_json, "costTotals", 0);
 		this._taxTotals = JsonUtil.get_double(_json, "taxTotals", 0);
+
+		// ==========
+		_totals.put("ground", JsonUtil.get_double(_json, "groundTotals", 0));
+		_totals.put("wall", JsonUtil.get_double(_json, "wallTotals", 0));
+		_totals.put("roof", JsonUtil.get_double(_json, "roofTotals", 0));
+		_totals.put("hydropower", JsonUtil.get_double(_json, "hydropowerTotals", 0));
+		_totals.put("mount", JsonUtil.get_double(_json, "mountTotals", 0));
+		_totals.put("cost", JsonUtil.get_double(_json, "costTotals", 0));
+		_totals.put("tax", JsonUtil.get_double(_json, "taxTotals", 0));
+		// ==========
 
 		JSONArray _array;
 		_array = JsonUtil.get_array(_json, "wall");
@@ -100,9 +115,14 @@ public class RoomDetail
 		return _tag;
 	}
 
-	public void set_tag(String _tag)
+	public double get_totals(String _name)
 	{
-		this._tag = _tag;
+		return _totals.get(_name);
+	}
+
+	public void set_totals(String _name, double _number)
+	{
+		_totals.put(_name, _number);
 	}
 
 	public double get_wallTotals()
