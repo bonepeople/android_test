@@ -149,7 +149,7 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 		if (convertView == null)
 		{
 			System.out.println("creat a new view - " + position);
-			_view = _inflater.inflate(R.layout.widget_edit_informationbar_style3, null);
+			_view = _inflater.inflate(R.layout.item_offer_auto, null);
 			_holder = new ViewHolder();
 			_holder._text_name = (TextView) _view.findViewById(R.id.textview_widget_name);
 			_holder._text_left = (TextView) _view.findViewById(R.id.textview_widget_left);
