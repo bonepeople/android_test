@@ -4,11 +4,13 @@ import com.shownest.android.R;
 import com.shownest.android.activity.Activity_quotation_detail;
 import com.shownest.android.adapter.Adapter_quotation_detail;
 import com.shownest.android.basic.DEBUG_Fragment;
+import com.shownest.android.model.ItemDetail;
 import com.shownest.android.model.RoomDetail;
 import com.shownest.android.widget.Linearlayout_listview;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +59,10 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 		RoomDetail _data = Activity_quotation_detail.get_data();
 		if (_data != null)
 		{
+			SparseArray<ItemDetail> _array = _data.get_details("ground");
+			ItemDetail _item = _array.get(0);
+
+			System.out.println("will change:" + _item.get_itemName());
 		}
 	}
 

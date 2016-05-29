@@ -142,6 +142,13 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 		{
 		case "adapter change":
 			System.out.println("修改工艺：" + args[0] + "-" + args[1]);
+			Intent _change = new Intent(this, Activity_quotation_change.class);
+			_change.putExtra("room", "room");
+			_change.putExtra("room_index", "1");
+			_change.putExtra("part", "ground");
+			_change.putExtra("part_index", "0");
+			startActivity(_change);
+
 			break;
 		case "listview change":
 			System.out.println("增减工艺：" + args[0]);
