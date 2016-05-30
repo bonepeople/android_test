@@ -67,19 +67,9 @@ public class Activity_quotation_change extends DEBUG_Activity
 		_instance = this;
 		_intent = getIntent();
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
-
+		setTitle("详细修改");
 		add_fragment(_instance, new Fragment_quotation_change(), false);
-		// _type = _intent.getStringExtra("part");
-		// _quotationId = _intent.getStringExtra("id");
-		// _number = _intent.getIntExtra("index", 1);
-		// System.out.println("select from :" + _type + "-" + _number);
-		//
-		// setTitle(_intent.getStringExtra("name"));
-		// show_wait();
-		// ContentValues _value = new ContentValues();
-		// _value.put("quotationId", _quotationId);
-		// _value.put(_type, _number);
-		// HttpUtil.get_quotation_item(_handler, _type, _value, GET_SUCCESSFUL, GET_FAILED);
+
 	}
 
 	private static void handle_string(String str)

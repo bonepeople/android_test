@@ -23,7 +23,7 @@ public class ItemDetail
 	private int _typeName;// 安装类型 1灯安装 2五金安装
 	private String _itemName;// 工艺名称
 	private String _material;// 辅材品牌型号
-	private String _metricUnit;// 计算单位
+	private String _metricUnit;// 计算单位:平米
 	private double _number;// 工程量
 	private int _numerical;// 工艺ID
 	private double _price;// 单价
