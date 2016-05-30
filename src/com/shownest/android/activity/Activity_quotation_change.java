@@ -6,7 +6,6 @@ import org.json.JSONObject;
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_quotation_change;
-import com.shownest.android.fragment.Fragment_quotation_detail;
 import com.shownest.android.model.ItemDetail;
 import com.shownest.android.model.RoomDetail;
 
@@ -78,13 +77,9 @@ public class Activity_quotation_change extends DEBUG_Activity
 
 			if (_result.equals("智能报价单部分明细"))
 			{
-				_data = new RoomDetail(_obj.getJSONObject("data"), _intent.getStringExtra("part"));
-				add_fragment(_instance, new Fragment_quotation_detail(), false);
 			}
 			else if (_result.equals("未查询到数据"))
 			{
-				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
-				_instance.finish();
 			}
 			else
 				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();

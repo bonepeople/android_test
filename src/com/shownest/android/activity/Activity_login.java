@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_login;
+import com.shownest.android.utils.UserManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -67,9 +68,7 @@ public class Activity_login extends DEBUG_Activity
 			Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
 			if (_result.equals("用户登录成功"))
 			{
-				Intent _intent = new Intent();
-				_intent.putExtra("result", "successful");
-				_instance.setResult(RESULT_OK, _intent); 
+				UserManager.set_login(true);
 				_instance.finish();
 			}
 		}

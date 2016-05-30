@@ -29,7 +29,7 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 	private int _room_index, _part_index;
 	private ItemDetail _new_item;
 	private Linearlayout_listview _list;
-	private RelativeLayout_edit_informationbar _name, _price, _number;
+	private RelativeLayout_edit_informationbar _price, _number;
 	private Linearlayout_edittext _material, _technics;
 
 	@Override
@@ -75,7 +75,7 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 			_new_item = Activity_quotation_change.get_item();
 			System.out.println("will change:" + _new_item.get_itemName());
 
-			_name = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "修改项目", _new_item.get_itemName() }, false);
+			new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "修改项目", _new_item.get_itemName() }, false);
 			String _str_price = String.valueOf(_new_item.get_price());
 			String _str_unit = _new_item.get_unit() + "/" + _new_item.get_metricUnit();
 			String _str_number = String.valueOf(_new_item.get_number());

@@ -14,6 +14,7 @@ import com.shownest.android.fragment.Fragment_quotation_detail;
 import com.shownest.android.model.OnChangeListener;
 import com.shownest.android.model.RoomDetail;
 import com.shownest.android.utils.HttpUtil;
+import com.shownest.android.utils.UserManager;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -27,13 +28,9 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 {
 	public static final int GET_FAILED = 0;
 	public static final int GET_SUCCESSFUL = 1;
-	public static final int CHECK_FAILED = 2;
-	public static final int CHECK_SUCCESSFUL = 3;
-	public static final int LOGIN = 4;
 	private static Activity_quotation_detail _instance;
 	private static Intent _intent;
 	private static RoomDetail _data;
-	private static boolean _login = false;
 	private static String _quotationId;
 	private static String _room;
 	private static int _number;
@@ -44,11 +41,9 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 			String _string_result = "";
 			switch (msg.what)
 			{
-			case CHECK_FAILED:
 			case GET_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 				break;
-			case CHECK_SUCCESSFUL:
 			case GET_SUCCESSFUL:
 				_string_result = (String) msg.obj;
 				handle_string(_string_result);
@@ -79,24 +74,6 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 		_value.put("quotationId", _quotationId);
 		_value.put(_room, _number);
 		HttpUtil.get_quotation_item(_handler, _room, _value, GET_SUCCESSFUL, GET_FAILED);
-	}
-
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data)
-	{
-		System.out.println("requestCode:" + requestCode + "resultCode:" + resultCode);
-		if (resultCode == -1)
-		{
-			switch (requestCode)
-			{
-			case LOGIN:
-				String _result = data.getStringExtra("result");
-				if (_result.equals("successful"))
-					_login = true;
-			}
-		}
-		else
-			System.out.println("resultCode=" + resultCode);
 	}
 
 	private static void handle_string(String str)
@@ -136,20 +113,11 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 			{
 				_data = new RoomDetail(_obj.getJSONObject("data"), _intent.getStringExtra("part"));
 				add_fragment(_instance, new Fragment_quotation_detail(), false);
-				HttpUtil.check_login(_handler, CHECK_SUCCESSFUL, CHECK_FAILED);
 			}
 			else if (_result.equals("未查询到数据"))
 			{
 				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
 				_instance.finish();
-			}
-			else if (_result.equals("用户未登录"))
-			{
-				_login = false;
-			}
-			else if (_result.equals("用户已登录"))
-			{
-				_login = true;
 			}
 			else
 				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
@@ -163,7 +131,7 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 	@Override
 	public void onChange(String tag, String[] args)
 	{
-		if (_login)
+		if (UserManager.is_login())
 		{
 			Intent _change;
 			switch (tag)
@@ -193,7 +161,7 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 		else
 		{
 			Intent _login = new Intent(this, Activity_login.class);
-			startActivityForResult(_login, LOGIN);
+			startActivity(_login);
 		}
 	}
 
