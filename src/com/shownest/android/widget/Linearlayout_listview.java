@@ -72,6 +72,11 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 		this._listener = _listener;
 	}
 
+	public void set_hint(String _hint)
+	{
+		_text_hint.setText(_hint);
+	}
+
 	public void set_change(String _change)
 	{
 		_text_change.setText(_change);

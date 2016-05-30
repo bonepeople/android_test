@@ -73,6 +73,21 @@ public class RoomDetail
 		_totals.put(_name, _number);
 	}
 
+	public void fresh_totals(String _part)
+	{
+		SparseArray<ItemDetail> _temp_array = get_details(_part);
+		if (_temp_array.size() != 0)
+		{
+			double _temp_total = 0;
+			for (int _temp_i = 0; _temp_i < _temp_array.size(); _temp_i++)
+			{
+				ItemDetail _temp_item = _temp_array.get(_temp_i);
+				_temp_total += _temp_item.get_total();
+			}
+			set_totals(_part, _temp_total);
+		}
+	}
+
 	public SparseArray<ItemDetail> get_details(String _name)
 	{
 		return _details.get(_name);

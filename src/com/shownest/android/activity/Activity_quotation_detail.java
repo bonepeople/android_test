@@ -1,10 +1,5 @@
 package com.shownest.android.activity;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -19,7 +14,6 @@ import com.shownest.android.utils.UserManager;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -28,12 +22,15 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 {
 	public static final int GET_FAILED = 0;
 	public static final int GET_SUCCESSFUL = 1;
+	public static final int CHANGE = 2;
 	private static Activity_quotation_detail _instance;
 	private static Intent _intent;
+	private static Fragment_quotation_detail _fragment_detail;
 	private static RoomDetail _data;
 	private static String _quotationId;
 	private static String _room;
 	private static int _number;
+	private static String _change_part;
 	public static Handler _handler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)
@@ -63,7 +60,7 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 		_intent = getIntent();
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 
-		_room = _intent.getStringExtra("part");
+		_room = _intent.getStringExtra("room");
 		_quotationId = _intent.getStringExtra("id");
 		_number = _intent.getIntExtra("index", 1);
 		System.out.println("select from :" + _room + "-" + _number);
@@ -76,34 +73,26 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 		HttpUtil.get_quotation_item(_handler, _room, _value, GET_SUCCESSFUL, GET_FAILED);
 	}
 
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		if (resultCode == -1)
+		{
+			switch (requestCode)
+			{
+			case CHANGE:
+				String _str_change = "小计：" + _data.get_totals(_change_part) + "元";
+				_fragment_detail.refresh(_change_part, _str_change);
+				break;
+			}
+		}
+		else
+			System.out.println("resultCode=" + resultCode);
+	}
+
 	private static void handle_string(String str)
 	{
 		handle_msg(_instance, str);
-
-		File _file_dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/shownest_cache");
-		File _file;
-		if (_file_dir.mkdirs() || _file_dir.isDirectory())
-		{
-			_file = new File(_file_dir, "out.txt");
-			try
-			{
-				FileOutputStream _fout = new FileOutputStream(_file);
-				byte[] bytes = str.getBytes();
-				_fout.write(bytes);
-				_fout.close();
-
-			}
-			catch (FileNotFoundException e)
-			{
-				e.printStackTrace();
-			}
-			catch (IOException e)
-			{
-				e.printStackTrace();
-			}
-
-		}
-
 		try
 		{
 			JSONObject _obj = new JSONObject(str);
@@ -112,7 +101,8 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 			if (_result.equals("智能报价单部分明细"))
 			{
 				_data = new RoomDetail(_obj.getJSONObject("data"), _intent.getStringExtra("part"));
-				add_fragment(_instance, new Fragment_quotation_detail(), false);
+				_fragment_detail = new Fragment_quotation_detail();
+				add_fragment(_instance, _fragment_detail, false);
 			}
 			else if (_result.equals("未查询到数据"))
 			{
@@ -134,29 +124,32 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 		if (UserManager.is_login())
 		{
 			Intent _change;
+			String _type = "";
+			int _part_index = 0;
 			switch (tag)
 			{
 			case "adapter change":
 				System.out.println("修改工艺：" + args[0] + "-" + args[1]);
-				_change = new Intent(this, Activity_quotation_change.class);
-				_change.putExtra("type", "change");
-				_change.putExtra("room", _room);
-				_change.putExtra("room_index", _number);
-				_change.putExtra("part", args[0]);
-				_change.putExtra("part_index", Integer.parseInt(args[1]));
-				startActivity(_change);
-
+				_type = "change";
+				_part_index = Integer.parseInt(args[1]);
 				break;
+
 			case "listview change":
 				System.out.println("增减工艺：" + args[0]);
-				_change = new Intent(this, Activity_quotation_change.class);
-				_change.putExtra("type", "fix");
-				_change.putExtra("room", _room);
-				_change.putExtra("room_index", _number);
-				_change.putExtra("part", args[0]);
-				startActivity(_change);
+				_type = "fix";
 				break;
+
+			default:
+				return;
 			}
+			_change_part = args[0];
+			_change = new Intent(this, Activity_quotation_change.class);
+			_change.putExtra("type", _type);
+			_change.putExtra("room", _room);
+			_change.putExtra("room_index", _number);
+			_change.putExtra("part", _change_part);
+			_change.putExtra("part_index", _part_index);
+			startActivityForResult(_change, CHANGE);
 		}
 		else
 		{

@@ -1,5 +1,7 @@
 package com.shownest.android.fragment;
 
+import java.util.HashMap;
+
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_quotation_detail;
 import com.shownest.android.adapter.Adapter_quotation_detail;
@@ -7,7 +9,6 @@ import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.RoomDetail;
 import com.shownest.android.widget.Linearlayout_listview;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,11 +19,10 @@ import android.widget.LinearLayout;
 
 public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClickListener
 {
-	private static final int LOCATION = 1;
 	private LinearLayout _body;
 	private Button _button_commit;
-	private Adapter_quotation_detail _adapter;
-	private Linearlayout_listview _list;
+	private HashMap<String, Adapter_quotation_detail> _adapters = new HashMap<String, Adapter_quotation_detail>();
+	private HashMap<String, Linearlayout_listview> _lists = new HashMap<String, Linearlayout_listview>();
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -34,20 +34,6 @@ public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClick
 		_button_commit.setText("保存");
 		_button_commit.setOnClickListener(this);
 		return _view;
-	}
-
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data)
-	{
-		if (resultCode == -1)
-		{
-			switch (requestCode)
-			{
-			case LOCATION:
-			}
-		}
-		else
-			System.out.println("resultCode=" + resultCode);
 	}
 
 	@Override
@@ -77,12 +63,20 @@ public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClick
 	{
 		if (_data.get_details(_tag).size() != 0)
 		{
-			_adapter = new Adapter_quotation_detail(getActivity(), _tag, _data.get_details(_tag));
-			_list = new Linearlayout_listview(getActivity(), _body, _tag, new String[] { _name, "小计：" + _data.get_totals(_tag) + "元" }, _adapter);
+			Adapter_quotation_detail _adapter = new Adapter_quotation_detail(getActivity(), _tag, _data.get_details(_tag));
+			Linearlayout_listview _list = new Linearlayout_listview(getActivity(), _body, _tag, new String[] { _name, "小计：" + _data.get_totals(_tag) + "元" }, _adapter);
 			_adapter.setOnChangetListener(Activity_quotation_detail.get_instance());
 			_list.setOnChangetListener(Activity_quotation_detail.get_instance());
 			_list.set_change("增减工艺");
+			_adapters.put(_tag, _adapter);
+			_lists.put(_tag, _list);
 		}
+	}
+
+	public void refresh(String _part, String _hint)
+	{
+		_adapters.get(_part).notifyDataSetChanged();
+		_lists.get(_part).set_hint(_hint);
 	}
 
 	@Override

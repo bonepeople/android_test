@@ -18,7 +18,6 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 public class Fragment_quotation_change extends DEBUG_Fragment implements OnClickListener
 {
@@ -75,7 +74,7 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 			_new_item = Activity_quotation_change.get_item();
 			System.out.println("will change:" + _new_item.get_itemName());
 
-			new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "修改项目", _new_item.get_itemName() }, false);
+			// new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "修改项目", _new_item.get_itemName() }, false);
 			String _str_price = String.valueOf(_new_item.get_price());
 			String _str_unit = _new_item.get_unit() + "/" + _new_item.get_metricUnit();
 			String _str_number = String.valueOf(_new_item.get_number());
@@ -96,9 +95,12 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 		int _id = v.getId();
 		if (_id == R.id.button_commit)
 		{
-			Toast.makeText(getActivity(), "tijiao", Toast.LENGTH_SHORT).show();
 			if (_type.equals("change"))
 			{
+				_new_item.set_price(Double.parseDouble(_price.getData()));
+				_new_item.set_number(Double.parseDouble(_number.getData()));
+				_new_item.set_material(_material.getData());
+				_new_item.set_technics(_technics.getData());
 				ContentValues _value = new ContentValues();
 				_value.put("numerical", _new_item.get_numerical());
 				_value.put(_room, _room_index);

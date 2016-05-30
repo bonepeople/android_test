@@ -51,16 +51,19 @@ public class Activity_quotation_change extends DEBUG_Activity
 		_instance = this;
 		_intent = getIntent();
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
-		setTitle("详细修改");
 
 		_data = Activity_quotation_detail.get_data();
 		if (_data != null)
 		{
 			if (_intent.getStringExtra("type").equals("change"))
 			{
-
 				ItemDetail _temp_item = _data.get_details(_intent.getStringExtra("part")).get(_intent.getIntExtra("part_index", 0));
 				_new_item = new ItemDetail(_temp_item);
+				setTitle(_new_item.get_itemName());
+			}
+			else
+			{
+				setTitle("增减工艺");
 			}
 			add_fragment(_instance, new Fragment_quotation_change(), false);
 		}
@@ -75,8 +78,14 @@ public class Activity_quotation_change extends DEBUG_Activity
 			JSONObject _obj = new JSONObject(str);
 			String _result = _obj.getString("msg");
 
-			if (_result.equals("智能报价单部分明细"))
+			if (_result.equals("报价单详细项修改成功"))
 			{
+				_data.get_details(_intent.getStringExtra("part")).setValueAt(_intent.getIntExtra("part_index", 0), _new_item);
+				_data.fresh_totals(_intent.getStringExtra("part"));
+				Intent _intent = new Intent();
+				_intent.putExtra("result", "successful");
+				_instance.setResult(RESULT_OK, _intent);
+				_instance.finish();
 			}
 			else if (_result.equals("未查询到数据"))
 			{

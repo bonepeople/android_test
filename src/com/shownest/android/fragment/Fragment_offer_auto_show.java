@@ -98,7 +98,7 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 			Intent _select = new Intent(getActivity(), Activity_quotation_detail.class);
 
 			_select.putExtra("id", _quotationId);
-			_select.putExtra("part", _package._tag1);
+			_select.putExtra("room", _package._tag1);
 			_select.putExtra("name", _package._tag2);
 			_select.putExtra("index", _package._int1);
 			startActivity(_select);
