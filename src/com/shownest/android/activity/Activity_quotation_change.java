@@ -12,6 +12,7 @@ import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_quotation_change;
 import com.shownest.android.fragment.Fragment_quotation_detail;
+import com.shownest.android.model.ItemDetail;
 import com.shownest.android.model.RoomDetail;
 
 import android.content.Intent;
@@ -23,8 +24,8 @@ import android.widget.Toast;
 
 public class Activity_quotation_change extends DEBUG_Activity
 {
-	public static final int GET_FAILED = 0;
-	public static final int GET_SUCCESSFUL = 1;
+	public static final int CHANGE_FAILED = 0;
+	public static final int CHANGE_SUCCESSFUL = 1;
 	public static final int SEND_FAILED = 2;
 	public static final int SEND_SUCCESSFUL = 3;
 	public static final int CHECK_FAILED = 4;
@@ -32,9 +33,7 @@ public class Activity_quotation_change extends DEBUG_Activity
 	private static Activity_quotation_change _instance;
 	private static Intent _intent;
 	private static RoomDetail _data;
-	private static String _quotationId;
-	private static String _type;
-	private static int _number;
+	private static ItemDetail _new_item;
 	public static Handler _handler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)
@@ -44,12 +43,12 @@ public class Activity_quotation_change extends DEBUG_Activity
 			{
 			case CHECK_FAILED:
 			case SEND_FAILED:
-			case GET_FAILED:
+			case CHANGE_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 				break;
 			case CHECK_SUCCESSFUL:
 			case SEND_SUCCESSFUL:
-			case GET_SUCCESSFUL:
+			case CHANGE_SUCCESSFUL:
 				_string_result = (String) msg.obj;
 				handle_string(_string_result);
 				break;
@@ -68,6 +67,12 @@ public class Activity_quotation_change extends DEBUG_Activity
 		_intent = getIntent();
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 		setTitle("详细修改");
+
+		if (_intent.getStringExtra("type").equals("change"))
+		{
+			ItemDetail _temp_item = _data.get_details(_intent.getStringExtra("part")).get(_intent.getIntExtra("part_index", 0));
+			_new_item = new ItemDetail(_temp_item);
+		}
 		add_fragment(_instance, new Fragment_quotation_change(), false);
 
 	}
@@ -124,29 +129,19 @@ public class Activity_quotation_change extends DEBUG_Activity
 		}
 	}
 
-	public static RoomDetail get_data()
-	{
-		return _data;
-	}
-
 	public static Intent get_intent()
 	{
 		return _intent;
 	}
 
-	public static String get_quotationId()
+	public static RoomDetail get_data()
 	{
-		return _quotationId;
+		return _data;
 	}
 
-	public static String get_type()
+	public static ItemDetail get_item()
 	{
-		return _type;
-	}
-
-	public static int get_number()
-	{
-		return _number;
+		return _new_item;
 	}
 
 	public static Activity_quotation_change get_instance()
