@@ -67,6 +67,9 @@ public class Activity_login extends DEBUG_Activity
 			Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
 			if (_result.equals("用户登录成功"))
 			{
+				Intent _intent = new Intent();
+				_intent.putExtra("result", "successful");
+				_instance.setResult(RESULT_OK, _intent); 
 				_instance.finish();
 			}
 		}

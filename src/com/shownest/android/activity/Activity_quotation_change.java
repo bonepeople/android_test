@@ -1,10 +1,5 @@
 package com.shownest.android.activity;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,7 +12,6 @@ import com.shownest.android.model.RoomDetail;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -26,10 +20,6 @@ public class Activity_quotation_change extends DEBUG_Activity
 {
 	public static final int CHANGE_FAILED = 0;
 	public static final int CHANGE_SUCCESSFUL = 1;
-	public static final int LOGIN_FAILED = 2;
-	public static final int LOGIN_SUCCESSFUL = 3;
-	public static final int CHECK_FAILED = 4;
-	public static final int CHECK_SUCCESSFUL = 5;
 	private static Activity_quotation_change _instance;
 	private static Intent _intent;
 	private static RoomDetail _data;
@@ -41,13 +31,9 @@ public class Activity_quotation_change extends DEBUG_Activity
 			String _string_result = "";
 			switch (msg.what)
 			{
-			case CHECK_FAILED:
-			case LOGIN_FAILED:
 			case CHANGE_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 				break;
-			case CHECK_SUCCESSFUL:
-			case LOGIN_SUCCESSFUL:
 			case CHANGE_SUCCESSFUL:
 				_string_result = (String) msg.obj;
 				handle_string(_string_result);
@@ -84,7 +70,6 @@ public class Activity_quotation_change extends DEBUG_Activity
 	private static void handle_string(String str)
 	{
 		handle_msg(_instance, str);
-
 
 		try
 		{
