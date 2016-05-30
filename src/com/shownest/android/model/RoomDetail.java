@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.shownest.android.utils.JsonUtil;
+import com.shownest.android.utils.NumberUtil;
 
 import android.util.SparseArray;
 
@@ -84,7 +85,7 @@ public class RoomDetail
 				ItemDetail _temp_item = _temp_array.get(_temp_i);
 				_temp_total += _temp_item.get_total();
 			}
-			set_totals(_part, _temp_total);
+			set_totals(_part, NumberUtil.double_format(_temp_total));
 		}
 	}
 
