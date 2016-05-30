@@ -51,6 +51,24 @@ public class ItemDetail
 		this._unit = JsonUtil.get_string(_json, "unit", "元");
 	}
 
+	public ItemDetail(ItemDetail _obj)
+	{
+		this._tag = _obj._tag;
+		this._common = _obj._common;
+		this._delMarks = _obj._delMarks;
+		this._hydropowerWay = _obj._hydropowerWay;
+		this._typeName = _obj._typeName;
+		this._itemName = _obj._itemName;
+		this._material = _obj._material;
+		this._metricUnit = _obj._metricUnit;
+		this._number = _obj._number;
+		this._numerical = _obj._numerical;
+		this._price = _obj._price;
+		this._total = _obj._total;
+		this._technics = _obj._technics;
+		this._unit = _obj._unit;
+	}
+
 	public String get_tag()
 	{
 		return _tag;
