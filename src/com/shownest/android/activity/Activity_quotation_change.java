@@ -66,15 +66,20 @@ public class Activity_quotation_change extends DEBUG_Activity
 			}
 			else
 			{
-				setTitle("增减工艺");
-//				show_wait();
-//				ContentValues _value = new ContentValues();
-//				_value.put("numerical", _new_item.get_numerical());
-//				_value.put(_room, _room_index);
-//				_value.put("number", _number.getData());
-//				_value.put("price", _price.getData());
-//				
-//				HttpUtil.update_quotation_item(Activity_quotation_change._handler, _value, Activity_quotation_change.CHANGE_SUCCESSFUL, Activity_quotation_change.CHANGE_FAILED);
+//				setTitle("增减工艺");
+//				 show_wait();
+//				 ContentValues _value = new ContentValues();
+//				 _value.put("numerical", _new_item.get_numerical());
+//				 _value.put(_room, _room_index);
+//				 _value.put("number", _number.getData());
+//				 _value.put("price", _price.getData());
+
+				// quotationId:
+				// room:1
+				// assortment:1 1地面2顶面3墙面
+				// data:all
+				//
+				// HttpUtil.update_quotation_item(Activity_quotation_change._handler, _value, Activity_quotation_change.CHANGE_SUCCESSFUL, Activity_quotation_change.CHANGE_FAILED);
 			}
 		}
 	}
@@ -88,7 +93,7 @@ public class Activity_quotation_change extends DEBUG_Activity
 			JSONObject _obj = new JSONObject(str);
 			String _result = _obj.getString("msg");
 
-			if (_result.equals("报价单详细项修改成功")||_result.equals("工队报价模板详细项修改成功"))
+			if (_result.equals("报价单详细项修改成功") || _result.equals("工队报价模板详细项修改成功"))
 			{
 				_data.get_details(_intent.getStringExtra("part")).setValueAt(_intent.getIntExtra("part_index", 0), _new_item);
 				_data.fresh_totals(_intent.getStringExtra("part"));
