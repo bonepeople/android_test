@@ -35,7 +35,7 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 	private static Intent _intent;
 	private static RoomDetail _data;
 	private static String _quotationId;
-	private static String _type;
+	private static String _room;
 	private static int _number;
 	public static Handler _handler = new Handler()
 	{
@@ -70,17 +70,17 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 		_intent = getIntent();
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 
-		_type = _intent.getStringExtra("part");
+		_room = _intent.getStringExtra("part");
 		_quotationId = _intent.getStringExtra("id");
 		_number = _intent.getIntExtra("index", 1);
-		System.out.println("select from :" + _type + "-" + _number);
+		System.out.println("select from :" + _room + "-" + _number);
 
 		setTitle(_intent.getStringExtra("name"));
 		show_wait();
 		ContentValues _value = new ContentValues();
 		_value.put("quotationId", _quotationId);
-		_value.put(_type, _number);
-		HttpUtil.get_quotation_item(_handler, _type, _value, GET_SUCCESSFUL, GET_FAILED);
+		_value.put(_room, _number);
+		HttpUtil.get_quotation_item(_handler, _room, _value, GET_SUCCESSFUL, GET_FAILED);
 	}
 
 	private static void handle_string(String str)
@@ -138,20 +138,28 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 	@Override
 	public void onChange(String tag, String[] args)
 	{
+		Intent _change;
 		switch (tag)
 		{
 		case "adapter change":
 			System.out.println("修改工艺：" + args[0] + "-" + args[1]);
-			Intent _change = new Intent(this, Activity_quotation_change.class);
-			_change.putExtra("room", "room");
-			_change.putExtra("room_index", "1");
-			_change.putExtra("part", "ground");
-			_change.putExtra("part_index", "0");
+			_change = new Intent(this, Activity_quotation_change.class);
+			_change.putExtra("type", "change");
+			_change.putExtra("room", _room);
+			_change.putExtra("room_index", _number);
+			_change.putExtra("part", args[0]);
+			_change.putExtra("part_index", Integer.parseInt(args[1]));
 			startActivity(_change);
 
 			break;
 		case "listview change":
 			System.out.println("增减工艺：" + args[0]);
+			_change = new Intent(this, Activity_quotation_change.class);
+			_change.putExtra("type", "fix");
+			_change.putExtra("room", _room);
+			_change.putExtra("room_index", _number);
+			_change.putExtra("part", args[0]);
+			startActivity(_change);
 			break;
 		}
 	}
@@ -166,9 +174,9 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 		return _quotationId;
 	}
 
-	public static String get_type()
+	public static String get_room()
 	{
-		return _type;
+		return _room;
 	}
 
 	public static int get_number()

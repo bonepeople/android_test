@@ -56,7 +56,7 @@ public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClick
 		RoomDetail _data = Activity_quotation_detail.get_data();
 		if (_data != null)
 		{
-			switch (Activity_quotation_detail.get_type())
+			switch (Activity_quotation_detail.get_room())
 			{
 			case "tax":
 				break;

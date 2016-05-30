@@ -139,6 +139,11 @@ public class Activity_quotation_change extends DEBUG_Activity
 		return _data;
 	}
 
+	public static Intent get_intent()
+	{
+		return _intent;
+	}
+
 	public static String get_quotationId()
 	{
 		return _quotationId;

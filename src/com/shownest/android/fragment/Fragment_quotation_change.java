@@ -1,6 +1,7 @@
 package com.shownest.android.fragment;
 
 import com.shownest.android.R;
+import com.shownest.android.activity.Activity_quotation_change;
 import com.shownest.android.activity.Activity_quotation_detail;
 import com.shownest.android.adapter.Adapter_quotation_detail;
 import com.shownest.android.basic.DEBUG_Fragment;
@@ -24,7 +25,8 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 	private static final int LOCATION = 1;
 	private LinearLayout _body;
 	private Button _button_commit;
-	private Adapter_quotation_detail _adapter;
+	private String _type, _room, _part;
+	private int _room_index, _part_index;
 	private Linearlayout_listview _list;
 
 	@Override
@@ -36,6 +38,14 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 		_button_commit = (Button) _view.findViewById(R.id.button_commit);
 		_button_commit.setText("确定");
 		_button_commit.setOnClickListener(this);
+
+		Intent _intent = Activity_quotation_change.get_intent();
+		_type = _intent.getStringExtra("type");
+		_room = _intent.getStringExtra("room");
+		_part = _intent.getStringExtra("part");
+		_room_index = _intent.getIntExtra("room_index", 1);
+		_part_index = _intent.getIntExtra("part_index", 0);
+
 		return _view;
 	}
 
@@ -57,6 +67,7 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 	public void setContent()
 	{
 		RoomDetail _data = Activity_quotation_detail.get_data();
+		System.out.println("type:" + _type + " room:" + _room + _room_index + " part:" + _part + _part_index);
 		if (_data != null)
 		{
 			SparseArray<ItemDetail> _array = _data.get_details("ground");
