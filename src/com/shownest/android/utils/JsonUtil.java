@@ -5,7 +5,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * json工具类 <br>
+ * json工具类
+ * <p>
  * 主要用于读取JSONObject
  * 
  * @author bonepeople

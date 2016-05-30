@@ -12,7 +12,8 @@ import com.shownest.android.utils.NumberUtil;
 import android.util.SparseArray;
 
 /**
- * 房间详细信息 <br>
+ * 房间详细信息
+ * <p>
  * 保存每个房间报价的详细信息
  * 
  * @author bonepeople
@@ -64,16 +65,34 @@ public class RoomDetail
 		return _tag;
 	}
 
+	/**
+	 * 查询每一项的总价
+	 * 
+	 * @param _name
+	 *            ground，wall，roof，hydropower，mount，cost，tax
+	 */
 	public double get_totals(String _name)
 	{
 		return _totals.get(_name);
 	}
 
+	/**
+	 * 设置个别项的总价
+	 * 
+	 * @param _name
+	 *            ground，wall，roof，hydropower，mount，cost，tax
+	 */
 	public void set_totals(String _name, double _number)
 	{
 		_totals.put(_name, _number);
 	}
 
+	/**
+	 * 根据自身数据刷新某一项的总价
+	 * 
+	 * @param _part
+	 *            ground，wall，roof，hydropower，mount，cost，tax
+	 */
 	public void fresh_totals(String _part)
 	{
 		SparseArray<ItemDetail> _temp_array = get_details(_part);
@@ -89,6 +108,12 @@ public class RoomDetail
 		}
 	}
 
+	/**
+	 * 获取某一项的详细信息
+	 * 
+	 * @param _name
+	 *            ground，wall，roof，hydropower，mount，cost，tax
+	 */
 	public SparseArray<ItemDetail> get_details(String _name)
 	{
 		return _details.get(_name);

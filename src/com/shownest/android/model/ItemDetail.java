@@ -8,7 +8,6 @@ import com.shownest.android.utils.NumberUtil;
 
 /**
  * 工艺详细信息
- * 
  * <p>
  * 包括工艺名称，辅材型号，工艺说明，单价，工程量等。主要是用于保存报价单中每个工艺的详细信息
  * 
@@ -16,7 +15,7 @@ import com.shownest.android.utils.NumberUtil;
  */
 public class ItemDetail
 {
-	private String _tag;// 目前暂时无用，不过也保存了类型：wall，roof，ground，hydropower，mount，cost，tax
+	private String _tag;// 目前暂时无用，不过也保存了类型：ground，wall，roof，hydropower，mount，cost，tax
 	private int _common;// 工艺标志，1常用 2非常用
 	private int _delMarks;// 删除修改标记,1修改 0删除
 	private int _hydropowerWay;// 水电安装方式 1按面积计算
