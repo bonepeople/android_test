@@ -19,7 +19,6 @@ public class ItemDetail
 	private String _tag;// 目前暂时无用，不过也保存了类型：wall，roof，ground，hydropower，mount，cost，tax
 	private int _common;// 工艺标志，1常用 2非常用
 	private int _delMarks;// 删除修改标记,1修改 0删除
-	private int _itemId;// 工艺ID
 	private int _hydropowerWay;// 水电安装方式 1按面积计算
 	private int _typeName;// 安装类型 1灯安装 2五金安装
 	private String _itemName;// 工艺名称
@@ -37,7 +36,6 @@ public class ItemDetail
 		this._tag = _tag;
 		this._common = JsonUtil.get_int(_json, "common", 1);
 		this._delMarks = JsonUtil.get_int(_json, "delMarks", 1);
-		this._itemId = JsonUtil.get_int(_json, "itemId", 0);
 		this._hydropowerWay = JsonUtil.get_int(_json, "hydropowerWay", 1);
 		this._typeName = JsonUtil.get_int(_json, "typeName", 1);
 		this._itemName = JsonUtil.get_string(_json, "itemName", "");
@@ -81,16 +79,6 @@ public class ItemDetail
 	public void set_delMarks(int _delMarks)
 	{
 		this._delMarks = _delMarks;
-	}
-
-	public int get_itemId()
-	{
-		return _itemId;
-	}
-
-	public void set_itemId(int _itemId)
-	{
-		this._itemId = _itemId;
 	}
 
 	public int get_hydropowerWay()
