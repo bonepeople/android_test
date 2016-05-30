@@ -2,10 +2,9 @@ package com.shownest.android.fragment;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_quotation_change;
-import com.shownest.android.activity.Activity_quotation_detail;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.ItemDetail;
-import com.shownest.android.model.RoomDetail;
+import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.widget.Linearlayout_edittext;
 import com.shownest.android.widget.Linearlayout_listview;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
@@ -13,7 +12,6 @@ import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,28 +69,24 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 	@Override
 	public void setContent()
 	{
-		RoomDetail _data = Activity_quotation_detail.get_data();
 		System.out.println("type:" + _type + " room:" + _room + _room_index + " part:" + _part + _part_index);
-		if (_data != null)
+		if (_type.equals("change"))
 		{
-			if (_type.equals("fix"))
-			{
+			_new_item = Activity_quotation_change.get_item();
+			System.out.println("will change:" + _new_item.get_itemName());
 
-			}
-			else if (_type.equals("change"))
-			{
-				_new_item = Activity_quotation_change.get_item();
-				System.out.println("will change:" + _new_item.get_itemName());
+			_name = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "修改项目", _new_item.get_itemName() }, false);
+			String _str_price = String.valueOf(_new_item.get_price());
+			String _str_unit = _new_item.get_unit() + "/" + _new_item.get_metricUnit();
+			String _str_number = String.valueOf(_new_item.get_number());
+			_price = new RelativeLayout_edit_informationbar(getActivity(), _body, 7, new String[] { "单价", _str_price, _str_unit }, true);
+			_number = new RelativeLayout_edit_informationbar(getActivity(), _body, 7, new String[] { "工程量", _str_number, _new_item.get_metricUnit() }, true);
+			_material = new Linearlayout_edittext(getActivity(), _body, new String[] { "辅材品牌型号", "", _new_item.get_material() });
+			_technics = new Linearlayout_edittext(getActivity(), _body, new String[] { "工艺说明", "", _new_item.get_technics() });
+		}
+		else if (_type.equals("fix"))
+		{
 
-				_name = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "修改项目", _new_item.get_itemName() }, false);
-				String _str_price = String.valueOf(_new_item.get_price());
-				String _str_unit = _new_item.get_unit() + "/" + _new_item.get_metricUnit();
-				String _str_number = String.valueOf(_new_item.get_number());
-				_price = new RelativeLayout_edit_informationbar(getActivity(), _body, 7, new String[] { "单价", _str_price, _str_unit }, true);
-				_number = new RelativeLayout_edit_informationbar(getActivity(), _body, 7, new String[] { "工程量", _str_number, _new_item.get_metricUnit() }, true);
-				_material = new Linearlayout_edittext(getActivity(), _body, new String[] { "辅材品牌型号", "", _new_item.get_material() });
-				_technics = new Linearlayout_edittext(getActivity(), _body, new String[] { "工艺说明", "", _new_item.get_technics() });
-			}
 		}
 	}
 
@@ -102,11 +96,25 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 		int _id = v.getId();
 		if (_id == R.id.button_commit)
 		{
-			Activity_quotation_change.get_instance().show_wait();
-			ContentValues _values = new ContentValues();
-
-			// Activity_quotation_detail.get_instance().finish();
 			Toast.makeText(getActivity(), "tijiao", Toast.LENGTH_SHORT).show();
+			if (_type.equals("change"))
+			{
+				ContentValues _value = new ContentValues();
+				_value.put("numerical", _new_item.get_numerical());
+				_value.put(_room, _room_index);
+				_value.put("number", _number.getData());
+				_value.put("price", _price.getData());
+				_value.put("material", _material.getData());
+				_value.put("technics", _technics.getData());
+				_value.put("actionType", 2);
+
+				Activity_quotation_change.get_instance().show_wait();
+				HttpUtil.update_quotation_item(Activity_quotation_change._handler, _value, Activity_quotation_change.CHANGE_SUCCESSFUL, Activity_quotation_change.CHANGE_FAILED);
+			}
+			else
+			{
+
+			}
 		}
 	}
 

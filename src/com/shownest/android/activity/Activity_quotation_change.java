@@ -26,8 +26,8 @@ public class Activity_quotation_change extends DEBUG_Activity
 {
 	public static final int CHANGE_FAILED = 0;
 	public static final int CHANGE_SUCCESSFUL = 1;
-	public static final int SEND_FAILED = 2;
-	public static final int SEND_SUCCESSFUL = 3;
+	public static final int LOGIN_FAILED = 2;
+	public static final int LOGIN_SUCCESSFUL = 3;
 	public static final int CHECK_FAILED = 4;
 	public static final int CHECK_SUCCESSFUL = 5;
 	private static Activity_quotation_change _instance;
@@ -42,12 +42,12 @@ public class Activity_quotation_change extends DEBUG_Activity
 			switch (msg.what)
 			{
 			case CHECK_FAILED:
-			case SEND_FAILED:
+			case LOGIN_FAILED:
 			case CHANGE_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 				break;
 			case CHECK_SUCCESSFUL:
-			case SEND_SUCCESSFUL:
+			case LOGIN_SUCCESSFUL:
 			case CHANGE_SUCCESSFUL:
 				_string_result = (String) msg.obj;
 				handle_string(_string_result);
@@ -68,42 +68,23 @@ public class Activity_quotation_change extends DEBUG_Activity
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 		setTitle("详细修改");
 
-		if (_intent.getStringExtra("type").equals("change"))
+		_data = Activity_quotation_detail.get_data();
+		if (_data != null)
 		{
-			ItemDetail _temp_item = _data.get_details(_intent.getStringExtra("part")).get(_intent.getIntExtra("part_index", 0));
-			_new_item = new ItemDetail(_temp_item);
-		}
-		add_fragment(_instance, new Fragment_quotation_change(), false);
+			if (_intent.getStringExtra("type").equals("change"))
+			{
 
+				ItemDetail _temp_item = _data.get_details(_intent.getStringExtra("part")).get(_intent.getIntExtra("part_index", 0));
+				_new_item = new ItemDetail(_temp_item);
+			}
+			add_fragment(_instance, new Fragment_quotation_change(), false);
+		}
 	}
 
 	private static void handle_string(String str)
 	{
 		handle_msg(_instance, str);
 
-		File _file_dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/shownest_cache");
-		File _file;
-		if (_file_dir.mkdirs() || _file_dir.isDirectory())
-		{
-			_file = new File(_file_dir, "out.txt");
-			try
-			{
-				FileOutputStream _fout = new FileOutputStream(_file);
-				byte[] bytes = str.getBytes();
-				_fout.write(bytes);
-				_fout.close();
-
-			}
-			catch (FileNotFoundException e)
-			{
-				e.printStackTrace();
-			}
-			catch (IOException e)
-			{
-				e.printStackTrace();
-			}
-
-		}
 
 		try
 		{
