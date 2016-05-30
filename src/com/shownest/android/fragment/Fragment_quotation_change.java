@@ -111,7 +111,7 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 				_value.put("actionType", 2);
 
 				Activity_quotation_change.get_instance().show_wait();
-				HttpUtil.update_quotation_item(Activity_quotation_change._handler, _value, Activity_quotation_change.CHANGE_SUCCESSFUL, Activity_quotation_change.CHANGE_FAILED);
+				HttpUtil.update_quotation_item(Activity_quotation_change._handler, _room, _value, Activity_quotation_change.CHANGE_SUCCESSFUL, Activity_quotation_change.CHANGE_FAILED);
 			}
 			else
 			{

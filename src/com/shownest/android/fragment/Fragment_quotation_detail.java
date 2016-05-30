@@ -45,6 +45,7 @@ public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClick
 			switch (Activity_quotation_detail.get_room())
 			{
 			case "tax":
+				set_list(_data, "tax", "税费");
 				break;
 
 			default:

@@ -32,11 +32,30 @@ public class HttpUtil
 	// http://192.168.1.112:10000/shownest/html/test1.html
 	// http://192.168.1.112:10000/shownest/websubmitreg
 
-	public static void update_quotation_item(Handler _handler, ContentValues _value, int _successful, int _failed)
+	public static void update_quotation_item(Handler _handler, String _item, ContentValues _value, int _successful, int _failed)
 	{
-		String _address = BASEADDRESS + "webOwnerUpdateQuotationItem";
-		String _message = "";
+		String _address = "", _message;
+		switch (_item)
+		{
+		case "room":
+		case "parlour":
+		case "kitchen":
+		case "toilet":
+		case "balcony":
+			_address = BASEADDRESS + "webOwnerUpdateQuotationItem";
+			break;
+		case "hydropower":
+			_address = BASEADDRESS + "webOwnerUpdateQuotationHydropower";
+			break;
+		case "mount":
+			_address = BASEADDRESS + "webOwnerUpdateQuotationMount";
+			break;
+		case "cost":
+		case "tax":
+			_address = BASEADDRESS + "webOwnerUpdateQuotationAssemble";
+			break;
 
+		}
 		_message = values(_value);
 
 		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
