@@ -26,6 +26,7 @@ public class ItemDetail
 	private String _material;// 辅材品牌型号
 	private String _metricUnit;// 计算单位
 	private double _number;// 工程量
+	private int _numerical;// 工艺ID
 	private double _price;// 单价
 	private double _total;// 合计，由单价乘以工程量计算得出
 	private String _technics;// 工艺说明
@@ -45,6 +46,7 @@ public class ItemDetail
 			this._material = "无";
 		this._metricUnit = JsonUtil.get_string(_json, "metricUnit", "");
 		this._number = JsonUtil.get_double(_json, "number", 1);
+		this._numerical = JsonUtil.get_int(_json, "numerical", 1);
 		this._price = JsonUtil.get_double(_json, "price", 0);
 		set_total();
 		this._technics = JsonUtil.get_string(_json, "technics", "");
@@ -150,6 +152,16 @@ public class ItemDetail
 	{
 		this._number = _number;
 		set_total();
+	}
+
+	public int get_numerical()
+	{
+		return _numerical;
+	}
+
+	public void set_numerical(int _numerical)
+	{
+		this._numerical = _numerical;
 	}
 
 	public double get_price()
