@@ -20,7 +20,6 @@ public class NumberUtil
 	{
 		String _format = "%.2f";
 		String _result = String.format(_format, _number);
-		System.out.println(_result);
 		return Double.parseDouble(_result);
 	}
 

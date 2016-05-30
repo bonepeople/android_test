@@ -71,13 +71,11 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
-		System.out.println("get view - " + position);
 		View _view = convertView;
 		ViewHolder _holder;
 
 		if (convertView == null)
 		{
-			System.out.println("creat a new view - " + position);
 			_view = _inflater.inflate(R.layout.item_quotation_detail, null);
 			_holder = new ViewHolder();
 			_holder._text_name = (TextView) _view.findViewById(R.id.textview_name);
@@ -100,8 +98,6 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 			_holder = (ViewHolder) _view.getTag();
 		}
 		ItemDetail _temp_item = _data.get(position);
-		if (_temp_item == null)
-			System.out.println("_temp_item  is null");
 		_holder._text_name.setText(_temp_item.get_itemName());
 		_holder._text_fucai.setText(_temp_item.get_material());
 		_holder._text_shuoming.setText(_temp_item.get_technics());
@@ -119,7 +115,6 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 	@Override
 	public void onClick(View v)
 	{
-		System.out.println("click view id is " + v.getId());
 		switch (v.getId())
 		{
 		case R.id.button_commit:

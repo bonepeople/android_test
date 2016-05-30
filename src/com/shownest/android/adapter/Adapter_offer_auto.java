@@ -46,7 +46,6 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 
 	private void construct()
 	{
-		System.out.println("constructor in adapter");
 		int _temp_i;
 		for (_temp_i = 0; _temp_i < _areas.size(); _temp_i++)
 		{
@@ -56,7 +55,6 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 
 	private void construct(int _room, int _parlour, int _kitchen, int _toilet, int _balcony)
 	{
-		System.out.println("constructor in adapter");
 		_areas.clear();
 		int _temp_i;
 		// room
@@ -143,13 +141,11 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
-		System.out.println("get view - " + position);
 		View _view = convertView;
 		ViewHolder _holder;
 
 		if (convertView == null)
 		{
-			System.out.println("creat a new view - " + position);
 			_view = _inflater.inflate(R.layout.item_offer_auto, null);
 			_holder = new ViewHolder();
 			_holder._text_name = (TextView) _view.findViewById(R.id.textview_widget_name);
@@ -238,7 +234,6 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 	@Override
 	public void onClick(View v)
 	{
-		System.out.println("click view id is " + v.getId());
 		switch (v.getId())
 		{
 		case R.id.button_commit:

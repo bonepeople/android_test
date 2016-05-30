@@ -64,8 +64,6 @@ public class LinearLayout_idcard extends LinearLayout implements OnChangeListene
 		_imageview_bottom = (ImageView) _childview.findViewById(R.id.imageview_widget_bottom);
 		_linearlayout_bottom = (LinearLayout) _childview.findViewById(R.id.linearlayout_idcard_bottom);
 
-		if (_textview_name == null)
-			System.out.println("name  is null");
 		_textview_name.setText(_name);
 		_imageview_left.setOnClickListener(_lintener);
 		_imageview_right.setOnClickListener(_lintener);
