@@ -21,10 +21,14 @@ public class Activity_quotation_change extends DEBUG_Activity
 {
 	public static final int CHANGE_FAILED = 0;
 	public static final int CHANGE_SUCCESSFUL = 1;
+	public static final int GET_FAILED = 2;
+	public static final int GET_SUCCESSFUL = 3;
 	private static Activity_quotation_change _instance;
 	private static Intent _intent;
-	private static RoomDetail _data;
+	private static RoomDetail _data, _all_item;
 	private static ItemDetail _new_item;
+	private static String _room;
+	private static int _room_index;
 	public static Handler _handler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)
@@ -32,9 +36,11 @@ public class Activity_quotation_change extends DEBUG_Activity
 			String _string_result = "";
 			switch (msg.what)
 			{
+			case GET_FAILED:
 			case CHANGE_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 				break;
+			case GET_SUCCESSFUL:
 			case CHANGE_SUCCESSFUL:
 				_string_result = (String) msg.obj;
 				handle_string(_string_result);
@@ -66,20 +72,31 @@ public class Activity_quotation_change extends DEBUG_Activity
 			}
 			else
 			{
-//				setTitle("增减工艺");
-//				 show_wait();
-//				 ContentValues _value = new ContentValues();
-//				 _value.put("numerical", _new_item.get_numerical());
-//				 _value.put(_room, _room_index);
-//				 _value.put("number", _number.getData());
-//				 _value.put("price", _price.getData());
+				setTitle("增减工艺");
+				ContentValues _value = new ContentValues();
+				_value.put("quotationId", "");
+				_room = _intent.getStringExtra("room");
+				_room_index = _intent.getIntExtra("room_index", 1);
+				String _str_part = _intent.getStringExtra("part");
+				switch (_str_part)
+				{
+				case "ground":
+					_value.put("assortment", 1);
+					_value.put(_room, _room_index);
+					break;
+				case "wall":
+					_value.put("assortment", 3);
+					_value.put(_room, _room_index);
+					break;
+				case "roof":
+					_value.put("assortment", 2);
+					_value.put(_room, _room_index);
+					break;
+				}
+				_value.put("data", "all");
 
-				// quotationId:
-				// room:1
-				// assortment:1 1地面2顶面3墙面
-				// data:all
-				//
-				// HttpUtil.update_quotation_item(Activity_quotation_change._handler, _value, Activity_quotation_change.CHANGE_SUCCESSFUL, Activity_quotation_change.CHANGE_FAILED);
+				show_wait();
+				HttpUtil.get_quotation_item(_handler, _room, _value, GET_SUCCESSFUL, GET_FAILED);
 			}
 		}
 	}
@@ -102,8 +119,16 @@ public class Activity_quotation_change extends DEBUG_Activity
 				_instance.setResult(RESULT_OK, _intent);
 				_instance.finish();
 			}
-			else if (_result.equals("未查询到数据"))
+			else if (_result.contains("报价单对应的报价模板中"))
+			// 报价单对应的报价模板中--所有的地面数据
+			// 报价单对应的报价模板中--所有的墙面数据
+			// 报价单对应的报价模板中--所有的顶面数据
+			// 报价单对应的报价模板中--所有的水电数据
+			// 报价单对应的报价模板中--所有的安装数据
+			// 报价单对应的报价模板中--所有的杂费数据
+			// 报价单对应的报价模板中--所有的税费数据
 			{
+				_all_item = new RoomDetail(_obj.getJSONObject("data"), _room);
 			}
 			else
 				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
@@ -122,6 +147,11 @@ public class Activity_quotation_change extends DEBUG_Activity
 	public static RoomDetail get_data()
 	{
 		return _data;
+	}
+
+	public static RoomDetail get_all_item()
+	{
+		return _all_item;
 	}
 
 	public static ItemDetail get_item()

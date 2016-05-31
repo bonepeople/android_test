@@ -1,5 +1,10 @@
 package com.shownest.android.basic;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import com.shownest.android.R;
 import com.shownest.android.fragment.Fragment_title;
 
@@ -7,6 +12,7 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.os.Environment;
 import android.widget.RelativeLayout;
 
 public abstract class DEBUG_Activity extends Activity
@@ -99,6 +105,29 @@ public abstract class DEBUG_Activity extends Activity
 		{
 			String _class = _activity.getClass().getName();
 			System.out.println(_class + "-handle msg:" + _msg);
+
+			File _file_dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/shownest_cache");
+			File _file;
+			if (_file_dir.mkdirs() || _file_dir.isDirectory())
+			{
+				_file = new File(_file_dir, "out.txt");
+				try
+				{
+					FileOutputStream _fout = new FileOutputStream(_file);
+					byte[] bytes = _msg.getBytes();
+					_fout.write(bytes);
+					_fout.close();
+
+				}
+				catch (FileNotFoundException e)
+				{
+					e.printStackTrace();
+				}
+				catch (IOException e)
+				{
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 

@@ -100,7 +100,7 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 
 			if (_result.equals("智能报价单部分明细"))
 			{
-				_data = new RoomDetail(_obj.getJSONObject("data"), _intent.getStringExtra("part"));
+				_data = new RoomDetail(_obj.getJSONObject("data"), _intent.getStringExtra("room"));
 				_fragment_detail = new Fragment_quotation_detail();
 				add_fragment(_instance, _fragment_detail, false);
 			}
@@ -144,6 +144,7 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 			}
 			_change_part = args[0];
 			_change = new Intent(this, Activity_quotation_change.class);
+			_change.putExtra("quotationId", _quotationId);
 			_change.putExtra("type", _type);
 			_change.putExtra("room", _room);
 			_change.putExtra("room_index", _number);
