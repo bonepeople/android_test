@@ -50,14 +50,18 @@ public class RoomDetail
 	{
 		JSONArray _json_array;
 		_json_array = JsonUtil.get_array(_json, _tag);
-		SparseArray<ItemDetail> _temp_array = new SparseArray<ItemDetail>();
-		for (int _temp_i = 0; _json_array != null && _temp_i < _json_array.length(); _temp_i++)
+		if (_json_array != null)
 		{
-			JSONObject _obj = _json_array.getJSONObject(_temp_i);
-			ItemDetail _temp_item = new ItemDetail(_obj, _tag);
-			_temp_array.put(_temp_i, _temp_item);
+			SparseArray<ItemDetail> _temp_array = new SparseArray<ItemDetail>();
+			for (int _temp_i = 0; _temp_i < _json_array.length(); _temp_i++)
+			{
+				JSONObject _obj = _json_array.getJSONObject(_temp_i);
+				ItemDetail _temp_item = new ItemDetail(_obj, _tag);
+				_temp_array.put(_temp_i, _temp_item);
+			}
+			_details.put(_tag, _temp_array);
 		}
-		_details.put(_tag, _temp_array);
+
 	}
 
 	public String get_tag()
@@ -109,6 +113,17 @@ public class RoomDetail
 	}
 
 	/**
+	 * 判断此房间是否包含某一部分
+	 * 
+	 * @param _name
+	 *            ground，wall，roof，hydropower，mount，cost，tax
+	 */
+	public boolean has_details(String _name)
+	{
+		return _details.containsKey(_name);
+	}
+
+	/**
 	 * 获取某一项的详细信息
 	 * 
 	 * @param _name
@@ -116,7 +131,11 @@ public class RoomDetail
 	 */
 	public SparseArray<ItemDetail> get_details(String _name)
 	{
-		return _details.get(_name);
+
+		if (_details.containsKey(_name))
+			return _details.get(_name);
+		else
+			return new SparseArray<ItemDetail>();
 	}
 
 }
