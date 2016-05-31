@@ -15,6 +15,7 @@ import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 	private String _type, _room, _part;
 	private int _room_index, _part_index;
 	private ItemDetail _new_item;
+	private Adapter_quotation_change _adapter;
 	private Linearlayout_listview _list;
 	private RelativeLayout_edit_informationbar _price, _number;
 	private Linearlayout_edittext _material, _technics;
@@ -91,7 +93,7 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 			RoomDetail _data = Activity_quotation_change.get_all_item();
 			String _name = CommonUtil.get_chineseName(_part);
 
-			Adapter_quotation_change _adapter = new Adapter_quotation_change(getActivity(), _part, _data.get_details(_part));
+			_adapter = new Adapter_quotation_change(getActivity(), _part, _data.get_details(_part));
 			_list = new Linearlayout_listview(getActivity(), _body, _part, new String[] { _name, "" }, _adapter);
 			_list.set_collapse(false);
 			// _adapter.setOnChangetListener(Activity_quotation_detail.get_instance());
@@ -123,11 +125,68 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 				Activity_quotation_change.get_instance().show_wait();
 				HttpUtil.update_quotation_item(Activity_quotation_change._handler, _room, _value, Activity_quotation_change.CHANGE_SUCCESSFUL, Activity_quotation_change.CHANGE_FAILED);
 			}
-			else
+			else if (_type.equals("fix"))
 			{
-
+				SparseIntArray _change = _adapter.get_change();
+				if (_change.size() != 0)
+				{
+					Activity_quotation_change.set_total_commit(_change.size());
+					Activity_quotation_change.get_instance().show_wait();
+					for (int _temp_i = 0; _temp_i < _change.size(); _temp_i++)
+					{
+						int _key = _change.keyAt(_temp_i);
+						int _mark = _change.valueAt(_temp_i);
+						if (_mark == 1)
+						{
+							// 新增
+							ContentValues _value = new ContentValues();
+							_value.put("quotationId", "");
+							_value.put("numerical", _adapter.getItem(_key).get_numerical());
+							switch (_part)
+							{
+							case "ground":
+								_value.put("assortment", 1);
+								_value.put(_room, _room_index);
+								break;
+							case "wall":
+								_value.put("assortment", 3);
+								_value.put(_room, _room_index);
+								break;
+							case "roof":
+								_value.put("assortment", 2);
+								_value.put(_room, _room_index);
+								break;
+							}
+							_value.put("actionType", 1);
+							HttpUtil.update_quotation_item(Activity_quotation_change._handler, _room, _value, Activity_quotation_change.CHANGE_SUCCESSFUL, Activity_quotation_change.CHANGE_FAILED);
+						}
+						else
+						{
+							// 删除
+							ContentValues _value = new ContentValues();
+							_value.put("quotationId", "");
+							_value.put("numerical", _adapter.getItem(_key).get_numerical());
+							switch (_part)
+							{
+							case "ground":
+								_value.put("assortment", 1);
+								_value.put(_room, _room_index);
+								break;
+							case "wall":
+								_value.put("assortment", 3);
+								_value.put(_room, _room_index);
+								break;
+							case "roof":
+								_value.put("assortment", 2);
+								_value.put(_room, _room_index);
+								break;
+							}
+							_value.put("actionType", 3);
+							HttpUtil.update_quotation_item(Activity_quotation_change._handler, _room, _value, Activity_quotation_change.CHANGE_SUCCESSFUL, Activity_quotation_change.CHANGE_FAILED);
+						}
+					}
+				}
 			}
 		}
 	}
-
 }

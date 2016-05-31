@@ -23,6 +23,7 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 	public static final int GET_FAILED = 0;
 	public static final int GET_SUCCESSFUL = 1;
 	public static final int CHANGE = 2;
+	public static final int FIX = 3;
 	private static Activity_quotation_detail _instance;
 	private static Intent _intent;
 	private static Fragment_quotation_detail _fragment_detail;
@@ -84,6 +85,14 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 				String _str_change = "小计：" + _data.get_totals(_change_part) + "元";
 				_fragment_detail.refresh(_change_part, _str_change);
 				break;
+
+			case FIX:
+				show_wait();
+				ContentValues _value = new ContentValues();
+				_value.put("quotationId", _quotationId);
+				_value.put(_room, _number);
+				HttpUtil.get_quotation_item(_handler, _room, _value, GET_SUCCESSFUL, GET_FAILED);
+				break;
 			}
 		}
 		else
@@ -125,7 +134,7 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 		{
 			Intent _change;
 			String _type = "";
-			int _part_index = 0;
+			int _part_index = 0, _code = CHANGE;
 			switch (tag)
 			{
 			case "adapter change":
@@ -137,6 +146,7 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 			case "listview change":
 				System.out.println("增减工艺：" + args[0]);
 				_type = "fix";
+				_code = FIX;
 				break;
 
 			default:
@@ -150,7 +160,7 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 			_change.putExtra("room_index", _number);
 			_change.putExtra("part", _change_part);
 			_change.putExtra("part_index", _part_index);
-			startActivityForResult(_change, CHANGE);
+			startActivityForResult(_change, _code);
 		}
 		else
 		{

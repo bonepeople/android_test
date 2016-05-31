@@ -28,7 +28,7 @@ public class Activity_quotation_change extends DEBUG_Activity
 	private static RoomDetail _data, _all_item;
 	private static ItemDetail _new_item;
 	private static String _room;
-	private static int _room_index;
+	private static int _room_index, _total_commit = 0;
 	public static Handler _handler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)
@@ -39,6 +39,7 @@ public class Activity_quotation_change extends DEBUG_Activity
 			case GET_FAILED:
 			case CHANGE_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
+				_instance.close_wait();
 				break;
 			case GET_SUCCESSFUL:
 			case CHANGE_SUCCESSFUL:
@@ -46,7 +47,7 @@ public class Activity_quotation_change extends DEBUG_Activity
 				handle_string(_string_result);
 				break;
 			}
-			_instance.close_wait();
+			check_commit();
 			System.out.println(_string_result);
 		};
 	};
@@ -112,12 +113,20 @@ public class Activity_quotation_change extends DEBUG_Activity
 
 			if (_result.equals("报价单详细项修改成功") || _result.equals("工队报价模板详细项修改成功"))
 			{
-				_data.get_details(_intent.getStringExtra("part")).setValueAt(_intent.getIntExtra("part_index", 0), _new_item);
-				_data.fresh_totals(_intent.getStringExtra("part"));
-				Intent _intent = new Intent();
-				_intent.putExtra("result", "successful");
-				_instance.setResult(RESULT_OK, _intent);
-				_instance.finish();
+				if (_intent.getStringExtra("type").equals("change"))
+				{
+					_data.get_details(_intent.getStringExtra("part")).setValueAt(_intent.getIntExtra("part_index", 0), _new_item);
+					_data.fresh_totals(_intent.getStringExtra("part"));
+					_instance.close_wait();
+					Intent _intent = new Intent();
+					_intent.putExtra("result", "successful");
+					_instance.setResult(RESULT_OK, _intent);
+					_instance.finish();
+				}
+			}
+			else if (_result.contains("要修改的项目不存在"))
+			{
+
 			}
 			else if (_result.contains("报价单对应的报价模板中"))
 			// 报价单对应的报价模板中--所有的地面数据
@@ -130,9 +139,13 @@ public class Activity_quotation_change extends DEBUG_Activity
 			{
 				_all_item = new RoomDetail(_obj.getJSONObject("data"), _room);
 				add_fragment(_instance, new Fragment_quotation_change(), false);
+				_instance.close_wait();
 			}
 			else
+			{
 				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
+				_instance.close_wait();
+			}
 		}
 		catch (JSONException e)
 		{
@@ -160,8 +173,28 @@ public class Activity_quotation_change extends DEBUG_Activity
 		return _new_item;
 	}
 
+	public static void set_total_commit(int _total)
+	{
+		_total_commit = _total;
+		System.out.println("total is:" + _total_commit);
+	}
+
 	public static Activity_quotation_change get_instance()
 	{
 		return _instance;
+	}
+
+	private static void check_commit()
+	{
+		_total_commit--;
+		System.out.println("total last:" + _total_commit);
+		if (_total_commit == 0)
+		{
+			_instance.close_wait();
+			Intent _intent = new Intent();
+			_intent.putExtra("result", "successful");
+			_instance.setResult(RESULT_OK, _intent);
+			_instance.finish();
+		}
 	}
 }

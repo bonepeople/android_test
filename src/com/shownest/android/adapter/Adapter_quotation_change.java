@@ -106,6 +106,11 @@ public class Adapter_quotation_change extends BaseAdapter implements View.OnClic
 		return _view;
 	}
 
+	public SparseIntArray get_change()
+	{
+		return _change;
+	}
+
 	@Override
 	public void onClick(View v)
 	{
