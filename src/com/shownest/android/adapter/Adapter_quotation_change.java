@@ -13,7 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Adapter_quotation_detail extends BaseAdapter implements View.OnClickListener
+public class Adapter_quotation_change extends BaseAdapter implements View.OnClickListener
 {
 	private Context _context;
 	private LayoutInflater _inflater;
@@ -36,7 +36,7 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 		public TextView _text_total;
 	}
 
-	public Adapter_quotation_detail(Context _context, String _tag, SparseArray<ItemDetail> _data)
+	public Adapter_quotation_change(Context _context, String _tag, SparseArray<ItemDetail> _data)
 	{
 		this._context = _context;
 		_inflater = LayoutInflater.from(_context);
