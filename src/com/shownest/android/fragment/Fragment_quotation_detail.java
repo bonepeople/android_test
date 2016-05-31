@@ -62,7 +62,7 @@ public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClick
 
 	private void set_list(RoomDetail _data, String _tag, String _name)
 	{
-		if (_data.get_details(_tag).size() != 0)
+		if (_data.has_details(_tag))
 		{
 			Adapter_quotation_detail _adapter = new Adapter_quotation_detail(getActivity(), _tag, _data.get_details(_tag));
 			Linearlayout_listview _list = new Linearlayout_listview(getActivity(), _body, _tag, new String[] { _name, "小计：" + _data.get_totals(_tag) + "元" }, _adapter);
