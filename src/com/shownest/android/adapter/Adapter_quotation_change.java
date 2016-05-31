@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class Adapter_quotation_change extends BaseAdapter implements View.OnClickListener
@@ -29,11 +30,8 @@ public class Adapter_quotation_change extends BaseAdapter implements View.OnClic
 		public TextView _text_shuoming;
 		public TextView _text_price;
 		public TextView _text_unit1;
-		public TextView _text_unit2;
 		public TextView _text_metricunit1;
-		public TextView _text_metricunit2;
-		public TextView _text_number;
-		public TextView _text_total;
+		public LinearLayout _linearlayout_calc;
 	}
 
 	public Adapter_quotation_change(Context _context, String _tag, SparseArray<ItemDetail> _data)
@@ -83,13 +81,11 @@ public class Adapter_quotation_change extends BaseAdapter implements View.OnClic
 			_holder._text_shuoming = (TextView) _view.findViewById(R.id.textview_shuoming);
 			_holder._text_price = (TextView) _view.findViewById(R.id.textview_price);
 			_holder._text_unit1 = (TextView) _view.findViewById(R.id.textview_unit1);
-			_holder._text_unit2 = (TextView) _view.findViewById(R.id.textview_unit2);
 			_holder._text_metricunit1 = (TextView) _view.findViewById(R.id.textview_metricunit1);
-			_holder._text_metricunit2 = (TextView) _view.findViewById(R.id.textview_metricunit2);
-			_holder._text_number = (TextView) _view.findViewById(R.id.textview_number);
-			_holder._text_total = (TextView) _view.findViewById(R.id.textview_total);
+			_holder._linearlayout_calc = (LinearLayout) _view.findViewById(R.id.linearlayout_calculate);
 			_holder._image_edit.setId(position);
 			_holder._image_edit.setOnClickListener(this);
+			_holder._linearlayout_calc.setVisibility(LinearLayout.GONE);
 			_view.setTag(_holder);
 		}
 		else
@@ -102,11 +98,7 @@ public class Adapter_quotation_change extends BaseAdapter implements View.OnClic
 		_holder._text_shuoming.setText(_temp_item.get_technics());
 		_holder._text_price.setText(String.valueOf(_temp_item.get_price()));
 		_holder._text_unit1.setText(_temp_item.get_unit());
-		_holder._text_unit2.setText(_temp_item.get_unit());
 		_holder._text_metricunit1.setText(_temp_item.get_metricUnit());
-		_holder._text_metricunit2.setText(_temp_item.get_metricUnit());
-		_holder._text_number.setText(String.valueOf(_temp_item.get_number()));
-		_holder._text_total.setText(String.valueOf(_temp_item.get_total()));
 
 		return _view;
 	}
@@ -122,6 +114,7 @@ public class Adapter_quotation_change extends BaseAdapter implements View.OnClic
 		case R.id.button_cancel:
 			break;
 		default:
+			if (_listener != null)
 			_listener.onChange("adapter change", new String[] { _tag, String.valueOf(v.getId()) });
 			break;
 		}

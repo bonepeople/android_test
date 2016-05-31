@@ -122,7 +122,8 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 		case R.id.button_cancel:
 			break;
 		default:
-			_listener.onChange("adapter change", new String[] { _tag, String.valueOf(v.getId()) });
+			if (_listener != null)
+				_listener.onChange("adapter change", new String[] { _tag, String.valueOf(v.getId()) });
 			break;
 		}
 	}

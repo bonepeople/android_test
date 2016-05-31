@@ -105,8 +105,8 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 			_collapse = !_collapse;
 			break;
 		case R.id.textview_change:
-
-			_listener.onChange("listview change", new String[] { _tag });
+			if (_listener != null)
+				_listener.onChange("listview change", new String[] { _tag });
 			break;
 
 		}
