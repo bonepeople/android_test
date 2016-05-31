@@ -2,10 +2,10 @@ package com.shownest.android.adapter;
 
 import com.shownest.android.R;
 import com.shownest.android.model.ItemDetail;
-import com.shownest.android.model.OnChangeListener;
 
 import android.content.Context;
 import android.util.SparseArray;
+import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +20,7 @@ public class Adapter_quotation_change extends BaseAdapter implements View.OnClic
 	private LayoutInflater _inflater;
 	private String _tag;
 	private SparseArray<ItemDetail> _data;
-	private OnChangeListener _listener;
+	private SparseIntArray _change = new SparseIntArray();
 
 	private static class ViewHolder
 	{
@@ -42,11 +42,6 @@ public class Adapter_quotation_change extends BaseAdapter implements View.OnClic
 		this._data = _data;
 	}
 
-	public void setOnChangetListener(OnChangeListener _listener)
-	{
-		this._listener = _listener;
-	}
-
 	@Override
 	public int getCount()
 	{
@@ -54,9 +49,9 @@ public class Adapter_quotation_change extends BaseAdapter implements View.OnClic
 	}
 
 	@Override
-	public Object getItem(int position)
+	public ItemDetail getItem(int position)
 	{
-		return null;
+		return _data.get(position);
 	}
 
 	@Override
@@ -114,17 +109,19 @@ public class Adapter_quotation_change extends BaseAdapter implements View.OnClic
 	@Override
 	public void onClick(View v)
 	{
-		switch (v.getId())
+		int _id = v.getId();
+
+		ItemDetail _temp_item = getItem(_id);
+		if (_temp_item.get_delMarks() == 0)
 		{
-		case R.id.button_commit:
-			// 可以在这里检测输入的合理性
-			break;
-		case R.id.button_cancel:
-			break;
-		default:
-			if (_listener != null)
-				_listener.onChange("adapter change", new String[] { _tag, String.valueOf(v.getId()) });
-			break;
+			_change.put(_id, 1);
+			_temp_item.set_delMarks(1);
 		}
+		else
+		{
+			_change.put(_id, 0);
+			_temp_item.set_delMarks(0);
+		}
+		notifyDataSetChanged();
 	}
 }

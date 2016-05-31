@@ -114,17 +114,7 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 	@Override
 	public void onClick(View v)
 	{
-		switch (v.getId())
-		{
-		case R.id.button_commit:
-			// 可以在这里检测输入的合理性
-			break;
-		case R.id.button_cancel:
-			break;
-		default:
-			if (_listener != null)
-				_listener.onChange("adapter change", new String[] { _tag, String.valueOf(v.getId()) });
-			break;
-		}
+		if (_listener != null)
+			_listener.onChange("adapter change", new String[] { _tag, String.valueOf(v.getId()) });
 	}
 }

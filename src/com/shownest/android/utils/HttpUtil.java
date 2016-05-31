@@ -61,6 +61,15 @@ public class HttpUtil
 		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}
 
+	/**
+	 * 查询报价单各个项目信息
+	 * <p>
+	 * 获取当前已选项目及详细信息，获取所有可选项目及详细信息
+	 * 
+	 * @param _item
+	 *            room,parlour,kitchen,toilet,balcony,hydropower,mount,cost,tax
+	 * @param _value
+	 */
 	public static void get_quotation_item(Handler _handler, String _item, ContentValues _value, int _successful, int _failed)
 	{
 		String _address = "", _message;
