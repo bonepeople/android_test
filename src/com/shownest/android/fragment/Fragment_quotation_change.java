@@ -135,7 +135,7 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 					for (int _temp_i = 0; _temp_i < _change.size(); _temp_i++)
 					{
 						int _key = _change.keyAt(_temp_i);
-						int _mark = _change.valueAt(_temp_i);
+						int _mark = _adapter.getItem(_key).get_delMarks();
 						if (_mark == 1)
 						{
 							// 新增

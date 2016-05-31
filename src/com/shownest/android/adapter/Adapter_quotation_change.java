@@ -95,6 +95,12 @@ public class Adapter_quotation_change extends BaseAdapter implements View.OnClic
 		}
 		else
 		{
+			if (_temp_item.get_tag().equals("hydropower"))
+			{
+				_change.put(position, 0);
+				System.out.println("put " + position + " and " + 0);
+				System.out.println(_change.toString());
+			}
 			_holder._image_edit.setImageResource(R.drawable.checkbox_true);
 		}
 		_holder._text_fucai.setText(_temp_item.get_material());
@@ -117,16 +123,40 @@ public class Adapter_quotation_change extends BaseAdapter implements View.OnClic
 		int _id = v.getId();
 
 		ItemDetail _temp_item = getItem(_id);
-		if (_temp_item.get_delMarks() == 0)
+		System.out.println("view  clicked:");
+		if (_temp_item.get_tag().equals("hydropower"))
 		{
-			_change.put(_id, 1);
-			_temp_item.set_delMarks(1);
+			if (_change.size() > 1)
+				_change.removeAt(1);
+			_change.append(_id, 1);
+			System.out.println("put " + _id + " and " + 1);
+			for (int _temp_i = 0; _temp_i < getCount(); _temp_i++)
+			{
+				if (_temp_i == _id)
+				{
+					getItem(_temp_i).set_delMarks(1);
+				}
+				else
+				{
+					getItem(_temp_i).set_delMarks(0);
+				}
+			}
 		}
 		else
 		{
-			_change.put(_id, 0);
-			_temp_item.set_delMarks(0);
+			if (_temp_item.get_delMarks() == 0)
+			{
+				_change.put(_id, 1);
+				_temp_item.set_delMarks(1);
+			}
+			else
+			{
+				_change.put(_id, 0);
+				_temp_item.set_delMarks(0);
+			}
 		}
+		System.out.println("print  _change:");
+		System.out.println(_change.toString());
 		notifyDataSetChanged();
 	}
 }
