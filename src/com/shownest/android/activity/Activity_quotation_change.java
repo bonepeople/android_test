@@ -129,6 +129,7 @@ public class Activity_quotation_change extends DEBUG_Activity
 			// 报价单对应的报价模板中--所有的税费数据
 			{
 				_all_item = new RoomDetail(_obj.getJSONObject("data"), _room);
+				add_fragment(_instance, new Fragment_quotation_change(), false);
 			}
 			else
 				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
