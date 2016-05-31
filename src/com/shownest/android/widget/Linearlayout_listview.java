@@ -24,7 +24,7 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 	private ListAdapter _adapter;
 	private ImageView _image_flag;
 	private OnChangeListener _listener;
-	private boolean _collapse = true;
+	private boolean _collapse = true;// 折叠:true折叠状态，false展开状态
 
 	public Linearlayout_listview(Context context)
 	{
@@ -84,25 +84,30 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 		_text_change.setOnClickListener(this);
 	}
 
+	public void set_collapse(boolean _collapse)
+	{
+		if (_collapse)
+		{
+			// 收起
+			_list.setVisibility(ListView.GONE);
+			_image_flag.setImageResource(R.drawable.arrow_down);
+		}
+		else
+		{
+			// 展开
+			_list.setVisibility(ListView.VISIBLE);
+			_image_flag.setImageResource(R.drawable.arrow_up);
+		}
+		this._collapse = _collapse;
+	}
+
 	@Override
 	public void onClick(View v)
 	{
 		switch (v.getId())
 		{
 		case R.id.linearlayout_title:
-			if (_collapse)
-			{
-				// 展开
-				_list.setVisibility(ListView.VISIBLE);
-				_image_flag.setImageResource(R.drawable.arrow_up);
-			}
-			else
-			{
-				// 收起
-				_list.setVisibility(ListView.GONE);
-				_image_flag.setImageResource(R.drawable.arrow_down);
-			}
-			_collapse = !_collapse;
+			set_collapse(!_collapse);
 			break;
 		case R.id.textview_change:
 			if (_listener != null)

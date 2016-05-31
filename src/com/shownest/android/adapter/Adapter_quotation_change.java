@@ -94,6 +94,14 @@ public class Adapter_quotation_change extends BaseAdapter implements View.OnClic
 		}
 		ItemDetail _temp_item = _data.get(position);
 		_holder._text_name.setText(_temp_item.get_itemName());
+		if (_temp_item.get_delMarks() == 0)
+		{
+			_holder._image_edit.setImageResource(R.drawable.checkbox_false);
+		}
+		else
+		{
+			_holder._image_edit.setImageResource(R.drawable.checkbox_true);
+		}
 		_holder._text_fucai.setText(_temp_item.get_material());
 		_holder._text_shuoming.setText(_temp_item.get_technics());
 		_holder._text_price.setText(String.valueOf(_temp_item.get_price()));
@@ -115,7 +123,7 @@ public class Adapter_quotation_change extends BaseAdapter implements View.OnClic
 			break;
 		default:
 			if (_listener != null)
-			_listener.onChange("adapter change", new String[] { _tag, String.valueOf(v.getId()) });
+				_listener.onChange("adapter change", new String[] { _tag, String.valueOf(v.getId()) });
 			break;
 		}
 	}

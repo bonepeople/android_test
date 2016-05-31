@@ -2,8 +2,7 @@ package com.shownest.android.fragment;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_quotation_change;
-import com.shownest.android.activity.Activity_quotation_detail;
-import com.shownest.android.adapter.Adapter_quotation_detail;
+import com.shownest.android.adapter.Adapter_quotation_change;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.ItemDetail;
 import com.shownest.android.model.RoomDetail;
@@ -92,8 +91,9 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 			RoomDetail _data = Activity_quotation_change.get_all_item();
 			String _name = CommonUtil.get_chineseName(_part);
 
-			Adapter_quotation_detail _adapter = new Adapter_quotation_detail(getActivity(), _part, _data.get_details(_part));
-			new Linearlayout_listview(getActivity(), _body, _part, new String[] { _name, "" }, _adapter);
+			Adapter_quotation_change _adapter = new Adapter_quotation_change(getActivity(), _part, _data.get_details(_part));
+			_list = new Linearlayout_listview(getActivity(), _body, _part, new String[] { _name, "" }, _adapter);
+			_list.set_collapse(false);
 			// _adapter.setOnChangetListener(Activity_quotation_detail.get_instance());
 			// _list.setOnChangetListener(Activity_quotation_detail.get_instance());
 		}
