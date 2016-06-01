@@ -19,7 +19,7 @@ public class Activity_location extends DEBUG_Activity
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_location);
-		
+
 		_province = (EditText) findViewById(R.id.edittext_province);
 		_county = (EditText) findViewById(R.id.edittext_county);
 		_city = (EditText) findViewById(R.id.edittext_city);
@@ -29,8 +29,8 @@ public class Activity_location extends DEBUG_Activity
 	{
 		Intent _intent = new Intent();
 		int proid = 1004;
-		int cityid = 10040101;
-		int countyId = 100401;
+		int cityid = 100401;
+		int countyId = 10040101;
 		try
 		{
 			proid = Integer.parseInt(_province.getText().toString());
