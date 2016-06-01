@@ -242,7 +242,7 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 			double _temp_double = Double.parseDouble(_temp_str);
 			if (_temp_double < 9999)
 			{
-				_areas.get(_selected)._data = NumberUtil.double_format(_temp_double);
+				_areas.get(_selected)._data = NumberUtil.round(_temp_double, 2);
 				notifyDataSetChanged();
 			}
 			_dialog.dismiss();
@@ -264,7 +264,7 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 		{
 		case "style7":
 			_total_area = Double.parseDouble(args[0]);
-			_every_area = NumberUtil.double_format(_total_area / _areas.size());
+			_every_area = NumberUtil.round(_total_area / _areas.size(), 2);
 			construct();
 			break;
 
@@ -276,7 +276,7 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 			int _toilet = Integer.parseInt(_nums[3]);
 			int _balcony = Integer.parseInt(_nums[4]);
 
-			_every_area = NumberUtil.double_format(_total_area / (_room + _parlour + _kitchen + _toilet + _balcony));
+			_every_area = NumberUtil.round(_total_area / (_room + _parlour + _kitchen + _toilet + _balcony), 2);
 			construct(_room, _parlour, _kitchen, _toilet, _balcony);
 			break;
 		}

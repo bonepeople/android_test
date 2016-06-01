@@ -187,7 +187,7 @@ public class ItemDetail
 
 	public void set_total()
 	{
-		this._total = NumberUtil.double_format(this._number * this._price);
+		this._total = NumberUtil.round(NumberUtil.mul(_number, _price), 2);
 	}
 
 	public String get_technics()

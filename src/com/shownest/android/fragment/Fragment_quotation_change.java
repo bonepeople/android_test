@@ -8,6 +8,7 @@ import com.shownest.android.model.ItemDetail;
 import com.shownest.android.model.RoomDetail;
 import com.shownest.android.utils.CommonUtil;
 import com.shownest.android.utils.HttpUtil;
+import com.shownest.android.utils.NumberUtil;
 import com.shownest.android.widget.Linearlayout_edittext;
 import com.shownest.android.widget.Linearlayout_listview;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
@@ -22,6 +23,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class Fragment_quotation_change extends DEBUG_Fragment implements OnClickListener
 {
@@ -77,13 +79,21 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 		if (_type.equals("change"))
 		{
 			_new_item = Activity_quotation_change.get_item();
-			System.out.println("will change:" + _new_item.get_itemName());
 
 			// new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "修改项目", _new_item.get_itemName() }, false);
 			String _str_price = String.valueOf(_new_item.get_price());
 			String _str_unit = _new_item.get_unit() + "/" + _new_item.get_metricUnit();
 			String _str_number = String.valueOf(_new_item.get_number());
-			_price = new RelativeLayout_edit_informationbar(getActivity(), _body, 7, new String[] { "单价", _str_price, _str_unit }, true);
+			if (_new_item.get_tag().equals("tax"))
+			{
+				_str_price = String.valueOf(_new_item.get_price() * 100);
+				_price = new RelativeLayout_edit_informationbar(getActivity(), _body, 7, new String[] { "收费比例", _str_price, "%" }, true);
+			}
+			else
+			{
+				_price = new RelativeLayout_edit_informationbar(getActivity(), _body, 7, new String[] { "单价", _str_price, _str_unit }, true);
+			}
+
 			_number = new RelativeLayout_edit_informationbar(getActivity(), _body, 7, new String[] { "工程量", _str_number, _new_item.get_metricUnit() }, true);
 			_material = new Linearlayout_edittext(getActivity(), _body, new String[] { "辅材品牌型号", "", _new_item.get_material() });
 			_technics = new Linearlayout_edittext(getActivity(), _body, new String[] { "工艺说明", "", _new_item.get_technics() });
@@ -109,7 +119,19 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 		{
 			if (_type.equals("change"))
 			{
-				_new_item.set_price(Double.parseDouble(_price.getData()));
+				double _str_price;
+				if (_new_item.get_tag().equals("tax"))
+				{
+					_str_price = NumberUtil.div(Double.parseDouble(_price.getData()), 100);
+					if (_str_price > 1)
+					{
+						Toast.makeText(getActivity(), "收费比例不可以超过100%", Toast.LENGTH_SHORT).show();
+						return;
+					}
+				}
+				else
+					_str_price = Double.parseDouble(_price.getData());
+				_new_item.set_price(_str_price);
 				_new_item.set_number(Double.parseDouble(_number.getData()));
 				_new_item.set_material(_material.getData());
 				_new_item.set_technics(_technics.getData());
@@ -117,7 +139,7 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 				_value.put("numerical", _new_item.get_numerical());
 				_value.put(_room, _room_index);
 				_value.put("number", _number.getData());
-				_value.put("price", _price.getData());
+				_value.put("price", _str_price);
 				_value.put("material", _material.getData());
 				_value.put("technics", _technics.getData());
 				_value.put("actionType", 2);

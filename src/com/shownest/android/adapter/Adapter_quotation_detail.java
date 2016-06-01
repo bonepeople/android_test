@@ -3,6 +3,7 @@ package com.shownest.android.adapter;
 import com.shownest.android.R;
 import com.shownest.android.model.ItemDetail;
 import com.shownest.android.model.OnChangeListener;
+import com.shownest.android.utils.NumberUtil;
 
 import android.content.Context;
 import android.gesture.Gesture;
@@ -113,7 +114,7 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 		_holder._text_fucai.setText(_temp_item.get_material());
 		_holder._text_shuoming.setText(_temp_item.get_technics());
 		if (_temp_item.get_tag().equals("tax"))
-			_holder._text_price.setText(String.valueOf(_temp_item.get_price() * 100));
+			_holder._text_price.setText(String.valueOf(NumberUtil.mul(_temp_item.get_price(), 100)));
 		else
 		{
 			_holder._text_price.setText(String.valueOf(_temp_item.get_price()));
