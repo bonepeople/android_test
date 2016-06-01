@@ -45,16 +45,16 @@ public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClick
 			switch (Activity_quotation_detail.get_room())
 			{
 			case "tax":
-				set_list(_data, "tax", "税费");
+				set_list(_data, "tax", "管理费和税金");
 				break;
 
 			default:
 				set_list(_data, "ground", "地面");
 				set_list(_data, "wall", "墙面");
 				set_list(_data, "roof", "顶面");
-				set_list(_data, "hydropower", "水电");
+				set_list(_data, "hydropower", "水电(按面积)");
 				set_list(_data, "mount", "安装");
-				set_list(_data, "cost", "杂费");
+				set_list(_data, "cost", "施工杂费");
 				break;
 			}
 		}
