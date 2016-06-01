@@ -177,6 +177,10 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 							case "roof":
 								_value.put("assortment", 2);
 								_value.put(_room, _room_index);
+							case "cost":
+								_value.put("assortment", 6);
+							case "tax":
+								_value.put("assortment", 7);
 								break;
 							}
 							_value.put("actionType", 1);

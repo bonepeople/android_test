@@ -6,8 +6,6 @@ import com.shownest.android.model.OnChangeListener;
 import com.shownest.android.utils.NumberUtil;
 
 import android.content.Context;
-import android.gesture.Gesture;
-import android.os.Environment;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,7 +67,7 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 	@Override
 	public long getItemId(int position)
 	{
-		return 0;
+		return position;
 	}
 
 	@Override
