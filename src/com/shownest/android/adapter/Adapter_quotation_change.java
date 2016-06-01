@@ -95,7 +95,7 @@ public class Adapter_quotation_change extends BaseAdapter implements View.OnClic
 		}
 		else
 		{
-			if (_temp_item.get_tag().equals("hydropower"))
+			if (_temp_item.get_tag().equals("hydropower") && _change.size() == 0)
 			{
 				_change.put(position, 0);
 				System.out.println("put " + position + " and " + 0);
@@ -126,9 +126,7 @@ public class Adapter_quotation_change extends BaseAdapter implements View.OnClic
 		System.out.println("view  clicked:");
 		if (_temp_item.get_tag().equals("hydropower"))
 		{
-			if (_change.size() > 1)
-				_change.removeAt(1);
-			_change.append(_id, 1);
+			_change.put(_id, 1);
 			System.out.println("put " + _id + " and " + 1);
 			for (int _temp_i = 0; _temp_i < getCount(); _temp_i++)
 			{
