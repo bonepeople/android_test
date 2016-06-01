@@ -17,16 +17,16 @@
         android:hint="workProvince//办公地址省  1004" />
 
     <EditText
-        android:id="@+id/edittext_county"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="workCounty//办公地址县  10040101" />
-
-    <EditText
         android:id="@+id/edittext_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="workCity //办公地址 市   100401" />
+
+    <EditText
+        android:id="@+id/edittext_county"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="workCounty//办公地址县  10040101" />
 
     <Button
         android:layout_width="wrap_content"

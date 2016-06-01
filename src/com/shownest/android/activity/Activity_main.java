@@ -107,9 +107,4 @@ public class Activity_main extends DEBUG_Activity
 		startActivity(intent);
 	}
 
-	public void setinfo_quotation_change(View v)
-	{
-		Intent intent = new Intent(this, Activity_quotation_change.class);
-		startActivity(intent);
-	}
 }
