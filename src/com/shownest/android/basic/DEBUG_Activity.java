@@ -104,7 +104,8 @@ public abstract class DEBUG_Activity extends Activity
 		if (DEBUG)
 		{
 			String _class = _activity.getClass().getName();
-			System.out.println(_class + "-handle msg:" + _msg);
+			System.out.println(_class + "-handle msg:");
+			System.out.println(_msg);
 
 			File _file_dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/shownest_cache");
 			File _file;

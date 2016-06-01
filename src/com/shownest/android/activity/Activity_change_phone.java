@@ -45,7 +45,6 @@ public class Activity_change_phone extends DEBUG_Activity
 				_fragment_change_phone.mobilcode_change();
 			}
 			_instance.close_wait();
-			System.out.println(_string_result);
 		};
 	};
 

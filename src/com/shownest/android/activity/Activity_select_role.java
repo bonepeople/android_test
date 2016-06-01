@@ -32,7 +32,6 @@ public class Activity_select_role extends DEBUG_Activity
 				_string_result = (String) msg.obj;
 				handle_string(_string_result);
 			}
-			System.out.println(_string_result);
 		};
 	};
 

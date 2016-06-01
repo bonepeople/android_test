@@ -48,7 +48,6 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 				break;
 			}
 			_instance.close_wait();
-			System.out.println(_string_result);
 		};
 	};
 

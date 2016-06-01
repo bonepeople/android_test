@@ -32,7 +32,6 @@ public class Activity_change_pwd extends DEBUG_Activity
 				handle_string(_string_result);
 			}
 			_instance.close_wait();
-			System.out.println(_string_result);
 		};
 	};
 

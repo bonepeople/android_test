@@ -48,7 +48,6 @@ public class Activity_regist extends DEBUG_Activity
 				_fragment_regist.mobilcode_change();
 			}
 			_instance.close_wait();
-			System.out.println(_string_result);
 		};
 	};
 
@@ -60,7 +59,7 @@ public class Activity_regist extends DEBUG_Activity
 		_instance = this;
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 		setTitle("加入秀巢网");
-		
+
 		_fragment_regist = new Fragment_regist();
 		add_fragment(this, _fragment_regist, false);
 		if (_timer != null)

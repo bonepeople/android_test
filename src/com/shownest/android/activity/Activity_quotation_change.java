@@ -48,7 +48,6 @@ public class Activity_quotation_change extends DEBUG_Activity
 				break;
 			}
 			check_commit();
-			System.out.println(_string_result);
 		};
 	};
 

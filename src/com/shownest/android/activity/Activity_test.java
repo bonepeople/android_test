@@ -36,13 +36,11 @@ public class Activity_test extends DEBUG_Activity
 			{
 			case TEST_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
-				_string_result = (String) msg.obj;
 				break;
 			case TEST_SUCCESSFUL:
 				_string_result = (String) msg.obj;
 				handle_string(_string_result);
 			}
-			System.out.println(_string_result);
 		};
 	};
 

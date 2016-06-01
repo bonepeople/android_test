@@ -33,14 +33,12 @@ public class Activity_my_center extends DEBUG_Activity
 			{
 			case LOGIN_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
-				_string_result = (String) msg.obj;
 				_instance.finish();
 				break;
 			case LOGIN_SUCCESSFUL:
 				_string_result = (String) msg.obj;
 				handle_string(_string_result);
 			}
-			System.out.println(_string_result);
 			_instance.close_wait();
 		};
 	};

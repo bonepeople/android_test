@@ -55,7 +55,6 @@ public class Activity_forget extends DEBUG_Activity
 				_fragment_forget.mobilcode_change();
 			}
 			_instance.close_wait();
-			System.out.println(_string_result);
 		};
 	};
 
