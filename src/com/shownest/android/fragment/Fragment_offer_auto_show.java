@@ -133,7 +133,7 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 			int padding = NumberUtil.get_px(getActivity(), 5);
 			TextView _hint = new TextView(getActivity());
 			_hint.setText("以上报价仅供参考，以实际工长报价为主");
-			_hint.setTextColor(Color.parseColor("#3333aa"));
+			_hint.setTextColor(getResources().getColor(R.color.text_blue));
 			_hint.setPadding(padding, padding, padding, padding);
 			_body.addView(_hint);
 

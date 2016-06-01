@@ -69,6 +69,7 @@ public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClick
 			_adapter.setOnChangetListener(Activity_quotation_detail.get_instance());
 			_list.setOnChangetListener(Activity_quotation_detail.get_instance());
 			_list.set_change("增减工艺");
+			_list.set_dividerheight(30);
 			_adapters.put(_tag, _adapter);
 			_lists.put(_tag, _list);
 		}

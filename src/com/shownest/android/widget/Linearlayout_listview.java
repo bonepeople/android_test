@@ -4,6 +4,9 @@ import com.shownest.android.R;
 import com.shownest.android.model.OnChangeListener;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,6 +66,7 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 		_text_name.setText(args[0]);
 		_text_hint.setText(args[1]);
 		_list.setAdapter(_adapter);
+		_list.setDivider(new ColorDrawable(getResources().getColor(R.color.white)));
 
 		_title.setOnClickListener(this);
 	}
@@ -80,8 +84,51 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 	public void set_change(String _change)
 	{
 		_text_change.setText(_change);
+		_text_change.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 		_text_change.setVisibility(TextView.VISIBLE);
 		_text_change.setOnClickListener(this);
+	}
+
+	/**
+	 * 修改文本状态条中文本的颜色
+	 * 
+	 * @param _name
+	 *            all,name,hint,change
+	 * @param _color
+	 *            getResources().getColor(R.color.text_gray)
+	 */
+	public void set_textcolor(String _name, int _color)
+	{
+		switch (_name)
+		{
+		case "all":
+			if (_text_hint != null)
+				_text_hint.setTextColor(_color);
+			if (_text_change != null)
+				_text_change.setTextColor(_color);
+		case "name":
+			if (_text_name != null)
+				_text_name.setTextColor(_color);
+			break;
+
+		case "hint":
+			if (_text_hint != null)
+				_text_hint.setTextColor(_color);
+			break;
+
+		case "change":
+			if (_text_change != null)
+				_text_change.setTextColor(_color);
+			break;
+
+		}
+
+	}
+
+	public void set_dividerheight(int _height)
+	{
+		if (_list != null)
+			_list.setDividerHeight(_height);
 	}
 
 	public void set_collapse(boolean _collapse)

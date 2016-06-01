@@ -5,6 +5,8 @@ import com.shownest.android.model.ItemDetail;
 import com.shownest.android.model.OnChangeListener;
 
 import android.content.Context;
+import android.gesture.Gesture;
+import android.os.Environment;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -88,6 +90,7 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 			_holder._text_metricunit2 = (TextView) _view.findViewById(R.id.textview_metricunit2);
 			_holder._text_number = (TextView) _view.findViewById(R.id.textview_number);
 			_holder._text_total = (TextView) _view.findViewById(R.id.textview_total);
+			_holder._text_name.setTextColor(_context.getResources().getColor(R.color.text_blue));
 			_holder._image_edit.setId(position);
 			_holder._image_edit.setOnClickListener(this);
 			_view.setTag(_holder);

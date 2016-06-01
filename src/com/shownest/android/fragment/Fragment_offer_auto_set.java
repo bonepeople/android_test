@@ -32,6 +32,7 @@ public class Fragment_offer_auto_set extends DEBUG_Fragment implements OnClickLi
 	private LinearLayout_checkbox _state, _type, _mode;
 	private RelativeLayout_edit_informationbar _name, _region, _area, _house;
 	private Adapter_offer_auto _adapter;
+	private Linearlayout_listview _list;
 	private AlertDialog _dialog;
 	private NumberPicker _room, _parlour, _kitchen, _toilet, _balcony;
 	private int cityId = 0, provinceId = 0, countyId = 0;
@@ -58,8 +59,8 @@ public class Fragment_offer_auto_set extends DEBUG_Fragment implements OnClickLi
 		_area = new RelativeLayout_edit_informationbar(getActivity(), _body, 7, new String[] { "建筑面积", "0", " m²" }, true);
 		_house = new RelativeLayout_edit_informationbar(getActivity(), _body, 4, new String[] { "户型结构", "1,1,1,1,1" }, true, this);
 		_adapter = new Adapter_offer_auto(getActivity());
-		new Linearlayout_listview(getActivity(), _body, "areas", new String[] { "具体面积", "信息填写详细，会使您获得更精准的报价" }, _adapter);
-
+		_list = new Linearlayout_listview(getActivity(), _body, "areas", new String[] { "具体面积", "信息填写详细，会使您获得更精准的报价" }, _adapter);
+		_list.set_textcolor("hint", getResources().getColor(R.color.text_blue));
 		_area.setOnChangetListener(_adapter);
 		_house.setOnChangetListener(_adapter);
 

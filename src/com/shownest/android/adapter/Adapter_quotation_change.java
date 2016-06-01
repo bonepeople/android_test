@@ -78,6 +78,7 @@ public class Adapter_quotation_change extends BaseAdapter implements View.OnClic
 			_holder._text_unit1 = (TextView) _view.findViewById(R.id.textview_unit1);
 			_holder._text_metricunit1 = (TextView) _view.findViewById(R.id.textview_metricunit1);
 			_holder._linearlayout_calc = (LinearLayout) _view.findViewById(R.id.linearlayout_calculate);
+			_holder._text_name.setTextColor(_context.getResources().getColor(R.color.text_blue));
 			_holder._image_edit.setId(position);
 			_holder._image_edit.setOnClickListener(this);
 			_holder._linearlayout_calc.setVisibility(LinearLayout.GONE);
