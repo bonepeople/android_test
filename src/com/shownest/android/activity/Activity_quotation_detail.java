@@ -137,13 +137,11 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 			switch (tag)
 			{
 			case "adapter change":
-				System.out.println("修改工艺：" + args[0] + "-" + args[1]);
 				_type = "change";
 				_part_index = Integer.parseInt(args[1]);
 				break;
 
 			case "listview change":
-				System.out.println("增减工艺：" + args[0]);
 				_type = "fix";
 				_code = FIX;
 				break;

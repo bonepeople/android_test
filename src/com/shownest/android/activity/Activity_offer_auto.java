@@ -8,8 +8,10 @@ import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_offer_auto_set;
 import com.shownest.android.fragment.Fragment_offer_auto_show;
 import com.shownest.android.model.OfferBill;
-import com.shownest.android.model.UserInfo;
+import com.shownest.android.utils.JsonUtil;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.RelativeLayout;
@@ -19,6 +21,8 @@ public class Activity_offer_auto extends DEBUG_Activity
 {
 	public static final int NEXT_FAILED = 0;
 	public static final int NEXT_SUCCESSFUL = 1;
+	public static final int SAVE_FAILED = 2;
+	public static final int SAVE_SUCCESSFUL = 3;
 	private static Activity_offer_auto _instance;
 	private static OfferBill _data;// 需要一个标记，代表目前是否正在更新
 
@@ -29,15 +33,16 @@ public class Activity_offer_auto extends DEBUG_Activity
 			String _string_result = "";
 			switch (msg.what)
 			{
+			case SAVE_FAILED:
 			case NEXT_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 				break;
+			case SAVE_SUCCESSFUL:
 			case NEXT_SUCCESSFUL:
 				_string_result = (String) msg.obj;
 				handle_string(_string_result);
 			}
 			_instance.close_wait();
-			System.out.println(_string_result);
 		};
 	};
 
@@ -60,12 +65,26 @@ public class Activity_offer_auto extends DEBUG_Activity
 		{
 			JSONObject _obj = new JSONObject(str);
 			String _result = _obj.getString("msg");
-			Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
 			if (_result.equals("获取结果"))
 			{
 				_data = new OfferBill(_obj.getJSONObject("data"));
 				add_fragment(_instance, new Fragment_offer_auto_show(), true);
 			}
+			else if (_result.equals("保存成功"))
+			// 保存失败，请稍后再试
+			// 只有业主身份才能保存报价单
+			{
+				String _data = JsonUtil.get_string(_obj, "data", "0-0");
+				String[] _ids = _data.split("-");
+				System.out.println(_ids[0] + "-" + _ids[1]);
+
+				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
+				// 重新获取报价单，回退当前fragment，获取到报价单后会生成新的数据以及fragment
+				// FragmentManager _manager = _instance.getFragmentManager();
+				// _manager.popBackStack();
+			}
+			else
+				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
 		}
 		catch (JSONException e)
 		{

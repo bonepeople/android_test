@@ -28,10 +28,29 @@ public class HttpUtil
 	private static boolean DEBUG = true;
 	private static String SESSION = null; // 定义一个静态的字段，保存sessionID
 	private static String BASEADDRESS = "http://t.shownest.com:86/";
+//	private static String BASEADDRESS = "http://192.168.1.109:10000/shownest/";
 
 	// http://192.168.1.112:10000/shownest/html/test1.html
 	// http://192.168.1.112:10000/shownest/websubmitreg
+	/**
+	 * 保存当前报价单
+	 */
+	public static void save_quotation(Handler _handler, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "webOwnerSaveQuotation";
+		String _message = "";
 
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
+	}
+
+	/**
+	 * 提交数据
+	 * <p>
+	 * 报价单详细项目的增加，修改，删除
+	 * 
+	 * @param _item
+	 *            room,parlour,kitchen,toilet,balcony,hydropower,mount,cost,tax
+	 */
 	public static void update_quotation_item(Handler _handler, String _item, ContentValues _value, int _successful, int _failed)
 	{
 		String _address = "", _message;
@@ -109,6 +128,9 @@ public class HttpUtil
 		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}
 
+	/**
+	 * 获取报价单
+	 */
 	public static void get_ownerquote(Handler _handler, ContentValues _value, int _successful, int _failed)
 	{
 		String _address = BASEADDRESS + "webOwnerQuoteMapping";
@@ -158,6 +180,9 @@ public class HttpUtil
 		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}
 
+	/**
+	 * 修改个人基本信息(我的中心-个人资料)
+	 */
 	public static void change_baseinfo(Handler _handler, String _showname, String _realname, String _sex, String _style, int _successful, int _failed)
 	{
 		String _address = BASEADDRESS + "webPersonalBaseInfor";
@@ -183,11 +208,8 @@ public class HttpUtil
 	/**
 	 * 设置用户类型
 	 * 
-	 * @param _handler
 	 * @param _type
 	 *            11: owner 业主 12: designer 设计师 13: constructor 施工队 14: supervisionner 监理 15: businesser 装修公司 100:未认证
-	 * @param _successful
-	 * @param _failed
 	 */
 	public static void set_UserType(Handler _handler, int _type, int _successful, int _failed)
 	{
@@ -201,6 +223,9 @@ public class HttpUtil
 		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}
 
+	/**
+	 * 修改绑定手机
+	 */
 	public static void modify_Phone(Handler _handler, String _phone, String _code, int _successful, int _failed)
 	{
 		String _address = BASEADDRESS + "webSetModifyOaPhone";
@@ -253,6 +278,9 @@ public class HttpUtil
 		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}
 
+	/**
+	 * 注册会员
+	 */
 	public static void submit_reg(Handler _handler, String _username, String _mobilecode, String _password, int _successful, int _failed)
 	{
 		String _address = BASEADDRESS + "websubmitreg";
@@ -263,6 +291,9 @@ public class HttpUtil
 		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}
 
+	/**
+	 * 发送手机验证码
+	 */
 	public static void send_mobilecode(Handler _handler, String _phone, int _successful, int _failed)
 	{
 		String _address = BASEADDRESS + "websendmobilecode";

@@ -3,6 +3,7 @@ package com.shownest.android.fragment;
 import java.util.ArrayList;
 
 import com.shownest.android.R;
+import com.shownest.android.activity.Activity_login;
 import com.shownest.android.activity.Activity_my_center;
 import com.shownest.android.activity.Activity_offer_auto;
 import com.shownest.android.activity.Activity_quotation_detail;
@@ -10,7 +11,9 @@ import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.OfferBill;
 import com.shownest.android.model.Package;
 import com.shownest.android.model.UserInfo;
+import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.NumberUtil;
+import com.shownest.android.utils.UserManager;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 
 import android.content.Intent;
@@ -83,14 +86,30 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 		{
 			// ContentValues _value = new ContentValues();
 
-			Activity_offer_auto.get_instance().show_wait();
+			// Activity_offer_auto.get_instance().show_wait();
 			// HttpUtil.get_ownerquote(Activity_offer_auto._handler, _value, Activity_offer_auto.NEXT_SUCCESSFUL, Activity_offer_auto.NEXT_FAILED);
-
+			if (UserManager.is_login())
+			{
+			}
+			else
+			{
+				Intent _login = new Intent(getActivity(), Activity_login.class);
+				startActivity(_login);
+			}
 		}
 		else if (_id == R.id.button_other)
 		{
-			// Intent _location = new Intent(getActivity(), Activity_location.class);
-			// startActivityForResult(_location, LOCATION);
+			// 保存
+			if (UserManager.is_login())
+			{
+				Activity_offer_auto.get_instance().show_wait();
+				HttpUtil.save_quotation(Activity_offer_auto._handler, Activity_offer_auto.SAVE_SUCCESSFUL, Activity_offer_auto.SAVE_FAILED);
+			}
+			else
+			{
+				Intent _login = new Intent(getActivity(), Activity_login.class);
+				startActivity(_login);
+			}
 		}
 		else
 		{
