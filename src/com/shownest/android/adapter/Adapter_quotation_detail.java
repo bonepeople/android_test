@@ -29,7 +29,9 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 		public ImageView _image_edit;
 		public TextView _text_fucai;
 		public TextView _text_shuoming;
+		public TextView _text_note_price;
 		public TextView _text_price;
+		public TextView _text_note_unit;
 		public TextView _text_unit1;
 		public TextView _text_unit2;
 		public TextView _text_metricunit1;
@@ -58,9 +60,9 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 	}
 
 	@Override
-	public Object getItem(int position)
+	public ItemDetail getItem(int position)
 	{
-		return null;
+		return _data.get(position);
 	}
 
 	@Override
@@ -74,7 +76,7 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 	{
 		View _view = convertView;
 		ViewHolder _holder;
-
+		ItemDetail _temp_item = getItem(position);
 		if (convertView == null)
 		{
 			_view = _inflater.inflate(R.layout.item_quotation_detail, null);
@@ -93,18 +95,30 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 			_holder._text_name.setTextColor(_context.getResources().getColor(R.color.text_blue));
 			_holder._image_edit.setId(position);
 			_holder._image_edit.setOnClickListener(this);
+			if (_temp_item.get_tag().equals("tax"))
+			{
+				_holder._text_note_price = (TextView) _view.findViewById(R.id.textview_note_price);
+				_holder._text_note_unit = (TextView) _view.findViewById(R.id.textview_note_unit);
+				_holder._text_note_price.setText("收费比例:");
+				_holder._text_note_unit.setText("%");
+			}
 			_view.setTag(_holder);
 		}
 		else
 		{
 			_holder = (ViewHolder) _view.getTag();
 		}
-		ItemDetail _temp_item = _data.get(position);
+
 		_holder._text_name.setText(_temp_item.get_itemName());
 		_holder._text_fucai.setText(_temp_item.get_material());
 		_holder._text_shuoming.setText(_temp_item.get_technics());
-		_holder._text_price.setText(String.valueOf(_temp_item.get_price()));
-		_holder._text_unit1.setText(_temp_item.get_unit());
+		if (_temp_item.get_tag().equals("tax"))
+			_holder._text_price.setText(String.valueOf(_temp_item.get_price() * 100));
+		else
+		{
+			_holder._text_price.setText(String.valueOf(_temp_item.get_price()));
+			_holder._text_unit1.setText(_temp_item.get_unit());
+		}
 		_holder._text_unit2.setText(_temp_item.get_unit());
 		_holder._text_metricunit1.setText(_temp_item.get_metricUnit());
 		_holder._text_metricunit2.setText(_temp_item.get_metricUnit());
