@@ -116,10 +116,13 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
-		ContentValues _value = new ContentValues();
-		_value.put("quotationId", Activity_offer_auto.get_quotationId());
-		Activity_offer_auto.get_instance().show_wait();
-		HttpUtil.get_selfquote(Activity_offer_auto._handler, _value, Activity_offer_auto.NEXT_SUCCESSFUL, Activity_offer_auto.NEXT_FAILED);
+		if (resultCode == -1)
+		{
+			ContentValues _value = new ContentValues();
+			_value.put("quotationId", Activity_offer_auto.get_quotationId());
+			Activity_offer_auto.get_instance().show_wait();
+			HttpUtil.get_selfquote(Activity_offer_auto._handler, _value, Activity_offer_auto.NEXT_SUCCESSFUL, Activity_offer_auto.NEXT_FAILED);
+		}
 	}
 
 	@Override

@@ -93,6 +93,7 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 				HttpUtil.get_quotation_item(_handler, _room, _value, GET_SUCCESSFUL, GET_FAILED);
 				break;
 			}
+			setResult(RESULT_OK);
 		}
 		else
 			System.out.println("resultCode=" + resultCode);
