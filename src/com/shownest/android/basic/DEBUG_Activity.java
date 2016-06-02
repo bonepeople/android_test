@@ -13,11 +13,13 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.widget.RelativeLayout;
 
 public abstract class DEBUG_Activity extends Activity
 {
 	private static boolean DEBUG = true;
+	private static String TAG = "DEBUG_Activity";
 	protected Fragment_title _fragment_title;
 	protected RelativeLayout _relativelayout_wait;
 
@@ -25,7 +27,7 @@ public abstract class DEBUG_Activity extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		if (DEBUG)
-			System.out.println(this.getClass().getName() + "-onCreate");
+			Log.v(TAG, this.getClass().getName() + "-onCreate");
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 	}
@@ -34,7 +36,7 @@ public abstract class DEBUG_Activity extends Activity
 	protected void onStart()
 	{
 		if (DEBUG)
-			System.out.println(this.getClass().getName() + "-onStart");
+			Log.v(TAG, this.getClass().getName() + "-onStart");
 		// TODO Auto-generated method stub
 		super.onStart();
 	}
@@ -43,7 +45,7 @@ public abstract class DEBUG_Activity extends Activity
 	protected void onResume()
 	{
 		if (DEBUG)
-			System.out.println(this.getClass().getName() + "-onResume");
+			Log.v(TAG, this.getClass().getName() + "-onResume");
 		// TODO Auto-generated method stub
 		super.onResume();
 
@@ -53,7 +55,7 @@ public abstract class DEBUG_Activity extends Activity
 	protected void onPause()
 	{
 		if (DEBUG)
-			System.out.println(this.getClass().getName() + "-onPause");
+			Log.v(TAG, this.getClass().getName() + "-onPause");
 		// TODO Auto-generated method stub
 		super.onPause();
 	}
@@ -62,7 +64,7 @@ public abstract class DEBUG_Activity extends Activity
 	protected void onStop()
 	{
 		if (DEBUG)
-			System.out.println(this.getClass().getName() + "-onStop");
+			Log.v(TAG, this.getClass().getName() + "-onStop");
 		// TODO Auto-generated method stub
 		super.onStop();
 	}
@@ -71,7 +73,7 @@ public abstract class DEBUG_Activity extends Activity
 	protected void onRestart()
 	{
 		if (DEBUG)
-			System.out.println(this.getClass().getName() + "-onRestart");
+			Log.v(TAG, this.getClass().getName() + "-onRestart");
 		// TODO Auto-generated method stub
 		super.onRestart();
 	}
@@ -80,7 +82,7 @@ public abstract class DEBUG_Activity extends Activity
 	protected void onDestroy()
 	{
 		if (DEBUG)
-			System.out.println(this.getClass().getName() + "-onDestroy");
+			Log.v(TAG, this.getClass().getName() + "onDestroy");
 		// TODO Auto-generated method stub
 		super.onDestroy();
 	}
