@@ -3,10 +3,10 @@ package com.shownest.android.fragment;
 import com.loopj.android.image.SmartImageView;
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_basicinfo;
-import com.shownest.android.activity.Activity_my_center;
 import com.shownest.android.activity.Activity_select_role;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.UserInfo;
+import com.shownest.android.utils.UserManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -44,7 +44,7 @@ public class Fragment_my_center extends DEBUG_Fragment implements View.OnClickLi
 	@Override
 	public void setContent()
 	{
-		UserInfo _info = Activity_my_center.get_userinfo();
+		UserInfo _info = UserManager.get_user_info();
 		_textview_money.setText(String.valueOf(_info.get_money()));
 		_textview_name.setText(_info.get_userName());
 		_number_bowen.setText(String.valueOf(_info.get_blogNum()));

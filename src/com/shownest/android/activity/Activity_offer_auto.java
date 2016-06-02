@@ -65,7 +65,7 @@ public class Activity_offer_auto extends DEBUG_Activity
 		{
 			JSONObject _obj = new JSONObject(str);
 			String _result = _obj.getString("msg");
-			if (_result.equals("获取结果"))
+			if (_result.equals("智能报价单概要"))
 			{
 				_data = new OfferBill(_obj.getJSONObject("data"));
 				add_fragment(_instance, new Fragment_offer_auto_show(), true);

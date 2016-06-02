@@ -4,10 +4,10 @@ import com.loopj.android.image.SmartImageView;
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_change_phone;
 import com.shownest.android.activity.Activity_change_pwd;
-import com.shownest.android.activity.Activity_my_center;
 import com.shownest.android.activity.Activity_select_role;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.UserInfo;
+import com.shownest.android.utils.UserManager;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -50,7 +50,7 @@ public class Fragment_basicinfo extends DEBUG_Fragment implements View.OnClickLi
 	@Override
 	public void setContent()
 	{
-		UserInfo _info = Activity_my_center.get_userinfo();
+		UserInfo _info = UserManager.get_user_info();
 		if (_info != null)
 		{
 			String _url = "http://t.shownest.com:86/_resources/upload/headerIcon/" + _info.get_headerIcon();

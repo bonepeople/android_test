@@ -3,12 +3,12 @@ package com.shownest.android.fragment;
 import java.io.File;
 
 import com.shownest.android.R;
-import com.shownest.android.activity.Activity_my_center;
 import com.shownest.android.activity.Activity_setinfo_jianli;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.UserInfo;
 import com.shownest.android.utils.CommonUtil;
 import com.shownest.android.utils.HttpUtil;
+import com.shownest.android.utils.UserManager;
 import com.shownest.android.widget.LinearLayout_idcard;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 
@@ -204,7 +204,7 @@ public class Fragment_setinfo_jianli_step3 extends DEBUG_Fragment implements OnC
 	@Override
 	public void setContent()
 	{
-		UserInfo _info = Activity_my_center.get_userinfo();
+		UserInfo _info = UserManager.get_user_info();
 		if (_info != null)
 		{
 			_type.setData(new String[] { String.valueOf(_info.get_authenticationType()) });

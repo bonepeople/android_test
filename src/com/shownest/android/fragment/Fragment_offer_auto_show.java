@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_login;
-import com.shownest.android.activity.Activity_my_center;
 import com.shownest.android.activity.Activity_offer_auto;
 import com.shownest.android.activity.Activity_quotation_detail;
 import com.shownest.android.basic.DEBUG_Fragment;
@@ -17,7 +16,6 @@ import com.shownest.android.utils.UserManager;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -42,7 +40,7 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 		super.onCreateView(inflater, container, savedInstanceState);
 		View _view = inflater.inflate(R.layout.fragment_basic, container, false);
 
-		UserInfo _user = Activity_my_center.get_userinfo();
+		UserInfo _user = UserManager.get_user_info();
 		_body = (LinearLayout) _view.findViewById(R.id.linearlayout_content);
 		_buttons = (LinearLayout) _view.findViewById(R.id.linearlayout_buttons);
 

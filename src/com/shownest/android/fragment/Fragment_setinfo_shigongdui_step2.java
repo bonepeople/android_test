@@ -2,11 +2,11 @@ package com.shownest.android.fragment;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_location;
-import com.shownest.android.activity.Activity_my_center;
 import com.shownest.android.activity.Activity_setinfo_shigongdui;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.UserInfo;
 import com.shownest.android.utils.HttpUtil;
+import com.shownest.android.utils.UserManager;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 
 import android.app.AlertDialog;
@@ -191,7 +191,7 @@ public class Fragment_setinfo_shigongdui_step2 extends DEBUG_Fragment implements
 	@Override
 	public void setContent()
 	{
-		UserInfo _info = Activity_my_center.get_userinfo();
+		UserInfo _info = UserManager.get_user_info();
 		if (_info != null)
 		{
 			_date.setData(new String[] { String.valueOf(_info.get_workYear()) });
