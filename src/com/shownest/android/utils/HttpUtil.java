@@ -28,7 +28,7 @@ public class HttpUtil
 	private static boolean DEBUG = true;
 	private static String SESSION = null; // 定义一个静态的字段，保存sessionID
 	private static String BASEADDRESS = "http://t.shownest.com:86/";
-//	private static String BASEADDRESS = "http://192.168.1.109:10000/shownest/";
+	// private static String BASEADDRESS = "http://192.168.1.109:10000/shownest/";
 
 	// http://192.168.1.112:10000/shownest/html/test1.html
 	// http://192.168.1.112:10000/shownest/websubmitreg
@@ -123,6 +123,22 @@ public class HttpUtil
 			break;
 
 		}
+		_message = values(_value);
+
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
+	}
+
+	/**
+	 * 获取自己的报价单
+	 * 
+	 * @param _value
+	 *            quotationId：报价单ID
+	 */
+	public static void get_selfquote(Handler _handler, ContentValues _value, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "webOwnerViewSelfQuotation";
+		String _message = "";
+
 		_message = values(_value);
 
 		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();

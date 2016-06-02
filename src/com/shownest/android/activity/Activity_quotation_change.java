@@ -74,7 +74,7 @@ public class Activity_quotation_change extends DEBUG_Activity
 			{
 				setTitle("增减工艺");
 				ContentValues _value = new ContentValues();
-				_value.put("quotationId", "");
+				_value.put("quotationId", _intent.getStringExtra("quotationId"));
 				_room = _intent.getStringExtra("room");
 				_room_index = _intent.getIntExtra("room_index", 1);
 				String _str_part = _intent.getStringExtra("part");

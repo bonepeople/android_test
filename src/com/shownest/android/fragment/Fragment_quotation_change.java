@@ -27,10 +27,9 @@ import android.widget.Toast;
 
 public class Fragment_quotation_change extends DEBUG_Fragment implements OnClickListener
 {
-	private static final int LOCATION = 1;
 	private LinearLayout _body;
 	private Button _button_commit;
-	private String _type, _room, _part;
+	private String _quotationId, _type, _room, _part;
 	private int _room_index, _part_index;
 	private ItemDetail _new_item;
 	private Adapter_quotation_change _adapter;
@@ -49,6 +48,7 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 		_button_commit.setOnClickListener(this);
 
 		Intent _intent = Activity_quotation_change.get_intent();
+		_quotationId = _intent.getStringExtra("quotationId");
 		_type = _intent.getStringExtra("type");
 		_room = _intent.getStringExtra("room");
 		_part = _intent.getStringExtra("part");
@@ -56,20 +56,6 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 		_part_index = _intent.getIntExtra("part_index", 0);
 
 		return _view;
-	}
-
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data)
-	{
-		if (resultCode == -1)
-		{
-			switch (requestCode)
-			{
-			case LOCATION:
-			}
-		}
-		else
-			System.out.println("resultCode=" + resultCode);
 	}
 
 	@Override
@@ -162,7 +148,7 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 						{
 							// 新增
 							ContentValues _value = new ContentValues();
-							_value.put("quotationId", "");
+							_value.put("quotationId", _quotationId);
 							_value.put("numerical", _adapter.getItem(_key).get_numerical());
 							switch (_part)
 							{
@@ -177,8 +163,10 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 							case "roof":
 								_value.put("assortment", 2);
 								_value.put(_room, _room_index);
+								break;
 							case "cost":
 								_value.put("assortment", 6);
+								break;
 							case "tax":
 								_value.put("assortment", 7);
 								break;
@@ -190,22 +178,30 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 						{
 							// 删除
 							ContentValues _value = new ContentValues();
-							_value.put("quotationId", "");
-							_value.put("numerical", _adapter.getItem(_key).get_numerical());
-							switch (_part)
+							int _itemId = _adapter.getItem(_key).get_itemId();
+							if (_itemId == 0)
 							{
-							case "ground":
-								_value.put("assortment", 1);
-								_value.put(_room, _room_index);
-								break;
-							case "wall":
-								_value.put("assortment", 3);
-								_value.put(_room, _room_index);
-								break;
-							case "roof":
-								_value.put("assortment", 2);
-								_value.put(_room, _room_index);
-								break;
+								_value.put("quotationId", _quotationId);
+								_value.put("numerical", _adapter.getItem(_key).get_numerical());
+								switch (_part)
+								{
+								case "ground":
+									_value.put("assortment", 1);
+									_value.put(_room, _room_index);
+									break;
+								case "wall":
+									_value.put("assortment", 3);
+									_value.put(_room, _room_index);
+									break;
+								case "roof":
+									_value.put("assortment", 2);
+									_value.put(_room, _room_index);
+									break;
+								}
+							}
+							else
+							{
+								_value.put("itemId", _itemId);
 							}
 							_value.put("actionType", 3);
 							HttpUtil.update_quotation_item(Activity_quotation_change._handler, _room, _value, Activity_quotation_change.CHANGE_SUCCESSFUL, Activity_quotation_change.CHANGE_FAILED);

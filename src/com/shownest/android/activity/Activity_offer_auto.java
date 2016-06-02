@@ -10,8 +10,6 @@ import com.shownest.android.fragment.Fragment_offer_auto_show;
 import com.shownest.android.model.OfferBill;
 import com.shownest.android.utils.JsonUtil;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.RelativeLayout;
@@ -25,6 +23,7 @@ public class Activity_offer_auto extends DEBUG_Activity
 	public static final int SAVE_SUCCESSFUL = 3;
 	private static Activity_offer_auto _instance;
 	private static OfferBill _data;// 需要一个标记，代表目前是否正在更新
+	private static String _quotationId = "";
 
 	public static Handler _handler = new Handler()
 	{
@@ -79,9 +78,9 @@ public class Activity_offer_auto extends DEBUG_Activity
 				System.out.println(_ids[0] + "-" + _ids[1]);
 
 				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
-				// 重新获取报价单，回退当前fragment，获取到报价单后会生成新的数据以及fragment
-				// FragmentManager _manager = _instance.getFragmentManager();
-				// _manager.popBackStack();
+
+				Activity_offer_auto._data.set_quotationId(_ids[0]);
+				_quotationId = _ids[0];
 			}
 			else
 				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
@@ -97,8 +96,14 @@ public class Activity_offer_auto extends DEBUG_Activity
 		return _data;
 	}
 
+	public static String get_quotationId()
+	{
+		return _quotationId;
+	}
+
 	public static Activity_offer_auto get_instance()
 	{
 		return _instance;
 	}
+
 }

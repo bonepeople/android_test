@@ -74,7 +74,10 @@ public class OfferBill
 
 	public String get_quotationId()
 	{
-		return _quotationId;
+		if (_quotationId.equals("0"))
+			return "";
+		else
+			return _quotationId;
 	}
 
 	public void set_quotationId(String _quotationId)
