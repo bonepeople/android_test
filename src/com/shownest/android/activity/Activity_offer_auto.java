@@ -72,6 +72,8 @@ public class Activity_offer_auto extends DEBUG_Activity
 				int _count = _manager.getBackStackEntryCount();
 				if (_count != 0)
 					_manager.popBackStack();
+				else
+					_quotationId = "";
 				add_fragment(_instance, new Fragment_offer_auto_show(), true);
 			}
 			else if (_result.equals("保存成功"))

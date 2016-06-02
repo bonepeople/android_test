@@ -64,6 +64,7 @@ public class ItemDetail
 		this._metricUnit = _obj._metricUnit;
 		this._number = _obj._number;
 		this._numerical = _obj._numerical;
+		this._itemId = _obj._itemId;
 		this._price = _obj._price;
 		this._total = _obj._total;
 		this._technics = _obj._technics;
