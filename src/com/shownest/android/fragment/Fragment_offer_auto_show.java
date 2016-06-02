@@ -15,7 +15,6 @@ import com.shownest.android.utils.NumberUtil;
 import com.shownest.android.utils.UserManager;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 
-import android.app.FragmentManager;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
@@ -121,8 +120,6 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 		_value.put("quotationId", Activity_offer_auto.get_quotationId());
 		Activity_offer_auto.get_instance().show_wait();
 		HttpUtil.get_selfquote(Activity_offer_auto._handler, _value, Activity_offer_auto.NEXT_SUCCESSFUL, Activity_offer_auto.NEXT_FAILED);
-		FragmentManager _manager = Activity_offer_auto.get_instance().getFragmentManager();
-		_manager.popBackStack();
 	}
 
 	@Override

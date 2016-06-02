@@ -10,6 +10,7 @@ import com.shownest.android.fragment.Fragment_offer_auto_show;
 import com.shownest.android.model.OfferBill;
 import com.shownest.android.utils.JsonUtil;
 
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.RelativeLayout;
@@ -67,6 +68,10 @@ public class Activity_offer_auto extends DEBUG_Activity
 			if (_result.equals("智能报价单概要"))
 			{
 				_data = new OfferBill(_obj.getJSONObject("data"));
+				FragmentManager _manager = _instance.getFragmentManager();
+				int _count = _manager.getBackStackEntryCount();
+				if (_count != 0)
+					_manager.popBackStack();
 				add_fragment(_instance, new Fragment_offer_auto_show(), true);
 			}
 			else if (_result.equals("保存成功"))
