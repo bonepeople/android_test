@@ -61,7 +61,7 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 
 		_room = _intent.getStringExtra("room");
-		_quotationId = _intent.getStringExtra("id");
+		_quotationId = _intent.getStringExtra("quotationId");
 		_number = _intent.getIntExtra("index", 1);
 		System.out.println("select from :" + _room + "-" + _number);
 

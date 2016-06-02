@@ -184,29 +184,26 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 							// 删除
 							ContentValues _value = new ContentValues();
 							int _itemId = _adapter.getItem(_key).get_itemId();
-							if (_itemId == 0)
-							{
-								_value.put("quotationId", _quotationId);
-								_value.put("numerical", _adapter.getItem(_key).get_numerical());
-								switch (_part)
-								{
-								case "ground":
-									_value.put("assortment", 1);
-									_value.put(_room, _room_index);
-									break;
-								case "wall":
-									_value.put("assortment", 3);
-									_value.put(_room, _room_index);
-									break;
-								case "roof":
-									_value.put("assortment", 2);
-									_value.put(_room, _room_index);
-									break;
-								}
-							}
-							else
+							if (_itemId != 0)
 							{
 								_value.put("itemId", _itemId);
+							}
+							_value.put("quotationId", _quotationId);
+							_value.put("numerical", _adapter.getItem(_key).get_numerical());
+							switch (_part)
+							{
+							case "ground":
+								_value.put("assortment", 1);
+								_value.put(_room, _room_index);
+								break;
+							case "wall":
+								_value.put("assortment", 3);
+								_value.put(_room, _room_index);
+								break;
+							case "roof":
+								_value.put("assortment", 2);
+								_value.put(_room, _room_index);
+								break;
 							}
 							_value.put("actionType", 3);
 							HttpUtil.update_quotation_item(Activity_quotation_change._handler, _room, _value, Activity_quotation_change.CHANGE_SUCCESSFUL, Activity_quotation_change.CHANGE_FAILED);
