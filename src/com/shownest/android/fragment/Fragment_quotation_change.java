@@ -122,6 +122,11 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 				_new_item.set_material(_material.getData());
 				_new_item.set_technics(_technics.getData());
 				ContentValues _value = new ContentValues();
+				int _itemId = _new_item.get_itemId();
+				if (_itemId != 0)
+				{
+					_value.put("itemId", _itemId);
+				}
 				_value.put("numerical", _new_item.get_numerical());
 				_value.put(_room, _room_index);
 				_value.put("number", _number.getData());

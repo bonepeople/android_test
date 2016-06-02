@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.shownest.android.utils.JsonUtil;
+import com.shownest.android.utils.NumberUtil;
 
 /**
  * 报价单的汇总
@@ -34,7 +35,7 @@ public class OfferBill
 	{
 		this._quotationId = JsonUtil.get_string(_json, "quotationId", "");
 		this._costTotal = JsonUtil.get_double(_json, "costTotal", 0);
-		this._allTotal = JsonUtil.get_double(_json, "allTotal", 0);
+		this._allTotal = NumberUtil.round(JsonUtil.get_double(_json, "allTotal", 0), 2);
 		this._hydropowerTotal = JsonUtil.get_double(_json, "hydropowerTotal", 0);
 		this._mountTotal = JsonUtil.get_double(_json, "mountTotal", 0);
 		this._taxTotal = JsonUtil.get_double(_json, "taxTotal", 0);
