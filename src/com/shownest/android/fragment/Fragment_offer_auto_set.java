@@ -50,7 +50,7 @@ public class Fragment_offer_auto_set extends DEBUG_Fragment implements OnClickLi
 
 		_name = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "小区名称", "" }, true);
 		_region = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "所在区域", "" }, true, this);
-		_state = new LinearLayout_checkbox(getActivity(), "房屋状态", new String[] { "二手旧房", "毛坯新房" }, 1, "1");
+		_state = new LinearLayout_checkbox(getActivity(), "房屋状态", new String[] { "毛坯新房", "二手旧房" }, 1, "1");
 		_body.addView(_state);
 		_type = new LinearLayout_checkbox(getActivity(), "房屋类型", new String[] { "平层住宅", "复试住宅", "别墅", "商业" }, 1, "1");
 		_body.addView(_type);
