@@ -17,7 +17,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Fragment_publish_ok extends DEBUG_Fragment implements OnClickListener
 {
@@ -76,15 +75,12 @@ public class Fragment_publish_ok extends DEBUG_Fragment implements OnClickListen
 		int _id = v.getId();
 		if (_id == R.id.button_commit)
 		{
-			Toast.makeText(getActivity(), "查看招标：" + Activity_publish.get_bidID(), Toast.LENGTH_SHORT).show();
-
 			Intent _intent = new Intent(Activity_publish.get_instance(), Activity_bid_detail.class);
 			_intent.putExtra("bidID", Activity_publish.get_bidID());
 			startActivity(_intent);
 		}
 		else
 		{
-
 		}
 		Activity_publish.get_instance().finish();
 	}

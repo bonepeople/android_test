@@ -87,7 +87,7 @@ public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClick
 		int _id = v.getId();
 		if (_id == R.id.button_commit)
 		{
-			// Activity_quotation_detail.get_instance().finish();
+			Activity_quotation_detail.get_instance().finish();
 		}
 	}
 
