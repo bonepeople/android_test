@@ -1,13 +1,17 @@
 package com.shownest.android.fragment;
 
 import com.shownest.android.R;
+import com.shownest.android.activity.Activity_publish;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.UserInfo;
+import com.shownest.android.utils.CommonUtil;
+import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.NumberUtil;
 import com.shownest.android.utils.UserManager;
 import com.shownest.android.widget.Linearlayout_edittext;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 
+import android.content.ContentValues;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,7 +64,32 @@ public class Fragment_publish extends DEBUG_Fragment implements OnClickListener
 	@Override
 	public void onClick(View v)
 	{
-		// TODO Auto-generated method stub
-		Toast.makeText(getActivity(), "发布", Toast.LENGTH_SHORT).show();
+		String _str_budget = _budget.getData();
+		String _str_contacts = _contacts.getData();
+		String _str_phone = _phone.getData();
+		String _str_idea = _idea.getData();
+
+		if (_str_budget.equals("0.0"))
+		{
+			Toast.makeText(getActivity(), "预算金额不能是0元", Toast.LENGTH_SHORT).show();
+		}
+		else if (_str_contacts.isEmpty())
+		{
+			Toast.makeText(getActivity(), "请填写您的称呼", Toast.LENGTH_SHORT).show();
+		}
+		else if (!CommonUtil.isPhone(_str_phone))
+		{
+			Toast.makeText(getActivity(), "请输入正确的手机号码", Toast.LENGTH_SHORT).show();
+		}
+		else
+		{
+			ContentValues _value = new ContentValues();
+			_value.put("budget", _str_budget);
+			_value.put("contacts", _str_contacts);
+			_value.put("phone", _str_phone);
+			_value.put("ownerIdea", _str_idea);
+			Activity_publish.get_instance().show_wait();
+			HttpUtil.publish_bid(Activity_publish._handler, _value, Activity_publish.PUBLISH_SUCCESSFUL, Activity_publish.PUBLISH_FAILED);
+		}
 	}
 }
