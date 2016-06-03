@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_publish;
+import com.shownest.android.fragment.Fragment_publish_ok;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -66,6 +67,8 @@ public class Activity_publish extends DEBUG_Activity
 			if (_result.equals("发布招标成功"))
 			{
 				_bidID = _obj.getString("data");
+				Activity_offer_auto.get_instance().finish();
+				add_fragment(_instance, new Fragment_publish_ok(), false);
 			}
 			else
 			{
