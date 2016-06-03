@@ -354,7 +354,7 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 			{
 				String _temp_str = _edittext_dialog.getText().toString();
 				double _temp_double = _temp_str.isEmpty() ? 0.0 : Double.parseDouble(_temp_str);
-				if (_temp_double < 9999999)
+				if (_temp_double <= 9999999)
 					setData(new String[] { String.valueOf(NumberUtil.round(_temp_double, 2)) });
 			}
 			else

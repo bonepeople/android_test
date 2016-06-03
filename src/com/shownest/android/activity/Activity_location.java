@@ -28,9 +28,9 @@ public class Activity_location extends DEBUG_Activity
 	public void commit(View v)
 	{
 		Intent _intent = new Intent();
-		int proid = 1004;
-		int cityid = 100401;
-		int countyId = 10040101;
+		int proid = 1001;
+		int cityid = 100101;
+		int countyId = 10010104;
 		try
 		{
 			proid = Integer.parseInt(_province.getText().toString());
