@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_login;
 import com.shownest.android.activity.Activity_offer_auto;
+import com.shownest.android.activity.Activity_publish;
 import com.shownest.android.activity.Activity_quotation_detail;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.OfferBill;
@@ -137,6 +138,8 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 			// HttpUtil.get_ownerquote(Activity_offer_auto._handler, _value, Activity_offer_auto.NEXT_SUCCESSFUL, Activity_offer_auto.NEXT_FAILED);
 			if (UserManager.is_login())
 			{
+				Intent _login = new Intent(getActivity(), Activity_publish.class);
+				startActivity(_login);
 			}
 			else
 			{
