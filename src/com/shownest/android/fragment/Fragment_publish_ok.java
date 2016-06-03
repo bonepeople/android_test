@@ -42,7 +42,7 @@ public class Fragment_publish_ok extends DEBUG_Fragment implements OnClickListen
 	public void setContent()
 	{
 		ImageView _title = new ImageView(getActivity());
-		_title.setImageDrawable(getResources().getDrawable(R.drawable.book_house_1));
+		_title.setImageDrawable(getResources().getDrawable(R.drawable.bid_step1));
 		_body.addView(_title);
 
 		int padding;
@@ -53,7 +53,7 @@ public class Fragment_publish_ok extends DEBUG_Fragment implements OnClickListen
 		_hint.setPadding(padding, padding, padding, padding);
 
 		ImageView _img = new ImageView(getActivity());
-		_img.setImageDrawable(getResources().getDrawable(R.drawable.icon_shownest));
+		_img.setImageDrawable(getResources().getDrawable(R.drawable.icon_ok));
 		padding = NumberUtil.get_px(getActivity(), 5);
 		_img.setPadding(padding, padding, padding, padding);
 		_hint.addView(_img);
