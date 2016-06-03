@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
+import com.shownest.android.fragment.Fragment_bid_detail;
 import com.shownest.android.model.BidInfo;
 import com.shownest.android.utils.HttpUtil;
 
@@ -80,6 +81,7 @@ public class Activity_bid_detail extends DEBUG_Activity
 			{
 				_data = new BidInfo(_obj.getJSONArray("data").getJSONObject(0));
 				_instance.setTitle(_data.get_areaName());
+				add_fragment(_instance, new Fragment_bid_detail(), false);
 			}
 			else if (_result.contains("要修改的项目不存在"))
 			{
@@ -99,8 +101,14 @@ public class Activity_bid_detail extends DEBUG_Activity
 		}
 	}
 
+	public static BidInfo get_data()
+	{
+		return _data;
+	}
+
 	public static Activity_bid_detail get_instance()
 	{
 		return _instance;
 	}
+
 }

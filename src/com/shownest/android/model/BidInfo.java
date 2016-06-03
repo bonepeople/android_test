@@ -5,6 +5,8 @@ import org.json.JSONObject;
 
 import com.shownest.android.utils.JsonUtil;
 
+import android.text.format.DateFormat;
+
 public class BidInfo
 {
 	private String _id;// 招标ID
@@ -113,6 +115,27 @@ public class BidInfo
 		return _houseType;
 	}
 
+	public String get_houseType_name()
+	{
+		String _result = "";
+		switch (_houseType)
+		{
+		case 1:
+			_result = "平层住宅";
+			break;
+		case 2:
+			_result = "复试住宅";
+			break;
+		case 3:
+			_result = "别墅";
+			break;
+		case 4:
+			_result = "商业";
+			break;
+		}
+		return _result;
+	}
+
 	public void set_houseType(int _houseType)
 	{
 		this._houseType = _houseType;
@@ -121,6 +144,21 @@ public class BidInfo
 	public int get_houseState()
 	{
 		return _houseState;
+	}
+
+	public String get_houseState_name()
+	{
+		String _result = "";
+		switch (_houseState)
+		{
+		case 1:
+			_result = "毛坯新房";
+			break;
+		case 2:
+			_result = "二手旧房";
+			break;
+		}
+		return _result;
 	}
 
 	public void set_houseState(int _houseState)
@@ -146,6 +184,13 @@ public class BidInfo
 	public void set_homeUseSq(double _homeUseSq)
 	{
 		this._homeUseSq = _homeUseSq;
+	}
+
+	public String get_rooms()
+	{
+		String _result;
+		_result = _roomNum + "," + _parlourNum + "," + _kitchenNum + "," + _toiletNum + "," + _balconyNum;
+		return _result;
 	}
 
 	public int get_roomNum()
@@ -223,6 +268,24 @@ public class BidInfo
 		return _bookType;
 	}
 
+	public String get_bookType_name()
+	{
+		String _result = "";
+		switch (_bookType)
+		{
+		case 12:
+			_result = "设计师";
+			break;
+		case 13:
+			_result = "施工队";
+			break;
+		case 14:
+			_result = "监理";
+			break;
+		}
+		return _result;
+	}
+
 	public void set_bookType(int _bookType)
 	{
 		this._bookType = _bookType;
@@ -231,6 +294,24 @@ public class BidInfo
 	public int get_consType()
 	{
 		return _consType;
+	}
+
+	public String get_consType_name()
+	{
+		String _result = "";
+		switch (_consType)
+		{
+		case 0:
+			_result = "半包";
+			break;
+		case 1:
+			_result = "全包";
+			break;
+		case 2:
+			_result = "清包";
+			break;
+		}
+		return _result;
 	}
 
 	public void set_consType(int _consType)
@@ -263,6 +344,24 @@ public class BidInfo
 		return _bidsStateCon;
 	}
 
+	public String get_bidsStateCon_name()
+	{
+		String _result = "";
+		switch (_bidsStateCon)
+		{
+		case 1:
+			_result = "半包";
+			break;
+		case 2:
+			_result = "招标中";
+			break;
+		case 3:
+			_result = "清包";
+			break;
+		}
+		return _result;
+	}
+
 	public void set_bidsStateCon(int _bidsStateCon)
 	{
 		this._bidsStateCon = _bidsStateCon;
@@ -271,6 +370,11 @@ public class BidInfo
 	public String get_createDateCon()
 	{
 		return _createDateCon;
+	}
+
+	public String get_createDateCon_name()
+	{
+		return DateFormat.format("yyyy年MM月dd日", Long.parseLong(_createDateCon)).toString();
 	}
 
 	public void set_createDateCon(String _createDateCon)
