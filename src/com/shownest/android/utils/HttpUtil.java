@@ -33,6 +33,16 @@ public class HttpUtil
 	// http://192.168.1.112:10000/shownest/html/test1.html
 	// http://192.168.1.112:10000/shownest/websubmitreg
 
+	public static void get_bid(Handler _handler, ContentValues _value, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "/bid/webGetRespBid";
+		String _message = "";
+
+		_message = values(_value);
+
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
+	}
+
 	/**
 	 * 发布招标
 	 */

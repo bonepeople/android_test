@@ -1,10 +1,12 @@
 package com.shownest.android.fragment;
 
 import com.shownest.android.R;
+import com.shownest.android.activity.Activity_bid_detail;
 import com.shownest.android.activity.Activity_publish;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.utils.NumberUtil;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -75,18 +77,15 @@ public class Fragment_publish_ok extends DEBUG_Fragment implements OnClickListen
 		if (_id == R.id.button_commit)
 		{
 			Toast.makeText(getActivity(), "查看招标：" + Activity_publish.get_bidID(), Toast.LENGTH_SHORT).show();
-			// ContentValues _value = new ContentValues();
-			// _value.put("budget", _str_budget);
-			// _value.put("contacts", _str_contacts);
-			// _value.put("phone", _str_phone);
-			// _value.put("ownerIdea", _str_idea);
-			// Activity_publish.get_instance().show_wait();
-			// HttpUtil.publish_bid(Activity_publish._handler, _value, Activity_publish.PUBLISH_SUCCESSFUL, Activity_publish.PUBLISH_FAILED);
+
+			Intent _intent = new Intent(Activity_publish.get_instance(), Activity_bid_detail.class);
+			_intent.putExtra("bidID", Activity_publish.get_bidID());
+			startActivity(_intent);
 		}
 		else
 		{
-			Activity_publish.get_instance().finish();
-		}
 
+		}
+		Activity_publish.get_instance().finish();
 	}
 }

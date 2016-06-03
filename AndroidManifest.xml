@@ -102,6 +102,10 @@
             android:name="com.shownest.android.activity.Activity_publish"
             android:theme="@style/ActivityTheme_notitle" >
         </activity>
+        <activity
+            android:name="com.shownest.android.activity.Activity_bid_detail"
+            android:theme="@style/ActivityTheme_notitle" >
+        </activity>
     </application>
 
 </manifest>
