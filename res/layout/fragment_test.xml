@@ -5,6 +5,27 @@
     android:gravity="center_horizontal"
     android:orientation="vertical" >
 
+    <RelativeLayout
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="#112164" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_centerInParent="true"
+            android:background="#852216" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="#119921"
+            android:visibility="gone" />
+    </RelativeLayout>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
