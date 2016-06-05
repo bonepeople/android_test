@@ -49,7 +49,7 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 		int _temp_i;
 		for (_temp_i = 0; _temp_i < _areas.size(); _temp_i++)
 		{
-			_areas.get(_temp_i)._data = _every_area;
+			_areas.get(_temp_i)._data1 = _every_area;
 		}
 	}
 
@@ -161,7 +161,7 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 		}
 		_view.setId(position);
 		_holder._text_name.setText(_areas.get(position)._tag2);
-		_holder._text_left.setText(_areas.get(position)._data.toString());
+		_holder._text_left.setText(_areas.get(position)._data1.toString());
 
 		return _view;
 	}
@@ -188,7 +188,7 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 		{
 			if (_areas.get(_temp_i)._tag1.equals(_name))
 			{
-				_builder.append(_areas.get(_temp_i)._data.toString() + ",");
+				_builder.append(_areas.get(_temp_i)._data1.toString() + ",");
 			}
 		}
 		_builder.deleteCharAt(_builder.length() - 1);
@@ -201,7 +201,7 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 		int _temp_i = 0;
 		for (; _temp_i < _areas.size(); _temp_i++)
 		{
-			_result += Float.parseFloat(_areas.get(_temp_i)._data.toString());
+			_result += Float.parseFloat(_areas.get(_temp_i)._data1.toString());
 
 		}
 		return _result;
@@ -217,7 +217,7 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 		Button _button_commit = (Button) _view.findViewById(R.id.button_commit);
 		Button _button_cancel = (Button) _view.findViewById(R.id.button_cancel);
 		_edittext_dialog = (EditText) _view.findViewById(R.id.edittext_dialog);
-		_edittext_dialog.setText(_areas.get(_selected)._data.toString());
+		_edittext_dialog.setText(_areas.get(_selected)._data1.toString());
 		_edittext_dialog.setInputType(android.text.InputType.TYPE_CLASS_NUMBER | android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL);
 		_edittext_dialog.selectAll();
 		_button_commit.setOnClickListener(this);
@@ -242,7 +242,7 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 			double _temp_double = Double.parseDouble(_temp_str);
 			if (_temp_double < 9999)
 			{
-				_areas.get(_selected)._data = NumberUtil.round(_temp_double, 2);
+				_areas.get(_selected)._data1 = NumberUtil.round(_temp_double, 2);
 				notifyDataSetChanged();
 			}
 			_dialog.dismiss();

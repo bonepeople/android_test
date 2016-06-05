@@ -4,6 +4,7 @@ import java.io.File;
 
 import com.shownest.android.R;
 import com.shownest.android.model.OnChangeListener;
+import com.shownest.android.model.Package;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -11,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.net.Uri;
 import android.util.AttributeSet;
+import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -29,6 +31,7 @@ public class LinearLayout_picture extends LinearLayout implements View.OnClickLi
 	private int _picture_width = 150;
 	private int _picture_height = 150;
 	private int _picture_margins = 10;
+	private SparseArray<Package> _images = new SparseArray<Package>();
 
 	public LinearLayout_picture(Context context)
 	{
