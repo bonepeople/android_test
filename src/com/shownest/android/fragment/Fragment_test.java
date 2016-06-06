@@ -40,6 +40,9 @@ public class Fragment_test extends DEBUG_Fragment implements OnChangeListener
 		_picture = new LinearLayout_picture(getActivity(), "pictures", true);
 		_picture.setOnChangeListener(this);
 		_picture.add_image("http://t.shownest.com:86/_resources/upload/headerIcon/6dfdd424ea49110400eba7dceb7.jpg");
+		_picture.add_image("http://t.shownest.com:86/_resources/upload/headerIcon/6dfdd424ea49110400eba7dceb7.jpg");
+		_picture.add_image("http://t.shownest.com:86/_resources/upload/headerIcon/6dfdd424ea49110400eba7dceb7.jpg");
+		_picture.add_image("http://t.shownest.com:86/_resources/upload/headerIcon/6dfdd424ea49110400eba7dceb7.jpg");
 		_body.addView(_picture);
 		return _view;
 	}
