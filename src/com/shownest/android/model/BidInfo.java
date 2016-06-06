@@ -384,7 +384,7 @@ public class BidInfo
 
 	public String get_ownerIdea()
 	{
-		return _ownerIdea;
+		return _ownerIdea.equals("") ? "无" : _ownerIdea;
 	}
 
 	public void set_ownerIdea(String _ownerIdea)

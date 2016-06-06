@@ -17,6 +17,7 @@ import android.widget.TextView;
 public class LinearLayout_checkbox extends LinearLayout implements View.OnClickListener
 {
 	private static boolean DEBUG = true;
+	private int _column = 2;
 	private int _count_max = 0;
 	private int _count = 0;
 	private ArrayList<TextView> _text = new ArrayList<TextView>();
@@ -68,12 +69,12 @@ public class LinearLayout_checkbox extends LinearLayout implements View.OnClickL
 
 		TextView _textview_name = new TextView(context);
 		_textview_name.setText(_name);
-//		_textview_name.setTextSize(18);
+		// _textview_name.setTextSize(18);
 		_textview_name.setPadding(10, 0, 0, 0);
 		this.addView(_textview_name);
 
 		GridLayout _gridlayout = new GridLayout(context);
-		_gridlayout.setColumnCount(3);
+		_gridlayout.setColumnCount(_column);
 
 		TextView _textview_item;
 		GridLayout.LayoutParams _params;
@@ -97,8 +98,8 @@ public class LinearLayout_checkbox extends LinearLayout implements View.OnClickL
 			_textview_item.setOnClickListener(this);
 			_params = new GridLayout.LayoutParams();
 			_params.setMargins(10, 10, 10, 10);
-			_params.width = (screen_width - 60) / 3;
-			_params.height = _params.width * 2 / 5;
+			_params.width = screen_width / _column - 20;
+			_params.height = 70;//_params.width * 2 / 5 / 2;
 			_gridlayout.addView(_textview_item, _params);
 			_id++;
 		}
