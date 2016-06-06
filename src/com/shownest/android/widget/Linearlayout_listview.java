@@ -66,7 +66,7 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 		_text_name.setText(args[0]);
 		_text_hint.setText(args[1]);
 		_list.setAdapter(_adapter);
-		_list.setDivider(new ColorDrawable(getResources().getColor(R.color.white)));
+		_list.setDivider(new ColorDrawable(getResources().getColor(R.color.background_main)));
 
 		_title.setOnClickListener(this);
 	}
@@ -129,6 +129,12 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 	{
 		if (_list != null)
 			_list.setDividerHeight(_height);
+	}
+
+	@Deprecated
+	public void set_dividercolor(String _color)
+	{
+		_list.setDivider(new ColorDrawable(Color.parseColor(_color)));
 	}
 
 	public void set_collapse(boolean _collapse)

@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class Adapter_quotation_change extends BaseAdapter implements View.OnClickListener
@@ -34,7 +35,9 @@ public class Adapter_quotation_change extends BaseAdapter implements View.OnClic
 		public TextView _text_note_unit;
 		public TextView _text_unit1;
 		public TextView _text_metricunit1;
-		public LinearLayout _linearlayout_calc;
+		public LinearLayout _linearlayout_left;
+		public LinearLayout _linearlayout_middle;
+		public LinearLayout _linearlayout_right;
 	}
 
 	public Adapter_quotation_change(Context _context, String _tag, SparseArray<ItemDetail> _data)
@@ -80,11 +83,19 @@ public class Adapter_quotation_change extends BaseAdapter implements View.OnClic
 			_holder._text_price = (TextView) _view.findViewById(R.id.textview_price);
 			_holder._text_unit1 = (TextView) _view.findViewById(R.id.textview_unit1);
 			_holder._text_metricunit1 = (TextView) _view.findViewById(R.id.textview_metricunit1);
-			_holder._linearlayout_calc = (LinearLayout) _view.findViewById(R.id.linearlayout_calculate);
+			_holder._linearlayout_left = (LinearLayout) _view.findViewById(R.id.linearlayout_left);
+			_holder._linearlayout_middle = (LinearLayout) _view.findViewById(R.id.linearlayout_middle);
+			_holder._linearlayout_right = (LinearLayout) _view.findViewById(R.id.linearlayout_right);
 			_holder._text_name.setTextColor(_context.getResources().getColor(R.color.text_blue));
 			_holder._image_edit.setId(position);
 			_holder._image_edit.setOnClickListener(this);
-			_holder._linearlayout_calc.setVisibility(LinearLayout.GONE);
+			
+			RelativeLayout.LayoutParams _params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+			_params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+			_holder._linearlayout_left.setLayoutParams(_params);
+			_holder._linearlayout_middle.setVisibility(LinearLayout.GONE);
+			_holder._linearlayout_right.setVisibility(LinearLayout.GONE);
+			
 			if (_temp_item.get_tag().equals("tax"))
 			{
 				_holder._text_note_price = (TextView) _view.findViewById(R.id.textview_note_price);

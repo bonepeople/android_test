@@ -54,13 +54,14 @@ public class Fragment_offer_auto_set extends DEBUG_Fragment implements OnClickLi
 		_body.addView(_state);
 		_type = new LinearLayout_checkbox(getActivity(), "房屋类型", new String[] { "平层住宅", "复试住宅", "别墅", "商业" }, 1, "1");
 		_body.addView(_type);
-		_mode = new LinearLayout_checkbox(getActivity(), "装修方式", new String[] { "半包", "全包", "清包" }, 1, "1");
+		_mode = new LinearLayout_checkbox(getActivity(), "装修方式", new String[] { "半包" }, 1, "1");
 		_body.addView(_mode);
 		_area = new RelativeLayout_edit_informationbar(getActivity(), _body, 7, new String[] { "建筑面积", "0", " m²" }, true);
 		_house = new RelativeLayout_edit_informationbar(getActivity(), _body, 4, new String[] { "户型结构", "1,1,1,1,1" }, true, this);
 		_adapter = new Adapter_offer_auto(getActivity());
 		_list = new Linearlayout_listview(getActivity(), _body, "areas", new String[] { "具体面积", "信息填写详细，会使您获得更精准的报价" }, _adapter);
 		_list.set_textcolor("hint", getResources().getColor(R.color.text_blue));
+		_list.set_dividerheight(1);
 		_area.setOnChangetListener(_adapter);
 		_house.setOnChangetListener(_adapter);
 

@@ -3,6 +3,7 @@ package com.shownest.android.widget;
 import java.util.ArrayList;
 
 import com.shownest.android.R;
+import com.shownest.android.utils.NumberUtil;
 
 import android.content.Context;
 import android.graphics.Point;
@@ -70,7 +71,9 @@ public class LinearLayout_checkbox extends LinearLayout implements View.OnClickL
 		TextView _textview_name = new TextView(context);
 		_textview_name.setText(_name);
 		// _textview_name.setTextSize(18);
-		_textview_name.setPadding(10, 0, 0, 0);
+		LinearLayout.LayoutParams _linear_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+		_linear_params.setMargins(NumberUtil.get_px(getContext(), 5), NumberUtil.get_px(getContext(), 10), 0, NumberUtil.get_px(getContext(), 5));
+		_textview_name.setLayoutParams(_linear_params);
 		this.addView(_textview_name);
 
 		GridLayout _gridlayout = new GridLayout(context);
@@ -99,7 +102,7 @@ public class LinearLayout_checkbox extends LinearLayout implements View.OnClickL
 			_params = new GridLayout.LayoutParams();
 			_params.setMargins(10, 10, 10, 10);
 			_params.width = screen_width / _column - 20;
-			_params.height = 70;//_params.width * 2 / 5 / 2;
+			_params.height = 70;// _params.width * 2 / 5 / 2;
 			_gridlayout.addView(_textview_item, _params);
 			_id++;
 		}
