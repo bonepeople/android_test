@@ -62,14 +62,9 @@ public class LinearLayout_picture extends LinearLayout implements View.OnClickLi
 		Point _outSize = new Point(0, 0);
 		wm.getDefaultDisplay().getSize(_outSize);
 		int screen_width = _outSize.x;
-		int screen_height = _outSize.y;
-
-		StringBuilder _builder = new StringBuilder();
-		_builder.append(_name + "\n");
-		_builder.append("screen_width=" + screen_width + " screen_height=" + screen_height);
 
 		_textview_name = new TextView(context);
-		_textview_name.setText(_builder.toString());
+		_textview_name.setText(_name);
 		_textview_name.setPadding(10, 0, 0, 0);
 		this.addView(_textview_name);
 
@@ -81,18 +76,19 @@ public class LinearLayout_picture extends LinearLayout implements View.OnClickLi
 		_param.gravity = Gravity.CENTER_HORIZONTAL;
 		_body.setLayoutParams(_param);
 
-		if (_addable)
+		ImageView _image_add = new ImageView(getContext());
+		_image_add.setId(_image_count++);
+		_image_add.setBackgroundColor(getContext().getResources().getColor(R.color.text_blue));
+		_image_add.setOnClickListener(this);
+		GridLayout.LayoutParams _param_add = new GridLayout.LayoutParams();
+		_param_add.height = _picture_height;
+		_param_add.width = _picture_width;
+		_param_add.setMargins(_picture_margins, _picture_margins, _picture_margins, _picture_margins);
+		_image_add.setLayoutParams(_param_add);
+		_body.addView(_image_add);
+		if (!_addable)
 		{
-			ImageView _image_add = new ImageView(getContext());
-			_image_add.setId(_image_count++);
-			_image_add.setBackgroundColor(getContext().getResources().getColor(R.color.text_blue));
-			_image_add.setOnClickListener(this);
-			GridLayout.LayoutParams _param_add = new GridLayout.LayoutParams();
-			_param_add.height = _picture_height;
-			_param_add.width = _picture_width;
-			_param_add.setMargins(_picture_margins, _picture_margins, _picture_margins, _picture_margins);
-			_image_add.setLayoutParams(_param_add);
-			_body.addView(_image_add);
+			_image_add.setVisibility(ImageView.GONE);
 		}
 
 		this.addView(_body);
