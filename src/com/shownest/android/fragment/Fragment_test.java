@@ -2,6 +2,7 @@ package com.shownest.android.fragment;
 
 import java.io.File;
 
+import com.loopj.android.image.SmartImageView;
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.OnChangeListener;
@@ -36,9 +37,9 @@ public class Fragment_test extends DEBUG_Fragment implements OnChangeListener
 		View _view = inflater.inflate(R.layout.fragment_test, container, false);
 
 		LinearLayout _body = (LinearLayout) _view.findViewById(R.id.linearlayout_content);
-		_picture = new LinearLayout_picture(getActivity(), "pictures", false);
+		_picture = new LinearLayout_picture(getActivity(), "pictures", true);
 		_picture.setOnChangeListener(this);
-
+		_picture.add_image("http://t.shownest.com:86/_resources/upload/headerIcon/6dfdd424ea49110400eba7dceb7.jpg");
 		_body.addView(_picture);
 		return _view;
 	}
@@ -132,8 +133,19 @@ public class Fragment_test extends DEBUG_Fragment implements OnChangeListener
 			Toast.makeText(getActivity(), tag + "-" + args[0], Toast.LENGTH_SHORT).show();
 			int _id = Integer.parseInt(args[0]);
 			Package _package = _picture.get_package(_id);
-			Uri _uri = (Uri) _package._data2;
-			System.out.println("pic uri =" + _uri);
+
+			if (_package._data1 instanceof SmartImageView)
+			{
+				// url
+				String _url = _package._tag1;
+				System.out.println("pic url =" + _url);
+			}
+			else
+			{
+				// uri
+				Uri _uri = (Uri) _package._data2;
+				System.out.println("pic uri =" + _uri);
+			}
 		}
 		else
 		{

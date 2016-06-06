@@ -1,7 +1,7 @@
 package com.shownest.android.widget;
 
 import java.io.File;
-
+import com.loopj.android.image.SmartImageView;
 import com.shownest.android.R;
 import com.shownest.android.model.OnChangeListener;
 import com.shownest.android.model.Package;
@@ -122,6 +122,26 @@ public class LinearLayout_picture extends LinearLayout implements View.OnClickLi
 				_body.addView(_imageview, _body.getChildCount() - 1);
 				_images.put(_imageview.getId(), new Package(_imageview, _uri));
 			}
+		}
+	}
+
+	public void add_image(String _url)
+	{
+		if (_url != null)
+		{
+			SmartImageView _imageview = new SmartImageView(getContext());
+			_imageview.setId(_image_count++);
+			_imageview.setScaleType(ImageView.ScaleType.CENTER_CROP);
+			_imageview.setImageUrl(_url);
+			_imageview.setOnClickListener(this);
+			_imageview.setOnLongClickListener(this);
+			GridLayout.LayoutParams _param = new GridLayout.LayoutParams();
+			_param.height = _picture_height;
+			_param.width = _picture_width;
+			_param.setMargins(_picture_margins, _picture_margins, _picture_margins, _picture_margins);
+			_imageview.setLayoutParams(_param);
+			_body.addView(_imageview, _body.getChildCount() - 1);
+			_images.put(_imageview.getId(), new Package(_imageview, _url));
 		}
 	}
 
