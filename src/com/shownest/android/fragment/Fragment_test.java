@@ -5,6 +5,7 @@ import java.io.File;
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.OnChangeListener;
+import com.shownest.android.model.Package;
 import com.shownest.android.widget.LinearLayout_picture;
 
 import android.app.AlertDialog;
@@ -35,7 +36,7 @@ public class Fragment_test extends DEBUG_Fragment implements OnChangeListener
 		View _view = inflater.inflate(R.layout.fragment_test, container, false);
 
 		LinearLayout _body = (LinearLayout) _view.findViewById(R.id.linearlayout_content);
-		_picture = new LinearLayout_picture(getActivity(), "pictures");
+		_picture = new LinearLayout_picture(getActivity(), "pictures", false);
 		_picture.setOnChangeListener(this);
 
 		_body.addView(_picture);
@@ -52,26 +53,25 @@ public class Fragment_test extends DEBUG_Fragment implements OnChangeListener
 			{
 				_image_uri = data.getData();
 			}
-			else if(requestCode == 200)
+			else if (requestCode == 200)
 			{
-				Bitmap bmap = data.getParcelableExtra("data");  
-                
-                
+				Bitmap bmap = data.getParcelableExtra("data");
+
 				_picture.add_image(bmap);
 				return;
 			}
-//			Intent intent = new Intent();  
-//            
-//            intent.setAction("com.android.camera.action.CROP");  
-//            intent.setDataAndType(_image_uri, "image/*");// mUri是已经选择的图片Uri  
-//            intent.putExtra("crop", "true");  
-//            intent.putExtra("aspectX", 1);// 裁剪框比例  
-//            intent.putExtra("aspectY", 1);  
-//            intent.putExtra("outputX", 150);// 输出图片大小  
-//            intent.putExtra("outputY", 150);  
-//            intent.putExtra("return-data", true);  
-//              
-//            startActivityForResult(intent, 200); 
+			// Intent intent = new Intent();
+			//
+			// intent.setAction("com.android.camera.action.CROP");
+			// intent.setDataAndType(_image_uri, "image/*");// mUri是已经选择的图片Uri
+			// intent.putExtra("crop", "true");
+			// intent.putExtra("aspectX", 1);// 裁剪框比例
+			// intent.putExtra("aspectY", 1);
+			// intent.putExtra("outputX", 150);// 输出图片大小
+			// intent.putExtra("outputY", 150);
+			// intent.putExtra("return-data", true);
+			//
+			// startActivityForResult(intent, 200);
 			_picture.add_image(_image_uri);
 		}
 	}
@@ -130,6 +130,10 @@ public class Fragment_test extends DEBUG_Fragment implements OnChangeListener
 		{
 			// see
 			Toast.makeText(getActivity(), tag + "-" + args[0], Toast.LENGTH_SHORT).show();
+			int _id = Integer.parseInt(args[0]);
+			Package _package = _picture.get_package(_id);
+			Uri _uri = (Uri) _package._data2;
+			System.out.println("pic uri =" + _uri);
 		}
 		else
 		{

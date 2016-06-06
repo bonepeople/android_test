@@ -25,6 +25,7 @@ import android.widget.Toast;
 public class LinearLayout_picture extends LinearLayout implements View.OnClickListener, View.OnLongClickListener
 {
 	private boolean _addable = true;
+	private TextView _textview_name;
 	private GridLayout _body;
 	private int _image_count = 0;
 	private OnChangeListener _listener;
@@ -51,9 +52,10 @@ public class LinearLayout_picture extends LinearLayout implements View.OnClickLi
 		// TODO Auto-generated constructor stub
 	}
 
-	public LinearLayout_picture(Context context, String _name)
+	public LinearLayout_picture(Context context, String _name, boolean _addable)
 	{
 		super(context);
+		this._addable = _addable;
 		this.setOrientation(LinearLayout.VERTICAL);
 
 		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -66,7 +68,7 @@ public class LinearLayout_picture extends LinearLayout implements View.OnClickLi
 		_builder.append(_name + "\n");
 		_builder.append("screen_width=" + screen_width + " screen_height=" + screen_height);
 
-		TextView _textview_name = new TextView(context);
+		_textview_name = new TextView(context);
 		_textview_name.setText(_builder.toString());
 		_textview_name.setPadding(10, 0, 0, 0);
 		this.addView(_textview_name);
@@ -118,10 +120,12 @@ public class LinearLayout_picture extends LinearLayout implements View.OnClickLi
 				_param.setMargins(_picture_margins, _picture_margins, _picture_margins, _picture_margins);
 				_imageview.setLayoutParams(_param);
 				_body.addView(_imageview, _body.getChildCount() - 1);
+				_images.put(_imageview.getId(), new Package(_imageview, _uri));
 			}
 		}
 	}
 
+	@Deprecated
 	public void add_image(Bitmap _image)
 	{
 		if (_image != null)
@@ -172,6 +176,11 @@ public class LinearLayout_picture extends LinearLayout implements View.OnClickLi
 	public void setOnChangeListener(OnChangeListener _listener)
 	{
 		this._listener = _listener;
+	}
+
+	public Package get_package(int _index)
+	{
+		return _images.get(_index);
 	}
 
 	@Override

@@ -61,4 +61,10 @@ public class Package
 		this._tag2 = _str2;
 		this._int1 = _int;
 	}
+
+	public Package(Object _data1, Object _data2)
+	{
+		this._data1 = _data1;
+		this._data2 = _data2;
+	}
 }
