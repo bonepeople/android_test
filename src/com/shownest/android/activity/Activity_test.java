@@ -77,51 +77,7 @@ public class Activity_test extends DEBUG_Activity
 
 	public void test(View v)
 	{
-		String _str = "result";
-		show_dialog();
-	}
-
-	private void show_dialog()
-	{
-		View _view = View.inflate(this, R.layout.dialog_house, null);
-		AlertDialog.Builder _builder = new Builder(this);
-		_dialog = _builder.create();
-		_dialog.setView(_view, 0, 0, 0, 0);
-
-		Button _button_commit = (Button) _view.findViewById(R.id.button_commit);
-
-		_room = (NumberPicker) _view.findViewById(R.id.number_room);
-		_parlour = (NumberPicker) _view.findViewById(R.id.number_parlour);
-		_kitchen = (NumberPicker) _view.findViewById(R.id.number_kitchen);
-		_toilet = (NumberPicker) _view.findViewById(R.id.number_toilet);
-		_balcony = (NumberPicker) _view.findViewById(R.id.number_balcony);
-
-		_room.setMinValue(1);
-		_room.setMaxValue(9);
-
-		_parlour.setMinValue(1);
-		_parlour.setMaxValue(9);
-
-		_kitchen.setMinValue(1);
-		_kitchen.setMaxValue(9);
-
-		_toilet.setMinValue(1);
-		_toilet.setMaxValue(9);
-
-		_balcony.setMinValue(1);
-		_balcony.setMaxValue(9);
-
-		_button_commit.setOnClickListener(new OnClickListener()
-		{
-
-			@Override
-			public void onClick(View v)
-			{
-				String _result = _room.getValue() + "," + _parlour.getValue() + "," + _kitchen.getValue() + "," + _toilet.getValue() + "," + _balcony.getValue();
-				Toast.makeText(Activity_test.this, _result, Toast.LENGTH_SHORT).show();
-			}
-		});
-		_dialog.show();
+		return;
 	}
 
 	public static Activity_test get_instance()
