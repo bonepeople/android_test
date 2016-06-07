@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.id.Hex;
+
+/**
+ * 通用工具类
+ * 
+ * @author bonepeople
+ */
 public class CommonUtil
 {
 
@@ -23,6 +30,20 @@ public class CommonUtil
 	public static final String REG_COMMENT_NAME = "「(.*)」";
 	public static String REG_WEB_URL = "[^\u4e00-\u9fa5\\s|^\uFE30-\uFFA0\\s|^\\]]*?\\.(com|net|cn|me|tw|fr)[^\u4e00-\u9fa5\\s|^\uFE30-\uFFA0\\s|^\\[|^\\<|^@]*";
 
+	/**
+	 * 获取一个随机且不重复的32位字符串作为图片名称
+	 */
+	public static String get_imageName()
+	{
+		return String.valueOf(Hex.encodeHex(org.apache.commons.id.uuid.UUID.randomUUID().getRawBytes()));
+	}
+
+	/**
+	 * 获取中文名称
+	 * 
+	 * @param _name
+	 *            room，parlour，kitchen，toilet，balcony，hydropower，mount，cost，tax，ground，wall，roof
+	 */
 	public static String get_chineseName(String _name)
 	{
 		String _result = _name;
@@ -80,6 +101,9 @@ public class CommonUtil
 		return _result;
 	}
 
+	/**
+	 * 判断是否是正常的身份证号
+	 */
 	public static boolean isIDNumber(String id)
 	{
 		return Pattern.matches(REG_ID_NUMBER, id);
@@ -96,6 +120,9 @@ public class CommonUtil
 		return false;
 	}
 
+	/**
+	 * 判断是否是正常的密码(数字、字母、下划线，[a-zA-Z_0-9])
+	 */
 	public static boolean isPassword(String password)
 	{
 		return Pattern.matches(REG_PASSWORD, password);
@@ -112,6 +139,9 @@ public class CommonUtil
 		return false;
 	}
 
+	/**
+	 * 格式化电话号码，只将电话号码的前三位和后三位显示出来，其余位置显示为'*'
+	 */
 	public static String showPhone(String _phone)
 	{
 		StringBuilder _builder = new StringBuilder();
@@ -237,53 +267,6 @@ public class CommonUtil
 		}
 
 		return headerIcon;
-	}
-
-	public static String getConsType(int consType)
-	{
-
-		if (1 == consType)
-			return "全包";
-		else if (2 == consType)
-			return "清工";
-
-		return "半包";
-	}
-
-	public static String getBidType(String bidType)
-	{
-
-		String bidTypeName = "";
-
-		if ("0".equals(bidType))
-		{
-			bidTypeName = "施工标、设计标、监理标、";
-		}
-		else
-		{
-
-			if (bidType.contains("13"))
-			{
-				bidTypeName += "施工标、";
-			}
-
-			if (bidType.contains("12"))
-			{
-				bidTypeName += "设计标、";
-			}
-
-			if (bidType.contains("14"))
-			{
-				bidTypeName += "监理标、";
-			}
-		}
-
-		if (!"".equals(bidTypeName))
-		{
-			bidTypeName = bidTypeName.substring(0, bidTypeName.length() - 1);
-		}
-
-		return bidTypeName;
 	}
 
 	public static String getDesiServiceItem(String serviceItem)
@@ -426,36 +409,4 @@ public class CommonUtil
 		return provinceName + cityName + countyName;
 	}
 
-	/**
-	 * @Title: createSMSRandom @Description: 发送随机短信验证码 @param numberFlag @param length @param 设定文件 @return String 返回类型 @throws
-	 */
-	public static String createSMSRandom(boolean numberFlag, int length)
-	{
-		String retStr = "";
-		String strTable = numberFlag ? "1234567890" : "1234567890abcdefghijkmnpqrstuvwxyz";
-		int len = strTable.length();
-		boolean bDone = true;
-		do
-		{
-			retStr = "";
-			int count = 0;
-			for (int i = 0; i < length; i++)
-			{
-				double dblR = Math.random() * len;
-				int intR = (int) Math.floor(dblR);
-				char c = strTable.charAt(intR);
-				if (('0' <= c) && (c <= '9'))
-				{
-					count++;
-				}
-				retStr += strTable.charAt(intR);
-			}
-			if (count >= 2)
-			{
-				bDone = false;
-			}
-		} while (bDone);
-
-		return retStr;
-	}
 }

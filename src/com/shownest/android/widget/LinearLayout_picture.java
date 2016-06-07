@@ -5,6 +5,7 @@ import java.io.File;
 import com.loopj.android.image.SmartImageView;
 import com.shownest.android.R;
 import com.shownest.android.model.Package;
+import com.shownest.android.utils.ImageUtil;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -14,7 +15,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Environment;
@@ -152,7 +152,7 @@ public class LinearLayout_picture extends LinearLayout implements View.OnClickLi
 		if (_uri != null)
 		{
 			File _imagefile = new File(_uri.getPath());
-			Bitmap image = getSmallBitmap(_imagefile.getAbsolutePath(), _picture_width, _picture_height);
+			Bitmap image = ImageUtil.getSmallBitmap(_imagefile.getAbsolutePath(), _picture_width, _picture_height);
 
 			if (image != null)
 			{
@@ -216,35 +216,6 @@ public class LinearLayout_picture extends LinearLayout implements View.OnClickLi
 			_imageview.setLayoutParams(_param);
 			_body.addView(_imageview, _body.getChildCount() - 1);
 		}
-	}
-
-	private static Bitmap getSmallBitmap(String filePath, int _width, int _height)
-	{
-		final BitmapFactory.Options options = new BitmapFactory.Options();
-		options.inJustDecodeBounds = true;
-		BitmapFactory.decodeFile(filePath, options);
-		// Calculate inSampleSize
-		options.inSampleSize = calculateInSampleSize(options, _width, _height);
-
-		// Decode bitmap with inSampleSize set
-		options.inJustDecodeBounds = false;
-
-		return BitmapFactory.decodeFile(filePath, options);
-	}
-
-	private static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight)
-	{
-		final int height = options.outHeight;
-		final int width = options.outWidth;
-		int inSampleSize = 1;
-
-		if (height > reqHeight || width > reqWidth)
-		{
-			final int heightRatio = Math.round((float) height / (float) reqHeight);
-			final int widthRatio = Math.round((float) width / (float) reqWidth);
-			inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
-		}
-		return inSampleSize;
 	}
 
 	private void show_dialog()

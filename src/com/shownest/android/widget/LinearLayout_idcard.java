@@ -1,17 +1,15 @@
 package com.shownest.android.widget;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 import com.shownest.android.R;
 import com.shownest.android.model.OnChangeListener;
+import com.shownest.android.utils.ImageUtil;
+import com.shownest.android.utils.NumberUtil;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.util.AttributeSet;
-import android.util.Base64;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -24,24 +22,6 @@ public class LinearLayout_idcard extends LinearLayout implements OnChangeListene
 	private TextView _textview_name;
 	private ImageView _imageview_left, _imageview_right, _imageview_bottom;
 	private LinearLayout _linearlayout_bottom;
-
-	public LinearLayout_idcard(Context context)
-	{
-		super(context);
-		// TODO Auto-generated constructor stub
-	}
-
-	public LinearLayout_idcard(Context context, AttributeSet attrs)
-	{
-		super(context, attrs);
-		// TODO Auto-generated constructor stub
-	}
-
-	public LinearLayout_idcard(Context context, AttributeSet attrs, int defStyleAttr)
-	{
-		super(context, attrs, defStyleAttr);
-		// TODO Auto-generated constructor stub
-	}
 
 	/**
 	 * 初始化一个身份证上传控件
@@ -86,12 +66,7 @@ public class LinearLayout_idcard extends LinearLayout implements OnChangeListene
 		{
 			Bitmap image;
 			File _imagefile = new File(_uri.getPath());
-
-			System.out.println(_imagefile.getAbsolutePath());
-			image = getSmallBitmap(_imagefile.getAbsolutePath());
-
-			System.out.println("file size is " + _imagefile.length());
-
+			image = ImageUtil.getSmallBitmap(_imagefile.getAbsolutePath(), NumberUtil.get_px(getContext(), 120), NumberUtil.get_px(getContext(), 70));
 			if (image != null)
 			{
 				switch (_where)
@@ -108,44 +83,5 @@ public class LinearLayout_idcard extends LinearLayout implements OnChangeListene
 				}
 			}
 		}
-	}
-
-	private static Bitmap getSmallBitmap(String filePath)
-	{
-		final BitmapFactory.Options options = new BitmapFactory.Options();
-		options.inJustDecodeBounds = true;
-		BitmapFactory.decodeFile(filePath, options);
-		// Calculate inSampleSize
-		options.inSampleSize = calculateInSampleSize(options, 480, 240);
-
-		// Decode bitmap with inSampleSize set
-		options.inJustDecodeBounds = false;
-
-		return BitmapFactory.decodeFile(filePath, options);
-	}
-
-	private static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight)
-	{
-		final int height = options.outHeight;
-		final int width = options.outWidth;
-		int inSampleSize = 1;
-
-		if (height > reqHeight || width > reqWidth)
-		{
-			final int heightRatio = Math.round((float) height / (float) reqHeight);
-			final int widthRatio = Math.round((float) width / (float) reqWidth);
-			inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
-		}
-		return inSampleSize;
-	}
-
-	// 把bitmap转换成String
-	public static String bitmapToString(String filePath)
-	{
-		Bitmap bm = getSmallBitmap(filePath);
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		bm.compress(Bitmap.CompressFormat.JPEG, 40, baos);// 40是压缩值，100为不压缩
-		byte[] b = baos.toByteArray();
-		return Base64.encodeToString(b, Base64.DEFAULT);
 	}
 }
