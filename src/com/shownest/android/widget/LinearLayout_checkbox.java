@@ -139,7 +139,7 @@ public class LinearLayout_checkbox extends LinearLayout implements View.OnClickL
 	}
 
 	/**
-	 * 判断所给id是否已被选中
+	 * 判断所给id是否需要被选中
 	 * 
 	 * @param _choose
 	 *            已被选择的控件序号。例：{1，3，7}
@@ -187,15 +187,17 @@ public class LinearLayout_checkbox extends LinearLayout implements View.OnClickL
 		int _id = 0;
 		for (; _id < this._choose.size(); _id++)
 		{
-			if (isChecked(_id + 1, _choose) && this._choose.get(_id) == 0)
+			if (isChecked(_id + 1, _choose) && this._choose.get(_id) == 0)// 需要选中，未选中状态
 			{
 				_text.get(_id).setBackgroundResource(R.drawable.background_button);
 				this._choose.set(_id, 1);
+				_count++;
 			}
-			else if (!isChecked(_id + 1, _choose) && this._choose.get(_id) == 1)
+			else if (!isChecked(_id + 1, _choose) && this._choose.get(_id) == 1)// 不需要选中，选中状态
 			{
 				_text.get(_id).setBackgroundResource(R.drawable.background_button_gray);
 				this._choose.set(_id, 0);
+				_count--;
 			}
 		}
 	}

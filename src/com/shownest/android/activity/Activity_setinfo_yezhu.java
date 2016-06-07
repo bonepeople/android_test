@@ -56,9 +56,9 @@ public class Activity_setinfo_yezhu extends DEBUG_Activity
 			JSONObject _obj = new JSONObject(_str);
 			String _result = _obj.getString("msg");
 
-			if (_result.equals("提交成功"))
+			if (_result.equals("修改基本信息成功"))
 			{
-				Toast.makeText(_instance, "提交成功", Toast.LENGTH_SHORT).show();
+				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
 				_instance.finish();
 			}
 			else

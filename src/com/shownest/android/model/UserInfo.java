@@ -21,7 +21,7 @@ public class UserInfo
 	private int _userType;// 用户身份类别
 	private int _total;
 	private String _headerIcon;// 用户头像
-	private double _gradePraise;
+	private double _gradePraise;// 用户评分
 	private long _createDate;// 账号创建时间
 	private boolean _checkPhone;// 是否绑定电话
 	private boolean _checkUsername;// 是否绑定用户名，每个用户注册之后只允许修改一次用户名
@@ -31,6 +31,8 @@ public class UserInfo
 	private String _ukey;// ukey
 	private String _ownerName;
 	private String _likeStyle;// 业主喜欢的风格
+	private String _designStyle;// 设计师风格
+	private int _professionGrade;// 监理等级，1-普通，2-高级
 	private String _realName;// 用户真实姓名
 	private int _realSex;// 用户性别 男 1 女 0
 	private int _nativePlace;// 工长籍贯 1011
@@ -60,7 +62,7 @@ public class UserInfo
 		this._userShowName = JsonUtil.get_string(_json, "userShowName", "");
 		this._userType = JsonUtil.get_int(_json, "userType", 100);
 		this._total = JsonUtil.get_int(_json, "total", 0);
-		this._headerIcon = JsonUtil.get_string(_json, "headerIcon", "");// 需要一个正确的初始值
+		this._headerIcon = JsonUtil.get_string(_json, "headerIcon", "header_default.png");
 		this._gradePraise = JsonUtil.get_double(_json, "gradePraise", 0);
 		this._createDate = JsonUtil.get_long(_json, "createDate", System.currentTimeMillis());
 		this._checkPhone = JsonUtil.get_bool(_json, "checkPhone", false);
@@ -71,6 +73,8 @@ public class UserInfo
 		this._ukey = JsonUtil.get_string(_json, "ukey", "");
 		this._ownerName = JsonUtil.get_string(_json, "ownerName", "");
 		this._likeStyle = JsonUtil.get_string(_json, "likeStyle", "");
+		this._designStyle = JsonUtil.get_string(_json, "designStyle", "");
+		this._professionGrade = JsonUtil.get_int(_json, "professionGrade", 1);
 		this._realName = JsonUtil.get_string(_json, "realName", "");
 		this._realSex = JsonUtil.get_int(_json, "realSex", 1);
 		this._nativePlace = JsonUtil.get_int(_json, "nativePlace", -1);
@@ -261,6 +265,26 @@ public class UserInfo
 	public void set_likeStyle(String _likeStyle)
 	{
 		this._likeStyle = _likeStyle;
+	}
+
+	public String get_designStyle()
+	{
+		return _designStyle;
+	}
+
+	public void set_designStyle(String _designStyle)
+	{
+		this._designStyle = _designStyle;
+	}
+
+	public int get_professionGrade()
+	{
+		return _professionGrade;
+	}
+
+	public void set_professionGrade(int _professionGrade)
+	{
+		this._professionGrade = _professionGrade;
 	}
 
 	public String get_realName()
@@ -462,16 +486,4 @@ public class UserInfo
 	{
 		this._bookNum = _bookNum;
 	}
-
-	@Override
-	public String toString()
-	{
-		return "UserInfo [" + (_userId != null ? "_userId=" + _userId + ", " : "") + (_userName != null ? "_userName=" + _userName + ", " : "")
-				+ (_userPhone != null ? "_userPhone=" + _userPhone + ", " : "") + (_userShowName != null ? "_userShowName=" + _userShowName + ", " : "") + "_userType=" + _userType + ", _total="
-				+ _total + ", " + (_headerIcon != null ? "_headerIcon=" + _headerIcon + ", " : "") + "_gradePraise=" + _gradePraise + ", _createDate=" + _createDate + ", _checkPhone=" + _checkPhone
-				+ ", _checkUsername=" + _checkUsername + ", _checkEmail=" + _checkEmail + ", _blogNum=" + _blogNum + ", _money=" + _money + ", " + (_ukey != null ? "_ukey=" + _ukey + ", " : "")
-				+ (_ownerName != null ? "_ownerName=" + _ownerName + ", " : "") + (_likeStyle != null ? "_likeStyle=" + _likeStyle + ", " : "")
-				+ (_realName != null ? "_realName=" + _realName + ", " : "") + "_realSex=" + _realSex + "]";
-	}
-
 }

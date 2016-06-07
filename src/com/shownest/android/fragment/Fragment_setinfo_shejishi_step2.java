@@ -220,6 +220,7 @@ public class Fragment_setinfo_shejishi_step2 extends DEBUG_Fragment implements O
 			if (_builder.length() > 1)
 				_builder.deleteCharAt(_builder.length() - 1);
 			_serviceItem.setData(new String[] { _builder.toString() });
+			_style.setData(_info.get_designStyle());
 		}
 	}
 }

@@ -231,16 +231,9 @@ public class HttpUtil
 		String _userShowName = "userShowName=" + _showname;
 		String _realName = "realName=" + _realname;
 		String _realSex = "realSex=" + _sex;
-		StringBuilder _professionGrade = new StringBuilder();
-		_professionGrade.append("professionGrade=&");
-		String[] _temp_string = _style.split(",");
-		for (int _temp_i = 0; _temp_i < _temp_string.length; _temp_i++)
-		{
-			_professionGrade.append("styles[" + _temp_i + "]=" + _temp_string[_temp_i] + "&");
-		}
-		_professionGrade.deleteCharAt(_professionGrade.length() - 1);
+		String _likeStyle = "likeStyle=" + _style;
 
-		_message = _userShowName + "&" + _realName + "&" + _realSex + "&" + _professionGrade;
+		_message = _userShowName + "&" + _realName + "&" + _realSex + "&" + _likeStyle;
 
 		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}

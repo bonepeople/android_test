@@ -74,7 +74,7 @@ public class Activity_login extends DEBUG_Activity
 			{
 				HttpUtil.get_userinfo(_handler, GET_SUCCESSFUL, GET_FAILED);
 			}
-			else if (_result.equals("用户已经登陆"))
+			else if (_result.equals("登录用户基本资料"))
 			{
 				JSONObject _data = _obj.getJSONArray("data").getJSONObject(0);
 				UserManager.set_user_info(new UserInfo(_data));
