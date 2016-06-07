@@ -29,8 +29,21 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * 添加和显示图片的控件
+ * <p>
+ * 该控件会获取屏幕宽度并计算出一行可以显示图片的个数。对于加载此控件的fragment需要将自身实例传递进来，控件会以fragment发出开启Activity的命令，
+ * 使用此控件的fragment需要添加onActivityResult函数并调用控件内部的onActivityResult函数，其中106， 107为控件保留的两个返回值。
+ * 
+ * @param _name
+ *            控件的标题
+ * @param _addable
+ *            是否可添加图片
+ */
 public class LinearLayout_picture extends LinearLayout implements View.OnClickListener, View.OnLongClickListener
 {
+	public static final int IMAGE_CAMERA = 106;
+	public static final int IMAGE_SDCARD = 107;
 	private Fragment _fragment;
 	private boolean _addable = true;
 	private TextView _textview_name;
@@ -42,6 +55,16 @@ public class LinearLayout_picture extends LinearLayout implements View.OnClickLi
 	private SparseArray<Package> _images = new SparseArray<Package>();
 	private Uri _image_uri;
 
+	/**
+	 * 初始化一个图片控件
+	 * <p>
+	 * 图片默认大小为150x150像素，默认间距为20px
+	 * 
+	 * @param _name
+	 *            控件的标题
+	 * @param _addable
+	 *            是否可添加图片
+	 */
 	public LinearLayout_picture(Fragment _fragment, String _name, boolean _addable)
 	{
 		super(_fragment.getActivity());
@@ -86,21 +109,25 @@ public class LinearLayout_picture extends LinearLayout implements View.OnClickLi
 
 	}
 
+	/**
+	 * 接收并处理activity返回的信息，由fragment调用
+	 */
 	public void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
 		System.out.println("requestCode=" + requestCode + "resultCode=" + resultCode);
 		if (resultCode == -1)
 		{
-			if (requestCode == 2)
+			if (requestCode == IMAGE_SDCARD)
 			{
 				_image_uri = data.getData();
+				add_image(_image_uri);
 			}
-			else if (requestCode == 200)
+			else if (requestCode == IMAGE_CAMERA)
 			{
-				Bitmap bmap = data.getParcelableExtra("data");
-
-				add_image(bmap);
-				return;
+				add_image(_image_uri);
+				// Bitmap bmap = data.getParcelableExtra("data");
+				// add_image(bmap);
+				// return;
 			}
 			// Intent intent = new Intent();
 			//
@@ -114,10 +141,12 @@ public class LinearLayout_picture extends LinearLayout implements View.OnClickLi
 			// intent.putExtra("return-data", true);
 			//
 			// startActivityForResult(intent, 200);
-			add_image(_image_uri);
 		}
 	}
 
+	/**
+	 * 添加图片
+	 */
 	public void add_image(Uri _uri)
 	{
 		if (_uri != null)
@@ -144,6 +173,9 @@ public class LinearLayout_picture extends LinearLayout implements View.OnClickLi
 		}
 	}
 
+	/**
+	 * 添加图片
+	 */
 	public void add_image(String _url)
 	{
 		if (_url != null)
@@ -164,6 +196,9 @@ public class LinearLayout_picture extends LinearLayout implements View.OnClickLi
 		}
 	}
 
+	/**
+	 * 添加图片
+	 */
 	@Deprecated
 	public void add_image(Bitmap _image)
 	{
@@ -230,7 +265,7 @@ public class LinearLayout_picture extends LinearLayout implements View.OnClickLi
 						Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 						intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
 						intent.putExtra(MediaStore.EXTRA_OUTPUT, _image_uri);
-						_fragment.startActivityForResult(intent, 1);
+						_fragment.startActivityForResult(intent, IMAGE_CAMERA);
 					}
 					catch (Exception e)
 					{
@@ -244,7 +279,7 @@ public class LinearLayout_picture extends LinearLayout implements View.OnClickLi
 						Intent intent = new Intent();
 						intent.setType("image/*");
 						intent.setAction(Intent.ACTION_GET_CONTENT);
-						_fragment.startActivityForResult(intent, 2);// data.getExtras()
+						_fragment.startActivityForResult(intent, IMAGE_SDCARD);// data.getExtras()
 					}
 					catch (ActivityNotFoundException e)
 					{
@@ -259,6 +294,9 @@ public class LinearLayout_picture extends LinearLayout implements View.OnClickLi
 		_builder.show();
 	}
 
+	/**
+	 * 获取图片信息
+	 */
 	public Package get_package(int _index)
 	{
 		return _images.get(_index);
