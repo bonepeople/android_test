@@ -22,6 +22,11 @@ import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+/**
+ * 身份认证-监理
+ * 
+ * @author bonepeople
+ */
 public class Activity_setinfo_jianli extends DEBUG_Activity implements OnChangeListener
 {
 	public static final int CHANGE_FAILED = 0;

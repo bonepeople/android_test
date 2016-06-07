@@ -7,6 +7,11 @@ import com.shownest.android.fragment.Fragment_basicinfo;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
 
+/**
+ * 个人资料
+ * 
+ * @author bonepeople
+ */
 public class Activity_basicinfo extends DEBUG_Activity
 {
 	@Override

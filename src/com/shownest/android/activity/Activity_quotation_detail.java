@@ -19,6 +19,11 @@ import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+/**
+ * 报价单详细信息
+ * 
+ * @author bonepeople
+ */
 public class Activity_quotation_detail extends DEBUG_Activity implements OnChangeListener
 {
 	public static final int GET_FAILED = 0;

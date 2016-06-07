@@ -15,6 +15,11 @@ import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+/**
+ * 修改手机号
+ * 
+ * @author bonepeople
+ */
 public class Activity_change_phone extends DEBUG_Activity
 {
 	public static final int CHANGE_FAILED = 0;

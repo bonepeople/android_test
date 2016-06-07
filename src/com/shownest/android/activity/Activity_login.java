@@ -17,6 +17,11 @@ import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+/**
+ * 登录
+ * 
+ * @author bonepeople
+ */
 public class Activity_login extends DEBUG_Activity
 {
 	public static final int LOGIN_FAILED = 0;

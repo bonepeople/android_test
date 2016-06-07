@@ -13,6 +13,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
 
+/**
+ * 身份选择
+ * 
+ * @author bonepeople
+ */
 public class Activity_select_role extends DEBUG_Activity
 {
 	public static final int CHANGE_FAILED = 0;

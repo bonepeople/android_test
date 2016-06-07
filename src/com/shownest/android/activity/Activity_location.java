@@ -8,6 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+/**
+ * 选择地址
+ * 
+ * @author bonepeople
+ */
 public class Activity_location extends DEBUG_Activity
 {
 

@@ -15,6 +15,11 @@ import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+/**
+ * 注册
+ * 
+ * @author bonepeople
+ */
 public class Activity_regist extends DEBUG_Activity
 {
 	public static final int REGIST_FAILED = 0;

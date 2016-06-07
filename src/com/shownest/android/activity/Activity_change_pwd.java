@@ -13,6 +13,11 @@ import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+/**
+ * 修改密码
+ * 
+ * @author bonepeople
+ */
 public class Activity_change_pwd extends DEBUG_Activity
 {
 	public static final int CHANGE_FAILED = 0;

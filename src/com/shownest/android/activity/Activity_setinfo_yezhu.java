@@ -13,6 +13,11 @@ import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+/**
+ * 身份认证-业主
+ * 
+ * @author bonepeople
+ */
 public class Activity_setinfo_yezhu extends DEBUG_Activity
 {
 	public static final int CHANGE_FAILED = 0;

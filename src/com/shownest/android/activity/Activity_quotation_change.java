@@ -18,6 +18,11 @@ import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+/**
+ * 修改报价单
+ * 
+ * @author bonepeople
+ */
 public class Activity_quotation_change extends DEBUG_Activity
 {
 	public static final int CHANGE_FAILED = 0;

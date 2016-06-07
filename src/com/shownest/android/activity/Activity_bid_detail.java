@@ -17,6 +17,11 @@ import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+/**
+ * 招标详细信息
+ * 
+ * @author bonepeople
+ */
 public class Activity_bid_detail extends DEBUG_Activity
 {
 	public static final int GET_FAILED = 0;

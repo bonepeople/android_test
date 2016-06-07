@@ -13,6 +13,11 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Toast;
 
+/**
+ * 测试页面
+ * 
+ * @author bonepeople
+ */
 public class Activity_test extends DEBUG_Activity
 {
 	public static final int TEST_FAILED = 0;

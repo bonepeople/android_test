@@ -16,6 +16,11 @@ import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+/**
+ * 忘记密码，找回密码
+ * 
+ * @author bonepeople
+ */
 public class Activity_forget extends DEBUG_Activity
 {
 	public static final int FORGET_FAILED = 0;

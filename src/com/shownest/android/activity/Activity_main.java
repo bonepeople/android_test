@@ -7,6 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+/**
+ * 主界面(测试使用)
+ * 
+ * @author bonepeople
+ */
 public class Activity_main extends DEBUG_Activity
 {
 
