@@ -34,7 +34,7 @@
         android:layout_marginRight="10dp"
         android:scaleType="center"
         android:src="@drawable/add"
-        android:visibility="invisible" />
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/textview_menu"
@@ -47,6 +47,6 @@
         android:text="注册"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        android:visibility="invisible" />
+        android:visibility="gone" />
 
 </RelativeLayout>

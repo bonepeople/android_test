@@ -60,6 +60,36 @@
             android:text="忘记密码?"
             android:textColor="@color/main_color"
             android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/button_yezhu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="业主" />
+
+            <Button
+                android:id="@+id/button_shigongdui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="施工队" />
+
+            <Button
+                android:id="@+id/button_shejishi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设计师" />
+
+            <Button
+                android:id="@+id/button_jianli"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="监理" />
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>
