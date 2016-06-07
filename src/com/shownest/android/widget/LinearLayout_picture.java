@@ -1,9 +1,6 @@
 package com.shownest.android.widget;
 
 import java.io.File;
-import java.util.UUID;
-
-import org.apache.commons.id.Hex;
 
 import com.loopj.android.image.SmartImageView;
 import com.shownest.android.R;
