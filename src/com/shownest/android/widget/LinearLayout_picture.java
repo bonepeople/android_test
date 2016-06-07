@@ -6,6 +6,7 @@ import com.loopj.android.image.SmartImageView;
 import com.shownest.android.R;
 import com.shownest.android.model.Package;
 import com.shownest.android.utils.ImageUtil;
+import com.shownest.android.utils.NumberUtil;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -22,11 +23,11 @@ import android.provider.MediaStore;
 import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -46,26 +47,26 @@ public class LinearLayout_picture extends LinearLayout implements View.OnClickLi
 	public static final int IMAGE_SDCARD = 107;
 	private Fragment _fragment;
 	private boolean _addable = true;
-	private TextView _textview_name;
+	private TextView_ex _textview_name;
 	private GridLayout _body;
 	private int _image_count = 0;
-	private int _picture_width = 150;
-	private int _picture_height = 150;
-	private int _picture_margins = 10;
+	private int _picture_width = NumberUtil.get_px(getContext(), 75);
+	private int _picture_height = NumberUtil.get_px(getContext(), 75);
+	private int _picture_margins = NumberUtil.get_px(getContext(), 5);
 	private SparseArray<Package> _images = new SparseArray<Package>();
 	private Uri _image_uri;
 
 	/**
 	 * 初始化一个图片控件
 	 * <p>
-	 * 图片默认大小为150x150像素，默认间距为20px
+	 * 图片默认大小为75dp x 75dp，默认间距为10dp
 	 * 
 	 * @param _name
 	 *            控件的标题
 	 * @param _addable
 	 *            是否可添加图片
 	 */
-	public LinearLayout_picture(Fragment _fragment, String _name, boolean _addable)
+	public LinearLayout_picture(Fragment _fragment, ViewGroup root, String _name, boolean _addable)
 	{
 		super(_fragment.getActivity());
 		this._fragment = _fragment;
@@ -77,13 +78,14 @@ public class LinearLayout_picture extends LinearLayout implements View.OnClickLi
 		wm.getDefaultDisplay().getSize(_outSize);
 		int screen_width = _outSize.x;
 
-		_textview_name = new TextView(_fragment.getActivity());
+		_textview_name = new TextView_ex(_fragment.getActivity(), this);
 		_textview_name.setText(_name);
-		_textview_name.setPadding(10, 0, 0, 0);
-		this.addView(_textview_name);
+		_textview_name.setMargins(10f, 5, 0, 5);
 
 		_body = new GridLayout(getContext());
 		int _ColumnCount = screen_width / (_picture_width + _picture_margins * 2);
+		if (_ColumnCount == 0)
+			_ColumnCount = 1;
 		_body.setColumnCount(_ColumnCount);
 		LinearLayout.LayoutParams _param = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 		_param.width = (_picture_width + _picture_margins * 2) * _ColumnCount;

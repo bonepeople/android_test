@@ -22,7 +22,7 @@ public class Fragment_test extends DEBUG_Fragment
 		View _view = inflater.inflate(R.layout.fragment_test, container, false);
 
 		LinearLayout _body = (LinearLayout) _view.findViewById(R.id.linearlayout_content);
-		_picture = new LinearLayout_picture(this, "pictures", true);
+		_picture = new LinearLayout_picture(this, _body, "pictures", true);
 		_picture.add_image("http://t.shownest.com:86/_resources/upload/headerIcon/6dfdd424ea49110400eba7dceb7.jpg");
 		_picture.add_image("http://t.shownest.com:86/_resources/upload/headerIcon/6dfdd424ea49110400eba7dceb7.jpg");
 		_picture.add_image("http://t.shownest.com:86/_resources/upload/headerIcon/6dfdd424ea49110400eba7dceb7.jpg");

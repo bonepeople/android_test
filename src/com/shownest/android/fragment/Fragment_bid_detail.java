@@ -51,7 +51,7 @@ public class Fragment_bid_detail extends DEBUG_Fragment implements OnClickListen
 			new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "房屋状态", _data.get_houseState_name() }, false);
 			new RelativeLayout_edit_informationbar(getActivity(), _body, 7, new String[] { "建筑面积", String.valueOf(_data.get_homeSq()), " m²" }, false);
 			new RelativeLayout_edit_informationbar(getActivity(), _body, 4, new String[] { "户型结构", _data.get_rooms() }, false);
-			_picture = new LinearLayout_picture(this, "户型图（选填）", false);
+			_picture = new LinearLayout_picture(this, _body, "户型图（选填）", false);
 			_picture.add_image("http://t.shownest.com:86/_resources/upload/headerIcon/6dfdd424ea49110400eba7dceb7.jpg");
 			_picture.add_image("http://t.shownest.com:86/_resources/upload/headerIcon/6dfdd424ea49110400eba7dceb7.jpg");
 			_picture.add_image("http://t.shownest.com:86/_resources/upload/headerIcon/6dfdd424ea49110400eba7dceb7.jpg");
