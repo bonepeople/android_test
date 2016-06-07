@@ -178,7 +178,7 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 								break;
 							}
 							_value.put("actionType", 1);
-							HttpUtil.update_quotation_item(Activity_quotation_change._handler, _room, _value, Activity_quotation_change.CHANGE_SUCCESSFUL, Activity_quotation_change.CHANGE_FAILED);
+							HttpUtil.update_quotation_item(Activity_quotation_change._handler, _room, _value, Activity_quotation_change.FIX_SUCCESSFUL, Activity_quotation_change.FIX_FAILED);
 						}
 						else
 						{
@@ -207,7 +207,7 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 								break;
 							}
 							_value.put("actionType", 3);
-							HttpUtil.update_quotation_item(Activity_quotation_change._handler, _room, _value, Activity_quotation_change.CHANGE_SUCCESSFUL, Activity_quotation_change.CHANGE_FAILED);
+							HttpUtil.update_quotation_item(Activity_quotation_change._handler, _room, _value, Activity_quotation_change.FIX_SUCCESSFUL, Activity_quotation_change.FIX_FAILED);
 						}
 					}
 				}

@@ -9,6 +9,7 @@ import com.shownest.android.fragment.Fragment_quotation_detail;
 import com.shownest.android.model.OnChangeListener;
 import com.shownest.android.model.RoomDetail;
 import com.shownest.android.utils.HttpUtil;
+import com.shownest.android.utils.JsonUtil;
 import com.shownest.android.utils.UserManager;
 
 import android.content.ContentValues;
@@ -36,15 +37,13 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 	{
 		public void handleMessage(android.os.Message msg)
 		{
-			String _string_result = "";
 			switch (msg.what)
 			{
 			case GET_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 				break;
 			case GET_SUCCESSFUL:
-				_string_result = (String) msg.obj;
-				handle_string(_string_result);
+				handle_string(msg.what, (String) msg.obj);
 				break;
 			}
 			_instance.close_wait();
@@ -99,31 +98,32 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 			System.out.println("resultCode=" + resultCode);
 	}
 
-	private static void handle_string(String str)
+	private static void handle_string(int _what, String _str)
 	{
-		handle_msg(_instance, str);
+		handle_msg(_instance, _str);
 		try
 		{
-			JSONObject _obj = new JSONObject(str);
-			String _result = _obj.getString("msg");
-
-			if (_result.equals("智能报价单部分明细"))
+			JSONObject _obj = new JSONObject(_str);
+			if (get_code(_obj))
+				switch (_what)
+				{
+				case GET_SUCCESSFUL:
+					_data = new RoomDetail(_obj.getJSONObject("data"), _intent.getStringExtra("room"));
+					_fragment_detail = new Fragment_quotation_detail();
+					add_fragment(_instance, _fragment_detail, false);
+					break;
+				}
+			else
 			{
-				_data = new RoomDetail(_obj.getJSONObject("data"), _intent.getStringExtra("room"));
-				_fragment_detail = new Fragment_quotation_detail();
-				add_fragment(_instance, _fragment_detail, false);
-			}
-			else if (_result.equals("未查询到数据"))
-			{
-				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
+				Toast.makeText(_instance, JsonUtil.get_string(_obj, "msg", "连接服务器失败。"), Toast.LENGTH_SHORT).show();
 				_instance.finish();
 			}
-			else
-				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
 		}
 		catch (JSONException e)
 		{
 			e.printStackTrace();
+			Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
+			_instance.finish();
 		}
 	}
 

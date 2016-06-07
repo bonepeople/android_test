@@ -12,6 +12,7 @@ import com.shownest.android.fragment.Fragment_setinfo_jianli_step1;
 import com.shownest.android.fragment.Fragment_setinfo_jianli_step2;
 import com.shownest.android.fragment.Fragment_setinfo_jianli_step3;
 import com.shownest.android.model.OnChangeListener;
+import com.shownest.android.utils.JsonUtil;
 import com.shownest.android.widget.Linearlayout_subtitle;
 
 import android.app.FragmentManager;
@@ -34,15 +35,13 @@ public class Activity_setinfo_jianli extends DEBUG_Activity implements OnChangeL
 	{
 		public void handleMessage(android.os.Message msg)
 		{
-			String _string_result = "";
 			switch (msg.what)
 			{
 			case CHANGE_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 				break;
 			case CHANGE_SUCCESSFUL:
-				_string_result = (String) msg.obj;
-				handle_string(CHANGE_SUCCESSFUL, _string_result);
+				handle_string(msg.what, (String) msg.obj);
 				break;
 			}
 			_instance.close_wait();
@@ -68,24 +67,26 @@ public class Activity_setinfo_jianli extends DEBUG_Activity implements OnChangeL
 		add_fragment(this, _array_fragment.get(1), false);
 	}
 
-	private static void handle_string(int _message, String _str)
+	private static void handle_string(int _what, String _str)
 	{
 		handle_msg(_instance, _str);
 		try
 		{
 			JSONObject _obj = new JSONObject(_str);
-			String _result = _obj.getString("msg");
-
-			if (_result.equals("提交成功"))
-			{
-				Toast.makeText(_instance, "提交成功", Toast.LENGTH_SHORT).show();
-			}
+			if (get_code(_obj))
+				switch (_what)
+				{
+				case CHANGE_SUCCESSFUL:
+					Toast.makeText(_instance, "提交成功", Toast.LENGTH_SHORT).show();
+					break;
+				}
 			else
-				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
+				Toast.makeText(_instance, JsonUtil.get_string(_obj, "msg", "连接服务器失败。"), Toast.LENGTH_SHORT).show();
 		}
 		catch (JSONException e)
 		{
 			e.printStackTrace();
+			Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 		}
 	}
 

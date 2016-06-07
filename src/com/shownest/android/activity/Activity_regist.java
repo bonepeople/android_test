@@ -8,6 +8,7 @@ import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_regist;
 import com.shownest.android.thread.Thread_time;
 import com.shownest.android.utils.HttpUtil;
+import com.shownest.android.utils.JsonUtil;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -30,7 +31,6 @@ public class Activity_regist extends DEBUG_Activity
 	{
 		public void handleMessage(android.os.Message msg)
 		{
-			String _string_result = "";
 			switch (msg.what)
 			{
 			case CHECK_FAILED:
@@ -41,8 +41,7 @@ public class Activity_regist extends DEBUG_Activity
 			case CHECK_SUCCESSFUL:
 			case SEND_SUCCESSFUL:
 			case REGIST_SUCCESSFUL:
-				_string_result = (String) msg.obj;
-				handle_string(_string_result);
+				handle_string(msg.what, (String) msg.obj);
 				break;
 			case BUTTON_CHANGE:
 				_fragment_regist.mobilcode_change();
@@ -66,35 +65,35 @@ public class Activity_regist extends DEBUG_Activity
 			_timer.interrupt();
 	}
 
-	private static void handle_string(String str)
+	private static void handle_string(int _what, String _str)
 	{
-		handle_msg(_instance, str);
+		handle_msg(_instance, _str);
 		try
 		{
-			JSONObject _obj = new JSONObject(str);
-			String _result = _obj.getString("msg");
-
-			if (_result.equals("用户名不存在"))
-			{
-				HttpUtil.send_mobilecode(_handler, _fragment_regist.get_regist_phone(), SEND_SUCCESSFUL, SEND_FAILED);
-			}
-			else if (_result.equals("注册成功"))
-			{
-				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
-				_instance.finish();
-			}
-			else if (_result.equals("手机验证码发送成功"))
-			{
-				_timer = new Thread_time(_handler, BUTTON_CHANGE, 61, 1);
-				_timer.start();
-				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
-			}
+			JSONObject _obj = new JSONObject(_str);
+			if (get_code(_obj))
+				switch (_what)
+				{
+				case CHECK_SUCCESSFUL:
+					HttpUtil.send_mobilecode(_handler, _fragment_regist.get_regist_phone(), SEND_SUCCESSFUL, SEND_FAILED);
+					break;
+				case SEND_SUCCESSFUL:
+					_timer = new Thread_time(_handler, BUTTON_CHANGE, 61, 1);
+					_timer.start();
+					Toast.makeText(_instance, "手机验证码发送成功", Toast.LENGTH_SHORT).show();
+					break;
+				case REGIST_SUCCESSFUL:
+					Toast.makeText(_instance, "注册成功", Toast.LENGTH_SHORT).show();
+					_instance.finish();
+					break;
+				}
 			else
-				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
+				Toast.makeText(_instance, JsonUtil.get_string(_obj, "msg", "连接服务器失败。"), Toast.LENGTH_SHORT).show();
 		}
 		catch (JSONException e)
 		{
 			e.printStackTrace();
+			Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 		}
 	}
 

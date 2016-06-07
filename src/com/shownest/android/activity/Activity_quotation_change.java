@@ -9,6 +9,7 @@ import com.shownest.android.fragment.Fragment_quotation_change;
 import com.shownest.android.model.ItemDetail;
 import com.shownest.android.model.RoomDetail;
 import com.shownest.android.utils.HttpUtil;
+import com.shownest.android.utils.JsonUtil;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -21,8 +22,10 @@ public class Activity_quotation_change extends DEBUG_Activity
 {
 	public static final int CHANGE_FAILED = 0;
 	public static final int CHANGE_SUCCESSFUL = 1;
-	public static final int GET_FAILED = 2;
-	public static final int GET_SUCCESSFUL = 3;
+	public static final int FIX_FAILED = 2;
+	public static final int FIX_SUCCESSFUL = 3;
+	public static final int GET_FAILED = 4;
+	public static final int GET_SUCCESSFUL = 5;
 	private static Activity_quotation_change _instance;
 	private static Intent _intent;
 	private static RoomDetail _data, _all_item;
@@ -33,18 +36,18 @@ public class Activity_quotation_change extends DEBUG_Activity
 	{
 		public void handleMessage(android.os.Message msg)
 		{
-			String _string_result = "";
 			switch (msg.what)
 			{
 			case GET_FAILED:
 			case CHANGE_FAILED:
+			case FIX_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 				_instance.close_wait();
 				break;
 			case GET_SUCCESSFUL:
 			case CHANGE_SUCCESSFUL:
-				_string_result = (String) msg.obj;
-				handle_string(_string_result);
+			case FIX_SUCCESSFUL:
+				handle_string(msg.what, (String) msg.obj);
 				break;
 			}
 			check_commit();
@@ -101,19 +104,21 @@ public class Activity_quotation_change extends DEBUG_Activity
 		}
 	}
 
-	private static void handle_string(String str)
+	private static void handle_string(int _what, String _str)
 	{
-		handle_msg(_instance, str);
-
+		handle_msg(_instance, _str);
 		try
 		{
-			JSONObject _obj = new JSONObject(str);
-			String _result = _obj.getString("msg");
-
-			if (_result.equals("报价单详细项修改成功") || _result.equals("工队报价模板详细项修改成功"))
-			{
-				if (_intent.getStringExtra("type").equals("change"))
+			JSONObject _obj = new JSONObject(_str);
+			if (get_code(_obj))
+				switch (_what)
 				{
+				case GET_SUCCESSFUL:
+					_all_item = new RoomDetail(_obj.getJSONObject("data"), _room);
+					add_fragment(_instance, new Fragment_quotation_change(), false);
+					_instance.close_wait();
+					break;
+				case CHANGE_SUCCESSFUL:
 					_data.get_details(_intent.getStringExtra("part")).setValueAt(_intent.getIntExtra("part_index", 0), _new_item);
 					_data.fresh_totals(_intent.getStringExtra("part"));
 					_instance.close_wait();
@@ -121,34 +126,18 @@ public class Activity_quotation_change extends DEBUG_Activity
 					_intent.putExtra("result", "successful");
 					_instance.setResult(RESULT_OK, _intent);
 					_instance.finish();
+					break;
 				}
-			}
-			else if (_result.contains("要修改的项目不存在"))
+			else if (_what != FIX_SUCCESSFUL)
 			{
-
-			}
-			else if (_result.contains("报价单对应的报价模板中"))
-			// 报价单对应的报价模板中--所有的地面数据
-			// 报价单对应的报价模板中--所有的墙面数据
-			// 报价单对应的报价模板中--所有的顶面数据
-			// 报价单对应的报价模板中--所有的水电数据
-			// 报价单对应的报价模板中--所有的安装数据
-			// 报价单对应的报价模板中--所有的杂费数据
-			// 报价单对应的报价模板中--所有的税费数据
-			{
-				_all_item = new RoomDetail(_obj.getJSONObject("data"), _room);
-				add_fragment(_instance, new Fragment_quotation_change(), false);
-				_instance.close_wait();
-			}
-			else
-			{
-				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
+				Toast.makeText(_instance, JsonUtil.get_string(_obj, "msg", "连接服务器失败。"), Toast.LENGTH_SHORT).show();
 				_instance.close_wait();
 			}
 		}
 		catch (JSONException e)
 		{
 			e.printStackTrace();
+			Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 		}
 	}
 

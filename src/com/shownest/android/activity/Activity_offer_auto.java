@@ -16,6 +16,11 @@ import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+/**
+ * 智能报价
+ * 
+ * @author bonepeople
+ */
 public class Activity_offer_auto extends DEBUG_Activity
 {
 	public static final int NEXT_FAILED = 0;
@@ -30,7 +35,6 @@ public class Activity_offer_auto extends DEBUG_Activity
 	{
 		public void handleMessage(android.os.Message msg)
 		{
-			String _string_result = "";
 			switch (msg.what)
 			{
 			case SAVE_FAILED:
@@ -39,8 +43,7 @@ public class Activity_offer_auto extends DEBUG_Activity
 				break;
 			case SAVE_SUCCESSFUL:
 			case NEXT_SUCCESSFUL:
-				_string_result = (String) msg.obj;
-				handle_string(_string_result);
+				handle_string(msg.what, (String) msg.obj);
 			}
 			_instance.close_wait();
 		};
@@ -58,43 +61,40 @@ public class Activity_offer_auto extends DEBUG_Activity
 		add_fragment(this, new Fragment_offer_auto_set(), false);
 	}
 
-	private static void handle_string(String str)
+	private static void handle_string(int _what, String _str)
 	{
-		handle_msg(_instance, str);
+		handle_msg(_instance, _str);
 		try
 		{
-			JSONObject _obj = new JSONObject(str);
-			String _result = _obj.getString("msg");
-			if (_result.equals("智能报价单概要"))
-			{
-				_data = new OfferBill(_obj.getJSONObject("data"));
-				FragmentManager _manager = _instance.getFragmentManager();
-				int _count = _manager.getBackStackEntryCount();
-				if (_count != 0)
-					_manager.popBackStack();
-				else
-					_quotationId = "";
-				add_fragment(_instance, new Fragment_offer_auto_show(), true);
-			}
-			else if (_result.equals("保存成功"))
-			// 保存失败，请稍后再试
-			// 只有业主身份才能保存报价单
-			{
-				String _data = JsonUtil.get_string(_obj, "data", "0-0");
-				String[] _ids = _data.split("-");
-				System.out.println(_ids[0] + "-" + _ids[1]);
-
-				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
-
-				Activity_offer_auto._data.set_quotationId(_ids[0]);
-				_quotationId = _ids[0];
-			}
+			JSONObject _obj = new JSONObject(_str);
+			if (get_code(_obj))
+				switch (_what)
+				{
+				case NEXT_SUCCESSFUL:
+					_data = new OfferBill(_obj.getJSONObject("data"));
+					FragmentManager _manager = _instance.getFragmentManager();
+					int _count = _manager.getBackStackEntryCount();
+					if (_count != 0)
+						_manager.popBackStack();
+					else
+						_quotationId = "";
+					add_fragment(_instance, new Fragment_offer_auto_show(), true);
+					break;
+				case SAVE_SUCCESSFUL:
+					String _data = JsonUtil.get_string(_obj, "data", "0-0");
+					String[] _ids = _data.split("-");
+					Toast.makeText(_instance, "保存成功", Toast.LENGTH_SHORT).show();
+					Activity_offer_auto._data.set_quotationId(_ids[0]);
+					_quotationId = _ids[0];
+					break;
+				}
 			else
-				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
+				Toast.makeText(_instance, JsonUtil.get_string(_obj, "msg", "连接服务器失败。"), Toast.LENGTH_SHORT).show();
 		}
 		catch (JSONException e)
 		{
 			e.printStackTrace();
+			Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 		}
 	}
 

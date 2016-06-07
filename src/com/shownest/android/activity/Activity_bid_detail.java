@@ -73,21 +73,17 @@ public class Activity_bid_detail extends DEBUG_Activity
 		try
 		{
 			JSONObject _obj = new JSONObject(_str);
-			switch (_what)
-			{
-			case GET_SUCCESSFUL:
-				if (get_code(_obj))
+			if (get_code(_obj))
+				switch (_what)
 				{
+				case GET_SUCCESSFUL:
 					_data = new BidInfo(_obj.getJSONArray("data").getJSONObject(0));
 					_instance.setTitle(_data.get_areaName());
 					add_fragment(_instance, new Fragment_bid_detail(), false);
+					break;
 				}
-				else
-				{
-					Toast.makeText(_instance, JsonUtil.get_string(_obj, "msg", "获取信息失败。"), Toast.LENGTH_SHORT).show();
-				}
-				break;
-			}
+			else
+				Toast.makeText(_instance, JsonUtil.get_string(_obj, "msg", "连接服务器失败。"), Toast.LENGTH_SHORT).show();
 		}
 		catch (JSONException e)
 		{

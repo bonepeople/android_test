@@ -9,6 +9,7 @@ import com.shownest.android.fragment.Fragment_forget;
 import com.shownest.android.fragment.Fragment_forget_set;
 import com.shownest.android.thread.Thread_time;
 import com.shownest.android.utils.HttpUtil;
+import com.shownest.android.utils.JsonUtil;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -35,7 +36,6 @@ public class Activity_forget extends DEBUG_Activity
 	{
 		public void handleMessage(android.os.Message msg)
 		{
-			String _string_result = "";
 			switch (msg.what)
 			{
 			case CHECK_FAILED:
@@ -48,8 +48,7 @@ public class Activity_forget extends DEBUG_Activity
 			case SEND_SUCCESSFUL:
 			case NEXT_SUCCESSFUL:
 			case FORGET_SUCCESSFUL:
-				_string_result = (String) msg.obj;
-				handle_string(FORGET_SUCCESSFUL, _string_result);
+				handle_string(msg.what, (String) msg.obj);
 				break;
 			case BUTTON_CHANGE:
 				_fragment_forget.mobilcode_change();
@@ -66,7 +65,7 @@ public class Activity_forget extends DEBUG_Activity
 		_instance = this;
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 		setTitle("密码找回");
-		
+
 		_fragment_forget = new Fragment_forget();
 		add_fragment(this, _fragment_forget, false);
 		if (_timer != null)
@@ -74,47 +73,47 @@ public class Activity_forget extends DEBUG_Activity
 
 	}
 
-	private static void handle_string(int _message, String _str)
+	private static void handle_string(int _what, String _str)
 	{
 		handle_msg(_instance, _str);
 		try
 		{
 			JSONObject _obj = new JSONObject(_str);
-			String _result = _obj.getString("msg");
-
-			if (_result.equals("用户名已经存在"))
-			{
-				HttpUtil.send_mobilecode(_handler, _forget_phone, SEND_SUCCESSFUL, SEND_FAILED);
-			}
-			else if (_result.equals("手机验证码发送成功"))
-			{
-				_timer = new Thread_time(_handler, BUTTON_CHANGE, 61, 1);
-				_timer.start();
-				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
-			}
-			else if (_result.equals("验证成功"))
-			{
-				if (_message == NEXT_SUCCESSFUL)
+			if (get_code(_obj))
+				switch (_what)
 				{
+				case CHECK_SUCCESSFUL:
+					Toast.makeText(_instance, JsonUtil.get_string(_obj, "msg", "连接服务器失败。"), Toast.LENGTH_SHORT).show();
+					break;
+				case SEND_SUCCESSFUL:
+					_timer = new Thread_time(_handler, BUTTON_CHANGE, 61, 1);
+					_timer.start();
+					Toast.makeText(_instance, "手机验证码发送成功", Toast.LENGTH_SHORT).show();
+					break;
+				case NEXT_SUCCESSFUL:
 					Toast.makeText(_instance, "验证成功，设置密码", Toast.LENGTH_SHORT).show();
-
 					add_fragment(_instance, new Fragment_forget_set(), true);
-				}
-				else
-				{
+					break;
+				case FORGET_SUCCESSFUL:
 					Toast.makeText(_instance, "设置成功", Toast.LENGTH_SHORT).show();
 					_instance.finish();
+					break;
 				}
-			}
 			else
-				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
-
+				switch (_what)
+				{
+				case CHECK_SUCCESSFUL:
+					HttpUtil.send_mobilecode(_handler, _forget_phone, SEND_SUCCESSFUL, SEND_FAILED);
+					break;
+				default:
+					Toast.makeText(_instance, JsonUtil.get_string(_obj, "msg", "连接服务器失败。"), Toast.LENGTH_SHORT).show();
+				}
 		}
 		catch (JSONException e)
 		{
 			e.printStackTrace();
+			Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 		}
-
 	}
 
 	public static String get_forget_phone()

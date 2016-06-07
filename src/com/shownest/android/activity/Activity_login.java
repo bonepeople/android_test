@@ -8,6 +8,7 @@ import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_login;
 import com.shownest.android.model.UserInfo;
 import com.shownest.android.utils.HttpUtil;
+import com.shownest.android.utils.JsonUtil;
 import com.shownest.android.utils.UserManager;
 
 import android.content.Intent;
@@ -27,7 +28,6 @@ public class Activity_login extends DEBUG_Activity
 	{
 		public void handleMessage(android.os.Message msg)
 		{
-			String _string_result = "";
 			switch (msg.what)
 			{
 			case GET_FAILED:
@@ -37,8 +37,7 @@ public class Activity_login extends DEBUG_Activity
 				break;
 			case GET_SUCCESSFUL:
 			case LOGIN_SUCCESSFUL:
-				_string_result = (String) msg.obj;
-				handle_string(_string_result);
+				handle_string(msg.what, (String) msg.obj);
 			}
 		};
 	};
@@ -63,34 +62,37 @@ public class Activity_login extends DEBUG_Activity
 		startActivity(_regist);
 	}
 
-	private static void handle_string(String str)
+	private static void handle_string(int _what, String _str)
 	{
-		handle_msg(_instance, str);
+		handle_msg(_instance, _str);
 		try
 		{
-			JSONObject _obj = new JSONObject(str);
-			String _result = _obj.getString("msg");
-			if (_result.equals("用户登录成功"))
-			{
-				HttpUtil.get_userinfo(_handler, GET_SUCCESSFUL, GET_FAILED);
-			}
-			else if (_result.equals("登录用户基本资料"))
-			{
-				JSONObject _data = _obj.getJSONArray("data").getJSONObject(0);
-				UserManager.set_user_info(new UserInfo(_data));
-				Toast.makeText(_instance, "用户登录成功", Toast.LENGTH_SHORT).show();
-				_instance.close_wait();
-				_instance.finish();
-			}
+			JSONObject _obj = new JSONObject(_str);
+			if (get_code(_obj))
+				switch (_what)
+				{
+				case LOGIN_SUCCESSFUL:
+					HttpUtil.get_userinfo(_handler, GET_SUCCESSFUL, GET_FAILED);
+					break;
+				case GET_SUCCESSFUL:
+					JSONObject _data = _obj.getJSONArray("data").getJSONObject(0);
+					UserManager.set_user_info(new UserInfo(_data));
+					Toast.makeText(_instance, "用户登录成功", Toast.LENGTH_SHORT).show();
+					_instance.close_wait();
+					_instance.finish();
+					break;
+				}
 			else
 			{
-				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
+				Toast.makeText(_instance, JsonUtil.get_string(_obj, "msg", "连接服务器失败。"), Toast.LENGTH_SHORT).show();
 				_instance.close_wait();
 			}
 		}
 		catch (JSONException e)
 		{
 			e.printStackTrace();
+			Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
+			_instance.close_wait();
 		}
 	}
 

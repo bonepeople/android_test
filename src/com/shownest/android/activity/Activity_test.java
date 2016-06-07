@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_test;
-import com.shownest.android.model.UserInfo;
+import com.shownest.android.utils.JsonUtil;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,15 +22,13 @@ public class Activity_test extends DEBUG_Activity
 	{
 		public void handleMessage(android.os.Message msg)
 		{
-			String _string_result = "";
 			switch (msg.what)
 			{
 			case TEST_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 				break;
 			case TEST_SUCCESSFUL:
-				_string_result = (String) msg.obj;
-				handle_string(_string_result);
+				handle_string(msg.what, (String) msg.obj);
 			}
 		};
 	};
@@ -46,22 +44,26 @@ public class Activity_test extends DEBUG_Activity
 		add_fragment(this, new Fragment_test(), false);
 	}
 
-	private static void handle_string(String str)
+	private static void handle_string(int _what, String _str)
 	{
-		handle_msg(_instance, str);
+		handle_msg(_instance, _str);
 		try
 		{
-			JSONObject _obj = new JSONObject(str);
-			String _result = _obj.getString("msg");
-			Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
-
-			JSONObject _data = _obj.getJSONArray("data").getJSONObject(0);
-			UserInfo _info = new UserInfo(_data);
-			System.out.println(_info.toString());
+			JSONObject _obj = new JSONObject(_str);
+			if (get_code(_obj))
+				switch (_what)
+				{
+				case TEST_SUCCESSFUL:
+					Toast.makeText(_instance, JsonUtil.get_string(_obj, "msg", "连接服务器失败。"), Toast.LENGTH_SHORT).show();
+					break;
+				}
+			else
+				Toast.makeText(_instance, JsonUtil.get_string(_obj, "msg", "连接服务器失败。"), Toast.LENGTH_SHORT).show();
 		}
 		catch (JSONException e)
 		{
 			e.printStackTrace();
+			Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 		}
 	}
 
