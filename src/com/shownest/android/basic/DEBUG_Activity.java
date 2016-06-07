@@ -5,6 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.shownest.android.R;
 import com.shownest.android.fragment.Fragment_title;
 
@@ -132,6 +135,13 @@ public abstract class DEBUG_Activity extends Activity
 				}
 			}
 		}
+	}
+
+	protected static boolean get_code(JSONObject _obj) throws JSONException
+	{
+		int _code = 2;
+		_code = _obj.getInt("state");
+		return _code == 1 ? true : false;
 	}
 
 	public static void add_fragment(DEBUG_Activity _activity, DEBUG_Fragment _fragment, boolean _back)

@@ -8,6 +8,7 @@ import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_bid_detail;
 import com.shownest.android.model.BidInfo;
 import com.shownest.android.utils.HttpUtil;
+import com.shownest.android.utils.JsonUtil;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -28,15 +29,13 @@ public class Activity_bid_detail extends DEBUG_Activity
 	{
 		public void handleMessage(android.os.Message msg)
 		{
-			String _string_result = "";
 			switch (msg.what)
 			{
 			case GET_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 				break;
 			case GET_SUCCESSFUL:
-				_string_result = (String) msg.obj;
-				handle_string(_string_result);
+				handle_string(msg.what, (String) msg.obj);
 				break;
 			}
 			_instance.close_wait();
@@ -68,36 +67,32 @@ public class Activity_bid_detail extends DEBUG_Activity
 		}
 	}
 
-	private static void handle_string(String str)
+	private static void handle_string(int _what, String _str)
 	{
-		handle_msg(_instance, str);
-
+		handle_msg(_instance, _str);
 		try
 		{
-			JSONObject _obj = new JSONObject(str);
-			String _result = _obj.getString("msg");
-
-			if (_result.equals("单个标的应标人列表信息"))
+			JSONObject _obj = new JSONObject(_str);
+			switch (_what)
 			{
-				_data = new BidInfo(_obj.getJSONArray("data").getJSONObject(0));
-				_instance.setTitle(_data.get_areaName());
-				add_fragment(_instance, new Fragment_bid_detail(), false);
-			}
-			else if (_result.contains("要修改的项目不存在"))
-			{
-
-			}
-			else if (_result.contains("报价单对应的报价模板中"))
-			{
-			}
-			else
-			{
-				Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
+			case GET_SUCCESSFUL:
+				if (get_code(_obj))
+				{
+					_data = new BidInfo(_obj.getJSONArray("data").getJSONObject(0));
+					_instance.setTitle(_data.get_areaName());
+					add_fragment(_instance, new Fragment_bid_detail(), false);
+				}
+				else
+				{
+					Toast.makeText(_instance, JsonUtil.get_string(_obj, "msg", "获取信息失败。"), Toast.LENGTH_SHORT).show();
+				}
+				break;
 			}
 		}
 		catch (JSONException e)
 		{
 			e.printStackTrace();
+			Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 		}
 	}
 
