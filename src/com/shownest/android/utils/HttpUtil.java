@@ -1,7 +1,11 @@
 package com.shownest.android.utils;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -32,7 +36,22 @@ public class HttpUtil
 
 	// http://192.168.1.112:10000/shownest/html/test1.html
 	// http://192.168.1.112:10000/shownest/websubmitreg
+	/**
+	 * 上传图片
+	 */
+	public static void upload_image(Handler _handler, ContentValues _value, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "webuploadImgBase64";
+		String _message = "";
 
+		_message = values(_value);
+
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
+	}
+
+	/**
+	 * 获取招标详细信息
+	 */
 	public static void get_bid(Handler _handler, ContentValues _value, int _successful, int _failed)
 	{
 		String _address = BASEADDRESS + "/bid/webGetRespBid";
