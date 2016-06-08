@@ -35,8 +35,8 @@ public class CommonUtil
 	 */
 	public static String get_imageName()
 	{
-		// return String.valueOf(Hex.encodeHex(org.apache.commons.id.uuid.UUID.randomUUID().getRawBytes()));
-		return "test_2016-6-8";
+		return String.valueOf(Hex.encodeHex(org.apache.commons.id.uuid.UUID.randomUUID().getRawBytes()));
+		// return "test_2016-6-8_1";
 	}
 
 	/**
