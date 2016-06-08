@@ -27,7 +27,7 @@ public class HttpUtil
 {
 	private static boolean DEBUG = true;
 	private static String SESSION = null; // 定义一个静态的字段，保存sessionID
-	private static String BASEADDRESS = "http://t.shownest.com:86/";
+	public static String BASEADDRESS = "http://t.shownest.com:86/";
 	// private static String BASEADDRESS = "http://192.168.1.109:10000/shownest/";
 
 	// http://192.168.1.112:10000/shownest/html/test1.html

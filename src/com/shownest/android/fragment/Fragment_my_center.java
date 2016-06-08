@@ -6,6 +6,7 @@ import com.shownest.android.activity.Activity_basicinfo;
 import com.shownest.android.activity.Activity_select_role;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.UserInfo;
+import com.shownest.android.utils.CommonUtil;
 import com.shownest.android.utils.UserManager;
 
 import android.content.Intent;
@@ -50,8 +51,7 @@ public class Fragment_my_center extends DEBUG_Fragment implements View.OnClickLi
 		_number_bowen.setText(String.valueOf(_info.get_blogNum()));
 		_number_guanzhu.setText(String.valueOf(_info.get_bookNum()));
 		_number_xiuyou.setText(String.valueOf(_info.get_fansNum()));
-		String _url = "http://t.shownest.com:86/_resources/upload/headerIcon/" + _info.get_headerIcon();
-		_imageview_header.setImageUrl(_url);
+		_imageview_header.setImageUrl(CommonUtil.getUserHeaderIconUrl(_info.get_userType(), _info.get_headerIcon()));
 
 		switch (_info.get_userType())
 		{

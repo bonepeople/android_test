@@ -7,6 +7,7 @@ import com.shownest.android.activity.Activity_change_pwd;
 import com.shownest.android.activity.Activity_select_role;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.UserInfo;
+import com.shownest.android.utils.CommonUtil;
 import com.shownest.android.utils.UserManager;
 
 import android.app.AlertDialog;
@@ -53,8 +54,7 @@ public class Fragment_basicinfo extends DEBUG_Fragment implements View.OnClickLi
 		UserInfo _info = UserManager.get_user_info();
 		if (_info != null)
 		{
-			String _url = "http://t.shownest.com:86/_resources/upload/headerIcon/" + _info.get_headerIcon();
-			_imageview_header.setImageUrl(_url);
+			_imageview_header.setImageUrl(CommonUtil.getUserHeaderIconUrl(_info.get_userType(), _info.get_headerIcon()));
 			_name.setText(String.valueOf(_info.get_userName()));
 			_showname.setText(_info.get_userShowName());
 			_phone.setText(_info.get_userPhone());

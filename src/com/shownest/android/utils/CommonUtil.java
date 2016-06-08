@@ -241,6 +241,9 @@ public class CommonUtil
 		return star;
 	}
 
+	/**
+	 * 获取用户头像图片路径，根据不用的用户类别得到不同的路径
+	 */
 	public static String getUserHeaderIconUrl(int userType, String _headerIcon)
 	{
 
@@ -248,21 +251,22 @@ public class CommonUtil
 		switch (userType)
 		{
 		case 11:
-			headerIcon = SNConfig.HTTP + "_resources/upload/o/" + _headerIcon;
+			headerIcon = HttpUtil.BASEADDRESS + "_resources/upload/o_s/" + _headerIcon;
 			break;
 		case 12:
-			headerIcon = SNConfig.HTTP + "_resources/upload/d/" + _headerIcon;
+			headerIcon = HttpUtil.BASEADDRESS + "_resources/upload/d_s/" + _headerIcon;
 			break;
 		case 13:
-			headerIcon = SNConfig.HTTP + "_resources/upload/c/" + _headerIcon;
+			headerIcon = HttpUtil.BASEADDRESS + "_resources/upload/c_s/" + _headerIcon;
 			break;
 		case 14:
-			headerIcon = SNConfig.HTTP + "_resources/upload/s/" + _headerIcon;
+			headerIcon = HttpUtil.BASEADDRESS + "_resources/upload/s_s/" + _headerIcon;
 			break;
 		case 15:
-			headerIcon = SNConfig.HTTP + "_resources/upload/b/" + _headerIcon;
+			headerIcon = HttpUtil.BASEADDRESS + "_resources/upload/b_s/" + _headerIcon;
 			break;
 		default:
+			headerIcon = HttpUtil.BASEADDRESS + "_resources/upload/headerIcon/" + _headerIcon;
 			break;
 		}
 
