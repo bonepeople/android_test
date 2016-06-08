@@ -23,7 +23,6 @@ import android.provider.MediaStore;
 import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.GridLayout;
 import android.widget.ImageView;
@@ -35,6 +34,8 @@ import android.widget.Toast;
  * <p>
  * 该控件会获取屏幕宽度并计算出一行可以显示图片的个数。对于加载此控件的fragment需要将自身实例传递进来，控件会以fragment发出开启Activity的命令，
  * 使用此控件的fragment需要添加onActivityResult函数并调用控件内部的onActivityResult函数，其中106， 107为控件保留的两个返回值。
+ * <p>
+ * 目前该控件会以屏幕宽度为自己的最大宽度进行计算显示，请尽量将此控件放在足够宽的布局里
  * 
  * @param _name
  *            控件的标题
@@ -66,7 +67,7 @@ public class LinearLayout_picture extends LinearLayout implements View.OnClickLi
 	 * @param _addable
 	 *            是否可添加图片
 	 */
-	public LinearLayout_picture(Fragment _fragment, ViewGroup root, String _name, boolean _addable)
+	public LinearLayout_picture(Fragment _fragment, String _name, boolean _addable)
 	{
 		super(_fragment.getActivity());
 		this._fragment = _fragment;
