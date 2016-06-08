@@ -1,9 +1,18 @@
 package com.shownest.android.utils;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.util.Base64;
 
 /**
@@ -47,9 +56,69 @@ public class ImageUtil
 	 */
 	public static String bitmapToString(Bitmap _bitmap)
 	{
+		String _encode = "";
 		ByteArrayOutputStream _out_stream = new ByteArrayOutputStream();
-		_bitmap.compress(Bitmap.CompressFormat.JPEG, 40, _out_stream);// 40是压缩值，100为不压缩
+		_bitmap.compress(Bitmap.CompressFormat.PNG, 100, _out_stream);// 40是压缩值，100为不压缩
 		byte[] _byte = _out_stream.toByteArray();
-		return Base64.encodeToString(_byte, Base64.DEFAULT);
+		try
+		{
+			_encode = URLEncoder.encode(Base64.encodeToString(_byte, Base64.DEFAULT), "utf-8");
+		}
+		catch (UnsupportedEncodingException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return _encode;
+	}
+
+	@Deprecated
+	public static String bitmapToString(String _path)
+	{
+		String _encode = "";
+		try
+		{
+			File _file = new File(_path);
+			FileInputStream _fin = new FileInputStream(_file);
+			byte[] buffer = new byte[(int) _file.length()];
+			_fin.read(buffer);
+			_encode = Base64.encodeToString(buffer, Base64.DEFAULT);
+			_fin.close();
+		}
+		catch (FileNotFoundException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return _encode;
+	}
+
+	public void onDecodeClicked(String _str)
+	{
+		byte[] decode = Base64.decode(_str, Base64.DEFAULT);
+		Bitmap bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
+		// save to image on sdcard
+		saveBitmap(bitmap);
+	}
+
+	private void saveBitmap(Bitmap bitmap)
+	{
+		try
+		{
+			String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/shownest_cache/test_image.jpg";
+			OutputStream stream = new FileOutputStream(path);
+			bitmap.compress(Bitmap.CompressFormat.JPEG, 90, stream);
+			stream.close();
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
 }

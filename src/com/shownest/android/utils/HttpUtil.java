@@ -1,11 +1,7 @@
 package com.shownest.android.utils;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -36,6 +32,19 @@ public class HttpUtil
 
 	// http://192.168.1.112:10000/shownest/html/test1.html
 	// http://192.168.1.112:10000/shownest/websubmitreg
+	/**
+	 * 修改头像
+	 */
+	public static void set_headericon(Handler _handler, ContentValues _value, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "webSetHeaderIcon";
+		String _message = "";
+
+		_message = values(_value);
+
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
+	}
+
 	/**
 	 * 上传图片
 	 */
@@ -456,8 +465,8 @@ public class HttpUtil
 		{
 			_realUrl = new URL(_address);
 			_connection = (HttpURLConnection) _realUrl.openConnection();
-			_connection.setConnectTimeout(3000);
-			_connection.setReadTimeout(3000);
+			_connection.setConnectTimeout(30000);
+			_connection.setReadTimeout(30000);
 			_connection.setRequestMethod(_method);
 			if (_method.equals("POST"))
 			{

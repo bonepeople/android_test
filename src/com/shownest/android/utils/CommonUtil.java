@@ -35,7 +35,8 @@ public class CommonUtil
 	 */
 	public static String get_imageName()
 	{
-		return String.valueOf(Hex.encodeHex(org.apache.commons.id.uuid.UUID.randomUUID().getRawBytes()));
+		// return String.valueOf(Hex.encodeHex(org.apache.commons.id.uuid.UUID.randomUUID().getRawBytes()));
+		return "test_2016-6-8";
 	}
 
 	/**
@@ -205,12 +206,6 @@ public class CommonUtil
 		return new String(c);
 	}
 
-	public static String getUserHeaderIconName(String iconUrl)
-	{
-		String[] arr = iconUrl.split("/");
-		return arr[arr.length - 1];
-	}
-
 	/**
 	 * @Title: getRoleLevel @Description: 获取角色评分，转化成“星星”值 @param @param grade @param @return 设定文件 @return int 返回类型 @throws
 	 */
@@ -267,6 +262,38 @@ public class CommonUtil
 			break;
 		default:
 			headerIcon = HttpUtil.BASEADDRESS + "_resources/upload/headerIcon/" + _headerIcon;
+			break;
+		}
+
+		return headerIcon;
+	}
+
+	/**
+	 * 获取用户头像图片上传路径，根据不用的用户类别得到不同的路径
+	 */
+	public static String getUserHeaderIconUrl(int userType)
+	{
+
+		String headerIcon = "";
+		switch (userType)
+		{
+		case 11:
+			headerIcon = "o";
+			break;
+		case 12:
+			headerIcon = "d";
+			break;
+		case 13:
+			headerIcon = "c";
+			break;
+		case 14:
+			headerIcon = "s";
+			break;
+		case 15:
+			headerIcon = "b";
+			break;
+		default:
+			headerIcon = "headerIcon";
 			break;
 		}
 

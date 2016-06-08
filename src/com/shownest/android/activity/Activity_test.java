@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_test;
+import com.shownest.android.utils.CommonUtil;
 import com.shownest.android.utils.JsonUtil;
 
 import android.os.Bundle;
@@ -74,6 +75,8 @@ public class Activity_test extends DEBUG_Activity
 
 	public void test(View v)
 	{
+		String _name = CommonUtil.get_imageName() + ".jpg";
+		System.out.println(_name);
 		return;
 	}
 
