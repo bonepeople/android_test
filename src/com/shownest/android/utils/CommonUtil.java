@@ -1,10 +1,9 @@
 package com.shownest.android.utils;
 
 import java.util.ArrayList;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import org.apache.commons.id.Hex;
 
 /**
  * 通用工具类
@@ -32,11 +31,13 @@ public class CommonUtil
 
 	/**
 	 * 获取一个随机且不重复的32位字符串作为图片名称
+	 * <p>
+	 * 使用java系统自带的UUID类生成一个随机的ID，且重复的几率相当小
 	 */
 	public static String get_imageName()
 	{
-		return String.valueOf(Hex.encodeHex(org.apache.commons.id.uuid.UUID.randomUUID().getRawBytes()));
-		// return "test_2016-6-8_1";
+		UUID uuid = UUID.randomUUID();
+		return uuid.toString();
 	}
 
 	/**
