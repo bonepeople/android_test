@@ -257,7 +257,7 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 
 	}
 
-	public void setOnChangetListener(OnChangeListener _listener)
+	public void setOnChangeListener(OnChangeListener _listener)
 	{
 		_change_listener = _listener;
 	}

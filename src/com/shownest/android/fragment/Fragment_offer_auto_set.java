@@ -62,8 +62,8 @@ public class Fragment_offer_auto_set extends DEBUG_Fragment implements OnClickLi
 		_list = new Linearlayout_listview(getActivity(), _body, "areas", new String[] { "具体面积", "信息填写详细，会使您获得更精准的报价" }, _adapter);
 		_list.set_textcolor("hint", getResources().getColor(R.color.text_blue));
 		_list.set_dividerheight(1);
-		_area.setOnChangetListener(_adapter);
-		_house.setOnChangetListener(_adapter);
+		_area.setOnChangeListener(_adapter);
+		_house.setOnChangeListener(_adapter);
 
 		return _view;
 	}

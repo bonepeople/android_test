@@ -54,7 +54,7 @@ public class Fragment_setinfo_shejishi_step3 extends DEBUG_Fragment implements O
 		_id_number = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "身份证号", "" }, true);
 		_idcard = new LinearLayout_idcard(getActivity(), _body, "设计师身份证", this);
 
-		_type.setOnChangetListener(_idcard);
+		_type.setOnChangeListener(_idcard);
 		return _view;
 	}
 
