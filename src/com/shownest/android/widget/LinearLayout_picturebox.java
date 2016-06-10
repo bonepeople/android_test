@@ -42,7 +42,7 @@ import android.widget.Toast;
  * @param _addable
  *            是否可添加图片
  */
-public class LinearLayout_picture extends LinearLayout implements View.OnClickListener, View.OnLongClickListener
+public class LinearLayout_picturebox extends LinearLayout implements View.OnClickListener, View.OnLongClickListener
 {
 	public static final int IMAGE_CAMERA = 106;
 	public static final int IMAGE_SDCARD = 107;
@@ -67,7 +67,7 @@ public class LinearLayout_picture extends LinearLayout implements View.OnClickLi
 	 * @param _addable
 	 *            是否可添加图片
 	 */
-	public LinearLayout_picture(Fragment _fragment, String _name, boolean _addable)
+	public LinearLayout_picturebox(Fragment _fragment, String _name, boolean _addable)
 	{
 		super(_fragment.getActivity());
 		this._fragment = _fragment;
