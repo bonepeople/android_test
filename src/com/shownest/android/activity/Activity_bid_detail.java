@@ -52,9 +52,9 @@ public class Activity_bid_detail extends DEBUG_Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_basic);
+		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 		_instance = this;
 		_intent = getIntent();
-		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 		// setTitle("发布招标");
 
 		_bidID = _intent.getStringExtra("bidID");

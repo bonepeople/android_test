@@ -47,6 +47,19 @@ public class HttpUtil
 	}
 
 	/**
+	 * 获取房屋信息
+	 */
+	public static void get_houseinfo(Handler _handler, ContentValues _value, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "webHouseInfor";
+		String _message = "";
+
+		_message = values(_value);
+
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
+	}
+
+	/**
 	 * 修改头像
 	 */
 	public static void set_headericon(Handler _handler, ContentValues _value, int _successful, int _failed)
