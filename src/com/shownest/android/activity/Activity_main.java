@@ -106,6 +106,12 @@ public class Activity_main extends DEBUG_Activity
 		startActivity(intent);
 	}
 
+	public void addhouse(View v)
+	{
+		Intent intent = new Intent(this, Activity_addhouse.class);
+		startActivity(intent);
+	}
+
 	public void my_center(View v)
 	{
 		Intent intent = new Intent(this, Activity_my_center.class);

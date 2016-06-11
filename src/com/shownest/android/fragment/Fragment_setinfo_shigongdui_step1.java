@@ -19,13 +19,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements OnClickListener
+public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements View.OnClickListener
 {
 	private static final int REQUEST_PHONE = 1;
 	private LinearLayout _body;
