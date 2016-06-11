@@ -136,7 +136,6 @@ public class Fragment_addhouse extends DEBUG_Fragment implements View.OnClickLis
 			}
 			else
 			{
-				Toast.makeText(getActivity(), "提交数据", Toast.LENGTH_LONG).show();
 				ContentValues _value = new ContentValues();
 				_value.put("houseId", Activity_addhouse.get_houseId());
 				_value.put("houseName", _name.getData());
@@ -157,6 +156,7 @@ public class Fragment_addhouse extends DEBUG_Fragment implements View.OnClickLis
 				_value.put("kitchenAcreage", _adapter.get_acreage("kitchen"));
 				_value.put("toiletAcreage", _adapter.get_acreage("toilet"));
 				_value.put("balconyAcreage", _adapter.get_acreage("balcony"));
+				_value.put("floors", _floor_current.getData() + "/" + _floor_all.getData());
 
 				Activity_addhouse.get_instance().show_wait();
 				HttpUtil.add_house(Activity_addhouse._handler, _value, Activity_addhouse.ADD_SUCCESSFUL, Activity_addhouse.ADD_FAILED);

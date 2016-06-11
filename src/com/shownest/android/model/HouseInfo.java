@@ -120,6 +120,11 @@ public class HouseInfo
 		this._houseType = _houseType;
 	}
 
+	public String get_nums()
+	{
+		return _roomNum + "," + _parlourNum + "," + _kitchenNum + "," + _toiletNum + "," + _balconyNum;
+	}
+
 	public int get_roomNum()
 	{
 		return _roomNum;
@@ -168,6 +173,11 @@ public class HouseInfo
 	public void set_balconyNum(int _balconyNum)
 	{
 		this._balconyNum = _balconyNum;
+	}
+
+	public String get_allAcreage()
+	{
+		return get_roomAcreage() + "," + get_parlourAcreage() + "," + get_kitchenAcreage() + "," + get_toiletAcreage() + "," + get_balconyAcreage();
 	}
 
 	public String get_roomAcreage()

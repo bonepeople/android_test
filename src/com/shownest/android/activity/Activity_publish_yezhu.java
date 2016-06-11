@@ -90,6 +90,13 @@ public class Activity_publish_yezhu extends DEBUG_Activity
 						HouseInfo _temp_house = new HouseInfo(_array.getJSONObject(_temp_i));
 						_house.add(_temp_house);
 					}
+					if (_house.size() == 0)
+					{
+						Toast.makeText(_instance, "您还没有房屋，请先创建一个房屋", Toast.LENGTH_SHORT).show();
+						Intent _add = new Intent(_instance, Activity_addhouse.class);
+						_instance.startActivity(_add);
+						_instance.finish();
+					}
 					add_fragment(_instance, new Fragment_publish_yezhu(), false);
 					break;
 				}

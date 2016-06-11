@@ -44,6 +44,9 @@ public class Adapter_rooms_area extends BaseAdapter implements View.OnClickListe
 		construct(1, 1, 1, 1, 1);
 	}
 
+	/**
+	 * 初始化所有面积，在总面积变化之后调用
+	 */
 	private void construct()
 	{
 		int _temp_i;
@@ -53,6 +56,9 @@ public class Adapter_rooms_area extends BaseAdapter implements View.OnClickListe
 		}
 	}
 
+	/**
+	 * 初始化所有面积，在房间数发生变化之后调用
+	 */
 	private void construct(int _room, int _parlour, int _kitchen, int _toilet, int _balcony)
 	{
 		_areas.clear();
@@ -180,6 +186,13 @@ public class Adapter_rooms_area extends BaseAdapter implements View.OnClickListe
 		return _result;
 	}
 
+	/**
+	 * 获取某类房间的面积
+	 * 
+	 * @param _name
+	 *            room,parlour,kitchen,toilet,balcony
+	 * @return 11.2,11.2
+	 */
 	public String get_acreage(String _name)
 	{
 		StringBuilder _builder = new StringBuilder();
@@ -193,6 +206,22 @@ public class Adapter_rooms_area extends BaseAdapter implements View.OnClickListe
 		}
 		_builder.deleteCharAt(_builder.length() - 1);
 		return _builder.toString();
+	}
+
+	/**
+	 * 设置某类房间的面积
+	 * 
+	 * @param _acreage
+	 *            10,5.3,20.6,11,11,11,23,51
+	 */
+	public void set_acreage(String _acreage)
+	{
+		String[] _area = _acreage.split(",");
+		for (int _temp_i = 0; _temp_i < _areas.size() && _temp_i < _area.length; _temp_i++)
+		{
+			_areas.get(_temp_i)._data1 = Double.valueOf(_area[_temp_i]);
+		}
+		notifyDataSetChanged();
 	}
 
 	public float get_totla_acreage()
