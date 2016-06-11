@@ -42,8 +42,8 @@ public class Fragment_login extends DEBUG_Fragment
 			@Override
 			public void onClick(View v)
 			{
-				_edittext_username.setText("15901515556");
-				_edittext_password.setText("jiangsi8878");
+				_edittext_username.setText("15210196421");
+				_edittext_password.setText("123456");
 			}
 		});
 		_shigongdui.setOnClickListener(new OnClickListener()
