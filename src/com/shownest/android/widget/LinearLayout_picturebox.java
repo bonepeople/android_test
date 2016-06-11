@@ -128,22 +128,7 @@ public class LinearLayout_picturebox extends LinearLayout implements View.OnClic
 			else if (requestCode == IMAGE_CAMERA)
 			{
 				add_image(_image_uri);
-				// Bitmap bmap = data.getParcelableExtra("data");
-				// add_image(bmap);
-				// return;
 			}
-			// Intent intent = new Intent();
-			//
-			// intent.setAction("com.android.camera.action.CROP");
-			// intent.setDataAndType(_image_uri, "image/*");// mUri是已经选择的图片Uri
-			// intent.putExtra("crop", "true");
-			// intent.putExtra("aspectX", 1);// 裁剪框比例
-			// intent.putExtra("aspectY", 1);
-			// intent.putExtra("outputX", 150);// 输出图片大小
-			// intent.putExtra("outputY", 150);
-			// intent.putExtra("return-data", true);
-			//
-			// startActivityForResult(intent, 200);
 		}
 	}
 

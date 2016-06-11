@@ -1,7 +1,14 @@
 package com.shownest.android.fragment;
 
 import com.shownest.android.R;
+import com.shownest.android.activity.Activity_location;
+import com.shownest.android.adapter.Adapter_offer_auto;
 import com.shownest.android.basic.DEBUG_Fragment;
+import com.shownest.android.model.OnChangeListener;
+import com.shownest.android.widget.AlertDialog_rooms;
+import com.shownest.android.widget.LinearLayout_checkbox;
+import com.shownest.android.widget.LinearLayout_picturebox;
+import com.shownest.android.widget.Linearlayout_listview;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 
 import android.content.Intent;
@@ -13,12 +20,17 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-public class Fragment_addhouse extends DEBUG_Fragment implements View.OnClickListener
+public class Fragment_addhouse extends DEBUG_Fragment implements View.OnClickListener, OnChangeListener
 {
 	private static final int REQUEST_LOCATION = 1;
 	private LinearLayout _body;
 	private Button _button_commit;
-	private RelativeLayout_edit_informationbar _name, _location, _areas, _sex;
+	private RelativeLayout_edit_informationbar _name, _location, _address, _areas, _house, _floor_all, _floor_current;
+	private LinearLayout_checkbox _state, _type;
+	private LinearLayout_picturebox _img;
+	private Adapter_offer_auto _adapter;
+	private Linearlayout_listview _list;
+	private int cityId = 0, provinceId = 0, countyId = 0;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -30,33 +42,56 @@ public class Fragment_addhouse extends DEBUG_Fragment implements View.OnClickLis
 		_button_commit.setText("保存");
 		_button_commit.setOnClickListener(this);
 
+		_name = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "小区名称", "" }, true);
+		_location = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "所在区域", "" }, true, this);
+		_address = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "完善地址", "" }, true);
+		_areas = new RelativeLayout_edit_informationbar(getActivity(), _body, 7, new String[] { "建筑面积", "0.0", "平米" }, true);
+		_house = new RelativeLayout_edit_informationbar(getActivity(), _body, 4, new String[] { "户型结构", "1,1,1,1,1" }, true, this);
+		_state = new LinearLayout_checkbox(getActivity(), "房屋状态", new String[] { "毛坯新房", "二手旧房" }, 1, "1");
+		_body.addView(_state);
+		_type = new LinearLayout_checkbox(getActivity(), "房屋类型", new String[] { "平层住宅", "复试住宅", "别墅", "商业" }, 1, "1");
+		_body.addView(_type);
+		_floor_current = new RelativeLayout_edit_informationbar(getActivity(), _body, 3, new String[] { "所在楼层", "1", "层" }, true);
+		_floor_all = new RelativeLayout_edit_informationbar(getActivity(), _body, 3, new String[] { "总楼层", "1", "层" }, true);
+		_img = new LinearLayout_picturebox(this, "户型图(选填)", true);
+		_body.addView(_img);
+
+		_adapter = new Adapter_offer_auto(getActivity());
+		_list = new Linearlayout_listview(getActivity(), _body, "areas", new String[] { "具体面积", "信息详细，报价准确" }, _adapter);
+		_list.set_textcolor("hint", getResources().getColor(R.color.main_color));
+		_list.set_dividerheight(1);
+		_areas.setOnChangeListener(_adapter);
+		_house.setOnChangeListener(_adapter);
+
 		return _view;
 	}
 
 	@Override
 	public void setContent()
 	{
+
 	}
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
+		_img.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == -1)
 		{
+			cityId = data.getIntExtra("cityId", 0);
+			System.out.println("cityId=" + cityId);
+
+			provinceId = data.getIntExtra("provinceId", 0);
+			System.out.println("provinceId=" + provinceId);
+
+			countyId = data.getIntExtra("countyId", 0);
+			System.out.println("countyId=" + countyId);
+
 			switch (requestCode)
 			{
 			case REQUEST_LOCATION:
-				try
-				{
-					String _result = data.getStringExtra("phone");
-					// _phone.setData(new String[] { CommonUtil.showPhone(_result) });
-				}
-				catch (Exception e)
-				{
-					Toast.makeText(getActivity(), "返回异常", Toast.LENGTH_SHORT).show();
-					e.printStackTrace();
-				}
-				break;
+				String serviceRegion = String.valueOf(provinceId) + "," + String.valueOf(cityId) + "," + String.valueOf(countyId);
+				_location.setData(new String[] { serviceRegion });
 			}
 		}
 		else
@@ -67,7 +102,58 @@ public class Fragment_addhouse extends DEBUG_Fragment implements View.OnClickLis
 	public void onClick(View v)
 	{
 		// TODO Auto-generated method stub
+		int _id = v.getId();
+		if (_id == _button_commit.getId())
+		{
+			float _total = _adapter.get_totla_acreage();
 
+			if (_name.getData().isEmpty())
+			{
+				Toast.makeText(getActivity(), "小区名称不能为空", Toast.LENGTH_SHORT).show();
+			}
+			else if (_location.getData().isEmpty())
+			{
+				Toast.makeText(getActivity(), "请选择所在区域", Toast.LENGTH_SHORT).show();
+			}
+			else if (_address.getData().isEmpty())
+			{
+				Toast.makeText(getActivity(), "请填写详细地址", Toast.LENGTH_SHORT).show();
+			}
+			else if (_areas.getData().equals("0.0"))
+			{
+				Toast.makeText(getActivity(), "请输入房屋的建筑面积", Toast.LENGTH_SHORT).show();
+			}
+			else if (_total > Float.parseFloat(_areas.getData()) + 1)
+			{
+				Toast.makeText(getActivity(), "输入的具体面积总和不应大于建筑面积", Toast.LENGTH_LONG).show();
+			}
+			else if (Integer.parseInt(_floor_current.getData()) > Integer.parseInt(_floor_all.getData()))
+			{
+				Toast.makeText(getActivity(), "输入的楼层不正确", Toast.LENGTH_LONG).show();
+			}
+			else
+			{
+				Toast.makeText(getActivity(), "提交数据", Toast.LENGTH_LONG).show();
+			}
+		}
+		else if (_id == _house.get_id())
+		{
+			new AlertDialog_rooms(getActivity(), _house.getData(), this);
+		}
+		else if (_id == _location.get_id())
+		{
+			Intent _location = new Intent(getActivity(), Activity_location.class);
+			startActivityForResult(_location, REQUEST_LOCATION);
+		}
+	}
+
+	@Override
+	public void onChange(String tag, String[] args)
+	{
+		if (tag.equals("house"))
+		{
+			_house.setData(new String[] { args[0] });
+		}
 	}
 
 }
