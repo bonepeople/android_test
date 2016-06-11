@@ -48,6 +48,7 @@ public class Activity_forget extends DEBUG_Activity
 			case NEXT_FAILED:
 			case FORGET_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
+				_instance.close_wait();
 				break;
 			case CHECK_SUCCESSFUL:
 			case SEND_SUCCESSFUL:
@@ -58,7 +59,6 @@ public class Activity_forget extends DEBUG_Activity
 			case BUTTON_CHANGE:
 				_fragment_forget.mobilcode_change();
 			}
-			_instance.close_wait();
 		};
 	};
 
@@ -85,6 +85,7 @@ public class Activity_forget extends DEBUG_Activity
 		{
 			JSONObject _obj = new JSONObject(_str);
 			if (get_code(_obj))
+			{
 				switch (_what)
 				{
 				case CHECK_SUCCESSFUL:
@@ -104,6 +105,8 @@ public class Activity_forget extends DEBUG_Activity
 					_instance.finish();
 					break;
 				}
+				_instance.close_wait();
+			}
 			else
 				switch (_what)
 				{

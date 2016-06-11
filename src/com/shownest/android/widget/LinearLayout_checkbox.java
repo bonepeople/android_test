@@ -159,6 +159,9 @@ public class LinearLayout_checkbox extends LinearLayout implements View.OnClickL
 		return false;
 	}
 
+	/**
+	 * 获取数据：1，2，5
+	 */
 	public String getData()
 	{
 		StringBuilder _string = new StringBuilder();

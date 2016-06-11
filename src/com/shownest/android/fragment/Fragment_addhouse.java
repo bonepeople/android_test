@@ -1,16 +1,19 @@
 package com.shownest.android.fragment;
 
 import com.shownest.android.R;
+import com.shownest.android.activity.Activity_addhouse;
 import com.shownest.android.activity.Activity_location;
 import com.shownest.android.adapter.Adapter_rooms_area;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.OnChangeListener;
+import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.widget.AlertDialog_rooms;
 import com.shownest.android.widget.LinearLayout_checkbox;
 import com.shownest.android.widget.LinearLayout_picturebox;
 import com.shownest.android.widget.Linearlayout_listview;
 import com.shownest.android.widget.RelativeLayout_edit_informationbar;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -30,7 +33,7 @@ public class Fragment_addhouse extends DEBUG_Fragment implements View.OnClickLis
 	private LinearLayout_picturebox _img;
 	private Adapter_rooms_area _adapter;
 	private Linearlayout_listview _list;
-	private int cityId = 0, provinceId = 0, countyId = 0;
+	private int _cityId = 0, _provinceId = 0, _countyId = 0;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -78,19 +81,19 @@ public class Fragment_addhouse extends DEBUG_Fragment implements View.OnClickLis
 		_img.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == -1)
 		{
-			cityId = data.getIntExtra("cityId", 0);
-			System.out.println("cityId=" + cityId);
+			_cityId = data.getIntExtra("cityId", 0);
+			System.out.println("cityId=" + _cityId);
 
-			provinceId = data.getIntExtra("provinceId", 0);
-			System.out.println("provinceId=" + provinceId);
+			_provinceId = data.getIntExtra("provinceId", 0);
+			System.out.println("provinceId=" + _provinceId);
 
-			countyId = data.getIntExtra("countyId", 0);
-			System.out.println("countyId=" + countyId);
+			_countyId = data.getIntExtra("countyId", 0);
+			System.out.println("countyId=" + _countyId);
 
 			switch (requestCode)
 			{
 			case REQUEST_LOCATION:
-				String serviceRegion = String.valueOf(provinceId) + "," + String.valueOf(cityId) + "," + String.valueOf(countyId);
+				String serviceRegion = String.valueOf(_provinceId) + "," + String.valueOf(_cityId) + "," + String.valueOf(_countyId);
 				_location.setData(new String[] { serviceRegion });
 			}
 		}
@@ -134,6 +137,29 @@ public class Fragment_addhouse extends DEBUG_Fragment implements View.OnClickLis
 			else
 			{
 				Toast.makeText(getActivity(), "提交数据", Toast.LENGTH_LONG).show();
+				ContentValues _value = new ContentValues();
+				_value.put("houseId", Activity_addhouse.get_houseId());
+				_value.put("houseName", _name.getData());
+				_value.put("houseType", _type.getData());
+				_value.put("houseState", _state.getData());
+				_value.put("provinceId", _provinceId);
+				_value.put("cityId", _cityId);
+				_value.put("countyId", _countyId);
+				_value.put("homeAddress", _address.getData());
+				_value.put("homeSq", _areas.getData());
+				_value.put("roomNum", _adapter.get_number("room"));
+				_value.put("parlourNum", _adapter.get_number("parlour"));
+				_value.put("kitchenNum", _adapter.get_number("kitchen"));
+				_value.put("toiletNum", _adapter.get_number("toilet"));
+				_value.put("balconyNum", _adapter.get_number("balcony"));
+				_value.put("roomAcreage", _adapter.get_acreage("room"));
+				_value.put("parlourAcreage", _adapter.get_acreage("parlour"));
+				_value.put("kitchenAcreage", _adapter.get_acreage("kitchen"));
+				_value.put("toiletAcreage", _adapter.get_acreage("toilet"));
+				_value.put("balconyAcreage", _adapter.get_acreage("balcony"));
+
+				Activity_addhouse.get_instance().show_wait();
+				HttpUtil.add_house(Activity_addhouse._handler, _value, Activity_addhouse.ADD_SUCCESSFUL, Activity_addhouse.ADD_FAILED);
 			}
 		}
 		else if (_id == _house.get_id())
