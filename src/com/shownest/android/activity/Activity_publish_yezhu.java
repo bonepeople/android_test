@@ -8,7 +8,7 @@ import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
-import com.shownest.android.fragment.Fragment_publish_yezhu;
+import com.shownest.android.fragment.Fragment_publish_yezhu_setp1;
 import com.shownest.android.model.HouseInfo;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.JsonUtil;
@@ -97,7 +97,7 @@ public class Activity_publish_yezhu extends DEBUG_Activity
 						_instance.startActivity(_add);
 						_instance.finish();
 					}
-					add_fragment(_instance, new Fragment_publish_yezhu(), false);
+					add_fragment(_instance, new Fragment_publish_yezhu_setp1(), false);
 					break;
 				}
 			else

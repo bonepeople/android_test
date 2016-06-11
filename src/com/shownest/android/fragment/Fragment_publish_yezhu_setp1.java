@@ -26,7 +26,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-public class Fragment_publish_yezhu extends DEBUG_Fragment implements OnClickListener, OnChangeListener
+public class Fragment_publish_yezhu_setp1 extends DEBUG_Fragment implements OnClickListener, OnChangeListener
 {
 	private static final int REQUEST_LOCATION = 1;
 	private LinearLayout _body;
