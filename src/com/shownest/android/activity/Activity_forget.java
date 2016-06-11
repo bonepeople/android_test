@@ -67,8 +67,8 @@ public class Activity_forget extends DEBUG_Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_basic);
-		_instance = this;
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
+		_instance = this;
 		setTitle("密码找回");
 
 		_fragment_forget = new Fragment_forget();

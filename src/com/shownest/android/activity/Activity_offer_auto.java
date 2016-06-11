@@ -54,8 +54,8 @@ public class Activity_offer_auto extends DEBUG_Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_basic);
-		_instance = this;
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
+		_instance = this;
 		setTitle("智能报价");
 
 		add_fragment(this, new Fragment_offer_auto_set(), false);

@@ -60,8 +60,8 @@ public class Activity_regist extends DEBUG_Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_basic);
-		_instance = this;
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
+		_instance = this;
 		setTitle("加入秀巢网");
 
 		_fragment_regist = new Fragment_regist();

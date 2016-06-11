@@ -60,9 +60,9 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_basic);
+		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 		_instance = this;
 		_intent = getIntent();
-		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 
 		_room = _intent.getStringExtra("room");
 		_quotationId = _intent.getStringExtra("quotationId");

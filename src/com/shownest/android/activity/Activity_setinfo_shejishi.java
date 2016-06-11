@@ -58,10 +58,10 @@ public class Activity_setinfo_shejishi extends DEBUG_Activity implements OnChang
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_page);
-		_instance = this;
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
-		setTitle("身份认证");
 		_subtitle = (Linearlayout_subtitle) findViewById(R.id.linearlayout_subtitle);
+		_instance = this;
+		setTitle("身份认证");
 
 		_subtitle.setOnChangeListener(this);
 		_array_fragment.add(null);

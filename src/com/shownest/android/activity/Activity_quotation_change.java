@@ -64,9 +64,10 @@ public class Activity_quotation_change extends DEBUG_Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_basic);
+		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 		_instance = this;
 		_intent = getIntent();
-		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
+		
 
 		_data = Activity_quotation_detail.get_data();
 		if (_data != null)

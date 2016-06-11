@@ -52,8 +52,8 @@ public class Activity_login extends DEBUG_Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_basic);
-		_instance = this;
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
+		_instance = this;
 		setTitle("登录");
 		setMenu("注册");
 

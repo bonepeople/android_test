@@ -93,6 +93,7 @@ public class Fragment_select_role extends DEBUG_Fragment implements View.OnClick
 			break;
 		case R.id.button_commit:
 			_dialog.dismiss();
+			Activity_select_role.get_instance().show_wait();
 			HttpUtil.set_UserType(Activity_select_role._handler, _role_code, Activity_select_role.CHANGE_SUCCESSFUL, Activity_select_role.CHANGE_FAILED);
 			break;
 		case R.id.button_cancel:

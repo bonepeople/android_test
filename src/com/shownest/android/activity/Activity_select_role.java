@@ -11,6 +11,7 @@ import com.shownest.android.utils.JsonUtil;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 /**
@@ -36,6 +37,7 @@ public class Activity_select_role extends DEBUG_Activity
 			case CHANGE_SUCCESSFUL:
 				handle_string(msg.what, (String) msg.obj);
 			}
+			_instance.close_wait();
 		};
 	};
 
@@ -44,6 +46,7 @@ public class Activity_select_role extends DEBUG_Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_basic);
+		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 		_instance = this;
 		setTitle("选择身份类型");
 

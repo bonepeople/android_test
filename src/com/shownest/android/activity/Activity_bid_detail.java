@@ -55,7 +55,6 @@ public class Activity_bid_detail extends DEBUG_Activity
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 		_instance = this;
 		_intent = getIntent();
-		// setTitle("发布招标");
 
 		_bidID = _intent.getStringExtra("bidID");
 		if (!_bidID.equals(""))

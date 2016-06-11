@@ -47,8 +47,8 @@ public class Activity_publish extends DEBUG_Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_basic);
-		_instance = this;
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
+		_instance = this;
 		setTitle("发布招标");
 
 		add_fragment(this, new Fragment_publish(), false);
