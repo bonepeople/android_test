@@ -129,7 +129,7 @@ public class Fragment_publish_yezhu_setp1 extends DEBUG_Fragment implements OnCl
 		int _id = v.getId();
 		if (_id == R.id.button_commit)
 		{
-			Toast.makeText(getActivity(), "next", Toast.LENGTH_SHORT).show();
+			Activity_publish_yezhu.add_fragment(Activity_publish_yezhu.get_instance(), new Fragment_publish_yezhu_setp2(), true);
 		}
 		else if (_id == _name.get_id())
 		{
