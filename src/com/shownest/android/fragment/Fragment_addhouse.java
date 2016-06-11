@@ -2,7 +2,7 @@ package com.shownest.android.fragment;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_location;
-import com.shownest.android.adapter.Adapter_offer_auto;
+import com.shownest.android.adapter.Adapter_rooms_area;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.OnChangeListener;
 import com.shownest.android.widget.AlertDialog_rooms;
@@ -28,7 +28,7 @@ public class Fragment_addhouse extends DEBUG_Fragment implements View.OnClickLis
 	private RelativeLayout_edit_informationbar _name, _location, _address, _areas, _house, _floor_all, _floor_current;
 	private LinearLayout_checkbox _state, _type;
 	private LinearLayout_picturebox _img;
-	private Adapter_offer_auto _adapter;
+	private Adapter_rooms_area _adapter;
 	private Linearlayout_listview _list;
 	private int cityId = 0, provinceId = 0, countyId = 0;
 
@@ -56,7 +56,7 @@ public class Fragment_addhouse extends DEBUG_Fragment implements View.OnClickLis
 		_img = new LinearLayout_picturebox(this, "户型图(选填)", true);
 		_body.addView(_img);
 
-		_adapter = new Adapter_offer_auto(getActivity());
+		_adapter = new Adapter_rooms_area(getActivity());
 		_list = new Linearlayout_listview(getActivity(), _body, "areas", new String[] { "具体面积", "信息详细，报价准确" }, _adapter);
 		_list.set_textcolor("hint", getResources().getColor(R.color.main_color));
 		_list.set_dividerheight(1);

@@ -3,7 +3,7 @@ package com.shownest.android.fragment;
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_location;
 import com.shownest.android.activity.Activity_offer_auto;
-import com.shownest.android.adapter.Adapter_offer_auto;
+import com.shownest.android.adapter.Adapter_rooms_area;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.OnChangeListener;
 import com.shownest.android.utils.HttpUtil;
@@ -30,7 +30,7 @@ public class Fragment_offer_auto_set extends DEBUG_Fragment implements OnClickLi
 	private Button _button_commit;
 	private LinearLayout_checkbox _state, _type, _mode;
 	private RelativeLayout_edit_informationbar _name, _region, _area, _house;
-	private Adapter_offer_auto _adapter;
+	private Adapter_rooms_area _adapter;
 	private Linearlayout_listview _list;
 	private int cityId = 0, provinceId = 0, countyId = 0;
 	private String serviceRegion = "";
@@ -55,7 +55,7 @@ public class Fragment_offer_auto_set extends DEBUG_Fragment implements OnClickLi
 		_body.addView(_mode);
 		_area = new RelativeLayout_edit_informationbar(getActivity(), _body, 7, new String[] { "建筑面积", "0.0", " m²" }, true);
 		_house = new RelativeLayout_edit_informationbar(getActivity(), _body, 4, new String[] { "户型结构", "1,1,1,1,1" }, true, this);
-		_adapter = new Adapter_offer_auto(getActivity());
+		_adapter = new Adapter_rooms_area(getActivity());
 		_list = new Linearlayout_listview(getActivity(), _body, "areas", new String[] { "具体面积", "信息填写详细，会使您获得更精准的报价" }, _adapter);
 		_list.set_textcolor("hint", getResources().getColor(R.color.text_blue));
 		_list.set_dividerheight(1);

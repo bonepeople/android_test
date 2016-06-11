@@ -19,7 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListener, OnChangeListener
+public class Adapter_rooms_area extends BaseAdapter implements View.OnClickListener, OnChangeListener
 {
 	private Context _context;
 	private LayoutInflater _inflater;
@@ -37,7 +37,7 @@ public class Adapter_offer_auto extends BaseAdapter implements View.OnClickListe
 		public TextView _text_right;
 	}
 
-	public Adapter_offer_auto(Context _context)
+	public Adapter_rooms_area(Context _context)
 	{
 		this._context = _context;
 		_inflater = LayoutInflater.from(_context);
