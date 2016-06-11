@@ -203,7 +203,7 @@ public class Fragment_basicinfo extends DEBUG_Fragment implements View.OnClickLi
 			File _file;
 			if (_file_dir.mkdirs() || _file_dir.isDirectory())
 			{
-				String _name = CommonUtil.get_imageName() + ".jpg";
+				String _name = CommonUtil.get_imageName() + ".png";
 				Activity_basicinfo.set_image_name(_name);
 				_file = new File(_file_dir, _name);
 				_image_uri = Uri.fromFile(_file);
