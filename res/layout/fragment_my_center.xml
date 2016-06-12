@@ -147,13 +147,259 @@
         android:drawableRight="@drawable/clickable_flag_dark"
         android:gravity="center_vertical"
         android:padding="5dp"
-        android:visibility="gone"
-        android:text="选择身份，享受更多功能" />
+        android:text="选择身份，享受更多功能"
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/linearlayout_center_line1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <RelativeLayout
+                android:id="@+id/item_bid"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="15dp" >
+
+                <ImageView
+                    android:id="@+id/imageview_bid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/icon_zhaobiao" />
+
+                <TextView
+                    android:id="@+id/textview_name_bid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/imageview_bid"
+                    android:layout_toRightOf="@id/imageview_bid"
+                    android:text="我的招标"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textview_comment_bid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/imageview_bid"
+                    android:text="查看您的招标信息，建立托管协议"
+                    android:textColor="@color/text_gray"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/background_main" />
+
+            <RelativeLayout
+                android:id="@+id/item_offer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="15dp" >
+
+                <ImageView
+                    android:id="@+id/imageview_offer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/icon_yuebiao" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/imageview_offer"
+                    android:layout_toRightOf="@id/imageview_offer"
+                    android:text="我的约标"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textview_comment_offer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/imageview_offer"
+                    android:text="查看您发起的预约"
+                    android:textColor="@color/text_gray"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_center_line2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <RelativeLayout
+                android:id="@+id/item_zhuangxiu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="15dp" >
+
+                <ImageView
+                    android:id="@+id/imageview_zhuangxiu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/icon_zhuangxiu" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/imageview_zhuangxiu"
+                    android:layout_toRightOf="@id/imageview_zhuangxiu"
+                    android:text="我的装修"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/imageview_zhuangxiu"
+                    android:text="查看我的房屋装修进度，上传照片"
+                    android:textColor="@color/text_gray"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/background_main" />
+
+            <RelativeLayout
+                android:id="@+id/item_fangwu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="15dp" >
+
+                <ImageView
+                    android:id="@+id/imageview_fangwu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/icon_fangwu" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/imageview_fangwu"
+                    android:layout_toRightOf="@id/imageview_fangwu"
+                    android:text="房屋信息"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/imageview_fangwu"
+                    android:text="增加或修改我的房屋资料，可用于招标或约标"
+                    android:textColor="@color/text_gray"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_center_line3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <RelativeLayout
+                android:id="@+id/item_baojia"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="15dp" >
+
+                <ImageView
+                    android:id="@+id/imageview_baojia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/icon_baojia" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/imageview_baojia"
+                    android:layout_toRightOf="@id/imageview_baojia"
+                    android:text="报价模板"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/imageview_baojia"
+                    android:text="设置您的报价模板，可用于投标和邀约"
+                    android:textColor="@color/text_gray"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/background_main" />
+
+            <RelativeLayout
+                android:id="@+id/item_gongdi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="15dp" >
+
+                <ImageView
+                    android:id="@+id/imageview_gongdi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/icon_gongdi" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/imageview_gongdi"
+                    android:layout_toRightOf="@id/imageview_gongdi"
+                    android:text="我的工地"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/imageview_gongdi"
+                    android:text="订单工地照片上传，或自主建立工地"
+                    android:textColor="@color/text_gray"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -174,7 +420,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_margin="5dp"
-                    android:src="@drawable/passwords_seled" />
+                    android:src="@drawable/icon_ziliao" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -213,7 +459,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_margin="5dp"
-                    android:src="@drawable/passwords_seled" />
+                    android:src="@drawable/icon_qianbao" />
 
                 <TextView
                     android:layout_width="wrap_content"
