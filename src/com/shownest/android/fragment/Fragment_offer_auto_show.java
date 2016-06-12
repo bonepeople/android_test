@@ -14,7 +14,7 @@ import com.shownest.android.model.UserInfo;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.NumberUtil;
 import com.shownest.android.utils.UserManager;
-import com.shownest.android.widget.RelativeLayout_edit_informationbar;
+import com.shownest.android.widget.InformationBar;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -54,8 +54,8 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 		OfferBill _data = Activity_offer_auto.get_data();
 		if (_data != null)
 		{
-			RelativeLayout_edit_informationbar _temp_bar;
-			_temp_bar = new RelativeLayout_edit_informationbar(getActivity(), _body, 3, new String[] { "总报价", String.valueOf(_data.get_allTotal()), " 元" }, false);
+			InformationBar _temp_bar;
+			_temp_bar = new InformationBar(getActivity(), _body, 3, new String[] { "总报价", String.valueOf(_data.get_allTotal()), " 元" }, false);
 			_temp_bar.set_textcolor(getResources().getColor(R.color.main_color));
 			_items.put(_temp_bar.get_id(), new Package(_temp_bar, "all", "总报价", 1));
 			set_part(_data.get_room(), "卧室", "room");
@@ -63,13 +63,13 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 			set_part(_data.get_kitchen(), "厨房", "kitchen");
 			set_part(_data.get_toilet(), "卫生间", "toilet");
 			set_part(_data.get_balcony(), "阳台", "balcony");
-			_temp_bar = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "水电", String.valueOf(_data.get_hydropowerTotal()) + " 元" }, true, this);
+			_temp_bar = new InformationBar(getActivity(), _body, 2, new String[] { "水电", String.valueOf(_data.get_hydropowerTotal()) + " 元" }, true, this);
 			_items.put(_temp_bar.get_id(), new Package(_temp_bar, "hydropower", "水电", 1));
-			_temp_bar = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "安装", String.valueOf(_data.get_mountTotal()) + " 元" }, true, this);
+			_temp_bar = new InformationBar(getActivity(), _body, 2, new String[] { "安装", String.valueOf(_data.get_mountTotal()) + " 元" }, true, this);
 			_items.put(_temp_bar.get_id(), new Package(_temp_bar, "mount", "安装", 1));
-			_temp_bar = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "杂费", String.valueOf(_data.get_costTotal()) + " 元" }, true, this);
+			_temp_bar = new InformationBar(getActivity(), _body, 2, new String[] { "杂费", String.valueOf(_data.get_costTotal()) + " 元" }, true, this);
 			_items.put(_temp_bar.get_id(), new Package(_temp_bar, "cost", "杂费", 1));
-			_temp_bar = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "税费", String.valueOf(_data.get_taxTotal()) + " 元" }, true, this);
+			_temp_bar = new InformationBar(getActivity(), _body, 2, new String[] { "税费", String.valueOf(_data.get_taxTotal()) + " 元" }, true, this);
 			_items.put(_temp_bar.get_id(), new Package(_temp_bar, "tax", "税费", 1));
 
 			int padding = NumberUtil.get_px(getActivity(), 5);
@@ -90,7 +90,7 @@ public class Fragment_offer_auto_show extends DEBUG_Fragment implements OnClickL
 			if (_parts.size() != 1)
 				_name = _name + (_temp_i + 1);
 			String _value = String.valueOf(_parts.get(_temp_i)) + " 元";
-			RelativeLayout_edit_informationbar _room = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { _name, _value }, true, this);
+			InformationBar _room = new InformationBar(getActivity(), _body, 2, new String[] { _name, _value }, true, this);
 			_items.put(_room.get_id(), new Package(_room, _tag, _name, _temp_i + 1));
 		}
 	}

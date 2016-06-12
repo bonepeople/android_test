@@ -9,7 +9,7 @@ import com.shownest.android.utils.CommonUtil;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.UserManager;
 import com.shownest.android.widget.Linearlayout_edittext;
-import com.shownest.android.widget.RelativeLayout_edit_informationbar;
+import com.shownest.android.widget.InformationBar;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -29,7 +29,7 @@ public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements
 	private static final int REQUEST_PHONE = 1;
 	private LinearLayout _body;
 	private Button _button_commit;
-	private RelativeLayout_edit_informationbar _showname, _phone, _location, _sex;
+	private InformationBar _showname, _phone, _location, _sex;
 	private Linearlayout_edittext _edit;
 	private int[] _PlaceID = new int[] { 1, 1013, 1012, 1011, 1018, 1019, 1016, 1006, 1022, 1004, 1005, 1015, -1 };
 	private String[] _place = new String[] { "安徽", "浙江", "江苏", "湖北", "湖南", "山东", "山西", "四川", "重庆", "河北", "江西", "其他" };
@@ -45,11 +45,11 @@ public class Fragment_setinfo_shigongdui_step1 extends DEBUG_Fragment implements
 		_button_commit.setText("保存");
 		_button_commit.setOnClickListener(this);
 
-		new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "身份类型", "施工队" }, false);
-		_showname = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "工队昵称", "" }, true);
-		_phone = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "联系手机", "" }, true, this);
-		_location = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "工长籍贯", "" }, true, this);
-		_sex = new RelativeLayout_edit_informationbar(getActivity(), _body, 6, new String[] { "工长性别", "男", "女", "1" }, false);
+		new InformationBar(getActivity(), _body, 5, new String[] { "身份类型", "施工队" }, false);
+		_showname = new InformationBar(getActivity(), _body, 5, new String[] { "工队昵称", "" }, true);
+		_phone = new InformationBar(getActivity(), _body, 2, new String[] { "联系手机", "" }, true, this);
+		_location = new InformationBar(getActivity(), _body, 2, new String[] { "工长籍贯", "" }, true, this);
+		_sex = new InformationBar(getActivity(), _body, 6, new String[] { "工长性别", "男", "女", "1" }, false);
 		_edit = new Linearlayout_edittext(getActivity(), _body, new String[] { "工队介绍", "简单的说说你们的竞争优势。", "" });
 
 		return _view;

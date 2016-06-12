@@ -9,7 +9,7 @@ import com.shownest.android.utils.CommonUtil;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.UserManager;
 import com.shownest.android.widget.Linearlayout_edittext;
-import com.shownest.android.widget.RelativeLayout_edit_informationbar;
+import com.shownest.android.widget.InformationBar;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -27,7 +27,7 @@ public class Fragment_setinfo_jianli_step1 extends DEBUG_Fragment implements OnC
 	private static final int REQUEST_PHONE = 1;
 	private LinearLayout _body;
 	private Button _button_commit;
-	private RelativeLayout_edit_informationbar _showname, _phone, _profession;
+	private InformationBar _showname, _phone, _profession;
 	private Linearlayout_edittext _edit;
 
 	@Override
@@ -40,10 +40,10 @@ public class Fragment_setinfo_jianli_step1 extends DEBUG_Fragment implements OnC
 		_button_commit.setText("保存");
 		_button_commit.setOnClickListener(this);
 
-		new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "身份类型", "监理" }, false);
-		_showname = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "秀巢昵称", "" }, true);
-		_phone = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "联系手机", "" }, true, this);
-		_profession = new RelativeLayout_edit_informationbar(getActivity(), _body, 6, new String[] { "监理等级", "室内装饰监理师", "高级室内装饰监理师", "1" }, false);
+		new InformationBar(getActivity(), _body, 5, new String[] { "身份类型", "监理" }, false);
+		_showname = new InformationBar(getActivity(), _body, 5, new String[] { "秀巢昵称", "" }, true);
+		_phone = new InformationBar(getActivity(), _body, 5, new String[] { "联系手机", "" }, true, this);
+		_profession = new InformationBar(getActivity(), _body, 6, new String[] { "监理等级", "室内装饰监理师", "高级室内装饰监理师", "1" }, false);
 		_edit = new Linearlayout_edittext(getActivity(), _body, new String[] { "自我介绍", "简单的说说你的竞争优势。", "" });
 
 		return _view;

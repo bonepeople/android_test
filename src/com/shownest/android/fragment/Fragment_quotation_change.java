@@ -11,7 +11,7 @@ import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.NumberUtil;
 import com.shownest.android.widget.Linearlayout_edittext;
 import com.shownest.android.widget.Linearlayout_listview;
-import com.shownest.android.widget.RelativeLayout_edit_informationbar;
+import com.shownest.android.widget.InformationBar;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -34,7 +34,7 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 	private ItemDetail _new_item;
 	private Adapter_quotation_change _adapter;
 	private Linearlayout_listview _list;
-	private RelativeLayout_edit_informationbar _price, _number;
+	private InformationBar _price, _number;
 	private Linearlayout_edittext _material, _technics;
 
 	@Override
@@ -73,14 +73,14 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 			if (_new_item.get_tag().equals("tax"))
 			{
 				_str_price = String.valueOf(_new_item.get_price() * 100);
-				_price = new RelativeLayout_edit_informationbar(getActivity(), _body, 7, new String[] { "收费比例", _str_price, "%" }, true);
+				_price = new InformationBar(getActivity(), _body, 7, new String[] { "收费比例", _str_price, "%" }, true);
 			}
 			else
 			{
-				_price = new RelativeLayout_edit_informationbar(getActivity(), _body, 7, new String[] { "单价", _str_price, _str_unit }, true);
+				_price = new InformationBar(getActivity(), _body, 7, new String[] { "单价", _str_price, _str_unit }, true);
 			}
 
-			_number = new RelativeLayout_edit_informationbar(getActivity(), _body, 7, new String[] { "工程量", _str_number, _new_item.get_metricUnit() }, true);
+			_number = new InformationBar(getActivity(), _body, 7, new String[] { "工程量", _str_number, _new_item.get_metricUnit() }, true);
 			_material = new Linearlayout_edittext(getActivity(), _body, new String[] { "辅材品牌型号", "", _new_item.get_material() });
 			_technics = new Linearlayout_edittext(getActivity(), _body, new String[] { "工艺说明", "", _new_item.get_technics() });
 		}

@@ -8,7 +8,7 @@ import com.shownest.android.model.UserInfo;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.UserManager;
 import com.shownest.android.widget.LinearLayout_checkbox;
-import com.shownest.android.widget.RelativeLayout_edit_informationbar;
+import com.shownest.android.widget.InformationBar;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -31,7 +31,7 @@ public class Fragment_setinfo_shejishi_step2 extends DEBUG_Fragment implements O
 	private static final int LOCATION_SERVICE = 2;
 	private LinearLayout _body;
 	private Button _button_commit;
-	private RelativeLayout_edit_informationbar _date, _location, _address, _service, _serviceItem;
+	private InformationBar _date, _location, _address, _service, _serviceItem;
 	private LinearLayout_checkbox _style;
 	private int cityId = 0, provinceId = 0, countyId = 0;
 	private String serviceRegion = "";
@@ -48,11 +48,11 @@ public class Fragment_setinfo_shejishi_step2 extends DEBUG_Fragment implements O
 		_button_commit.setText("保存");
 		_button_commit.setOnClickListener(this);
 
-		_date = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "从业年份", "2016" }, true, this);
-		_location = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "办公地址", "" }, true, this);
-		_address = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "完善地址", "" }, true);
-		_service = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "服务区域", "" }, true, this);
-		_serviceItem = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "服务范围", "" }, true, this);
+		_date = new InformationBar(getActivity(), _body, 2, new String[] { "从业年份", "2016" }, true, this);
+		_location = new InformationBar(getActivity(), _body, 2, new String[] { "办公地址", "" }, true, this);
+		_address = new InformationBar(getActivity(), _body, 5, new String[] { "完善地址", "" }, true);
+		_service = new InformationBar(getActivity(), _body, 2, new String[] { "服务区域", "" }, true, this);
+		_serviceItem = new InformationBar(getActivity(), _body, 2, new String[] { "服务范围", "" }, true, this);
 
 		String[] _items = new String[] { "简约", "现代", "中式", "欧式", "美式", "日式", "东南亚", "地中海", "混搭", "新古典", "田园", "其他" };
 		_style = new LinearLayout_checkbox(getActivity(), "设计风格(最多选择三项)", _items, 3, "");

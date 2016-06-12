@@ -13,7 +13,7 @@ import com.shownest.android.widget.AlertDialog_rooms;
 import com.shownest.android.widget.LinearLayout_checkbox;
 import com.shownest.android.widget.LinearLayout_picturebox;
 import com.shownest.android.widget.Linearlayout_listview;
-import com.shownest.android.widget.RelativeLayout_edit_informationbar;
+import com.shownest.android.widget.InformationBar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,7 +31,7 @@ public class Fragment_publish_yezhu_setp1 extends DEBUG_Fragment implements OnCl
 	private static final int REQUEST_LOCATION = 1;
 	private LinearLayout _body;
 	private Button _button_commit;
-	private RelativeLayout_edit_informationbar _name, _location, _address, _areas, _house, _floor_all, _floor_current;
+	private InformationBar _name, _location, _address, _areas, _house, _floor_all, _floor_current;
 	private LinearLayout_checkbox _state, _type;
 	private LinearLayout_picturebox _img;
 	private Adapter_rooms_area _adapter;
@@ -53,17 +53,17 @@ public class Fragment_publish_yezhu_setp1 extends DEBUG_Fragment implements OnCl
 		_image_title.setImageDrawable(getResources().getDrawable(R.drawable.book_house_1));
 		_body.addView(_image_title);
 
-		_name = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "我的房屋", "" }, true, this);
-		_location = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "所在区域", "" }, true, this);
-		_address = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "完善地址", "" }, true);
-		_areas = new RelativeLayout_edit_informationbar(getActivity(), _body, 7, new String[] { "建筑面积", "0.0", "平米" }, true);
-		_house = new RelativeLayout_edit_informationbar(getActivity(), _body, 4, new String[] { "户型结构", "1,1,1,1,1" }, true, this);
+		_name = new InformationBar(getActivity(), _body, 2, new String[] { "我的房屋", "" }, true, this);
+		_location = new InformationBar(getActivity(), _body, 2, new String[] { "所在区域", "" }, true, this);
+		_address = new InformationBar(getActivity(), _body, 5, new String[] { "完善地址", "" }, true);
+		_areas = new InformationBar(getActivity(), _body, 7, new String[] { "建筑面积", "0.0", "平米" }, true);
+		_house = new InformationBar(getActivity(), _body, 4, new String[] { "户型结构", "1,1,1,1,1" }, true, this);
 		_state = new LinearLayout_checkbox(getActivity(), "房屋状态", new String[] { "毛坯新房", "二手旧房" }, 1, "1");
 		_body.addView(_state);
 		_type = new LinearLayout_checkbox(getActivity(), "房屋类型", new String[] { "平层住宅", "复试住宅", "别墅", "商业" }, 1, "1");
 		_body.addView(_type);
-		_floor_current = new RelativeLayout_edit_informationbar(getActivity(), _body, 3, new String[] { "所在楼层", "1", "层" }, true);
-		_floor_all = new RelativeLayout_edit_informationbar(getActivity(), _body, 3, new String[] { "总楼层", "1", "层" }, true);
+		_floor_current = new InformationBar(getActivity(), _body, 3, new String[] { "所在楼层", "1", "层" }, true);
+		_floor_all = new InformationBar(getActivity(), _body, 3, new String[] { "总楼层", "1", "层" }, true);
 		_img = new LinearLayout_picturebox(this, "户型图(选填)", true);
 		_body.addView(_img);
 

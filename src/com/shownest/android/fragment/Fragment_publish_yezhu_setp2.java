@@ -5,7 +5,7 @@ import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.UserInfo;
 import com.shownest.android.utils.UserManager;
 import com.shownest.android.widget.Linearlayout_edittext;
-import com.shownest.android.widget.RelativeLayout_edit_informationbar;
+import com.shownest.android.widget.InformationBar;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,7 +22,7 @@ public class Fragment_publish_yezhu_setp2 extends DEBUG_Fragment implements OnCl
 {
 	private LinearLayout _body;
 	private Button _button_commit;
-	private RelativeLayout_edit_informationbar _type, _service, _cons, _money, _name, _phone;
+	private InformationBar _type, _service, _cons, _money, _name, _phone;
 	private Linearlayout_edittext _edit;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -38,13 +38,13 @@ public class Fragment_publish_yezhu_setp2 extends DEBUG_Fragment implements OnCl
 		_image_title.setImageDrawable(getResources().getDrawable(R.drawable.book_house_2));
 		_body.addView(_image_title);
 
-		_type = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "选择招标类型", "设计标" }, true, this);
-		_service = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "服务类型", "" }, true, this);
-		_cons = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "装修方式", "半包" }, true, this);
+		_type = new InformationBar(getActivity(), _body, 2, new String[] { "选择招标类型", "设计标" }, true, this);
+		_service = new InformationBar(getActivity(), _body, 2, new String[] { "服务类型", "" }, true, this);
+		_cons = new InformationBar(getActivity(), _body, 2, new String[] { "装修方式", "半包" }, true, this);
 		_cons.setVisibility(RelativeLayout.GONE);
-		_money = new RelativeLayout_edit_informationbar(getActivity(), _body, 7, new String[] { "预算费用", "0.0", "元" }, true);
-		_name = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "您的称呼", "" }, true);
-		_phone = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "联系电话", "" }, true);
+		_money = new InformationBar(getActivity(), _body, 7, new String[] { "预算费用", "0.0", "元" }, true);
+		_name = new InformationBar(getActivity(), _body, 5, new String[] { "您的称呼", "" }, true);
+		_phone = new InformationBar(getActivity(), _body, 5, new String[] { "联系电话", "" }, true);
 
 		return _view;
 	}

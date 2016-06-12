@@ -7,7 +7,7 @@ import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.UserInfo;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.UserManager;
-import com.shownest.android.widget.RelativeLayout_edit_informationbar;
+import com.shownest.android.widget.InformationBar;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -30,7 +30,7 @@ public class Fragment_setinfo_shigongdui_step2 extends DEBUG_Fragment implements
 	private static final int LOCATION_SERVICE = 2;
 	private LinearLayout _body;
 	private Button _button_commit;
-	private RelativeLayout_edit_informationbar _date, _number, _location, _address, _service, _serviceItem;
+	private InformationBar _date, _number, _location, _address, _service, _serviceItem;
 	private int cityId = 0, provinceId = 0, countyId = 0;
 	private String serviceRegion = "";
 	private boolean[][] _service_select = new boolean[][] { { false, false, false }, { false, false, false } };
@@ -46,12 +46,12 @@ public class Fragment_setinfo_shigongdui_step2 extends DEBUG_Fragment implements
 		_button_commit.setText("保存");
 		_button_commit.setOnClickListener(this);
 
-		_date = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "从业年份", "2016" }, true, this);
-		_number = new RelativeLayout_edit_informationbar(getActivity(), _body, 3, new String[] { "工队人数", "1", "人" }, true);
-		_location = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "办公地址", "" }, true, this);
-		_address = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "完善地址", "" }, true);
-		_service = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "服务区域", "" }, true, this);
-		_serviceItem = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "服务范围", "" }, true, this);
+		_date = new InformationBar(getActivity(), _body, 2, new String[] { "从业年份", "2016" }, true, this);
+		_number = new InformationBar(getActivity(), _body, 3, new String[] { "工队人数", "1", "人" }, true);
+		_location = new InformationBar(getActivity(), _body, 2, new String[] { "办公地址", "" }, true, this);
+		_address = new InformationBar(getActivity(), _body, 5, new String[] { "完善地址", "" }, true);
+		_service = new InformationBar(getActivity(), _body, 2, new String[] { "服务区域", "" }, true, this);
+		_serviceItem = new InformationBar(getActivity(), _body, 2, new String[] { "服务范围", "" }, true, this);
 		return _view;
 	}
 

@@ -10,7 +10,7 @@ import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.widget.AlertDialog_rooms;
 import com.shownest.android.widget.LinearLayout_checkbox;
 import com.shownest.android.widget.Linearlayout_listview;
-import com.shownest.android.widget.RelativeLayout_edit_informationbar;
+import com.shownest.android.widget.InformationBar;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -29,7 +29,7 @@ public class Fragment_offer_auto_set extends DEBUG_Fragment implements OnClickLi
 	private LinearLayout _body;
 	private Button _button_commit;
 	private LinearLayout_checkbox _state, _type, _mode;
-	private RelativeLayout_edit_informationbar _name, _region, _area, _house;
+	private InformationBar _name, _region, _area, _house;
 	private Adapter_rooms_area _adapter;
 	private Linearlayout_listview _list;
 	private int cityId = 0, provinceId = 0, countyId = 0;
@@ -45,16 +45,16 @@ public class Fragment_offer_auto_set extends DEBUG_Fragment implements OnClickLi
 		_button_commit.setText("获取报价");
 		_button_commit.setOnClickListener(this);
 
-		_name = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "小区名称", "" }, true);
-		_region = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "所在区域", "" }, true, this);
+		_name = new InformationBar(getActivity(), _body, 5, new String[] { "小区名称", "" }, true);
+		_region = new InformationBar(getActivity(), _body, 2, new String[] { "所在区域", "" }, true, this);
 		_state = new LinearLayout_checkbox(getActivity(), "房屋状态", new String[] { "毛坯新房", "二手旧房" }, 1, "1");
 		_body.addView(_state);
 		_type = new LinearLayout_checkbox(getActivity(), "房屋类型", new String[] { "平层住宅", "复式住宅", "别墅", "商业" }, 1, "1");
 		_body.addView(_type);
 		_mode = new LinearLayout_checkbox(getActivity(), "装修方式", new String[] { "半包" }, 1, "1");
 		_body.addView(_mode);
-		_area = new RelativeLayout_edit_informationbar(getActivity(), _body, 7, new String[] { "建筑面积", "0.0", " m²" }, true);
-		_house = new RelativeLayout_edit_informationbar(getActivity(), _body, 4, new String[] { "户型结构", "1,1,1,1,1" }, true, this);
+		_area = new InformationBar(getActivity(), _body, 7, new String[] { "建筑面积", "0.0", " m²" }, true);
+		_house = new InformationBar(getActivity(), _body, 4, new String[] { "户型结构", "1,1,1,1,1" }, true, this);
 		_adapter = new Adapter_rooms_area(getActivity());
 		_list = new Linearlayout_listview(getActivity(), _body, "areas", new String[] { "具体面积", "信息填写详细，会使您获得更精准的报价" }, _adapter);
 		_list.set_textcolor("hint", getResources().getColor(R.color.text_blue));

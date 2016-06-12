@@ -9,7 +9,7 @@ import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.NumberUtil;
 import com.shownest.android.utils.UserManager;
 import com.shownest.android.widget.Linearlayout_edittext;
-import com.shownest.android.widget.RelativeLayout_edit_informationbar;
+import com.shownest.android.widget.InformationBar;
 
 import android.content.ContentValues;
 import android.os.Bundle;
@@ -26,7 +26,7 @@ public class Fragment_publish extends DEBUG_Fragment implements OnClickListener
 {
 	private LinearLayout _body;
 	private Button _button_commit;
-	private RelativeLayout_edit_informationbar _budget, _phone, _contacts;
+	private InformationBar _budget, _phone, _contacts;
 	private Linearlayout_edittext _idea;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -47,9 +47,9 @@ public class Fragment_publish extends DEBUG_Fragment implements OnClickListener
 		UserInfo _info = UserManager.get_user_info();
 		if (_info != null)
 		{
-			_budget = new RelativeLayout_edit_informationbar(getActivity(), _body, 7, new String[] { "装修预算", "15000.0", "元" }, true);
-			_contacts = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "您的称呼", _info.get_userShowName() }, true);
-			_phone = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "联系方式", _info.get_userPhone() }, true);
+			_budget = new InformationBar(getActivity(), _body, 7, new String[] { "装修预算", "15000.0", "元" }, true);
+			_contacts = new InformationBar(getActivity(), _body, 5, new String[] { "您的称呼", _info.get_userShowName() }, true);
+			_phone = new InformationBar(getActivity(), _body, 5, new String[] { "联系方式", _info.get_userPhone() }, true);
 			_idea = new Linearlayout_edittext(getActivity(), _body, new String[] { "您的个人意见", "可以添加一些额外的要求", "" });
 
 			int padding = NumberUtil.get_px(getActivity(), 5);

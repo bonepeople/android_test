@@ -10,7 +10,7 @@ import com.shownest.android.utils.CommonUtil;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.UserManager;
 import com.shownest.android.widget.LinearLayout_idcard;
-import com.shownest.android.widget.RelativeLayout_edit_informationbar;
+import com.shownest.android.widget.InformationBar;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -34,7 +34,7 @@ public class Fragment_setinfo_jianli_step3 extends DEBUG_Fragment implements OnC
 {
 	private LinearLayout _body;
 	private Button _button_commit;
-	private RelativeLayout_edit_informationbar _type, _name, _id_number;
+	private InformationBar _type, _name, _id_number;
 	private LinearLayout_idcard _idcard;
 	private Uri[] _image_uri = new Uri[3];
 	private int _image_where[] = new int[] { 0, 0, 0, 0 };// 前三个分别代表3个图片是否已选择，最后一个数字表示当前选择是的哪个图片
@@ -49,9 +49,9 @@ public class Fragment_setinfo_jianli_step3 extends DEBUG_Fragment implements OnC
 		_button_commit.setText("申请认证");
 		_button_commit.setOnClickListener(this);
 
-		_type = new RelativeLayout_edit_informationbar(getActivity(), _body, 6, new String[] { "认证类型", "独立监理", "装修公司监理", "1" }, false);
-		_name = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "真实姓名", "" }, true);
-		_id_number = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "身份证号", "" }, true);
+		_type = new InformationBar(getActivity(), _body, 6, new String[] { "认证类型", "独立监理", "装修公司监理", "1" }, false);
+		_name = new InformationBar(getActivity(), _body, 5, new String[] { "真实姓名", "" }, true);
+		_id_number = new InformationBar(getActivity(), _body, 5, new String[] { "身份证号", "" }, true);
 
 		_idcard = new LinearLayout_idcard(getActivity(), _body, "监理身份证", this);
 

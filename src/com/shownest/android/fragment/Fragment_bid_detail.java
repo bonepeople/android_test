@@ -6,7 +6,7 @@ import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.BidInfo;
 import com.shownest.android.utils.NumberUtil;
 import com.shownest.android.widget.LinearLayout_picturebox;
-import com.shownest.android.widget.RelativeLayout_edit_informationbar;
+import com.shownest.android.widget.InformationBar;
 import com.shownest.android.widget.View_split_h;
 
 import android.content.Intent;
@@ -24,7 +24,7 @@ public class Fragment_bid_detail extends DEBUG_Fragment implements OnClickListen
 {
 	private LinearLayout _body;
 	private Button _button_commit;
-	private RelativeLayout_edit_informationbar _quotation;
+	private InformationBar _quotation;
 	private LinearLayout_picturebox _picture;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -45,28 +45,28 @@ public class Fragment_bid_detail extends DEBUG_Fragment implements OnClickListen
 		BidInfo _data = Activity_bid_detail.get_data();
 		if (_data != null)
 		{
-			new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "小区名称", _data.get_areaName() }, false);
-			new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "小区地址", _data.get_homeRegionName() }, false);
-			new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "房屋类型", _data.get_houseType_name() }, false);
-			new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "房屋状态", _data.get_houseState_name() }, false);
-			new RelativeLayout_edit_informationbar(getActivity(), _body, 7, new String[] { "建筑面积", String.valueOf(_data.get_homeSq()), " m²" }, false);
-			new RelativeLayout_edit_informationbar(getActivity(), _body, 4, new String[] { "户型结构", _data.get_rooms() }, false);
+			new InformationBar(getActivity(), _body, 5, new String[] { "小区名称", _data.get_areaName() }, false);
+			new InformationBar(getActivity(), _body, 5, new String[] { "小区地址", _data.get_homeRegionName() }, false);
+			new InformationBar(getActivity(), _body, 5, new String[] { "房屋类型", _data.get_houseType_name() }, false);
+			new InformationBar(getActivity(), _body, 5, new String[] { "房屋状态", _data.get_houseState_name() }, false);
+			new InformationBar(getActivity(), _body, 7, new String[] { "建筑面积", String.valueOf(_data.get_homeSq()), " m²" }, false);
+			new InformationBar(getActivity(), _body, 4, new String[] { "户型结构", _data.get_rooms() }, false);
 			_picture = new LinearLayout_picturebox(this, "户型图（选填）", false);
 			_picture.add_image("http://t.shownest.com:86/_resources/upload/headerIcon/6dfdd424ea49110400eba7dceb7.jpg");
 			_picture.add_image("http://t.shownest.com:86/_resources/upload/headerIcon/6dfdd424ea49110400eba7dceb7.jpg");
 			_picture.add_image("http://t.shownest.com:86/_resources/upload/headerIcon/6dfdd424ea49110400eba7dceb7.jpg");
 			_body.addView(_picture);
-			new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "业主称呼", _data.get_contacts() }, false);
-			new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "联系方式", _data.get_phone() }, false);
+			new InformationBar(getActivity(), _body, 5, new String[] { "业主称呼", _data.get_contacts() }, false);
+			new InformationBar(getActivity(), _body, 5, new String[] { "联系方式", _data.get_phone() }, false);
 			new View_split_h(getActivity(), _body, 5f);
-			new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "招标类型", _data.get_bookType_name() }, false);
-			new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "装修方式", _data.get_consType_name() }, false);
-			new RelativeLayout_edit_informationbar(getActivity(), _body, 7, new String[] { "装修预算", String.valueOf(_data.get_constructerMoney()), "元" }, false);
-			_quotation = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "业主智能报价单", "" }, true, this);
+			new InformationBar(getActivity(), _body, 5, new String[] { "招标类型", _data.get_bookType_name() }, false);
+			new InformationBar(getActivity(), _body, 5, new String[] { "装修方式", _data.get_consType_name() }, false);
+			new InformationBar(getActivity(), _body, 7, new String[] { "装修预算", String.valueOf(_data.get_constructerMoney()), "元" }, false);
+			_quotation = new InformationBar(getActivity(), _body, 2, new String[] { "业主智能报价单", "" }, true, this);
 			new View_split_h(getActivity(), _body, 5f);
-			new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "招标状态", _data.get_bidsStateCon_name() }, false);
-			new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "发布时间", _data.get_createDateCon_name() }, false);
-			new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "需求描述", "" }, false);
+			new InformationBar(getActivity(), _body, 5, new String[] { "招标状态", _data.get_bidsStateCon_name() }, false);
+			new InformationBar(getActivity(), _body, 5, new String[] { "发布时间", _data.get_createDateCon_name() }, false);
+			new InformationBar(getActivity(), _body, 5, new String[] { "需求描述", "" }, false);
 
 			TextView _idea = new TextView(getActivity());
 			_idea.setText(_data.get_ownerIdea());

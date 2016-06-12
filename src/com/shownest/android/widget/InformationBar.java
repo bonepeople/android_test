@@ -20,7 +20,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class RelativeLayout_edit_informationbar implements View.OnClickListener
+public class InformationBar implements View.OnClickListener
 {
 	private static boolean DEBUG = false;
 	private static int _count = 0;
@@ -50,7 +50,7 @@ public class RelativeLayout_edit_informationbar implements View.OnClickListener
 	 *            信息条内容 1-3,2-2,3-3,4-2,5-2,6-4,7-3
 	 * 
 	 */
-	public RelativeLayout_edit_informationbar(Context context, ViewGroup root, int style, String[] args, boolean _clickable)
+	public InformationBar(Context context, ViewGroup root, int style, String[] args, boolean _clickable)
 	{
 		if (DEBUG)
 			System.out.println("relativelayout super:" + style);
@@ -62,7 +62,7 @@ public class RelativeLayout_edit_informationbar implements View.OnClickListener
 
 	}
 
-	public RelativeLayout_edit_informationbar(Context context, ViewGroup root, int style, String[] args, boolean _clickable, View.OnClickListener _listener)
+	public InformationBar(Context context, ViewGroup root, int style, String[] args, boolean _clickable, View.OnClickListener _listener)
 	{
 		if (DEBUG)
 			System.out.println("relativelayout super:" + style);

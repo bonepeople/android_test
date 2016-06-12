@@ -7,7 +7,7 @@ import com.shownest.android.model.UserInfo;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.UserManager;
 import com.shownest.android.widget.LinearLayout_checkbox;
-import com.shownest.android.widget.RelativeLayout_edit_informationbar;
+import com.shownest.android.widget.InformationBar;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,7 +22,7 @@ public class Fragment_setinfo_yezhu extends DEBUG_Fragment
 {
 	private LinearLayout _body;
 	private Button _button_commit;
-	private RelativeLayout_edit_informationbar _showname, _realname, _sex;
+	private InformationBar _showname, _realname, _sex;
 	private LinearLayout_checkbox _style;
 
 	@Override
@@ -34,10 +34,10 @@ public class Fragment_setinfo_yezhu extends DEBUG_Fragment
 		_button_commit = (Button) _view.findViewById(R.id.button_commit);
 		_button_commit.setText("完成认证");
 
-		new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "身份类型", "业主" }, false);
-		_showname = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "秀巢昵称", "" }, true);
-		_realname = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "真是姓名", "" }, true);
-		_sex = new RelativeLayout_edit_informationbar(getActivity(), _body, 6, new String[] { "性别", "男", "女", "1" }, false);
+		new InformationBar(getActivity(), _body, 5, new String[] { "身份类型", "业主" }, false);
+		_showname = new InformationBar(getActivity(), _body, 5, new String[] { "秀巢昵称", "" }, true);
+		_realname = new InformationBar(getActivity(), _body, 5, new String[] { "真是姓名", "" }, true);
+		_sex = new InformationBar(getActivity(), _body, 6, new String[] { "性别", "男", "女", "1" }, false);
 
 		String[] _items = new String[] { "简约", "现代", "中式", "欧式", "美式", "日式", "东南亚", "地中海", "混搭", "新古典", "田园", "其他" };
 		_style = new LinearLayout_checkbox(getActivity(), "倾向风格(可多选)", _items, 12, "");
