@@ -63,7 +63,7 @@ public class Activity_setinfo_jianli extends DEBUG_Activity implements OnChangeL
 		_instance = this;
 		setTitle("身份认证");
 
-		_subtitle.setOnChangeListener(this);
+		_subtitle.setOnChangeListener("select", this);
 		_array_fragment.add(null);
 		_array_fragment.add(null);
 		_array_fragment.add(null);

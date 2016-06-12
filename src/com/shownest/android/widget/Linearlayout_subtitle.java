@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 public class Linearlayout_subtitle extends LinearLayout implements View.OnClickListener
 {
+	private String _tag;
 	private OnChangeListener _listener;
 	private int _selected = 1;
 	private TextView[] _text = new TextView[3];
@@ -21,8 +22,9 @@ public class Linearlayout_subtitle extends LinearLayout implements View.OnClickL
 		super(context);
 	}
 
-	public void setOnChangeListener(OnChangeListener _change_listener)
+	public void setOnChangeListener(String _tag, OnChangeListener _change_listener)
 	{
+		this._tag = _tag;
 		_listener = _change_listener;
 	}
 
@@ -75,7 +77,7 @@ public class Linearlayout_subtitle extends LinearLayout implements View.OnClickL
 			_line[_select - 1].setVisibility(View.VISIBLE);
 			_selected = _select;
 			if (_listener != null)
-				_listener.onChange("select", new String[] { String.valueOf(_select) });
+				_listener.onChange(_tag, new String[] { String.valueOf(_select) });
 		}
 	}
 }
