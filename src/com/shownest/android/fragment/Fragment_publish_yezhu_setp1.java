@@ -137,7 +137,6 @@ public class Fragment_publish_yezhu_setp1 extends DEBUG_Fragment implements OnCl
 		}
 		else if (_id == _name.get_id())
 		{
-			// show dialog
 			String[] _names = new String[_data.size()];
 			for (int _temp_i = 0; _temp_i < _data.size(); _temp_i++)
 				_names[_temp_i] = _data.get(_temp_i).get_houseName();
@@ -153,7 +152,6 @@ public class Fragment_publish_yezhu_setp1 extends DEBUG_Fragment implements OnCl
 					setContent();
 				}
 			});
-
 			_builder.show();
 		}
 		else if (_id == _house.get_id())

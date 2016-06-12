@@ -21,11 +21,11 @@ public class HouseInfo
 	private int _kitchenNum;// 卧室个数
 	private int _toiletNum;// 卧室个数
 	private int _balconyNum;// 卧室个数
-	private String _roomAcreage;// 卧室面积 "15.95,15.95"
-	private String _parlourAcreage;// 客厅面积 "15.95,15.95"
-	private String _kitchenAcreage;// 厨房面积 "15.95,15.95"
-	private String _toiletAcreage;// 卫生间面积 "15.95,15.95"
-	private String _balconyAcreage;// 阳台面积 "15.95,15.95"
+	private String _roomAcreage;// 卧室面积 "15.5,15.5,19.25,22.4"
+	private String _parlourAcreage;// 客厅面积 "25.89,20.74"
+	private String _kitchenAcreage;// 厨房面积 "9.5"
+	private String _toiletAcreage;// 卫生间面积 "11.0"
+	private String _balconyAcreage;// 阳台面积 "10.0,12.0"
 	private String _floors;// 楼层 "0/0"
 	// "areaId":"233",
 	// "userId":"764de29e9d214d6bafb029a0f97d1909"
