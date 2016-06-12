@@ -8,7 +8,6 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.graphics.Point;
-import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -18,11 +17,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class RelativeLayout_edit_informationbar extends RelativeLayout implements View.OnClickListener
+public class RelativeLayout_edit_informationbar implements View.OnClickListener
 {
 	private static boolean DEBUG = false;
 	private static int _count = 0;
@@ -30,8 +28,9 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 	private int _id;
 	private int _style;
 	private OnChangeListener _change_listener;
-	private OnClickListener _click_listener;
+	private View.OnClickListener _click_listener;
 	private ViewGroup _rootview;
+	private View _childview = null;
 	private TextView _textview_name, _textview_left, _textview_right;
 	private ImageView _imageview_right;
 	private boolean _clickable;
@@ -39,21 +38,6 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 	private AlertDialog _dialog;
 	private EditText _edittext_dialog;
 	private String[] _house_num = new String[5];
-
-	public RelativeLayout_edit_informationbar(Context context)
-	{
-		super(context);
-	}
-
-	public RelativeLayout_edit_informationbar(Context context, AttributeSet attrs)
-	{
-		super(context, attrs);
-	}
-
-	public RelativeLayout_edit_informationbar(Context context, AttributeSet attrs, int defStyleAttr)
-	{
-		super(context, attrs, defStyleAttr);
-	}
 
 	/**
 	 * 通过代码生成一个信息条控件
@@ -68,7 +52,6 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 	 */
 	public RelativeLayout_edit_informationbar(Context context, ViewGroup root, int style, String[] args, boolean _clickable)
 	{
-		super(context);
 		if (DEBUG)
 			System.out.println("relativelayout super:" + style);
 		this._context = context;
@@ -79,9 +62,8 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 
 	}
 
-	public RelativeLayout_edit_informationbar(Context context, ViewGroup root, int style, String[] args, boolean _clickable, OnClickListener _listener)
+	public RelativeLayout_edit_informationbar(Context context, ViewGroup root, int style, String[] args, boolean _clickable, View.OnClickListener _listener)
 	{
-		super(context);
 		if (DEBUG)
 			System.out.println("relativelayout super:" + style);
 		this._context = context;
@@ -96,7 +78,6 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 	private void setContentView(String[] args)
 	{
 		ViewGroup _view;
-		View _childview = null;
 		switch (this._style)
 		{
 		case 1:
@@ -206,7 +187,7 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 			{
 				_radiobutton_right.setChecked(true);
 			}
-			WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+			WindowManager wm = (WindowManager) _context.getSystemService(Context.WINDOW_SERVICE);
 			Point outSize = new Point(0, 0);
 			wm.getDefaultDisplay().getSize(outSize);
 			int screen_width = outSize.x;
@@ -234,12 +215,13 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 			});
 			break;
 		}
+		// 设置初始状态，绑定Listener
 		if (this._style != 6)
 			if (!this._clickable)
 			{
-				_textview_right.setTextColor(getResources().getColor(R.color.text_gray));
+				_textview_right.setTextColor(_context.getResources().getColor(R.color.text_gray));
 				if (_textview_left != null)
-					_textview_left.setTextColor(getResources().getColor(R.color.text_gray));
+					_textview_left.setTextColor(_context.getResources().getColor(R.color.text_gray));
 				if (_imageview_right != null)
 					_imageview_right.setVisibility(ImageView.INVISIBLE);
 			}
@@ -268,6 +250,11 @@ public class RelativeLayout_edit_informationbar extends RelativeLayout implement
 			_textview_left.setTextColor(_color);
 		if (_textview_right != null)
 			_textview_right.setTextColor(_color);
+	}
+
+	public void setVisibility(int _visibility)
+	{
+		_childview.setVisibility(_visibility);
 	}
 
 	public void setData(String[] args)

@@ -41,7 +41,7 @@ public class Fragment_publish_yezhu_setp2 extends DEBUG_Fragment implements OnCl
 		_type = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "选择招标类型", "设计标" }, true, this);
 		_service = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "服务类型", "" }, true, this);
 		_cons = new RelativeLayout_edit_informationbar(getActivity(), _body, 2, new String[] { "装修方式", "半包" }, true, this);
-		_cons.setVisibility(RelativeLayout.INVISIBLE);
+		_cons.setVisibility(RelativeLayout.GONE);
 		_money = new RelativeLayout_edit_informationbar(getActivity(), _body, 7, new String[] { "预算费用", "0.0", "元" }, true);
 		_name = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "您的称呼", "" }, true);
 		_phone = new RelativeLayout_edit_informationbar(getActivity(), _body, 5, new String[] { "联系电话", "" }, true);
