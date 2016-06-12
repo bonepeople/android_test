@@ -54,7 +54,7 @@ public class Fragment_setinfo_shigongdui_step3 extends DEBUG_Fragment implements
 		_id_number = new InformationBar(getActivity(), _body, 5, new String[] { "身份证号", "" }, true);
 		_idcard = new LinearLayout_idcard(getActivity(), _body, "工长身份证", this);
 
-		_type.setOnChangeListener(_idcard);
+		_type.setOnChangeListener("", _idcard);
 		return _view;
 	}
 

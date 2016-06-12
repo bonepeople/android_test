@@ -55,7 +55,7 @@ public class Fragment_setinfo_jianli_step3 extends DEBUG_Fragment implements OnC
 
 		_idcard = new LinearLayout_idcard(getActivity(), _body, "监理身份证", this);
 
-		_type.setOnChangeListener(_idcard);
+		_type.setOnChangeListener("", _idcard);
 		return _view;
 	}
 

@@ -34,6 +34,7 @@ public class InformationBar implements View.OnClickListener
 	private Context _context;
 	private int _id;
 	private int _style;
+	private String _tag;
 	private OnChangeListener _change_listener;
 	private View.OnClickListener _click_listener;
 	private ViewGroup _rootview;
@@ -251,8 +252,9 @@ public class InformationBar implements View.OnClickListener
 
 	}
 
-	public void setOnChangeListener(OnChangeListener _listener)
+	public void setOnChangeListener(String _tag, OnChangeListener _listener)
 	{
+		this._tag = _tag;
 		_change_listener = _listener;
 	}
 
@@ -299,7 +301,7 @@ public class InformationBar implements View.OnClickListener
 			break;
 		}
 		if (_change_listener != null)
-			_change_listener.onChange("style" + this._style, args);
+			_change_listener.onChange(_tag, args);
 
 	}
 

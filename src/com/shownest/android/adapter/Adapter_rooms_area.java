@@ -291,13 +291,13 @@ public class Adapter_rooms_area extends BaseAdapter implements View.OnClickListe
 	{
 		switch (tag)
 		{
-		case "style7":
+		case "area":
 			_total_area = Double.parseDouble(args[0]);
 			_every_area = NumberUtil.round(_total_area / _areas.size(), 2);
 			construct();
 			break;
 
-		case "style4":
+		case "room":
 			String[] _nums = args[0].split(",");
 			int _room = Integer.parseInt(_nums[0]);
 			int _parlour = Integer.parseInt(_nums[1]);

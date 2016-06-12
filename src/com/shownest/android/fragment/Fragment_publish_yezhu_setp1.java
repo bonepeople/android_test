@@ -71,8 +71,8 @@ public class Fragment_publish_yezhu_setp1 extends DEBUG_Fragment implements OnCl
 		_list = new Linearlayout_listview(getActivity(), _body, new String[] { "具体面积", "信息详细，报价准确" }, _adapter);
 		_list.set_textcolor("hint", getResources().getColor(R.color.main_color));
 		_list.set_dividerheight(1);
-		_areas.setOnChangeListener(_adapter);
-		_house.setOnChangeListener(_adapter);
+		_areas.setOnChangeListener("area", _adapter);
+		_house.setOnChangeListener("room", _adapter);
 
 		return _view;
 	}
