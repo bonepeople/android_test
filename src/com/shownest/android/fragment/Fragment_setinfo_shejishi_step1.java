@@ -34,7 +34,7 @@ public class Fragment_setinfo_shejishi_step1 extends DEBUG_Fragment implements O
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		super.onCreateView(inflater, container, savedInstanceState);
-		View _view = inflater.inflate(R.layout.fragment_setinfo, container, false);
+		View _view = inflater.inflate(R.layout.fragment_basic, container, false);
 		_body = (LinearLayout) _view.findViewById(R.id.linearlayout_content);
 		_button_commit = (Button) _view.findViewById(R.id.button_commit);
 		_button_commit.setText("保存");
