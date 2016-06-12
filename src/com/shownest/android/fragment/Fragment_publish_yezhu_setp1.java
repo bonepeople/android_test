@@ -17,6 +17,7 @@ import com.shownest.android.widget.InformationBar;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -41,6 +42,7 @@ public class Fragment_publish_yezhu_setp1 extends DEBUG_Fragment implements OnCl
 	private Linearlayout_listview _list;
 	private ArrayList<HouseInfo> _data;
 	private int _index = 0;
+	private String _houseId;
 	private int _cityId = 0, _provinceId = 0, _countyId = 0;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -53,12 +55,12 @@ public class Fragment_publish_yezhu_setp1 extends DEBUG_Fragment implements OnCl
 		_button_commit.setOnClickListener(this);
 
 		ImageView _image_title = new ImageView(getActivity());
-		_image_title.setImageDrawable(getResources().getDrawable(R.drawable.book_house_1));
+		_image_title.setImageDrawable(getResources().getDrawable(R.drawable.publish_step1));
 		_body.addView(_image_title);
 
 		_name = new InformationBar(getActivity(), _body, 2, new String[] { "我的房屋", "" }, true, this);
 		_location = new InformationBar(getActivity(), _body, 2, new String[] { "所在区域", "" }, true, this);
-		_address = new InformationBar(getActivity(), _body, 5, new String[] { "完善地址", "" }, true);
+		_address = new InformationBar(getActivity(), _body, 5, new String[] { "详细地址", "" }, true);
 		_areas = new InformationBar(getActivity(), _body, 7, new String[] { "建筑面积", "0.0", "平米" }, true);
 		_house = new InformationBar(getActivity(), _body, 4, new String[] { "户型结构", "1,1,1,1,1" }, true, this);
 		_state = new LinearLayout_checkbox(getActivity(), "房屋状态", new String[] { "毛坯新房", "二手旧房" }, 1, "1");
@@ -87,8 +89,13 @@ public class Fragment_publish_yezhu_setp1 extends DEBUG_Fragment implements OnCl
 		if (_data != null && _data.size() != 0)
 		{
 			HouseInfo _temp_house = _data.get(_index);
+			_houseId = _temp_house.get_houseId();
 			_name.setData(new String[] { _temp_house.get_houseName() });
 			_location.setData(new String[] { _temp_house.get_regionName() });
+			String[] _region = _temp_house.get_region().split(",");
+			_provinceId = Integer.parseInt(_region[0]);
+			_cityId = Integer.parseInt(_region[1]);
+			_countyId = Integer.parseInt(_region[2]);
 			_address.setData(new String[] { _temp_house.get_homeAddress() });
 			_areas.setData(new String[] { String.valueOf(_temp_house.get_homeSq()) });
 			_house.setData(new String[] { _temp_house.get_nums() });
@@ -107,11 +114,11 @@ public class Fragment_publish_yezhu_setp1 extends DEBUG_Fragment implements OnCl
 		_img.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == -1)
 		{
-			_cityId = data.getIntExtra("cityId", 0);
-			System.out.println("cityId=" + _cityId);
-
 			_provinceId = data.getIntExtra("provinceId", 0);
 			System.out.println("provinceId=" + _provinceId);
+
+			_cityId = data.getIntExtra("cityId", 0);
+			System.out.println("cityId=" + _cityId);
 
 			_countyId = data.getIntExtra("countyId", 0);
 			System.out.println("countyId=" + _countyId);
@@ -125,6 +132,48 @@ public class Fragment_publish_yezhu_setp1 extends DEBUG_Fragment implements OnCl
 		}
 		else
 			System.out.println("resultCode=" + resultCode);
+	}
+
+	public ContentValues get_values()
+	{
+		float _total = _adapter.get_totla_acreage();
+		if (_address.getData().isEmpty())
+		{
+			Toast.makeText(getActivity(), "请填写详细地址", Toast.LENGTH_SHORT).show();
+		}
+		else if(_areas.getData().equals("0.0"))
+		{
+			Toast.makeText(getActivity(), "请输入房屋的建筑面积", Toast.LENGTH_SHORT).show();
+		}
+		else if (_total > Float.parseFloat(_areas.getData()) + 1)
+		{
+			Toast.makeText(getActivity(), "输入的具体面积总和不应大于建筑面积", Toast.LENGTH_LONG).show();
+		}
+		else
+		{
+			ContentValues _value = new ContentValues();
+			_value.put("provinceId", _provinceId);
+			_value.put("cityId", _cityId);
+			_value.put("countyId", _countyId);
+			_value.put("houseId", _houseId);
+			_value.put("houseName", _name.getData());
+			_value.put("homeAddress", _address.getData());
+			_value.put("houseType", _type.getData());
+			_value.put("houseState", _state.getData());
+			_value.put("homeSq", _areas.getData());
+			_value.put("roomNum", _adapter.get_number("room"));
+			_value.put("parlourNum", _adapter.get_number("parlour"));
+			_value.put("kitchenNum", _adapter.get_number("kitchen"));
+			_value.put("toiletNum", _adapter.get_number("toilet"));
+			_value.put("balconyNum", _adapter.get_number("balcony"));
+			_value.put("roomAcreage", _adapter.get_acreage("room"));
+			_value.put("parlourAcreage", _adapter.get_acreage("parlour"));
+			_value.put("kitchenAcreage", _adapter.get_acreage("kitchen"));
+			_value.put("toiletAcreage", _adapter.get_acreage("toilet"));
+			_value.put("balconyAcreage", _adapter.get_acreage("balcony"));
+			return _value;
+		}
+		return null;
 	}
 
 	@Override

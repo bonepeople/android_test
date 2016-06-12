@@ -34,6 +34,19 @@ public class HttpUtil
 	// http://192.168.1.112:10000/shownest/websubmitreg
 
 	/**
+	 * 发布招标(普通发标)
+	 */
+	public static void publish_bid(Handler _handler, ContentValues _value, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "webPublicBook";
+		String _message = "";
+
+		_message = values(_value);
+
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
+	}
+
+	/**
 	 * 添加房屋
 	 */
 	public static void add_house(Handler _handler, ContentValues _value, int _successful, int _failed)
@@ -99,9 +112,9 @@ public class HttpUtil
 	}
 
 	/**
-	 * 发布招标
+	 * 发布招标(一键发标)
 	 */
-	public static void publish_bid(Handler _handler, ContentValues _value, int _successful, int _failed)
+	public static void publish_bid_fast(Handler _handler, ContentValues _value, int _successful, int _failed)
 	{
 		String _address = BASEADDRESS + "webOwnerPublishBid";
 		String _message = "";
@@ -492,8 +505,8 @@ public class HttpUtil
 		{
 			_realUrl = new URL(_address);
 			_connection = (HttpURLConnection) _realUrl.openConnection();
-			_connection.setConnectTimeout(30000);
-			_connection.setReadTimeout(30000);
+			_connection.setConnectTimeout(3000);
+			_connection.setReadTimeout(3000);
 			_connection.setRequestMethod(_method);
 			if (_method.equals("POST"))
 			{

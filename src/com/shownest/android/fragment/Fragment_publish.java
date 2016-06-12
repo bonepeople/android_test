@@ -89,7 +89,7 @@ public class Fragment_publish extends DEBUG_Fragment implements OnClickListener
 			_value.put("phone", _str_phone);
 			_value.put("ownerIdea", _str_idea);
 			Activity_publish.get_instance().show_wait();
-			HttpUtil.publish_bid(Activity_publish._handler, _value, Activity_publish.PUBLISH_SUCCESSFUL, Activity_publish.PUBLISH_FAILED);
+			HttpUtil.publish_bid_fast(Activity_publish._handler, _value, Activity_publish.PUBLISH_SUCCESSFUL, Activity_publish.PUBLISH_FAILED);
 		}
 	}
 }

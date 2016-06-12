@@ -1,14 +1,18 @@
 package com.shownest.android.fragment;
 
 import com.shownest.android.R;
+import com.shownest.android.activity.Activity_publish_yezhu;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.UserInfo;
+import com.shownest.android.utils.CommonUtil;
+import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.UserManager;
 import com.shownest.android.widget.Linearlayout_edittext;
 import com.shownest.android.widget.InformationBar;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -37,7 +41,7 @@ public class Fragment_publish_yezhu_setp2 extends DEBUG_Fragment implements OnCl
 		_button_commit.setOnClickListener(this);
 
 		ImageView _image_title = new ImageView(getActivity());
-		_image_title.setImageDrawable(getResources().getDrawable(R.drawable.book_house_2));
+		_image_title.setImageDrawable(getResources().getDrawable(R.drawable.publish_step2));
 		_body.addView(_image_title);
 
 		_type = new InformationBar(getActivity(), _body, 2, new String[] { "选择招标类型", "设计标" }, true, this);
@@ -48,7 +52,7 @@ public class Fragment_publish_yezhu_setp2 extends DEBUG_Fragment implements OnCl
 		_name = new InformationBar(getActivity(), _body, 5, new String[] { "您的称呼", "" }, true);
 		_phone = new InformationBar(getActivity(), _body, 5, new String[] { "联系电话", "" }, true);
 		_edit = new Linearlayout_edittext(getActivity(), _body, new String[] { "描述需求", "说说你的装修要求", "" });
-		
+
 		return _view;
 	}
 
@@ -69,10 +73,67 @@ public class Fragment_publish_yezhu_setp2 extends DEBUG_Fragment implements OnCl
 		int _id = v.getId();
 		if (_id == R.id.button_commit)
 		{
-			Toast.makeText(getActivity(), "next", Toast.LENGTH_SHORT).show();
-			if (_money.getData().equals("0.0"))
+			ContentValues _value = Activity_publish_yezhu.get_values();
+			if (_value != null)
 			{
+				if (_money.getData().equals("0.0"))
+				{
+					Toast.makeText(getActivity(), "预算金额不能是0元", Toast.LENGTH_SHORT).show();
+				}
+				else if (_name.getData().isEmpty())
+				{
+					Toast.makeText(getActivity(), "请填写您的称呼", Toast.LENGTH_SHORT).show();
+				}
+				else if (!CommonUtil.isPhone(_phone.getData()))
+				{
+					Toast.makeText(getActivity(), "请输入正确的手机号码", Toast.LENGTH_SHORT).show();
+				}
+				else
+				{
+					switch (_type.getData())
+					{
+					case "设计标":
+						_value.put("bookType", 12);
+						switch (_service.getData())
+						{
+						case "设计图服务":
+							_value.put("designerBiddingType", 1);
+							break;
+						case "硬装全程设计服务":
+							_value.put("designerBiddingType", 2);
+							break;
+						case "硬装软装全程设计服务":
+							_value.put("designerBiddingType", 3);
+							break;
+						}
+						break;
+					case "施工标":
+						_value.put("bookType", 13);
+						switch (_cons.getData())
+						{
+						case "半包":
+							_value.put("consType", 0);
+							break;
+						case "全包":
+							_value.put("consType", 1);
+							break;
+						case "清包":
+							_value.put("consType", 2);
+							break;
+						}
+						break;
+					case "监理标":
+						_value.put("bookType", 13);
+						break;
+					}
+					_value.put("budget", _money.getData());
+					_value.put("ownerIdea", _edit.getData());
+					_value.put("contacts", _name.getData());
+					_value.put("phone", _phone.getData());
 
+					Activity_publish_yezhu.get_instance().show_wait();
+					HttpUtil.publish_bid(Activity_publish_yezhu._handler, _value, Activity_publish_yezhu.PUBLISH_SUCCESSFUL, Activity_publish_yezhu.PUBLISH_FAILED);
+				}
 			}
 		}
 		else if (_id == _type.get_id())

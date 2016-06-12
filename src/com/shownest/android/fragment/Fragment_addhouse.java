@@ -81,11 +81,11 @@ public class Fragment_addhouse extends DEBUG_Fragment implements View.OnClickLis
 		_img.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == -1)
 		{
-			_cityId = data.getIntExtra("cityId", 0);
-			System.out.println("cityId=" + _cityId);
-
 			_provinceId = data.getIntExtra("provinceId", 0);
 			System.out.println("provinceId=" + _provinceId);
+
+			_cityId = data.getIntExtra("cityId", 0);
+			System.out.println("cityId=" + _cityId);
 
 			_countyId = data.getIntExtra("countyId", 0);
 			System.out.println("countyId=" + _countyId);

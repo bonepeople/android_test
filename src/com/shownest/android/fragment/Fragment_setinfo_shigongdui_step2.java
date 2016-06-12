@@ -60,11 +60,11 @@ public class Fragment_setinfo_shigongdui_step2 extends DEBUG_Fragment implements
 	{
 		if (resultCode == -1)
 		{
-			cityId = data.getIntExtra("cityId", 0);
-			System.out.println("cityId=" + cityId);
-
 			provinceId = data.getIntExtra("provinceId", 0);
 			System.out.println("provinceId=" + provinceId);
+
+			cityId = data.getIntExtra("cityId", 0);
+			System.out.println("cityId=" + cityId);
 
 			countyId = data.getIntExtra("countyId", 0);
 			System.out.println("countyId=" + countyId);

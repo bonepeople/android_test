@@ -31,8 +31,11 @@ public class Activity_publish_yezhu extends DEBUG_Activity
 {
 	public static final int GET_FAILED = 0;
 	public static final int GET_SUCCESSFUL = 1;
+	public static final int PUBLISH_FAILED = 2;
+	public static final int PUBLISH_SUCCESSFUL = 3;
 	private static Activity_publish_yezhu _instance;
 	private static ArrayList<HouseInfo> _house = new ArrayList<HouseInfo>();
+	private static Fragment_publish_yezhu_setp1 _fragment_step1;
 	public static Handler _handler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)
@@ -40,9 +43,11 @@ public class Activity_publish_yezhu extends DEBUG_Activity
 			switch (msg.what)
 			{
 			case GET_FAILED:
+			case PUBLISH_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 				break;
 			case GET_SUCCESSFUL:
+			case PUBLISH_SUCCESSFUL:
 				handle_string(msg.what, (String) msg.obj);
 				break;
 			}
@@ -97,7 +102,11 @@ public class Activity_publish_yezhu extends DEBUG_Activity
 						_instance.startActivity(_add);
 						_instance.finish();
 					}
-					add_fragment(_instance, new Fragment_publish_yezhu_setp1(), false);
+					add_fragment(_instance, _fragment_step1 = new Fragment_publish_yezhu_setp1(), false);
+					break;
+				case PUBLISH_SUCCESSFUL:
+					Toast.makeText(_instance, "发标成功", Toast.LENGTH_SHORT).show();
+					_instance.finish();
 					break;
 				}
 			else
@@ -117,6 +126,11 @@ public class Activity_publish_yezhu extends DEBUG_Activity
 	public static ArrayList<HouseInfo> get_house()
 	{
 		return _house;
+	}
+
+	public static ContentValues get_values()
+	{
+		return _fragment_step1.get_values();
 	}
 
 	public static Activity_publish_yezhu get_instance()
