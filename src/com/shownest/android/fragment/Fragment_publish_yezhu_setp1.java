@@ -86,6 +86,7 @@ public class Fragment_publish_yezhu_setp1 extends DEBUG_Fragment implements OnCl
 			HouseInfo _temp_house = _data.get(_index);
 			_name.setData(new String[] { _temp_house.get_houseName() });
 			_location.setData(new String[] { _temp_house.get_regionName() });
+			_address.setData(new String[] { _temp_house.get_homeAddress() });
 			_areas.setData(new String[] { String.valueOf(_temp_house.get_homeSq()) });
 			_house.setData(new String[] { _temp_house.get_nums() });
 			_state.setData(String.valueOf(_temp_house.get_houseState()));
