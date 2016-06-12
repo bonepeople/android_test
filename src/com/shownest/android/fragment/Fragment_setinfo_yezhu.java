@@ -12,13 +12,12 @@ import com.shownest.android.widget.InformationBar;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-public class Fragment_setinfo_yezhu extends DEBUG_Fragment
+public class Fragment_setinfo_yezhu extends DEBUG_Fragment implements View.OnClickListener
 {
 	private LinearLayout _body;
 	private Button _button_commit;
@@ -29,10 +28,11 @@ public class Fragment_setinfo_yezhu extends DEBUG_Fragment
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		super.onCreateView(inflater, container, savedInstanceState);
-		View _view = inflater.inflate(R.layout.fragment_setinfo, container, false);
+		View _view = inflater.inflate(R.layout.fragment_basic, container, false);
 		_body = (LinearLayout) _view.findViewById(R.id.linearlayout_content);
 		_button_commit = (Button) _view.findViewById(R.id.button_commit);
 		_button_commit.setText("完成认证");
+		_button_commit.setOnClickListener(this);
 
 		new InformationBar(getActivity(), _body, 5, new String[] { "身份类型", "业主" }, false);
 		_showname = new InformationBar(getActivity(), _body, 5, new String[] { "秀巢昵称", "" }, true);
@@ -43,29 +43,6 @@ public class Fragment_setinfo_yezhu extends DEBUG_Fragment
 		_style = new LinearLayout_checkbox(getActivity(), "倾向风格(可多选)", _items, 12, "");
 		_body.addView(_style);
 
-		_button_commit.setOnClickListener(new OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				String _string_showname = _showname.getData();
-				String _string_realname = _realname.getData();
-				String _string_sex = _sex.getData().equals("男") ? "1" : "0";
-				String _string_style = _style.getData();
-
-				if (_string_showname.length() < 4 || _string_showname.length() > 20)
-				{
-					Toast.makeText(getActivity(), "显示昵称长度为4-20位", Toast.LENGTH_SHORT).show();
-				}
-				else
-				{
-					Toast.makeText(getActivity(), _string_showname + _string_realname + _string_sex + _string_style, Toast.LENGTH_SHORT).show();
-					Activity_setinfo_yezhu.get_instance().show_wait();
-					HttpUtil.change_baseinfo(Activity_setinfo_yezhu._handler, _string_showname, _string_realname, _string_sex, _string_style, Activity_setinfo_yezhu.CHANGE_SUCCESSFUL,
-							Activity_setinfo_yezhu.CHANGE_FAILED);
-				}
-			}
-		});
 		return _view;
 	}
 
@@ -79,6 +56,27 @@ public class Fragment_setinfo_yezhu extends DEBUG_Fragment
 			_realname.setData(new String[] { _info.get_realName() });
 			_sex.setData(new String[] { _info.get_realSex() == 1 ? "1" : "2" });
 			_style.setData(_info.get_likeStyle());
+		}
+	}
+
+	@Override
+	public void onClick(View v)
+	{
+		String _str_showname = _showname.getData();
+		String _str_realname = _realname.getData();
+		String _str_sex = _sex.getData().equals("男") ? "1" : "0";
+		String _str_style = _style.getData();
+
+		if (_str_showname.length() < 4 || _str_showname.length() > 20)
+		{
+			Toast.makeText(getActivity(), "显示昵称长度为4-20位", Toast.LENGTH_SHORT).show();
+		}
+		else
+		{
+			Toast.makeText(getActivity(), _str_showname + _str_realname + _str_sex + _str_style, Toast.LENGTH_SHORT).show();
+			Activity_setinfo_yezhu.get_instance().show_wait();
+			HttpUtil.change_baseinfo(Activity_setinfo_yezhu._handler, _str_showname, _str_realname, _str_sex, _str_style, Activity_setinfo_yezhu.CHANGE_SUCCESSFUL,
+					Activity_setinfo_yezhu.CHANGE_FAILED);
 		}
 	}
 }

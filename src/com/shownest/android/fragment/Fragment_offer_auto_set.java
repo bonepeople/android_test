@@ -39,7 +39,7 @@ public class Fragment_offer_auto_set extends DEBUG_Fragment implements OnClickLi
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		super.onCreateView(inflater, container, savedInstanceState);
-		View _view = inflater.inflate(R.layout.fragment_setinfo, container, false);
+		View _view = inflater.inflate(R.layout.fragment_basic, container, false);
 		_body = (LinearLayout) _view.findViewById(R.id.linearlayout_content);
 		_button_commit = (Button) _view.findViewById(R.id.button_commit);
 		_button_commit.setText("获取报价");

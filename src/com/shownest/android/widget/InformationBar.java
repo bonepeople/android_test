@@ -20,9 +20,16 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * 信息条控件
+ * <p>
+ * 将多种信息集中在一行显示，可以通过点击整个信息条进行信息的设置，大部分情况是弹出对话框进行输入，也可传入OnClickListener进行更多操作(如：页面跳转)
+ * 
+ * @author bonepeople
+ *
+ */
 public class InformationBar implements View.OnClickListener
 {
-	private static boolean DEBUG = false;
 	private static int _count = 0;
 	private Context _context;
 	private int _id;
@@ -48,12 +55,9 @@ public class InformationBar implements View.OnClickListener
 	 *            类型（1-6）
 	 * @param name
 	 *            信息条内容 1-3,2-2,3-3,4-2,5-2,6-4,7-3
-	 * 
 	 */
 	public InformationBar(Context context, ViewGroup root, int style, String[] args, boolean _clickable)
 	{
-		if (DEBUG)
-			System.out.println("relativelayout super:" + style);
 		this._context = context;
 		this._style = style;
 		this._rootview = root;
@@ -62,10 +66,18 @@ public class InformationBar implements View.OnClickListener
 
 	}
 
+	/**
+	 * 通过代码生成一个信息条控件
+	 * 
+	 * @param root
+	 *            父容器
+	 * @param style
+	 *            类型（1-6）
+	 * @param name
+	 *            信息条内容 1-3,2-2,3-3,4-2,5-2,6-4,7-3
+	 */
 	public InformationBar(Context context, ViewGroup root, int style, String[] args, boolean _clickable, View.OnClickListener _listener)
 	{
-		if (DEBUG)
-			System.out.println("relativelayout super:" + style);
 		this._context = context;
 		this._style = style;
 		this._rootview = root;
