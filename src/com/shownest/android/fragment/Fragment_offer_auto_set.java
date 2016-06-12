@@ -56,7 +56,7 @@ public class Fragment_offer_auto_set extends DEBUG_Fragment implements OnClickLi
 		_area = new InformationBar(getActivity(), _body, 7, new String[] { "建筑面积", "0.0", " m²" }, true);
 		_house = new InformationBar(getActivity(), _body, 4, new String[] { "户型结构", "1,1,1,1,1" }, true, this);
 		_adapter = new Adapter_rooms_area(getActivity());
-		_list = new Linearlayout_listview(getActivity(), _body, "areas", new String[] { "具体面积", "信息填写详细，会使您获得更精准的报价" }, _adapter);
+		_list = new Linearlayout_listview(getActivity(), _body, new String[] { "具体面积", "信息填写详细，会使您获得更精准的报价" }, _adapter);
 		_list.set_textcolor("hint", getResources().getColor(R.color.text_blue));
 		_list.set_dividerheight(1);
 		_area.setOnChangeListener(_adapter);

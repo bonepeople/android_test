@@ -39,13 +39,12 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 		super(context, attrs);
 	}
 
-	public Linearlayout_listview(Context context, ViewGroup root, String _tag, String[] args, ListAdapter _adapter)
+	public Linearlayout_listview(Context context, ViewGroup root, String[] args, ListAdapter _adapter)
 	{
 		super(context);
 		if (DEBUG)
 			System.out.println("Linearlayout_listview super");
 		this._rootview = root;
-		this._tag = _tag;
 		this._adapter = _adapter;
 		setContentView(args);
 	}
@@ -71,22 +70,19 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 		_title.setOnClickListener(this);
 	}
 
-	public void setOnChangetListener(OnChangeListener _listener)
-	{
-		this._listener = _listener;
-	}
-
 	public void set_hint(String _hint)
 	{
 		_text_hint.setText(_hint);
 	}
 
-	public void set_change(String _change)
+	public void set_change(String _change, String _tag, OnChangeListener _listener)
 	{
 		_text_change.setText(_change);
 		_text_change.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 		_text_change.setVisibility(TextView.VISIBLE);
 		_text_change.setOnClickListener(this);
+		this._tag = _tag;
+		this._listener = _listener;
 	}
 
 	/**
@@ -164,7 +160,7 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 			break;
 		case R.id.textview_change:
 			if (_listener != null)
-				_listener.onChange("listview change", new String[] { _tag });
+				_listener.onChange(_tag, null);
 			break;
 
 		}

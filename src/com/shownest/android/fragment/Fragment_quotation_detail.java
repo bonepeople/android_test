@@ -60,19 +60,18 @@ public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClick
 		}
 	}
 
-	private void set_list(RoomDetail _data, String _tag, String _name)
+	private void set_list(RoomDetail _data, String _part, String _name)
 	{
-		if (_data.has_details(_tag))
+		if (_data.has_details(_part))
 		{
-			Adapter_quotation_detail _adapter = new Adapter_quotation_detail(getActivity(), _tag, _data.get_details(_tag));
-			Linearlayout_listview _list = new Linearlayout_listview(getActivity(), _body, _tag, new String[] { _name, "小计：" + _data.get_totals(_tag) + "元" }, _adapter);
-			_adapter.setOnChangetListener(Activity_quotation_detail.get_instance());
-			_list.setOnChangetListener(Activity_quotation_detail.get_instance());
-			_list.set_change("增减工艺");
+			Adapter_quotation_detail _adapter = new Adapter_quotation_detail(getActivity(), _data.get_details(_part));
+			Linearlayout_listview _list = new Linearlayout_listview(getActivity(), _body, new String[] { _name, "小计：" + _data.get_totals(_part) + "元" }, _adapter);
+			_adapter.setOnChangetListener("change " + _part, Activity_quotation_detail.get_instance());
+			_list.set_change("增减工艺", "fix " + _part, Activity_quotation_detail.get_instance());
 			_list.set_dividerheight(30);
 			_list.set_collapse(false);
-			_adapters.put(_tag, _adapter);
-			_lists.put(_tag, _list);
+			_adapters.put(_part, _adapter);
+			_lists.put(_part, _list);
 		}
 	}
 

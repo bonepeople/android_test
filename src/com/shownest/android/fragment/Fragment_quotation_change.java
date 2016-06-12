@@ -90,7 +90,7 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 			String _name = CommonUtil.get_chineseName(_part);
 
 			_adapter = new Adapter_quotation_change(getActivity(), _part, _data.get_details(_part));
-			_list = new Linearlayout_listview(getActivity(), _body, _part, new String[] { _name, "" }, _adapter);
+			_list = new Linearlayout_listview(getActivity(), _body, new String[] { _name, "" }, _adapter);
 			_list.set_dividerheight(30);
 			_list.set_collapse(false);
 			// _adapter.setOnChangetListener(Activity_quotation_detail.get_instance());

@@ -133,29 +133,19 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 	}
 
 	@Override
-	public void onChange(String tag, String[] args)
+	public void onChange(String _tag, String[] _args)
 	{
 		if (UserManager.is_login())
 		{
 			Intent _change;
-			String _type = "";
+			String[] _tags = _tag.split(" ");
+			String _type = _tags[0];
 			int _part_index = 0, _code = CHANGE;
-			switch (tag)
-			{
-			case "adapter change":
-				_type = "change";
-				_part_index = Integer.parseInt(args[1]);
-				break;
-
-			case "listview change":
-				_type = "fix";
+			if (_type.equals("change"))
+				_part_index = Integer.parseInt(_args[0]);
+			else
 				_code = FIX;
-				break;
-
-			default:
-				return;
-			}
-			_change_part = args[0];
+			_change_part = _tags[1];
 			_change = new Intent(this, Activity_quotation_change.class);
 			_change.putExtra("quotationId", _quotationId);
 			_change.putExtra("type", _type);

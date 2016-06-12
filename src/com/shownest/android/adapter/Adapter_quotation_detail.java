@@ -39,16 +39,16 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 		public TextView _text_total;
 	}
 
-	public Adapter_quotation_detail(Context _context, String _tag, SparseArray<ItemDetail> _data)
+	public Adapter_quotation_detail(Context _context, SparseArray<ItemDetail> _data)
 	{
 		this._context = _context;
 		_inflater = LayoutInflater.from(_context);
-		this._tag = _tag;
 		this._data = _data;
 	}
 
-	public void setOnChangetListener(OnChangeListener _listener)
+	public void setOnChangetListener(String _tag, OnChangeListener _listener)
 	{
+		this._tag = _tag;
 		this._listener = _listener;
 	}
 
@@ -131,6 +131,6 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 	public void onClick(View v)
 	{
 		if (_listener != null)
-			_listener.onChange("adapter change", new String[] { _tag, String.valueOf(v.getId()) });
+			_listener.onChange(_tag, new String[] { String.valueOf(v.getId()) });
 	}
 }
