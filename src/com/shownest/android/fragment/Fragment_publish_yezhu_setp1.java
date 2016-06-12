@@ -15,6 +15,9 @@ import com.shownest.android.widget.LinearLayout_picturebox;
 import com.shownest.android.widget.Linearlayout_listview;
 import com.shownest.android.widget.InformationBar;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -135,7 +138,23 @@ public class Fragment_publish_yezhu_setp1 extends DEBUG_Fragment implements OnCl
 		else if (_id == _name.get_id())
 		{
 			// show dialog
-			Toast.makeText(getActivity(), "选择房屋", Toast.LENGTH_SHORT).show();
+			String[] _names = new String[_data.size()];
+			for (int _temp_i = 0; _temp_i < _data.size(); _temp_i++)
+				_names[_temp_i] = _data.get(_temp_i).get_houseName();
+
+			AlertDialog.Builder _builder = new Builder(getActivity());
+			_builder.setTitle("我的房屋");
+			_builder.setItems(_names, new DialogInterface.OnClickListener()
+			{
+				@Override
+				public void onClick(DialogInterface dialog, int which)
+				{
+					_index = which;
+					setContent();
+				}
+			});
+
+			_builder.show();
 		}
 		else if (_id == _house.get_id())
 		{
