@@ -1,38 +1,25 @@
 package com.shownest.android.activity;
 
-import java.util.ArrayList;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
-import com.shownest.android.fragment.Fragment_AH_bid;
-import com.shownest.android.model.BidInfo_common;
-import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.JsonUtil;
 
-import android.content.ContentValues;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-/**
- * 招标大厅
- * 
- * @author bonepeople
- */
-public class Activity_AH_bid extends DEBUG_Activity
+public class Activity_toubiao_shejishi extends DEBUG_Activity
 {
 	public static final int GET_FAILED = 0;
 	public static final int GET_SUCCESSFUL = 1;
-	private static Activity_AH_bid _instance;
-	private static ArrayList<BidInfo_common> _data = new ArrayList<BidInfo_common>();
-	private int _bidType = 0;
-	private String _sort = "creatdate";
-	private int _startPage = 0;
+	private static Activity_toubiao_shejishi _instance;
+	private static Intent _intent;
+	private static int _index = 0;
 	public static Handler _handler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)
@@ -41,7 +28,6 @@ public class Activity_AH_bid extends DEBUG_Activity
 			{
 			case GET_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
-				System.out.println((String) msg.obj);
 				break;
 			case GET_SUCCESSFUL:
 				handle_string(msg.what, (String) msg.obj);
@@ -58,15 +44,37 @@ public class Activity_AH_bid extends DEBUG_Activity
 		setContentView(R.layout.activity_basic);
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 		_instance = this;
-		setTitle("招标大厅");
+		_intent = getIntent();
+		setTitle("我要投标");
 
-		ContentValues _value = new ContentValues();
-		_value.put("bidType", _bidType);
-		_value.put("isOver", "n");
-		_value.put("sort", _sort);
-		_value.put("startPage", _startPage);
-		show_wait();
-		HttpUtil.get_bid_list(_handler, _value, GET_SUCCESSFUL, GET_FAILED);
+		_index = _intent.getIntExtra("index", 0);
+		System.out.println("_index :" + _index);
+
+		// show_wait();
+		// ContentValues _value = new ContentValues();
+		// _value.put("quotationId", _quotationId);
+		// _value.put(_room, _number);
+		// HttpUtil.get_quotation_item(_handler, _room, _value, GET_SUCCESSFUL, GET_FAILED);
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		if (resultCode == -1)
+		{
+			switch (requestCode)
+			{
+			case 1:
+
+				break;
+
+			case 2:
+
+				break;
+			}
+		}
+		else
+			System.out.println("resultCode=" + resultCode);
 	}
 
 	private static void handle_string(int _what, String _str)
@@ -79,33 +87,27 @@ public class Activity_AH_bid extends DEBUG_Activity
 				switch (_what)
 				{
 				case GET_SUCCESSFUL:
-					JSONArray _array = _obj.getJSONObject("data").getJSONArray("items");
-					for (int _temp_i = 0; _temp_i < _array.length(); _temp_i++)
-					{
-						BidInfo_common _temp_bid = new BidInfo_common(_array.getJSONObject(_temp_i));
-						_data.add(_temp_bid);
-					}
-					add_fragment(_instance, new Fragment_AH_bid(), false);
+					// _data = new RoomDetail(_obj.getJSONObject("data"), _intent.getStringExtra("room"));
+					// _fragment_detail = new Fragment_quotation_detail();
+					// add_fragment(_instance, _fragment_detail, false);
 					break;
 				}
 			else
+			{
 				Toast.makeText(_instance, JsonUtil.get_string(_obj, "msg", "连接服务器失败。"), Toast.LENGTH_SHORT).show();
+				_instance.finish();
+			}
 		}
 		catch (JSONException e)
 		{
 			e.printStackTrace();
 			Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
+			_instance.finish();
 		}
 	}
 
-	public static ArrayList<BidInfo_common> get_data()
-	{
-		return _data;
-	}
-
-	public static Activity_AH_bid get_instance()
+	public static Activity_toubiao_shejishi get_instance()
 	{
 		return _instance;
 	}
-
 }

@@ -39,7 +39,6 @@ public class Adapter_bid_list extends BaseAdapter
 	@Override
 	public int getCount()
 	{
-		System.out.println("data length:" + _data.size());
 		return _data.size();
 	}
 

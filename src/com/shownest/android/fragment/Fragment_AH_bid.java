@@ -4,15 +4,19 @@ import java.util.ArrayList;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_AH_bid;
+import com.shownest.android.activity.Activity_toubiao_shejishi;
 import com.shownest.android.adapter.Adapter_bid_list;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.BidInfo_common;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -44,10 +48,20 @@ public class Fragment_AH_bid extends DEBUG_Fragment
 			_list.setAdapter(_adapter);
 			_list.setDivider(new ColorDrawable(getResources().getColor(R.color.background_main)));
 			_list.setDividerHeight(30);
-			LinearLayout.LayoutParams _param = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-			_param.weight = 15;
-			_list.setLayoutParams(_param);
-
+			// LinearLayout.LayoutParams _param = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+			// LinearLayout.LayoutParams.MATCH_PARENT);
+			// _param.weight = 15;
+			// _list.setLayoutParams(_param);
+			_list.setOnItemClickListener(new OnItemClickListener()
+			{
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+				{
+					Intent _toubiao = new Intent(getActivity(), Activity_toubiao_shejishi.class);
+					_toubiao.putExtra("index", position);
+					startActivity(_toubiao);
+				}
+			});
 			_body.addView(_list);
 		}
 	}
