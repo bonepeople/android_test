@@ -25,7 +25,7 @@ public class Fragment_AH_bid extends DEBUG_Fragment
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		super.onCreateView(inflater, container, savedInstanceState);
-		View _view = inflater.inflate(R.layout.fragment_basic, container, false);
+		View _view = inflater.inflate(R.layout.fragment_no_scroll, container, false);
 		_body = (LinearLayout) _view.findViewById(R.id.linearlayout_content);
 		_buttons = (LinearLayout) _view.findViewById(R.id.linearlayout_buttons);
 		_buttons.setVisibility(LinearLayout.GONE);
