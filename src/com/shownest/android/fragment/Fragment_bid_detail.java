@@ -5,7 +5,6 @@ import com.shownest.android.activity.Activity_bid_detail;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.BidInfo;
 import com.shownest.android.utils.NumberUtil;
-import com.shownest.android.widget.LinearLayout_picturebox;
 import com.shownest.android.widget.InformationBar;
 import com.shownest.android.widget.View_split_h;
 
@@ -25,7 +24,7 @@ public class Fragment_bid_detail extends DEBUG_Fragment implements OnClickListen
 	private LinearLayout _body;
 	private Button _button_commit;
 	private InformationBar _quotation;
-	private LinearLayout_picturebox _picture;
+	// private LinearLayout_picturebox _picture;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
@@ -51,11 +50,11 @@ public class Fragment_bid_detail extends DEBUG_Fragment implements OnClickListen
 			new InformationBar(getActivity(), _body, 5, new String[] { "房屋状态", _data.get_houseState_name() }, false);
 			new InformationBar(getActivity(), _body, 7, new String[] { "建筑面积", String.valueOf(_data.get_homeSq()), " m²" }, false);
 			new InformationBar(getActivity(), _body, 4, new String[] { "户型结构", _data.get_rooms() }, false);
-			_picture = new LinearLayout_picturebox(this, "户型图（选填）", false);
-			_picture.add_image("http://t.shownest.com:86/_resources/upload/headerIcon/6dfdd424ea49110400eba7dceb7.jpg");
-			_picture.add_image("http://t.shownest.com:86/_resources/upload/headerIcon/6dfdd424ea49110400eba7dceb7.jpg");
-			_picture.add_image("http://t.shownest.com:86/_resources/upload/headerIcon/6dfdd424ea49110400eba7dceb7.jpg");
-			_body.addView(_picture);
+			// _picture = new LinearLayout_picturebox(this, "户型图（选填）", false);
+			// _picture.add_image("http://t.shownest.com:86/_resources/upload/headerIcon/6dfdd424ea49110400eba7dceb7.jpg");
+			// _picture.add_image("http://t.shownest.com:86/_resources/upload/headerIcon/6dfdd424ea49110400eba7dceb7.jpg");
+			// _picture.add_image("http://t.shownest.com:86/_resources/upload/headerIcon/6dfdd424ea49110400eba7dceb7.jpg");
+			// _body.addView(_picture);
 			new InformationBar(getActivity(), _body, 5, new String[] { "业主称呼", _data.get_contacts() }, false);
 			new InformationBar(getActivity(), _body, 5, new String[] { "联系方式", _data.get_phone() }, false);
 			new View_split_h(getActivity(), _body, 5f);
@@ -80,7 +79,7 @@ public class Fragment_bid_detail extends DEBUG_Fragment implements OnClickListen
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
-		_picture.onActivityResult(requestCode, resultCode, data);
+		// _picture.onActivityResult(requestCode, resultCode, data);
 	}
 
 	@Override

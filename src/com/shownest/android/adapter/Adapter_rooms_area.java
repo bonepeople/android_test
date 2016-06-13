@@ -273,6 +273,7 @@ public class Adapter_rooms_area extends BaseAdapter implements View.OnClickListe
 			{
 				_areas.get(_selected)._data1 = NumberUtil.round(_temp_double, 2);
 				notifyDataSetChanged();
+				System.out.println("all area is " + get_totla_acreage());
 			}
 			_dialog.dismiss();
 			break;
