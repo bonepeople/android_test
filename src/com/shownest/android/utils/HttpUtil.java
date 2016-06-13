@@ -38,7 +38,7 @@ public class HttpUtil
 	 */
 	public static void get_bid_list(Handler _handler, ContentValues _value, int _successful, int _failed)
 	{
-		String _address = BASEADDRESS + "webBidLists";
+		String _address = BASEADDRESS + "bid/webBidLists";
 		String _message = "";
 
 		_message = values(_value);
@@ -116,7 +116,7 @@ public class HttpUtil
 	 */
 	public static void get_bid(Handler _handler, ContentValues _value, int _successful, int _failed)
 	{
-		String _address = BASEADDRESS + "/bid/webGetRespBid";
+		String _address = BASEADDRESS + "bid/webGetRespBid";
 		String _message = "";
 
 		_message = values(_value);

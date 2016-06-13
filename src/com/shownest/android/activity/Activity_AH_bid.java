@@ -8,7 +8,7 @@ import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
-import com.shownest.android.fragment.Fragment_publish_yezhu_setp1;
+import com.shownest.android.fragment.Fragment_AH_bid;
 import com.shownest.android.model.BidInfo_common;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.JsonUtil;
@@ -41,6 +41,7 @@ public class Activity_AH_bid extends DEBUG_Activity
 			{
 			case GET_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
+				System.out.println((String) msg.obj);
 				break;
 			case GET_SUCCESSFUL:
 				handle_string(msg.what, (String) msg.obj);
@@ -64,6 +65,7 @@ public class Activity_AH_bid extends DEBUG_Activity
 		_value.put("isOver", "n");
 		_value.put("sort", _sort);
 		_value.put("startPage", _startPage);
+		show_wait();
 		HttpUtil.get_bid_list(_handler, _value, GET_SUCCESSFUL, GET_FAILED);
 	}
 
@@ -78,13 +80,13 @@ public class Activity_AH_bid extends DEBUG_Activity
 				{
 				case GET_SUCCESSFUL:
 					Toast.makeText(_instance, "获取招标信息完毕", Toast.LENGTH_SHORT).show();
-					JSONArray _array = _obj.getJSONArray("data");
+					JSONArray _array = _obj.getJSONObject("data").getJSONArray("items");
 					for (int _temp_i = 0; _temp_i < _array.length(); _temp_i++)
 					{
 						BidInfo_common _temp_bid = new BidInfo_common(_array.getJSONObject(_temp_i));
 						_data.add(_temp_bid);
 					}
-//					add_fragment(_instance, _fragment_step1 = new Fragment_publish_yezhu_setp1(), false);
+					add_fragment(_instance, new Fragment_AH_bid(), false);
 					break;
 				}
 			else

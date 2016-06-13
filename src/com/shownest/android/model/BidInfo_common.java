@@ -28,11 +28,11 @@ public class BidInfo_common
 	private int _biddingTypeId;// 设计标类型 1-设计图服务，2-硬装全程服务，3-硬装软装全程服务
 	private double _budget;// 装修预算
 	private int _bidsState;// 招标状态
+	private int _bidNum;// 参与人数
 	private String _createDate;// 发布时间 "2016年06月12日"
 	private String _remainingDate;// 过期时间 "29天7小时17分"
 	private String _ownerIdea;// 需求描述
 
-	// "bidNum":0,
 	// "isOver":"n",
 	// "userId":"764de29e9d214d6bafb029a0f97d1909"
 
@@ -59,6 +59,7 @@ public class BidInfo_common
 		this._biddingTypeId = JsonUtil.get_int(_json, "biddingTypeId", 1);
 		this._budget = JsonUtil.get_double(_json, "budget", 0);
 		this._bidsState = JsonUtil.get_int(_json, "bidsState", 2);
+		this._bidNum = JsonUtil.get_int(_json, "bidNum", 0);
 		this._createDate = JsonUtil.get_string(_json, "createDate", "");
 		this._remainingDate = JsonUtil.get_string(_json, "remainingDate", "0天0小时0分");
 		this._ownerIdea = JsonUtil.get_string(_json, "ownerIdea", "");
@@ -184,6 +185,13 @@ public class BidInfo_common
 	{
 		String _result;
 		_result = _roomNum + "," + _parlourNum + "," + _kitchenNum + "," + _toiletNum + "," + _balconyNum;
+		return _result;
+	}
+
+	public String get_rooms_name()
+	{
+		String _result;
+		_result = _roomNum + "室" + _parlourNum + "厅" + _kitchenNum + "厨" + _toiletNum + "卫" + _balconyNum + "阳台";
 		return _result;
 	}
 
@@ -315,22 +323,22 @@ public class BidInfo_common
 		this._biddingTypeId = _biddingTypeId;
 	}
 
-	public double get_constructerMoney()
+	public double get_budget()
 	{
 		return _budget;
 	}
 
-	public void set_constructerMoney(double _constructerMoney)
+	public void set_budget(double _budget)
 	{
-		this._budget = _constructerMoney;
+		this._budget = _budget;
 	}
 
-	public int get_bidsStateCon()
+	public int get_bidsState()
 	{
 		return _bidsState;
 	}
 
-	public String get_bidsStateCon_name()
+	public String get_bidsState_name()
 	{
 		String _result = "";
 		switch (_bidsState)
@@ -348,19 +356,29 @@ public class BidInfo_common
 		return _result;
 	}
 
-	public void set_bidsStateCon(int _bidsStateCon)
+	public void set_bidsState(int _bidsState)
 	{
-		this._bidsState = _bidsStateCon;
+		this._bidsState = _bidsState;
 	}
 
-	public String get_createDateCon()
+	public int get_bidNum()
+	{
+		return _bidNum;
+	}
+
+	public void set_bidNum(int _bidNum)
+	{
+		this._bidNum = _bidNum;
+	}
+
+	public String get_createDate()
 	{
 		return _createDate;
 	}
 
-	public void set_createDateCon(String _createDateCon)
+	public void set_createDate(String _createDate)
 	{
-		this._createDate = _createDateCon;
+		this._createDate = _createDate;
 	}
 
 	public String get_remainingDate()
@@ -382,5 +400,4 @@ public class BidInfo_common
 	{
 		this._ownerIdea = _ownerIdea;
 	}
-
 }
