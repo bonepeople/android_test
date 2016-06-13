@@ -5,6 +5,11 @@ import org.json.JSONObject;
 
 import com.shownest.android.utils.JsonUtil;
 
+/**
+ * 房屋信息
+ * 
+ * @author bonepeople
+ */
 public class HouseInfo
 {
 	private String _houseId;// 房屋ID

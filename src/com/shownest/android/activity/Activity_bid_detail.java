@@ -111,9 +111,13 @@ public class Activity_bid_detail extends DEBUG_Activity
 		return _data;
 	}
 
+	public static int get_index()
+	{
+		return _index;
+	}
+
 	public static Activity_bid_detail get_instance()
 	{
 		return _instance;
 	}
-
 }

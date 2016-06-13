@@ -2,6 +2,7 @@ package com.shownest.android.fragment;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_bid_detail;
+import com.shownest.android.activity.Activity_toubiao_shejishi;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.BidInfo_common;
 import com.shownest.android.model.UserInfo;
@@ -25,7 +26,6 @@ public class Fragment_bid_detail extends DEBUG_Fragment implements OnClickListen
 {
 	private LinearLayout _body;
 	private Button _button_commit, _button_other;
-	private InformationBar _quotation;
 	// private LinearLayout_picturebox _picture;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -122,13 +122,25 @@ public class Fragment_bid_detail extends DEBUG_Fragment implements OnClickListen
 	public void onClick(View v)
 	{
 		int _id = v.getId();
-		if (_id == _quotation.get_id())
+		if (_id == _button_commit.getId())
 		{
-			Toast.makeText(getActivity(), "查看报价单", Toast.LENGTH_SHORT).show();
+			Intent _toubiao = new Intent();
+			switch (UserManager.get_user_info().get_userType())
+			{
+			case 12:
+				_toubiao.setClass(getActivity(), Activity_toubiao_shejishi.class);
+				break;
+			case 13:
+
+			case 14:
+				return;
+			}
+			_toubiao.putExtra("index", Activity_bid_detail.get_index());
+			startActivity(_toubiao);
 		}
-		else
+		else if (_id == _button_other.getId())
 		{
-			Toast.makeText(getActivity(), "commit", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), "查看全部投标", Toast.LENGTH_SHORT).show();
 		}
 	}
 }
