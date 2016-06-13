@@ -111,6 +111,12 @@ public class Activity_main extends DEBUG_Activity
 		Intent intent = new Intent(this, Activity_addhouse.class);
 		startActivity(intent);
 	}
+	
+	public void AH_bid(View v)
+	{
+		Intent intent = new Intent(this, Activity_AH_bid.class);
+		startActivity(intent);
+	}
 
 	public void my_center(View v)
 	{
