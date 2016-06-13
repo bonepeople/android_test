@@ -340,17 +340,17 @@ public class BidInfo_common
 
 	public String get_bidsState_name()
 	{
-		String _result = "";
+		String _result = "未定义";
 		switch (_bidsState)
 		{
 		case 1:
-			_result = "半包";
+			_result = "未定义1";
 			break;
 		case 2:
 			_result = "招标中";
 			break;
 		case 3:
-			_result = "清包";
+			_result = "未定义2";
 			break;
 		}
 		return _result;

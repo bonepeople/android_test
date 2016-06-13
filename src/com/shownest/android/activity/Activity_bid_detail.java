@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_bid_detail;
-import com.shownest.android.model.BidInfo_fast;
+import com.shownest.android.model.BidInfo_common;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.JsonUtil;
 
@@ -29,7 +29,8 @@ public class Activity_bid_detail extends DEBUG_Activity
 	private static Activity_bid_detail _instance;
 	private static Intent _intent;
 	private static String _bidID = "";
-	private static BidInfo_fast _data;
+	private static int _index = 0;
+	private static BidInfo_common _data;
 	public static Handler _handler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)
@@ -57,17 +58,26 @@ public class Activity_bid_detail extends DEBUG_Activity
 		_intent = getIntent();
 
 		_bidID = _intent.getStringExtra("bidID");
-		if (!_bidID.equals(""))
+		_index = _intent.getIntExtra("index", 0);
+		if (_bidID != null && !_bidID.equals(""))
 		{
 			ContentValues _value = new ContentValues();
 			_value.put("homeId", _bidID);
-			_value.put("page", 1);
 			show_wait();
-			HttpUtil.get_bid(_handler, _value, GET_SUCCESSFUL, GET_FAILED);
+			HttpUtil.get_bid_info(_handler, _value, GET_SUCCESSFUL, GET_FAILED);
 		}
 		else
 		{
-			// start ERROR_Activity
+			if (Activity_AH_bid.get_data() != null)
+			{
+				_data = Activity_AH_bid.get_data().get(_index);
+				setTitle(_data.get_houseName());
+				add_fragment(_instance, new Fragment_bid_detail(), false);
+			}
+			else
+			{
+				Toast.makeText(this, "软件异常，请联系技术人员解决", Toast.LENGTH_LONG).show();
+			}
 		}
 	}
 
@@ -81,8 +91,8 @@ public class Activity_bid_detail extends DEBUG_Activity
 				switch (_what)
 				{
 				case GET_SUCCESSFUL:
-					_data = new BidInfo_fast(_obj.getJSONArray("data").getJSONObject(0));
-					_instance.setTitle(_data.get_areaName());
+					_data = new BidInfo_common(_obj.getJSONObject("data"));
+					_instance.setTitle(_data.get_houseName());
 					add_fragment(_instance, new Fragment_bid_detail(), false);
 					break;
 				}
@@ -96,7 +106,7 @@ public class Activity_bid_detail extends DEBUG_Activity
 		}
 	}
 
-	public static BidInfo_fast get_data()
+	public static BidInfo_common get_data()
 	{
 		return _data;
 	}

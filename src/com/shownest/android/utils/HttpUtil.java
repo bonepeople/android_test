@@ -124,9 +124,9 @@ public class HttpUtil
 	/**
 	 * 获取招标详细信息
 	 */
-	public static void get_bid(Handler _handler, ContentValues _value, int _successful, int _failed)
+	public static void get_bid_info(Handler _handler, ContentValues _value, int _successful, int _failed)
 	{
-		String _address = BASEADDRESS + "bid/webGetRespBid";
+		String _address = BASEADDRESS + "bid/webGetBidInfo";
 		String _message = "";
 
 		_message = values(_value);

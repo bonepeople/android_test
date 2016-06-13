@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_AH_bid;
-import com.shownest.android.activity.Activity_toubiao_shejishi;
+import com.shownest.android.activity.Activity_bid_detail;
 import com.shownest.android.adapter.Adapter_bid_list;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.BidInfo_common;
@@ -57,9 +57,9 @@ public class Fragment_AH_bid extends DEBUG_Fragment
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 				{
-					Intent _toubiao = new Intent(getActivity(), Activity_toubiao_shejishi.class);
-					_toubiao.putExtra("index", position);
-					startActivity(_toubiao);
+					Intent _detail = new Intent(getActivity(), Activity_bid_detail.class);
+					_detail.putExtra("index", position);
+					startActivity(_detail);
 				}
 			});
 			_body.addView(_list);
