@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
+import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.JsonUtil;
 
 import android.content.Intent;
@@ -50,11 +51,8 @@ public class Activity_toubiao_shejishi extends DEBUG_Activity
 		_index = _intent.getIntExtra("index", 0);
 		System.out.println("_index :" + _index);
 
-		// show_wait();
-		// ContentValues _value = new ContentValues();
-		// _value.put("quotationId", _quotationId);
-		// _value.put(_room, _number);
-		// HttpUtil.get_quotation_item(_handler, _room, _value, GET_SUCCESSFUL, GET_FAILED);
+		show_wait();
+		HttpUtil.get_desi_list(_handler, GET_SUCCESSFUL, GET_FAILED);
 	}
 
 	@Override
@@ -87,6 +85,7 @@ public class Activity_toubiao_shejishi extends DEBUG_Activity
 				switch (_what)
 				{
 				case GET_SUCCESSFUL:
+					Toast.makeText(_instance, "get", Toast.LENGTH_SHORT).show();
 					// _data = new RoomDetail(_obj.getJSONObject("data"), _intent.getStringExtra("room"));
 					// _fragment_detail = new Fragment_quotation_detail();
 					// add_fragment(_instance, _fragment_detail, false);
@@ -95,14 +94,14 @@ public class Activity_toubiao_shejishi extends DEBUG_Activity
 			else
 			{
 				Toast.makeText(_instance, JsonUtil.get_string(_obj, "msg", "连接服务器失败。"), Toast.LENGTH_SHORT).show();
-				_instance.finish();
+				if (_what == GET_SUCCESSFUL)
+					_instance.finish();
 			}
 		}
 		catch (JSONException e)
 		{
 			e.printStackTrace();
 			Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
-			_instance.finish();
 		}
 	}
 

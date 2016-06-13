@@ -60,7 +60,7 @@ public class Fragment_login extends DEBUG_Fragment
 			@Override
 			public void onClick(View v)
 			{
-				_edittext_username.setText("13760313770");
+				_edittext_username.setText("13555541368");
 				_edittext_password.setText("111111");
 			}
 		});
