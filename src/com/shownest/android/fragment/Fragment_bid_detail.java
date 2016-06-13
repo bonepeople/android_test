@@ -3,7 +3,7 @@ package com.shownest.android.fragment;
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_bid_detail;
 import com.shownest.android.basic.DEBUG_Fragment;
-import com.shownest.android.model.BidInfo;
+import com.shownest.android.model.BidInfo_fast;
 import com.shownest.android.utils.NumberUtil;
 import com.shownest.android.widget.InformationBar;
 import com.shownest.android.widget.View_split_h;
@@ -41,7 +41,7 @@ public class Fragment_bid_detail extends DEBUG_Fragment implements OnClickListen
 	@Override
 	public void setContent()
 	{
-		BidInfo _data = Activity_bid_detail.get_data();
+		BidInfo_fast _data = Activity_bid_detail.get_data();
 		if (_data != null)
 		{
 			new InformationBar(getActivity(), _body, 5, new String[] { "小区名称", _data.get_areaName() }, false);

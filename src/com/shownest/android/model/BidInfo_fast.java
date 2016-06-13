@@ -7,7 +7,7 @@ import com.shownest.android.utils.JsonUtil;
 
 import android.text.format.DateFormat;
 
-public class BidInfo
+public class BidInfo_fast
 {
 	private String _id;// 招标ID
 	private String _areaName;// 小区名称
@@ -33,7 +33,7 @@ public class BidInfo
 	private String _createDateCon;// 施工标发布时间 ？
 	private String _ownerIdea;// 需求描述
 
-	public BidInfo(JSONObject _json) throws JSONException
+	public BidInfo_fast(JSONObject _json) throws JSONException
 	{
 		this._id = JsonUtil.get_string(_json, "id", "");
 		this._areaName = JsonUtil.get_string(_json, "areaName", "");

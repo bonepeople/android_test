@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_bid_detail;
-import com.shownest.android.model.BidInfo;
+import com.shownest.android.model.BidInfo_fast;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.JsonUtil;
 
@@ -29,7 +29,7 @@ public class Activity_bid_detail extends DEBUG_Activity
 	private static Activity_bid_detail _instance;
 	private static Intent _intent;
 	private static String _bidID = "";
-	private static BidInfo _data;
+	private static BidInfo_fast _data;
 	public static Handler _handler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)
@@ -81,7 +81,7 @@ public class Activity_bid_detail extends DEBUG_Activity
 				switch (_what)
 				{
 				case GET_SUCCESSFUL:
-					_data = new BidInfo(_obj.getJSONArray("data").getJSONObject(0));
+					_data = new BidInfo_fast(_obj.getJSONArray("data").getJSONObject(0));
 					_instance.setTitle(_data.get_areaName());
 					add_fragment(_instance, new Fragment_bid_detail(), false);
 					break;
@@ -96,7 +96,7 @@ public class Activity_bid_detail extends DEBUG_Activity
 		}
 	}
 
-	public static BidInfo get_data()
+	public static BidInfo_fast get_data()
 	{
 		return _data;
 	}
