@@ -1,10 +1,14 @@
 package com.shownest.android.activity;
 
+import java.util.ArrayList;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
+import com.shownest.android.model.Template_shejishi;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.JsonUtil;
 
@@ -21,6 +25,7 @@ public class Activity_toubiao_shejishi extends DEBUG_Activity
 	private static Activity_toubiao_shejishi _instance;
 	private static Intent _intent;
 	private static int _index = 0;
+	private static ArrayList<Template_shejishi> _templates = new ArrayList<Template_shejishi>();
 	public static Handler _handler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)
@@ -85,7 +90,13 @@ public class Activity_toubiao_shejishi extends DEBUG_Activity
 				switch (_what)
 				{
 				case GET_SUCCESSFUL:
-					Toast.makeText(_instance, "get", Toast.LENGTH_SHORT).show();
+					JSONArray _array = _obj.getJSONArray("data");
+					for (int _temp_i = 0; _temp_i < _array.length(); _temp_i++)
+					{
+						Template_shejishi _temp_template = new Template_shejishi(_array.getJSONObject(_temp_i));
+						_templates.add(_temp_template);
+					}
+
 					// _data = new RoomDetail(_obj.getJSONObject("data"), _intent.getStringExtra("room"));
 					// _fragment_detail = new Fragment_quotation_detail();
 					// add_fragment(_instance, _fragment_detail, false);
