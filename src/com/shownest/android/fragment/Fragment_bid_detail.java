@@ -27,6 +27,7 @@ public class Fragment_bid_detail extends DEBUG_Fragment implements OnClickListen
 {
 	private LinearLayout _body;
 	private Button _button_commit, _button_other;
+	private int _userType = 100;
 	// private LinearLayout_picturebox _picture;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -40,7 +41,8 @@ public class Fragment_bid_detail extends DEBUG_Fragment implements OnClickListen
 		UserInfo _info = UserManager.get_user_info();
 		if (_info != null)
 		{
-			switch (_info.get_userType())
+			_userType = _info.get_userType();
+			switch (_userType)
 			{
 			case 11:
 				_button_commit.setVisibility(Button.GONE);
@@ -110,6 +112,9 @@ public class Fragment_bid_detail extends DEBUG_Fragment implements OnClickListen
 			int padding = NumberUtil.get_px(getActivity(), 5);
 			_idea.setPadding(padding, 0, padding, 0);
 			_body.addView(_idea);
+
+			if (_userType != _data.get_bookType())
+				_button_commit.setVisibility(Button.GONE);
 		}
 	}
 
