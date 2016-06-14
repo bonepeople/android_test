@@ -152,7 +152,7 @@ public class Adapter_rooms_area extends BaseAdapter implements View.OnClickListe
 
 		if (convertView == null)
 		{
-			_view = _inflater.inflate(R.layout.item_offer_auto, null);
+			_view = _inflater.inflate(R.layout.item_rooms_area, null);
 			_holder = new ViewHolder();
 			_holder._text_name = (TextView) _view.findViewById(R.id.textview_widget_name);
 			_holder._text_left = (TextView) _view.findViewById(R.id.textview_widget_left);

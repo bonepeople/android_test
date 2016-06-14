@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 修改房屋内每个房间的使用面积时使用的Item -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,8 +11,8 @@
     <TextView
         android:id="@+id/textview_widget_name"
         android:layout_width="wrap_content"
-           android:singleLine="true"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:singleLine="true" />
 
     <TextView
         android:id="@+id/textview_widget_left"
