@@ -33,6 +33,19 @@ public class HttpUtil
 	// http://192.168.1.112:10000/shownest/html/test1.html
 	// http://192.168.1.112:10000/shownest/websubmitreg
 	/**
+	 * 获取投标列表
+	 */
+	public static void get_quota_list(Handler _handler, ContentValues _value, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "webGetBidRespList";
+		String _message = "";
+
+		_message = values(_value);
+
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
+	}
+
+	/**
 	 * 获取设计师报价单列表
 	 */
 	public static void get_desi_list(Handler _handler, int _successful, int _failed)
