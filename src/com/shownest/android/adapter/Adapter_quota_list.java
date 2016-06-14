@@ -6,7 +6,6 @@ import com.loopj.android.image.SmartImageView;
 import com.shownest.android.R;
 import com.shownest.android.model.QuotaInfo;
 import com.shownest.android.utils.CommonUtil;
-import com.shownest.android.utils.NumberUtil;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -87,7 +86,7 @@ public class Adapter_quota_list extends BaseAdapter
 		_holder._ratingbar.setRating(5);
 
 		_holder._textview_state.setBackgroundResource(R.drawable.icon_shownest);
-		_holder._textview_money.setText(String.valueOf(NumberUtil.round(_temp_quota.get_budget(), 0)));
+		_holder._textview_money.setText(String.valueOf((int) _temp_quota.get_budget()));
 		if (_temp_quota.is_change())
 			_holder._textview_change.setVisibility(TextView.VISIBLE);
 
