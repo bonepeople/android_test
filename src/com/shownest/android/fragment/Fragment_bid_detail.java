@@ -2,6 +2,7 @@ package com.shownest.android.fragment;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_bid_detail;
+import com.shownest.android.activity.Activity_quota_list;
 import com.shownest.android.activity.Activity_toubiao_shejishi;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.BidInfo_common;
@@ -141,6 +142,9 @@ public class Fragment_bid_detail extends DEBUG_Fragment implements OnClickListen
 		else if (_id == _button_other.getId())
 		{
 			Toast.makeText(getActivity(), "查看全部投标", Toast.LENGTH_SHORT).show();
+			Intent _quota_list = new Intent(getActivity(), Activity_quota_list.class);
+			_quota_list.putExtra("id", Activity_bid_detail.get_data().get_id());
+			startActivity(_quota_list);
 		}
 	}
 }

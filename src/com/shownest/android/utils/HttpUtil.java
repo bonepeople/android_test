@@ -37,7 +37,7 @@ public class HttpUtil
 	 */
 	public static void get_quota_list(Handler _handler, ContentValues _value, int _successful, int _failed)
 	{
-		String _address = BASEADDRESS + "webGetBidRespList";
+		String _address = BASEADDRESS + "bid/webGetBidRespList";
 		String _message = "";
 
 		_message = values(_value);
