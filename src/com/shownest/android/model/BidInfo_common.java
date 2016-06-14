@@ -5,6 +5,11 @@ import org.json.JSONObject;
 
 import com.shownest.android.utils.JsonUtil;
 
+/**
+ * 招标信息
+ * 
+ * @author bonepeople
+ */
 public class BidInfo_common
 {
 	private String _id;// 招标ID
@@ -26,12 +31,13 @@ public class BidInfo_common
 	private String _bookTypeName;// 招标类型名称 "设计标"
 	private int _consType;// 施工标类型 0-半包，1-全包，2-清包
 	private int _biddingTypeId;// 设计标类型 1-设计图服务，2-硬装全程服务，3-硬装软装全程服务
-	private double _budget;// 装修预算
+	private double _budget;// 预算
 	private int _bidsState;// 招标状态
 	private int _bidNum;// 参与人数
 	private String _createDate;// 发布时间 "2016年06月12日"
 	private String _remainingDate;// 过期时间 "29天7小时17分"
 	private String _ownerIdea;// 需求描述
+	private String _ownerQuotationId;// 业主智能报价单 ID
 
 	// "isOver":"n",
 	// "userId":"764de29e9d214d6bafb029a0f97d1909"
@@ -63,6 +69,7 @@ public class BidInfo_common
 		this._createDate = JsonUtil.get_string(_json, "createDate", "");
 		this._remainingDate = JsonUtil.get_string(_json, "remainingDate", "0天0小时0分");
 		this._ownerIdea = JsonUtil.get_string(_json, "ownerIdea", "");
+		this._ownerQuotationId = JsonUtil.get_string(_json, "ownerQuotationId", "");
 	}
 
 	public String get_id()
@@ -399,5 +406,15 @@ public class BidInfo_common
 	public void set_ownerIdea(String _ownerIdea)
 	{
 		this._ownerIdea = _ownerIdea;
+	}
+
+	public String get_ownerQuotationId()
+	{
+		return _ownerQuotationId;
+	}
+
+	public void set_ownerQuotationId(String _ownerQuotationId)
+	{
+		this._ownerQuotationId = _ownerQuotationId;
 	}
 }

@@ -5,6 +5,11 @@ import org.json.JSONObject;
 
 import com.shownest.android.utils.JsonUtil;
 
+/**
+ * 设计师模板
+ * 
+ * @author bonepeople
+ */
 public class Template_shejishi
 {
 	private String _id;// 编号
