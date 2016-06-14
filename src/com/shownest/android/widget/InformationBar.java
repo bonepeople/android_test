@@ -100,7 +100,7 @@ public class InformationBar implements View.OnClickListener
 				break;
 			}
 
-			_view = (ViewGroup) View.inflate(this._context, R.layout.widget_edit_informationbar_style1, this._rootview);
+			_view = (ViewGroup) View.inflate(this._context, R.layout.widget_informationbar_style1, this._rootview);
 			_childview = _view.getChildAt(_view.getChildCount() - 1);
 
 			_textview_name = (TextView) _childview.findViewById(R.id.textview_widget_name);
@@ -118,7 +118,7 @@ public class InformationBar implements View.OnClickListener
 				System.out.println("relativelayout super:2-" + args.toString());
 				break;
 			}
-			_view = (ViewGroup) View.inflate(this._context, R.layout.widget_edit_informationbar_style2, this._rootview);
+			_view = (ViewGroup) View.inflate(this._context, R.layout.widget_informationbar_style2, this._rootview);
 			_childview = _view.getChildAt(_view.getChildCount() - 1);
 
 			_textview_name = (TextView) _childview.findViewById(R.id.textview_widget_name);
@@ -135,7 +135,7 @@ public class InformationBar implements View.OnClickListener
 				System.out.println("relativelayout super:3-" + args.toString());
 				break;
 			}
-			_view = (ViewGroup) View.inflate(this._context, R.layout.widget_edit_informationbar_style3, this._rootview);
+			_view = (ViewGroup) View.inflate(this._context, R.layout.widget_informationbar_style3, this._rootview);
 			_childview = _view.getChildAt(_view.getChildCount() - 1);
 
 			_textview_name = (TextView) _childview.findViewById(R.id.textview_widget_name);
@@ -152,7 +152,7 @@ public class InformationBar implements View.OnClickListener
 				System.out.println("relativelayout super:4-" + args.toString());
 				break;
 			}
-			_view = (ViewGroup) View.inflate(this._context, R.layout.widget_edit_informationbar_style4, this._rootview);
+			_view = (ViewGroup) View.inflate(this._context, R.layout.widget_informationbar_style4, this._rootview);
 			_childview = _view.getChildAt(_view.getChildCount() - 1);
 
 			_textview_name = (TextView) _childview.findViewById(R.id.textview_widget_name);
@@ -167,7 +167,7 @@ public class InformationBar implements View.OnClickListener
 				System.out.println("relativelayout super:5-" + args.toString());
 				break;
 			}
-			_view = (ViewGroup) View.inflate(this._context, R.layout.widget_edit_informationbar_style5, this._rootview);
+			_view = (ViewGroup) View.inflate(this._context, R.layout.widget_informationbar_style5, this._rootview);
 			_childview = _view.getChildAt(_view.getChildCount() - 1);
 
 			_textview_name = (TextView) _childview.findViewById(R.id.textview_widget_name);
@@ -182,7 +182,7 @@ public class InformationBar implements View.OnClickListener
 				System.out.println("relativelayout super:6-" + args.toString());
 				break;
 			}
-			_view = (ViewGroup) View.inflate(this._context, R.layout.widget_edit_informationbar_style6, this._rootview);
+			_view = (ViewGroup) View.inflate(this._context, R.layout.widget_informationbar_style6, this._rootview);
 			_childview = _view.getChildAt(_view.getChildCount() - 1);
 
 			_textview_name = (TextView) _childview.findViewById(R.id.textview_widget_name);
