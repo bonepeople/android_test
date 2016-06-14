@@ -29,6 +29,7 @@ public class Activity_quota_list extends DEBUG_Activity
 	public static final int GET_FAILED = 0;
 	public static final int GET_SUCCESSFUL = 1;
 	private static Activity_quota_list _instance;
+	private static boolean _has_detail = false;
 	private static ArrayList<QuotaInfo> _data = new ArrayList<QuotaInfo>();
 	private static String _bidID = "";
 	private static int _startPage = 0;
@@ -60,7 +61,8 @@ public class Activity_quota_list extends DEBUG_Activity
 		setTitle("招标详情");
 
 		_bidID = getIntent().getStringExtra("id");
-
+		_has_detail = getIntent().getBooleanExtra("has_detail", false);
+		
 		ContentValues _value = new ContentValues();
 		_value.put("homeId", _bidID);
 		_value.put("userId", UserManager.get_user_info().get_userId());
@@ -106,6 +108,11 @@ public class Activity_quota_list extends DEBUG_Activity
 	public static ArrayList<QuotaInfo> get_data()
 	{
 		return _data;
+	}
+
+	public static boolean is_has_detail()
+	{
+		return _has_detail;
 	}
 
 	public static Activity_quota_list get_instance()
