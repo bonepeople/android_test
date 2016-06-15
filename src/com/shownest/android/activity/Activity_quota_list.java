@@ -82,7 +82,7 @@ public class Activity_quota_list extends DEBUG_Activity
 				switch (_what)
 				{
 				case GET_SUCCESSFUL:
-					JSONArray _array = _obj.getJSONArray("data");
+					JSONArray _array = _obj.getJSONObject("data").getJSONArray("bidRespUsers");
 					_data.clear();
 					for (int _temp_i = 0; _temp_i < _array.length(); _temp_i++)
 					{
