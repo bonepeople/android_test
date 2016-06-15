@@ -61,8 +61,7 @@ public class Activity_change_phone extends DEBUG_Activity
 		_instance = this;
 		setTitle("更换手机号");
 
-		_fragment_change_phone = new Fragment_change_phone();
-		add_fragment(this, _fragment_change_phone, false);
+		add_fragment(this, _fragment_change_phone = new Fragment_change_phone(), false);
 		if (_timer != null)
 			_timer.interrupt();
 	}

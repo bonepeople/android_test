@@ -50,8 +50,7 @@ public class Activity_select_role extends DEBUG_Activity
 		_instance = this;
 		setTitle("选择身份类型");
 
-		_fragment_select_role = new Fragment_select_role();
-		add_fragment(this, _fragment_select_role, false);
+		add_fragment(this, _fragment_select_role = new Fragment_select_role(), false);
 	}
 
 	private static void handle_string(int _what, String _str)

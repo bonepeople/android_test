@@ -115,8 +115,7 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 				{
 				case GET_SUCCESSFUL:
 					_data = new RoomDetail(_obj.getJSONObject("data"), _intent.getStringExtra("room"));
-					_fragment_detail = new Fragment_quotation_detail();
-					add_fragment(_instance, _fragment_detail, false);
+					add_fragment(_instance, _fragment_detail = new Fragment_quotation_detail(), false);
 					break;
 				}
 			else

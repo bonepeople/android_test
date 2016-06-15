@@ -64,8 +64,7 @@ public class Activity_regist extends DEBUG_Activity
 		_instance = this;
 		setTitle("加入秀巢网");
 
-		_fragment_regist = new Fragment_regist();
-		add_fragment(this, _fragment_regist, false);
+		add_fragment(this, _fragment_regist = new Fragment_regist(), false);
 		if (_timer != null)
 			_timer.interrupt();
 	}

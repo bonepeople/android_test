@@ -71,8 +71,7 @@ public class Activity_forget extends DEBUG_Activity
 		_instance = this;
 		setTitle("密码找回");
 
-		_fragment_forget = new Fragment_forget();
-		add_fragment(this, _fragment_forget, false);
+		add_fragment(this, _fragment_forget = new Fragment_forget(), false);
 		if (_timer != null)
 			_timer.interrupt();
 
