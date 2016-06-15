@@ -91,6 +91,7 @@ public class Activity_toubiao_shejishi extends DEBUG_Activity
 				{
 				case GET_SUCCESSFUL:
 					JSONArray _array = _obj.getJSONArray("data");
+					_templates.clear();
 					for (int _temp_i = 0; _temp_i < _array.length(); _temp_i++)
 					{
 						Template_shejishi _temp_template = new Template_shejishi(_array.getJSONObject(_temp_i));

@@ -80,6 +80,7 @@ public class Activity_AH_bid extends DEBUG_Activity
 				{
 				case GET_SUCCESSFUL:
 					JSONArray _array = _obj.getJSONObject("data").getJSONArray("items");
+					_data.clear();
 					for (int _temp_i = 0; _temp_i < _array.length(); _temp_i++)
 					{
 						BidInfo_common _temp_bid = new BidInfo_common(_array.getJSONObject(_temp_i));
