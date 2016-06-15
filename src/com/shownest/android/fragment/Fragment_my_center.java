@@ -3,6 +3,7 @@ package com.shownest.android.fragment;
 import com.loopj.android.image.SmartImageView;
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_basicinfo;
+import com.shownest.android.activity.Activity_house_list;
 import com.shownest.android.activity.Activity_select_role;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.UserInfo;
@@ -124,7 +125,8 @@ public class Fragment_my_center extends DEBUG_Fragment implements View.OnClickLi
 			break;
 
 		case R.id.item_fangwu:
-			Toast.makeText(getActivity(), "房屋", Toast.LENGTH_SHORT).show();
+			Intent _house = new Intent(getActivity(), Activity_house_list.class);
+			startActivity(_house);
 			break;
 
 		case R.id.item_baojia:

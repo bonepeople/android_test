@@ -125,7 +125,6 @@ public class Activity_toubiao_shejishi extends DEBUG_Activity implements OnChang
 	@Override
 	public void onChange(String _tag, String[] _args)
 	{
-		// TODO Auto-generated method stub
 		this.close_wait();
 	}
 
