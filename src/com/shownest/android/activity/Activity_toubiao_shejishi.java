@@ -8,9 +8,10 @@ import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
+import com.shownest.android.fragment.Fragment_webview;
 import com.shownest.android.model.Template_shejishi;
-import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.JsonUtil;
+import com.shownest.android.utils.UserManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -57,8 +58,8 @@ public class Activity_toubiao_shejishi extends DEBUG_Activity
 		_index = _intent.getIntExtra("index", 0);
 		System.out.println("_index :" + _index);
 
-		show_wait();
-		HttpUtil.get_desi_list(_handler, GET_SUCCESSFUL, GET_FAILED);
+		String _bidID = Activity_AH_bid.get_data().get(_index).get_id();
+		add_fragment(this, new Fragment_webview("http://app.shownest.com/bid/getDesiBidDetail?homeId=" + _bidID + "&ukey=" + UserManager.get_ukey()), false);
 	}
 
 	@Override

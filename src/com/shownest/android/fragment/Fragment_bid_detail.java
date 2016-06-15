@@ -146,7 +146,6 @@ public class Fragment_bid_detail extends DEBUG_Fragment implements OnClickListen
 		}
 		else if (_id == _button_other.getId())
 		{
-			Toast.makeText(getActivity(), "查看全部投标", Toast.LENGTH_SHORT).show();
 			Intent _quota_list = new Intent(getActivity(), Activity_quota_list.class);
 			_quota_list.putExtra("id", Activity_bid_detail.get_data().get_id());
 			_quota_list.putExtra("has_detail", false);
