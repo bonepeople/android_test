@@ -7,9 +7,7 @@ import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_test;
 import com.shownest.android.fragment.Fragment_webview;
-import com.shownest.android.model.OnChangeListener;
-import com.shownest.android.model.UserInfo;
-import com.shownest.android.utils.CommonUtil;
+import com.shownest.android.model.WebActionListener;
 import com.shownest.android.utils.JsonUtil;
 import com.shownest.android.utils.UserManager;
 
@@ -89,13 +87,25 @@ public class Activity_test extends DEBUG_Activity
 			// true);
 			String _url = "http://app.shownest.com/shuttering/getDesiShutterList?ukey=" + UserManager.get_ukey();
 
-			add_fragment(this, new Fragment_webview(_url, "web", new OnChangeListener()
+			add_fragment(this, new Fragment_webview(_url, "web", new WebActionListener()
 			{
+
 				@Override
-				public void onChange(String _tag, String[] _args)
+				public void onFinished(String _tag)
 				{
-					// TODO Auto-generated method stub
 					Toast.makeText(Activity_test.this, "网页加载完成", Toast.LENGTH_SHORT).show();
+				}
+
+				@Override
+				public void onClose(String _tag)
+				{
+
+				}
+
+				@Override
+				public void onAction(String _tag, String _action)
+				{
+
 				}
 			}), true);
 		}

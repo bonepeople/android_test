@@ -9,8 +9,8 @@ import org.json.JSONObject;
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_webview;
-import com.shownest.android.model.OnChangeListener;
 import com.shownest.android.model.Template_shejishi;
+import com.shownest.android.model.WebActionListener;
 import com.shownest.android.utils.JsonUtil;
 import com.shownest.android.utils.UserManager;
 
@@ -20,7 +20,7 @@ import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-public class Activity_toubiao_shejishi extends DEBUG_Activity implements OnChangeListener
+public class Activity_toubiao_shejishi extends DEBUG_Activity implements WebActionListener
 {
 	public static final int GET_FAILED = 0;
 	public static final int GET_SUCCESSFUL = 1;
@@ -122,15 +122,27 @@ public class Activity_toubiao_shejishi extends DEBUG_Activity implements OnChang
 		}
 	}
 
+	public static Activity_toubiao_shejishi get_instance()
+	{
+		return _instance;
+	}
+
 	@Override
-	public void onChange(String _tag, String[] _args)
+	public void onFinished(String _tag)
 	{
 		this.close_wait();
 	}
 
-	public static Activity_toubiao_shejishi get_instance()
+	@Override
+	public void onClose(String _tag)
 	{
-		return _instance;
+
+	}
+
+	@Override
+	public void onAction(String _tag, String _action)
+	{
+
 	}
 
 }

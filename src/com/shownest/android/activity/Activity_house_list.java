@@ -3,13 +3,13 @@ package com.shownest.android.activity;
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_webview;
-import com.shownest.android.model.OnChangeListener;
+import com.shownest.android.model.WebActionListener;
 import com.shownest.android.utils.UserManager;
 
 import android.os.Bundle;
 import android.widget.RelativeLayout;
 
-public class Activity_house_list extends DEBUG_Activity implements OnChangeListener
+public class Activity_house_list extends DEBUG_Activity implements WebActionListener
 {
 	private static Activity_house_list _instance;
 
@@ -29,8 +29,20 @@ public class Activity_house_list extends DEBUG_Activity implements OnChangeListe
 	}
 
 	@Override
-	public void onChange(String _tag, String[] _args)
+	public void onFinished(String _tag)
 	{
 		this.close_wait();
+	}
+
+	@Override
+	public void onClose(String _tag)
+	{
+
+	}
+
+	@Override
+	public void onAction(String _tag, String _action)
+	{
+
 	}
 }

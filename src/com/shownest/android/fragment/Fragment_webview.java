@@ -2,7 +2,8 @@ package com.shownest.android.fragment;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Fragment;
-import com.shownest.android.model.OnChangeListener;
+import com.shownest.android.model.WebActionListener;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,13 +17,13 @@ import android.webkit.WebViewClient;
 public class Fragment_webview extends DEBUG_Fragment implements View.OnClickListener
 {
 	private String _tag;
-	private OnChangeListener _listener;
+	private WebActionListener _listener;
 	private WebView _webview;
 	private WebViewClient _client;
 	private WebChromeClient _chrome;
 	private String _url;
 
-	public Fragment_webview(String _url, String _tag, OnChangeListener _listener)
+	public Fragment_webview(String _url, String _tag, WebActionListener _listener)
 	{
 		this._url = _url;
 		this._tag = _tag;
@@ -91,7 +92,7 @@ public class Fragment_webview extends DEBUG_Fragment implements View.OnClickList
 			@Override
 			public void onPageFinished(WebView view, String url)
 			{
-				_listener.onChange(_tag, new String[] { "finish" });
+				_listener.onFinished(_tag);
 				super.onPageFinished(view, url);
 			}
 		};
@@ -104,7 +105,7 @@ public class Fragment_webview extends DEBUG_Fragment implements View.OnClickList
 		@android.webkit.JavascriptInterface
 		public void close()
 		{
-			_listener.onChange(_tag, new String[] { "close" });
+			_listener.onClose(_tag);
 		}
 	}
 }
