@@ -79,6 +79,7 @@ public class Fragment_webview extends DEBUG_Fragment implements View.OnClickList
 		_webview.loadUrl(_url);
 		WebSettings settings = _webview.getSettings();
 		settings.setJavaScriptEnabled(true);
+		settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
 
 		_client = new WebViewClient()
 		{
