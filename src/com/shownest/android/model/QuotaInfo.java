@@ -20,7 +20,7 @@ public class QuotaInfo
 	private double _userPrice;// 预算
 	private int _state;// 招标状态 1-已投标(参与)，2-备选，3-已量房修改价格(待定)，4-淘汰，5-中标，6-结束
 	private String _otherInfor;// 额外信息(投标的)
-	private int _quoteWay;// 报价方式
+	private int _quoteWay;// 报价方式 1-手动报价，2-智能报价
 	private boolean _change;// 是否修改过
 	private boolean _isHide;// 是否隐藏
 	private String _quotationId;// 报价单 ID

@@ -2,6 +2,7 @@ package com.shownest.android.activity;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -42,6 +43,7 @@ public class Activity_quota_list extends DEBUG_Activity
 			case GET_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 				System.out.println((String) msg.obj);
+				_instance.finish();
 				break;
 			case GET_SUCCESSFUL:
 				handle_string(msg.what, (String) msg.obj);
@@ -62,10 +64,10 @@ public class Activity_quota_list extends DEBUG_Activity
 
 		_bidID = getIntent().getStringExtra("id");
 		_has_detail = getIntent().getBooleanExtra("has_detail", false);
-		
+
 		ContentValues _value = new ContentValues();
 		_value.put("homeId", _bidID);
-		_value.put("userId", UserManager.get_user_info().get_userId());
+//		_value.put("userId", UserManager.get_user_info().get_userId());
 		_value.put("startPage", _startPage);
 		show_wait();
 		HttpUtil.get_quota_list(_handler, _value, GET_SUCCESSFUL, GET_FAILED);
@@ -81,27 +83,27 @@ public class Activity_quota_list extends DEBUG_Activity
 				switch (_what)
 				{
 				case GET_SUCCESSFUL:
-					// JSONArray _array = _obj.getJSONObject("data").getJSONArray("items");
-					// for (int _temp_i = 0; _temp_i < _array.length(); _temp_i++)
-					// {
-					// BidInfo_common _temp_bid = new BidInfo_common(_array.getJSONObject(_temp_i));
-					// _data.add(_temp_bid);
-					// }
-					for (int _temp_i = 0; _temp_i < 10; _temp_i++)
+					JSONArray _array = _obj.getJSONArray("data");
+					_data.clear();
+					for (int _temp_i = 0; _temp_i < _array.length(); _temp_i++)
 					{
-						QuotaInfo _temp_quota = new QuotaInfo(_obj);
+						QuotaInfo _temp_quota = new QuotaInfo(_array.getJSONObject(_temp_i));
 						_data.add(_temp_quota);
 					}
 					add_fragment(_instance, new Fragment_quota_list(), false);
 					break;
 				}
 			else
+			{
 				Toast.makeText(_instance, JsonUtil.get_string(_obj, "msg", "连接服务器失败。"), Toast.LENGTH_SHORT).show();
+				_instance.finish();
+			}
 		}
 		catch (JSONException e)
 		{
 			e.printStackTrace();
 			Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
+			_instance.finish();
 		}
 	}
 
