@@ -26,7 +26,6 @@ import android.os.Message;
 public class HttpUtil
 {
 	private static boolean DEBUG = true;
-	private static String SESSION = null; // 定义一个静态的字段，保存sessionID
 	public static String BASEADDRESS = "http://t.shownest.com:86/";
 	// private static String BASEADDRESS = "http://192.168.1.109:10000/shownest/";
 
@@ -551,8 +550,8 @@ public class HttpUtil
 			_connection.setRequestProperty("connection", "keep-alive");
 			_connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 			_connection.setRequestProperty("Cache-Control", "max-age=0");
-			if (SESSION != null)
-				_connection.setRequestProperty("Cookie", SESSION);
+			if (UserManager.get_SESSION() != null)
+				_connection.setRequestProperty("Cookie", UserManager.get_SESSION());
 			// JSESSIONID=CB8A56EF79CC3A06C1A1EB4EF24415B8
 
 			OutputStream _os = null;
@@ -588,10 +587,10 @@ public class HttpUtil
 			_status = _connection.getResponseCode();
 			if (_status == 200)
 			{
-				if (SESSION == null)
+				if (UserManager.get_SESSION() == null)
 				{
 					String _cookie = _connection.getHeaderField("Set-Cookie");
-					SESSION = _cookie.split(";")[0];
+					UserManager.set_SESSION(_cookie.split(";")[0]);
 					// Set-Cookie:JSESSIONID=59D090155623FADDE01819851B437C0F; Path=/shownest/; HttpOnly
 				}
 

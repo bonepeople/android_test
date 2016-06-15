@@ -77,6 +77,8 @@ public class Activity_login extends DEBUG_Activity
 				switch (_what)
 				{
 				case LOGIN_SUCCESSFUL:
+					String _ukey = JsonUtil.get_string(_obj, "data", "");
+					UserManager.set_ukey(_ukey);
 					HttpUtil.get_userinfo(_handler, GET_SUCCESSFUL, GET_FAILED);
 					break;
 				case GET_SUCCESSFUL:
