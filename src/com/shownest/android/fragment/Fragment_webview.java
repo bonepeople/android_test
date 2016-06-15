@@ -3,7 +3,6 @@ package com.shownest.android.fragment;
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.OnChangeListener;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,6 +19,7 @@ public class Fragment_webview extends DEBUG_Fragment implements View.OnClickList
 	private OnChangeListener _listener;
 	private WebView _webview;
 	private WebViewClient _client;
+	private WebChromeClient _chrome;
 	private String _url;
 
 	public Fragment_webview(String _url, String _tag, OnChangeListener _listener)
@@ -79,22 +79,32 @@ public class Fragment_webview extends DEBUG_Fragment implements View.OnClickList
 		WebSettings settings = _webview.getSettings();
 		settings.setJavaScriptEnabled(true);
 
-		_webview.setWebChromeClient(new WebChromeClient()
+		_client = new WebViewClient()
 		{
 			@Override
-			public void onProgressChanged(WebView view, int newProgress)
+			public boolean shouldOverrideUrlLoading(WebView view, String url)
 			{
-				if (newProgress == 100)
-				{
-					// 网页加载完成
-					_listener.onChange(_tag, new String[] { "finish" });
-				}
-				else
-				{
-					// 加载中
-
-				}
+				view.loadUrl(url);
+				return true;
 			}
-		});
+
+			@Override
+			public void onPageFinished(WebView view, String url)
+			{
+				_listener.onChange(_tag, new String[] { "finish" });
+				super.onPageFinished(view, url);
+			}
+		};
+		_webview.setWebViewClient(_client);
+		_webview.addJavascriptInterface(new JsInterface(), "JsInterface");
+	}
+
+	private class JsInterface
+	{
+		@android.webkit.JavascriptInterface
+		public void close()
+		{
+			_listener.onChange(_tag, new String[] { "close" });
+		}
 	}
 }

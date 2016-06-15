@@ -104,6 +104,17 @@ public abstract class DEBUG_Activity extends Activity
 		_fragment_title.setMenu(_menu);
 	}
 
+	protected void hideTitle(DEBUG_Activity _activity)
+	{
+		if (_fragment_title == null)
+			_fragment_title = (Fragment_title) getFragmentManager().findFragmentById(R.id.fragment_title);
+
+		FragmentManager _manager = _activity.getFragmentManager();
+		FragmentTransaction _transaction = _manager.beginTransaction();
+		_transaction.hide(_fragment_title);
+		_transaction.commit();
+	}
+
 	protected static void handle_msg(DEBUG_Activity _activity, String _msg)
 	{
 		if (DEBUG)

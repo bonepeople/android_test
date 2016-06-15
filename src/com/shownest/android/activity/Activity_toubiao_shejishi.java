@@ -54,7 +54,7 @@ public class Activity_toubiao_shejishi extends DEBUG_Activity implements OnChang
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 		_instance = this;
 		_intent = getIntent();
-		setTitle("我要投标");
+		hideTitle(this);
 
 		_index = _intent.getIntExtra("index", 0);
 		System.out.println("_index :" + _index);
