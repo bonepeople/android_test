@@ -42,6 +42,7 @@ public class Activity_AH_bid extends DEBUG_Activity
 			case GET_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 				System.out.println((String) msg.obj);
+				_instance.finish();
 				break;
 			case GET_SUCCESSFUL:
 				handle_string(msg.what, (String) msg.obj);
@@ -90,12 +91,16 @@ public class Activity_AH_bid extends DEBUG_Activity
 					break;
 				}
 			else
+			{
 				Toast.makeText(_instance, JsonUtil.get_string(_obj, "msg", "连接服务器失败。"), Toast.LENGTH_SHORT).show();
+				_instance.finish();
+			}
 		}
 		catch (JSONException e)
 		{
 			e.printStackTrace();
 			Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
+			_instance.finish();
 		}
 	}
 

@@ -48,6 +48,8 @@ public class Activity_quotation_change extends DEBUG_Activity
 			case FIX_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 				_instance.close_wait();
+				if (msg.what == GET_FAILED)
+					_instance.finish();
 				break;
 			case GET_SUCCESSFUL:
 			case CHANGE_SUCCESSFUL:
@@ -67,7 +69,6 @@ public class Activity_quotation_change extends DEBUG_Activity
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 		_instance = this;
 		_intent = getIntent();
-		
 
 		_data = Activity_quotation_detail.get_data();
 		if (_data != null)
@@ -138,12 +139,16 @@ public class Activity_quotation_change extends DEBUG_Activity
 			{
 				Toast.makeText(_instance, JsonUtil.get_string(_obj, "msg", "连接服务器失败。"), Toast.LENGTH_SHORT).show();
 				_instance.close_wait();
+				if (_what == GET_SUCCESSFUL)
+					_instance.finish();
 			}
 		}
 		catch (JSONException e)
 		{
 			e.printStackTrace();
 			Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
+			if (_what == GET_SUCCESSFUL)
+				_instance.finish();
 		}
 	}
 

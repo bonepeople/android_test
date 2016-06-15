@@ -46,6 +46,7 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 			{
 			case GET_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
+				_instance.finish();
 				break;
 			case GET_SUCCESSFUL:
 				handle_string(msg.what, (String) msg.obj);

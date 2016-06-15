@@ -45,6 +45,8 @@ public class Activity_publish_yezhu extends DEBUG_Activity
 			case GET_FAILED:
 			case PUBLISH_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
+				if (msg.what == GET_FAILED)
+					_instance.finish();
 				break;
 			case GET_SUCCESSFUL:
 			case PUBLISH_SUCCESSFUL:
@@ -113,14 +115,16 @@ public class Activity_publish_yezhu extends DEBUG_Activity
 			else
 			{
 				Toast.makeText(_instance, JsonUtil.get_string(_obj, "msg", "连接服务器失败。"), Toast.LENGTH_SHORT).show();
-				_instance.finish();
+				if (_what == GET_SUCCESSFUL)
+					_instance.finish();
 			}
 		}
 		catch (JSONException e)
 		{
 			e.printStackTrace();
 			Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
-			_instance.finish();
+			if (_what == GET_SUCCESSFUL)
+				_instance.finish();
 		}
 	}
 
