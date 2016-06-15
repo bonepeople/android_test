@@ -7,6 +7,7 @@ import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_test;
 import com.shownest.android.fragment.Fragment_webview;
+import com.shownest.android.model.OnChangeListener;
 import com.shownest.android.model.UserInfo;
 import com.shownest.android.utils.CommonUtil;
 import com.shownest.android.utils.JsonUtil;
@@ -86,7 +87,17 @@ public class Activity_test extends DEBUG_Activity
 			// add_fragment(this, new
 			// Fragment_webview("http://baike.baidu.com/link?url=0dlZFtaGLAYuloobGXYfOxmOlnRlzGgLz810J1z8LSJ5hUDlKGU3EJvAtnJcbf3smvZ5inON_d3fdx30069O3_"),
 			// true);
-			add_fragment(this, new Fragment_webview("http://app.shownest.com/shuttering/getDesiShutterList?ukey=" + UserManager.get_ukey()), true);
+			String _url = "http://app.shownest.com/shuttering/getDesiShutterList?ukey=" + UserManager.get_ukey();
+
+			add_fragment(this, new Fragment_webview(_url, "web", new OnChangeListener()
+			{
+				@Override
+				public void onChange(String _tag, String[] _args)
+				{
+					// TODO Auto-generated method stub
+					Toast.makeText(Activity_test.this, "网页加载完成", Toast.LENGTH_SHORT).show();
+				}
+			}), true);
 		}
 		else
 		{

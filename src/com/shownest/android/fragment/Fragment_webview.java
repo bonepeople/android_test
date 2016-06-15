@@ -2,25 +2,31 @@ package com.shownest.android.fragment;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Fragment;
+import com.shownest.android.model.OnChangeListener;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 public class Fragment_webview extends DEBUG_Fragment implements View.OnClickListener
 {
+	private String _tag;
+	private OnChangeListener _listener;
 	private WebView _webview;
 	private WebViewClient _client;
 	private String _url;
 
-	public Fragment_webview(String _url)
+	public Fragment_webview(String _url, String _tag, OnChangeListener _listener)
 	{
 		this._url = _url;
+		this._tag = _tag;
+		this._listener = _listener;
 	}
 
 	@Override
@@ -72,5 +78,23 @@ public class Fragment_webview extends DEBUG_Fragment implements View.OnClickList
 		_webview.loadUrl(_url);
 		WebSettings settings = _webview.getSettings();
 		settings.setJavaScriptEnabled(true);
+
+		_webview.setWebChromeClient(new WebChromeClient()
+		{
+			@Override
+			public void onProgressChanged(WebView view, int newProgress)
+			{
+				if (newProgress == 100)
+				{
+					// 网页加载完成
+					_listener.onChange(_tag, new String[] { "finish" });
+				}
+				else
+				{
+					// 加载中
+
+				}
+			}
+		});
 	}
 }

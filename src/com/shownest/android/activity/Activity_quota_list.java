@@ -67,7 +67,6 @@ public class Activity_quota_list extends DEBUG_Activity
 
 		ContentValues _value = new ContentValues();
 		_value.put("homeId", _bidID);
-//		_value.put("userId", UserManager.get_user_info().get_userId());
 		_value.put("startPage", _startPage);
 		show_wait();
 		HttpUtil.get_quota_list(_handler, _value, GET_SUCCESSFUL, GET_FAILED);
