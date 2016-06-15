@@ -12,27 +12,45 @@ import com.shownest.android.utils.JsonUtil;
  */
 public class QuotaInfo
 {
+	private String _homeId;// 招标ID
 	private String _userShowName;// 用户昵称
 	private int _userType;// 用户身份类别
-	private String _userTypeName;// 用户身份名称
 	private String _headerIcon;// 用户头像
 	private double _gradePraise;// 用户评分
-	private double _budget;// 装修预算
-	private int _bidsState;// 招标状态
+	private double _userPrice;// 预算
+	private int _state;// 招标状态 1-已投标(参与)，2-备选，3-已量房修改价格(待定)，4-淘汰，5-中标，6-结束
+	private String _otherInfor;// 额外信息(投标的)
+	private int _quoteWay;// 报价方式
 	private boolean _change;// 是否修改过
-	private String _QuotationId;// 报价单 ID
+	private boolean _isHide;// 是否隐藏
+	private String _quotationId;// 报价单 ID
+
+	// "gradePraise":"151.0",
+	// "headerIcon":"20150716165622.107.png",
+	// "homeId":"cf1686e3a11545ad971cf2addc835678",
+	// "isHide":"n",
+	// "otherInfor":"",
+	// "quotationId":"4",
+	// "quoteWay":"2",
+	// "state":"1",
+	// "userId":"001a3da401474e89978994a1d9d52491",
+	// "userIdeas":"设计思路一大堆啊",
+	// "userPhone":"131*****711",
+	// "userPrice":"16600.0",
+	// "userShowName":"彭工设计师",
+	// "userTxt":"",
+	// "userType":"12"
 
 	public QuotaInfo(JSONObject _json) throws JSONException
 	{
 		this._userShowName = JsonUtil.get_string(_json, "userShowName", "");
 		this._userType = JsonUtil.get_int(_json, "userType", 12);
-		this._userTypeName = JsonUtil.get_string(_json, "userTypeName", "未知");
 		this._headerIcon = JsonUtil.get_string(_json, "headerIcon", "header_default.png");
 		this._gradePraise = JsonUtil.get_double(_json, "gradePraise", 0);
-		this._budget = JsonUtil.get_double(_json, "budget", 0);
-		this._bidsState = JsonUtil.get_int(_json, "bidsState", 0);
+		this._userPrice = JsonUtil.get_double(_json, "userPrice", 0);
+		this._state = JsonUtil.get_int(_json, "state", 0);
 		this._change = JsonUtil.get_bool(_json, "change", false);
-		this._QuotationId = JsonUtil.get_string(_json, "QuotationId", "");
+		this._quotationId = JsonUtil.get_string(_json, "quotationId", "");
 	}
 
 	public String get_userShowName()
@@ -55,14 +73,25 @@ public class QuotaInfo
 		this._userType = _userType;
 	}
 
-	public String get_userTypeName()
+	public String get_userType_name()
 	{
-		return _userTypeName;
-	}
-
-	public void set_userTypeName(String _userTypeName)
-	{
-		this._userTypeName = _userTypeName;
+		String _name = "";
+		switch (_userType)
+		{
+		case 12:
+			_name = "设计师";
+			break;
+		case 13:
+			_name = "施工队";
+			break;
+		case 14:
+			_name = "监理";
+			break;
+		default:
+			_name = "未知";
+			break;
+		}
+		return _name;
 	}
 
 	public String get_headerIcon()
@@ -85,24 +114,24 @@ public class QuotaInfo
 		this._gradePraise = _gradePraise;
 	}
 
-	public double get_budget()
+	public double get_userPrice()
 	{
-		return _budget;
+		return _userPrice;
 	}
 
-	public void set_budget(double _budget)
+	public void set_userPrice(double _userPrice)
 	{
-		this._budget = _budget;
+		this._userPrice = _userPrice;
 	}
 
-	public int get_bidsState()
+	public int get_state()
 	{
-		return _bidsState;
+		return _state;
 	}
 
-	public void set_bidsState(int _bidsState)
+	public void set_state(int _state)
 	{
-		this._bidsState = _bidsState;
+		this._state = _state;
 	}
 
 	public boolean is_change()
@@ -115,13 +144,13 @@ public class QuotaInfo
 		this._change = _change;
 	}
 
-	public String get_QuotationId()
+	public String get_quotationId()
 	{
-		return _QuotationId;
+		return _quotationId;
 	}
 
-	public void set_QuotationId(String _QuotationId)
+	public void set_quotationId(String _quotationId)
 	{
-		this._QuotationId = _QuotationId;
+		this._quotationId = _quotationId;
 	}
 }

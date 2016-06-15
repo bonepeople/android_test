@@ -208,9 +208,9 @@ public class CommonUtil
 	}
 
 	/**
-	 * @Title: getRoleLevel @Description: 获取角色评分，转化成“星星”值 @param @param grade @param @return 设定文件 @return int 返回类型 @throws
+	 * 获取角色评分，转化成"星星"值
 	 */
-	public static int getRoleLevel(float gradePraise)
+	public static int getRoleLevel(double gradePraise)
 	{
 		int star = 0;
 		if (gradePraise >= 4 && gradePraise <= 50)

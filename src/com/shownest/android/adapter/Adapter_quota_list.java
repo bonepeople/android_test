@@ -82,11 +82,11 @@ public class Adapter_quota_list extends BaseAdapter
 		}
 		_holder._header.setImageUrl(CommonUtil.getUserHeaderIconUrl(_temp_quota.get_userType(), _temp_quota.get_headerIcon()));
 		_holder._text_name.setText(_temp_quota.get_userShowName());
-		_holder._textview_role.setText(_temp_quota.get_userTypeName());
-		_holder._ratingbar.setRating(5);
+		_holder._textview_role.setText(_temp_quota.get_userType_name());
+		_holder._ratingbar.setRating(CommonUtil.getRoleLevel(_temp_quota.get_gradePraise()));
 
 		_holder._textview_state.setBackgroundResource(R.drawable.icon_shownest);
-		_holder._textview_money.setText(String.valueOf((int) _temp_quota.get_budget()));
+		_holder._textview_money.setText(String.valueOf((int) _temp_quota.get_userPrice()));
 		if (_temp_quota.is_change())
 			_holder._textview_change.setVisibility(TextView.VISIBLE);
 
