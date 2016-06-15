@@ -28,7 +28,6 @@ public class UserInfo
 	private boolean _checkEmail;// 是否绑定邮箱
 	private int _blogNum;// ？？博文
 	private double _money;// 余额
-	private String _ukey;// ukey
 	private String _ownerName;
 	private String _likeStyle;// 业主喜欢的风格
 	private String _designStyle;// 设计师风格
@@ -70,7 +69,6 @@ public class UserInfo
 		this._checkEmail = JsonUtil.get_bool(_json, "checkEmail", false);
 		this._blogNum = JsonUtil.get_int(_json, "blogNum", 0);
 		this._money = JsonUtil.get_double(_json, "money", 0);
-		this._ukey = JsonUtil.get_string(_json, "ukey", "");
 		this._ownerName = JsonUtil.get_string(_json, "ownerName", "");
 		this._likeStyle = JsonUtil.get_string(_json, "likeStyle", "");
 		this._designStyle = JsonUtil.get_string(_json, "designStyle", "");
@@ -235,16 +233,6 @@ public class UserInfo
 	public void set_money(double _money)
 	{
 		this._money = _money;
-	}
-
-	public String get_ukey()
-	{
-		return _ukey;
-	}
-
-	public void set_ukey(String _ukey)
-	{
-		this._ukey = _ukey;
 	}
 
 	public String get_ownerName()
