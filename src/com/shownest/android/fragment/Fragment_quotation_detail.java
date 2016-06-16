@@ -78,7 +78,7 @@ public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClick
 	public void refresh(String _part, String _hint)
 	{
 		_adapters.get(_part).notifyDataSetChanged();
-		_lists.get(_part).set_hint(_hint);
+		_lists.get(_part).set_text("hint", _hint);
 	}
 
 	@Override
