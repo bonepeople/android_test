@@ -29,7 +29,6 @@ public class Adapter_quota_list extends BaseAdapter
 		public RatingBar _ratingbar;
 		public TextView _textview_state;
 		public TextView _textview_money;
-		public TextView _textview_change;
 	}
 
 	public Adapter_quota_list(Context _context, ArrayList<QuotaInfo> _data)
@@ -73,7 +72,6 @@ public class Adapter_quota_list extends BaseAdapter
 			_holder._ratingbar = (RatingBar) _view.findViewById(R.id.ratingbar);
 			_holder._textview_state = (TextView) _view.findViewById(R.id.textview_state);
 			_holder._textview_money = (TextView) _view.findViewById(R.id.textview_money);
-			_holder._textview_change = (TextView) _view.findViewById(R.id.textview_change);
 			_view.setTag(_holder);
 		}
 		else
@@ -87,8 +85,6 @@ public class Adapter_quota_list extends BaseAdapter
 
 		_holder._textview_state.setBackgroundResource(R.drawable.icon_shownest);
 		_holder._textview_money.setText(String.valueOf((int) _temp_quota.get_userPrice()));
-		if (_temp_quota.is_change())
-			_holder._textview_change.setVisibility(TextView.VISIBLE);
 
 		return _view;
 	}

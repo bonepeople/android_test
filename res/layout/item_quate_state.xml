@@ -6,19 +6,22 @@
     android:background="@color/white"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:padding="10dp" >
+    android:paddingBottom="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp" >
 
     <com.loopj.android.image.SmartImageView
         android:id="@+id/imageview_header"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_margin="5dp" />
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:paddingTop="10dp" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="65"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:paddingTop="10dp" >
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -43,7 +46,8 @@
                 android:paddingRight="5dp"
                 android:singleLine="true"
                 android:text="设计师"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <RatingBar
@@ -51,11 +55,12 @@
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:progressDrawable="@drawable/rating_main"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:progressDrawable="@drawable/rating_main" />
     </LinearLayout>
 
     <LinearLayout
+        android:paddingTop="1dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="35"
@@ -63,8 +68,8 @@
 
         <TextView
             android:id="@+id/textview_state"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:singleLine="true"
@@ -93,24 +98,13 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:text="元" />
-
-            <TextView
-                android:id="@+id/textview_change"
-                android:layout_width="17dp"
-                android:layout_height="17dp"
-                android:background="@drawable/background_textview"
-                android:gravity="center"
-                android:singleLine="true"
-                android:text="改"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:visibility="gone" />
         </LinearLayout>
     </LinearLayout>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="10dp"
         android:src="@drawable/clickable_flag_dark" />
 
 </LinearLayout>
