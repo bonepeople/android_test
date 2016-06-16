@@ -16,7 +16,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class Linearlayout_listview extends LinearLayout implements View.OnClickListener
+public class Widget_listview extends LinearLayout implements View.OnClickListener
 {
 	private static boolean DEBUG = false;
 	private ViewGroup _rootview;
@@ -29,17 +29,17 @@ public class Linearlayout_listview extends LinearLayout implements View.OnClickL
 	private OnChangeListener _listener;
 	private boolean _collapse = true;// 折叠:true折叠状态，false展开状态
 
-	public Linearlayout_listview(Context context)
+	public Widget_listview(Context context)
 	{
 		super(context);
 	}
 
-	public Linearlayout_listview(Context context, AttributeSet attrs)
+	public Widget_listview(Context context, AttributeSet attrs)
 	{
 		super(context, attrs);
 	}
 
-	public Linearlayout_listview(Context context, ViewGroup root, String[] args, ListAdapter _adapter)
+	public Widget_listview(Context context, ViewGroup root, String[] args, ListAdapter _adapter)
 	{
 		super(context);
 		if (DEBUG)

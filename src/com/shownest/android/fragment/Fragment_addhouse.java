@@ -10,7 +10,7 @@ import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.widget.AlertDialog_rooms;
 import com.shownest.android.widget.LinearLayout_checkbox;
 import com.shownest.android.widget.LinearLayout_picturebox;
-import com.shownest.android.widget.Linearlayout_listview;
+import com.shownest.android.widget.Widget_listview;
 import com.shownest.android.widget.InformationBar;
 
 import android.content.ContentValues;
@@ -32,7 +32,7 @@ public class Fragment_addhouse extends DEBUG_Fragment implements View.OnClickLis
 	private LinearLayout_checkbox _state, _type;
 	private LinearLayout_picturebox _img;
 	private Adapter_rooms_area _adapter;
-	private Linearlayout_listview _list;
+	private Widget_listview _list;
 	private int _cityId = 0, _provinceId = 0, _countyId = 0;
 
 	@Override
@@ -60,7 +60,7 @@ public class Fragment_addhouse extends DEBUG_Fragment implements View.OnClickLis
 		_body.addView(_img);
 
 		_adapter = new Adapter_rooms_area(getActivity());
-		_list = new Linearlayout_listview(getActivity(), _body, new String[] { "具体面积", "信息详细，报价准确" }, _adapter);
+		_list = new Widget_listview(getActivity(), _body, new String[] { "具体面积", "信息详细，报价准确" }, _adapter);
 		_list.set_textcolor("hint", getResources().getColor(R.color.main_color));
 		_list.set_dividerheight(1);
 		_areas.setOnChangeListener("area", _adapter);

@@ -10,7 +10,7 @@ import com.shownest.android.utils.CommonUtil;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.NumberUtil;
 import com.shownest.android.widget.Linearlayout_edittext;
-import com.shownest.android.widget.Linearlayout_listview;
+import com.shownest.android.widget.Widget_listview;
 import com.shownest.android.widget.InformationBar;
 
 import android.content.ContentValues;
@@ -33,7 +33,7 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 	private int _room_index, _part_index;
 	private ItemDetail _new_item;
 	private Adapter_quotation_change _adapter;
-	private Linearlayout_listview _list;
+	private Widget_listview _list;
 	private InformationBar _price, _number;
 	private Linearlayout_edittext _material, _technics;
 
@@ -90,7 +90,7 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 			String _name = CommonUtil.get_chineseName(_part);
 
 			_adapter = new Adapter_quotation_change(getActivity(), _part, _data.get_details(_part));
-			_list = new Linearlayout_listview(getActivity(), _body, new String[] { _name, "" }, _adapter);
+			_list = new Widget_listview(getActivity(), _body, new String[] { _name, "" }, _adapter);
 			_list.set_dividerheight(30);
 			_list.set_collapse(false);
 			// _adapter.setOnChangetListener(Activity_quotation_detail.get_instance());

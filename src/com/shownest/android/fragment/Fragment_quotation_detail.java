@@ -7,7 +7,7 @@ import com.shownest.android.activity.Activity_quotation_detail;
 import com.shownest.android.adapter.Adapter_quotation_detail;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.RoomDetail;
-import com.shownest.android.widget.Linearlayout_listview;
+import com.shownest.android.widget.Widget_listview;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,7 +22,7 @@ public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClick
 	private LinearLayout _body;
 	private Button _button_commit;
 	private HashMap<String, Adapter_quotation_detail> _adapters = new HashMap<String, Adapter_quotation_detail>();
-	private HashMap<String, Linearlayout_listview> _lists = new HashMap<String, Linearlayout_listview>();
+	private HashMap<String, Widget_listview> _lists = new HashMap<String, Widget_listview>();
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -65,7 +65,7 @@ public class Fragment_quotation_detail extends DEBUG_Fragment implements OnClick
 		if (_data.has_details(_part))
 		{
 			Adapter_quotation_detail _adapter = new Adapter_quotation_detail(getActivity(), _data.get_details(_part));
-			Linearlayout_listview _list = new Linearlayout_listview(getActivity(), _body, new String[] { _name, "小计：" + _data.get_totals(_part) + "元" }, _adapter);
+			Widget_listview _list = new Widget_listview(getActivity(), _body, new String[] { _name, "小计：" + _data.get_totals(_part) + "元" }, _adapter);
 			_adapter.setOnChangetListener("change " + _part, Activity_quotation_detail.get_instance());
 			_list.set_change("增减工艺", "fix " + _part, Activity_quotation_detail.get_instance());
 			_list.set_dividerheight(30);
