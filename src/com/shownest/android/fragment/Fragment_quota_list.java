@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_quota_list;
-import com.shownest.android.adapter.Adapter_quota_list;
+import com.shownest.android.adapter.Adapter_quota_state;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.QuotaInfo;
 import com.shownest.android.utils.NumberUtil;
@@ -27,7 +27,7 @@ public class Fragment_quota_list extends DEBUG_Fragment implements View.OnClickL
 {
 	private LinearLayout _body, _buttons;
 	private InformationBar _detail;
-	private Adapter_quota_list _adapter;
+	private Adapter_quota_state _adapter;
 	private ListView _list;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -80,7 +80,7 @@ public class Fragment_quota_list extends DEBUG_Fragment implements View.OnClickL
 			_name.setPadding(_padding, _padding, _padding, _padding);
 			_body.addView(_name);
 			new View_split_h(getActivity(), _body, 1f).set_color(getResources().getColor(R.color.background_main));
-			_adapter = new Adapter_quota_list(getActivity(), _data);
+			_adapter = new Adapter_quota_state(getActivity(), _data);
 			_list = new ListView(getActivity());
 			_list.setAdapter(_adapter);
 			_list.setDivider(new ColorDrawable(getResources().getColor(R.color.background_main)));

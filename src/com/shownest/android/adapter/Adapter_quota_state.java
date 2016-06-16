@@ -15,7 +15,7 @@ import android.widget.BaseAdapter;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-public class Adapter_quota_list extends BaseAdapter
+public class Adapter_quota_state extends BaseAdapter
 {
 	private Context _context;
 	private LayoutInflater _inflater;
@@ -31,7 +31,7 @@ public class Adapter_quota_list extends BaseAdapter
 		public TextView _textview_money;
 	}
 
-	public Adapter_quota_list(Context _context, ArrayList<QuotaInfo> _data)
+	public Adapter_quota_state(Context _context, ArrayList<QuotaInfo> _data)
 	{
 		this._context = _context;
 		_inflater = LayoutInflater.from(_context);
