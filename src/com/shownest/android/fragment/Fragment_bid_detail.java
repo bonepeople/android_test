@@ -3,7 +3,7 @@ package com.shownest.android.fragment;
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_bid_detail;
 import com.shownest.android.activity.Activity_quota_list;
-import com.shownest.android.activity.Activity_toubiao_shejishi;
+import com.shownest.android.activity.Activity_webview;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.BidInfo_common;
 import com.shownest.android.model.UserInfo;
@@ -21,7 +21,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Fragment_bid_detail extends DEBUG_Fragment implements OnClickListener
 {
@@ -130,18 +129,21 @@ public class Fragment_bid_detail extends DEBUG_Fragment implements OnClickListen
 		int _id = v.getId();
 		if (_id == _button_commit.getId())
 		{
-			Intent _toubiao = new Intent();
+			String _url = "";
+			Intent _toubiao = new Intent(getActivity(), Activity_webview.class);
 			switch (UserManager.get_user_info().get_userType())
 			{
 			case 12:
-				_toubiao.setClass(getActivity(), Activity_toubiao_shejishi.class);
+				_url = "http://app.shownest.com/bid/getDesiBidDetail?homeId=" + Activity_bid_detail.get_data().get_id() + "&ukey=" + UserManager.get_ukey();
 				break;
 			case 13:
-
+				_url = "http://app.shownest.com/bid/getConsBidDetail?homeId=" + Activity_bid_detail.get_data().get_id() + "&ukey=" + UserManager.get_ukey();
+				break;
 			case 14:
 				return;
 			}
-			_toubiao.putExtra("index", Activity_bid_detail.get_index());
+			_toubiao.putExtra("url", _url);
+			_toubiao.putExtra("had_title", false);
 			startActivity(_toubiao);
 		}
 		else if (_id == _button_other.getId())

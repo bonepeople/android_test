@@ -3,7 +3,6 @@ package com.shownest.android.fragment;
 import com.loopj.android.image.SmartImageView;
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_basicinfo;
-import com.shownest.android.activity.Activity_house_list;
 import com.shownest.android.activity.Activity_select_role;
 import com.shownest.android.activity.Activity_webview;
 import com.shownest.android.basic.DEBUG_Fragment;
