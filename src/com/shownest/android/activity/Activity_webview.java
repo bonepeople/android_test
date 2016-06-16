@@ -73,6 +73,7 @@ public class Activity_webview extends DEBUG_Activity
 
 	private void load()
 	{
+		System.out.println("connecting:" + _url);
 		_webview.loadUrl(_url);
 	}
 

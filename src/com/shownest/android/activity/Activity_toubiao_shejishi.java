@@ -8,7 +8,6 @@ import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
-import com.shownest.android.fragment.Fragment_webview;
 import com.shownest.android.model.Template_shejishi;
 import com.shownest.android.model.WebActionListener;
 import com.shownest.android.utils.JsonUtil;
@@ -62,7 +61,7 @@ public class Activity_toubiao_shejishi extends DEBUG_Activity implements WebActi
 		String _bidID = Activity_AH_bid.get_data().get(_index).get_id();
 		String _url = "http://app.shownest.com/bid/getDesiBidDetail?homeId=" + _bidID + "&ukey=" + UserManager.get_ukey();
 		show_wait();
-		add_fragment(this, new Fragment_webview(_url, "web", this), false);
+//		add_fragment(this, new Fragment_webview(_url, "web", this), false);
 	}
 
 	@Override
