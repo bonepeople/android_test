@@ -2,6 +2,7 @@ package com.shownest.android.activity;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
+import com.shownest.android.model.JsInterface;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -66,7 +67,7 @@ public class Activity_webview extends DEBUG_Activity
 			}
 		};
 		_webview.setWebViewClient(_client);
-		_webview.addJavascriptInterface(new JsInterface(), "JsInterface");
+		_webview.addJavascriptInterface(new JsInterface(this), "JsInterface");
 		_body.addView(_webview);
 		load();
 	}
@@ -75,20 +76,5 @@ public class Activity_webview extends DEBUG_Activity
 	{
 		System.out.println("connecting:" + _url);
 		_webview.loadUrl(_url);
-	}
-
-	private class JsInterface
-	{
-		@android.webkit.JavascriptInterface
-		public void set_title(String _name)
-		{
-			setTitle(_name);
-		}
-
-		@android.webkit.JavascriptInterface
-		public void close()
-		{
-			finish();
-		}
 	}
 }
