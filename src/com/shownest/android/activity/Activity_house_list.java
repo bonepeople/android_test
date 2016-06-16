@@ -20,8 +20,7 @@ public class Activity_house_list extends DEBUG_Activity implements WebActionList
 		setContentView(R.layout.activity_basic);
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 		_instance = this;
-
-		hideTitle(this);
+		setTitle("我的房屋");
 
 		String _url = "http://app.shownest.com/house/getHouseList?ukey=" + UserManager.get_ukey();
 		show_wait();

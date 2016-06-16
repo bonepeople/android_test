@@ -5,6 +5,7 @@ import com.shownest.android.R;
 import com.shownest.android.activity.Activity_basicinfo;
 import com.shownest.android.activity.Activity_house_list;
 import com.shownest.android.activity.Activity_select_role;
+import com.shownest.android.activity.Activity_webview;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.UserInfo;
 import com.shownest.android.utils.CommonUtil;
@@ -125,7 +126,11 @@ public class Fragment_my_center extends DEBUG_Fragment implements View.OnClickLi
 			break;
 
 		case R.id.item_fangwu:
-			Intent _house = new Intent(getActivity(), Activity_house_list.class);
+			Intent _house = new Intent(getActivity(), Activity_webview.class);
+			String _url = "http://app.shownest.com/house/getHouseList?ukey=" + UserManager.get_ukey();
+			_house.putExtra("url", _url);
+			_house.putExtra("had_title", true);
+			_house.putExtra("title", "我的房屋");
 			startActivity(_house);
 			break;
 

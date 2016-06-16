@@ -123,7 +123,7 @@
             android:theme="@style/ActivityTheme_notitle" >
         </activity>
         <activity
-            android:name="com.shownest.android.activity.Activity_house_list"
+            android:name="com.shownest.android.activity.Activity_webview"
             android:theme="@style/ActivityTheme_notitle" >
         </activity>
     </application>
