@@ -45,6 +45,7 @@ public class Fragment_my_bid extends DEBUG_Fragment
 				{
 					Adapter_bid_state _temp_adapter = new Adapter_bid_state(getActivity(), _data.get(_temp_i).get_bids());
 					Widget_listview _temp_list = new Widget_listview(getActivity(), _body, new String[] { _data.get(_temp_i).get_houseName(), "" }, _temp_adapter);
+					_temp_list.set_backgroundColor(getResources().getColor(R.color.white));
 					_temp_list.set_collapse(false);
 					_adapters.add(_temp_adapter);
 					_lists.add(_temp_list);

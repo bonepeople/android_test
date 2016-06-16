@@ -19,7 +19,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="设计标"
             android:textSize="16sp" />
 
         <LinearLayout
@@ -33,7 +32,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:text="1234"
                 android:textColor="@color/main_color" />
 
             <TextView
@@ -55,7 +53,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="招标成功，协议生效"
             android:textColor="@color/main_color"
             android:textSize="16sp" />
 
@@ -75,18 +72,16 @@
                 android:id="@+id/textview_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:text="0天0小时0分" />
+                android:singleLine="true" />
         </LinearLayout>
     </LinearLayout>
 
     <TextView
         android:id="@+id/textview_hint"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:background="@drawable/background_textview"
         android:gravity="center"
-        android:text="99"
         android:textColor="@color/white"
         android:textStyle="bold" />
 
