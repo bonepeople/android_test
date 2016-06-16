@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.shownest.android.R;
 import com.shownest.android.model.BidInfo_common;
+import com.shownest.android.model.OnChangeListener;
 import com.shownest.android.utils.NumberUtil;
 
 import android.content.Context;
@@ -13,11 +14,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class Adapter_bid_state extends BaseAdapter
+public class Adapter_bid_state extends BaseAdapter implements View.OnClickListener
 {
 	private Context _context;
 	private LayoutInflater _inflater;
+	private String _tag;
 	private ArrayList<BidInfo_common> _data;
+	private OnChangeListener _listener;
 
 	private static class ViewHolder
 	{
@@ -33,6 +36,12 @@ public class Adapter_bid_state extends BaseAdapter
 		this._context = _context;
 		_inflater = LayoutInflater.from(_context);
 		this._data = _data;
+	}
+
+	public void setOnChangetListener(String _tag, OnChangeListener _listener)
+	{
+		this._tag = _tag;
+		this._listener = _listener;
 	}
 
 	@Override
@@ -68,6 +77,9 @@ public class Adapter_bid_state extends BaseAdapter
 			_holder._textview_state = (TextView) _view.findViewById(R.id.textview_state);
 			_holder._textview_date = (TextView) _view.findViewById(R.id.textview_date);
 			_holder._textview_hint = (TextView) _view.findViewById(R.id.textview_hint);
+			
+			_view.setId(position);
+			_view.setOnClickListener(this);
 			_view.setTag(_holder);
 		}
 		else
@@ -82,6 +94,13 @@ public class Adapter_bid_state extends BaseAdapter
 		_holder._textview_hint.setText("2");
 
 		return _view;
+	}
+
+	@Override
+	public void onClick(View v)
+	{
+		if (_listener != null)
+			_listener.onChange(_tag, new String[] { String.valueOf(v.getId()) });
 	}
 
 }
