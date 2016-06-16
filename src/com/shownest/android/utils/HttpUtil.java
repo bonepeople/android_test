@@ -32,6 +32,17 @@ public class HttpUtil
 	// http://192.168.1.112:10000/shownest/html/test1.html
 	// http://192.168.1.112:10000/shownest/websubmitreg
 	/**
+	 * 获取房屋的招标详情列表
+	 */
+	public static void get_house_bid(Handler _handler, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "bid/webViewHouseBook";
+		String _message = "";
+
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
+	}
+
+	/**
 	 * 获取投标列表
 	 */
 	public static void get_quota_list(Handler _handler, ContentValues _value, int _successful, int _failed)

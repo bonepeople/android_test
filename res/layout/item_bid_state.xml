@@ -81,6 +81,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/textview_hint"
         android:layout_width="18dp"
         android:layout_height="18dp"
         android:background="@drawable/background_textview"

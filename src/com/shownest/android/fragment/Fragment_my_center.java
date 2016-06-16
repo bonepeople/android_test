@@ -3,6 +3,7 @@ package com.shownest.android.fragment;
 import com.loopj.android.image.SmartImageView;
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_basicinfo;
+import com.shownest.android.activity.Activity_my_bid;
 import com.shownest.android.activity.Activity_select_role;
 import com.shownest.android.activity.Activity_webview;
 import com.shownest.android.basic.DEBUG_Fragment;
@@ -113,7 +114,8 @@ public class Fragment_my_center extends DEBUG_Fragment implements View.OnClickLi
 			break;
 
 		case R.id.item_bid:
-			Toast.makeText(getActivity(), "招标", Toast.LENGTH_SHORT).show();
+			Intent _bid = new Intent(getActivity(), Activity_my_bid.class);
+			startActivity(_bid);
 			break;
 
 		case R.id.item_offer:

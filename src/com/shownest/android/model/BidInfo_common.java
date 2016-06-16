@@ -32,7 +32,7 @@ public class BidInfo_common
 	private int _consType;// 施工标类型 0-半包，1-全包，2-清包
 	private int _biddingTypeId;// 设计标类型 1-设计图服务，2-硬装全程服务，3-硬装软装全程服务
 	private double _budget;// 预算
-	private int _bidsState;// 招标状态
+	private int _bidsState;// 招标状态 1为发标，2为应标中，3已备选，4已选标,待卖家建立协议，5待买家签订协议，6待业主托管，7已成功，8已结束
 	private int _bidNum;// 参与人数
 	private String _createDate;// 发布时间 "2016年06月12日"
 	private String _remainingDate;// 过期时间 "29天7小时17分"
@@ -277,6 +277,24 @@ public class BidInfo_common
 		return _bookType;
 	}
 
+	public String get_bookType_name()
+	{
+		String _result = "未知";
+		switch (_bookType)
+		{
+		case 12:
+			_result = "设计标";
+			break;
+		case 13:
+			_result = "施工标";
+			break;
+		case 14:
+			_result = "监理标";
+			break;
+		}
+		return _result;
+	}
+
 	public void set_bookType(int _bookType)
 	{
 		this._bookType = _bookType;
@@ -346,18 +364,33 @@ public class BidInfo_common
 	}
 
 	public String get_bidsState_name()
-	{
+	{// 1为发标，2为应标中，3已备选，4已选标,待卖家建立协议，5待买家签订协议，6待业主托管，7已成功，8已结束
 		String _result = "未定义";
 		switch (_bidsState)
 		{
 		case 1:
-			_result = "未定义1";
+			_result = "发标";
 			break;
 		case 2:
-			_result = "招标中";
+			_result = "应标中";
 			break;
 		case 3:
-			_result = "未定义2";
+			_result = "已备选";
+			break;
+		case 4:
+			_result = "待卖家建立协议";
+			break;
+		case 5:
+			_result = "待买家签订协议";
+			break;
+		case 6:
+			_result = "待业主托管";
+			break;
+		case 7:
+			_result = "已成功";
+			break;
+		case 8:
+			_result = "已结束";
 			break;
 		}
 		return _result;
