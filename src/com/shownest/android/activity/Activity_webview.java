@@ -6,6 +6,7 @@ import com.shownest.android.model.JsInterface;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.webkit.WebChromeClient;
@@ -88,5 +89,19 @@ public class Activity_webview extends DEBUG_Activity
 	{
 		System.out.println("connecting:" + _url);
 		_webview.loadUrl(_url);
+	}
+
+	/**
+	 * 将返回事件传递给WebView
+	 */
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event)
+	{
+		if ((keyCode == KeyEvent.KEYCODE_BACK) && _webview.canGoBack())
+		{
+			_webview.goBack();
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 }
