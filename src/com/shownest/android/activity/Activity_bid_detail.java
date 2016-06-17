@@ -27,7 +27,7 @@ public class Activity_bid_detail extends DEBUG_Activity
 	public static final int GET_FAILED = 0;
 	public static final int GET_SUCCESSFUL = 1;
 	private static Activity_bid_detail _instance;
-	private static Intent _intent;
+	private Intent _intent;
 	private static String _bidID = "";
 	private static int _index = 0;
 	private static BidInfo_common _data;

@@ -31,7 +31,7 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 	public static final int CHANGE = 2;
 	public static final int FIX = 3;
 	private static Activity_quotation_detail _instance;
-	private static Intent _intent;
+	private Intent _intent;
 	private static Fragment_quotation_detail _fragment_detail;
 	private static RoomDetail _data;
 	private static String _quotationId;
@@ -114,7 +114,7 @@ public class Activity_quotation_detail extends DEBUG_Activity implements OnChang
 				switch (_what)
 				{
 				case GET_SUCCESSFUL:
-					_data = new RoomDetail(_obj.getJSONObject("data"), _intent.getStringExtra("room"));
+					_data = new RoomDetail(_obj.getJSONObject("data"), _room);
 					add_fragment(_instance, _fragment_detail = new Fragment_quotation_detail(), false);
 					break;
 				}
