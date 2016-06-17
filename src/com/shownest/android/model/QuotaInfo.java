@@ -43,6 +43,7 @@ public class QuotaInfo
 
 	public QuotaInfo(JSONObject _json) throws JSONException
 	{
+		this._userId = JsonUtil.get_string(_json, "userId", "");
 		this._userShowName = JsonUtil.get_string(_json, "userShowName", "");
 		this._userType = JsonUtil.get_int(_json, "userType", 12);
 		this._headerIcon = JsonUtil.get_string(_json, "headerIcon", "header_default.png");
