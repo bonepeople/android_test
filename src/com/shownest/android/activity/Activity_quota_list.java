@@ -12,7 +12,6 @@ import com.shownest.android.fragment.Fragment_quota_list;
 import com.shownest.android.model.QuotaInfo;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.JsonUtil;
-import com.shownest.android.utils.UserManager;
 
 import android.content.ContentValues;
 import android.os.Bundle;

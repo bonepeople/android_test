@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import com.shownest.android.R;
 import com.shownest.android.model.BidInfo_common;
 import com.shownest.android.model.OnChangeListener;
-import com.shownest.android.utils.NumberUtil;
 
 import android.content.Context;
 import android.view.LayoutInflater;
