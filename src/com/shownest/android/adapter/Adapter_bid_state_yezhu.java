@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class Adapter_bid_state extends BaseAdapter implements View.OnClickListener
+public class Adapter_bid_state_yezhu extends BaseAdapter implements View.OnClickListener
 {
 	private Context _context;
 	private LayoutInflater _inflater;
@@ -29,7 +29,7 @@ public class Adapter_bid_state extends BaseAdapter implements View.OnClickListen
 		public TextView _textview_date;
 	}
 
-	public Adapter_bid_state(Context _context, ArrayList<BidInfo_common> _data)
+	public Adapter_bid_state_yezhu(Context _context, ArrayList<BidInfo_common> _data)
 	{
 		this._context = _context;
 		_inflater = LayoutInflater.from(_context);
@@ -68,7 +68,7 @@ public class Adapter_bid_state extends BaseAdapter implements View.OnClickListen
 		BidInfo_common _temp_bid = getItem(position);
 		if (convertView == null)
 		{
-			_view = _inflater.inflate(R.layout.item_bid_state, null);
+			_view = _inflater.inflate(R.layout.item_bid_state_yezhu, null);
 			_holder = new ViewHolder();
 			_holder._text_role = (TextView) _view.findViewById(R.id.textview_role);
 			_holder._textview_number = (TextView) _view.findViewById(R.id.textview_number);

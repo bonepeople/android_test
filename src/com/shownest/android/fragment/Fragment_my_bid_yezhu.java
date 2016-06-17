@@ -3,9 +3,9 @@ package com.shownest.android.fragment;
 import java.util.ArrayList;
 
 import com.shownest.android.R;
-import com.shownest.android.activity.Activity_my_bid;
+import com.shownest.android.activity.Activity_my_bid_yezhu;
 import com.shownest.android.activity.Activity_quota_list;
-import com.shownest.android.adapter.Adapter_bid_state;
+import com.shownest.android.adapter.Adapter_bid_state_yezhu;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.HouseBidState;
 import com.shownest.android.model.OnChangeListener;
@@ -19,10 +19,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-public class Fragment_my_bid extends DEBUG_Fragment implements OnChangeListener
+public class Fragment_my_bid_yezhu extends DEBUG_Fragment implements OnChangeListener
 {
 	private LinearLayout _body, _buttons;
-	private ArrayList<Adapter_bid_state> _adapters = new ArrayList<Adapter_bid_state>();
+	private ArrayList<Adapter_bid_state_yezhu> _adapters = new ArrayList<Adapter_bid_state_yezhu>();
 	private ArrayList<Widget_listview> _lists = new ArrayList<>();
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -39,14 +39,14 @@ public class Fragment_my_bid extends DEBUG_Fragment implements OnChangeListener
 	@Override
 	public void setContent()
 	{
-		ArrayList<HouseBidState> _data = Activity_my_bid.get_data();
+		ArrayList<HouseBidState> _data = Activity_my_bid_yezhu.get_data();
 		if (_data != null)
 		{
 			if (_data.size() != 0)
 			{
 				for (int _temp_i = 0; _temp_i < _data.size(); _temp_i++)
 				{
-					Adapter_bid_state _temp_adapter = new Adapter_bid_state(getActivity(), _data.get(_temp_i).get_bids());
+					Adapter_bid_state_yezhu _temp_adapter = new Adapter_bid_state_yezhu(getActivity(), _data.get(_temp_i).get_bids());
 					Widget_listview _temp_list = new Widget_listview(getActivity(), _body, new String[] { _data.get(_temp_i).get_houseName(), "" }, _temp_adapter);
 					_temp_adapter.setOnChangetListener(String.valueOf(_temp_i), this);
 					_temp_list.set_backgroundColor(getResources().getColor(R.color.white));
@@ -59,7 +59,7 @@ public class Fragment_my_bid extends DEBUG_Fragment implements OnChangeListener
 			else
 			{
 				Toast.makeText(getActivity(), "目前无招标信息", Toast.LENGTH_SHORT).show();
-				Activity_my_bid.get_instance().finish();
+				Activity_my_bid_yezhu.get_instance().finish();
 			}
 		}
 	}
@@ -67,8 +67,8 @@ public class Fragment_my_bid extends DEBUG_Fragment implements OnChangeListener
 	@Override
 	public void onChange(String _tag, String[] _args)
 	{
-		String _bidID = Activity_my_bid.get_data().get(Integer.parseInt(_tag)).get_bids().get(Integer.parseInt(_args[0])).get_id();
-		int _type = Activity_my_bid.get_data().get(Integer.parseInt(_tag)).get_bids().get(Integer.parseInt(_args[0])).get_bookType();
+		String _bidID = Activity_my_bid_yezhu.get_data().get(Integer.parseInt(_tag)).get_bids().get(Integer.parseInt(_args[0])).get_id();
+		int _type = Activity_my_bid_yezhu.get_data().get(Integer.parseInt(_tag)).get_bids().get(Integer.parseInt(_args[0])).get_bookType();
 		Intent _quota_list = new Intent(getActivity(), Activity_quota_list.class);
 		_quota_list.putExtra("id", _bidID);
 		_quota_list.putExtra("type", _type);

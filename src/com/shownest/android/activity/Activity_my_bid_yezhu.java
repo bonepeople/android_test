@@ -8,7 +8,7 @@ import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
-import com.shownest.android.fragment.Fragment_my_bid;
+import com.shownest.android.fragment.Fragment_my_bid_yezhu;
 import com.shownest.android.model.HouseBidState;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.JsonUtil;
@@ -23,11 +23,11 @@ import android.widget.Toast;
  * 
  * @author bonepeople
  */
-public class Activity_my_bid extends DEBUG_Activity
+public class Activity_my_bid_yezhu extends DEBUG_Activity
 {
 	public static final int GET_FAILED = 0;
 	public static final int GET_SUCCESSFUL = 1;
-	private static Activity_my_bid _instance;
+	private static Activity_my_bid_yezhu _instance;
 	private static ArrayList<HouseBidState> _data = new ArrayList<HouseBidState>();
 	public static Handler _handler = new Handler()
 	{
@@ -76,7 +76,7 @@ public class Activity_my_bid extends DEBUG_Activity
 						HouseBidState _temp_info = new HouseBidState(_array.getJSONObject(_temp_i));
 						_data.add(_temp_info);
 					}
-					add_fragment(_instance, new Fragment_my_bid(), false);
+					add_fragment(_instance, new Fragment_my_bid_yezhu(), false);
 					break;
 				}
 			else
@@ -98,7 +98,7 @@ public class Activity_my_bid extends DEBUG_Activity
 		return _data;
 	}
 
-	public static Activity_my_bid get_instance()
+	public static Activity_my_bid_yezhu get_instance()
 	{
 		return _instance;
 	}

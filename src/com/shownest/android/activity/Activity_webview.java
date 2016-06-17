@@ -97,10 +97,16 @@ public class Activity_webview extends DEBUG_Activity
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event)
 	{
-		if ((keyCode == KeyEvent.KEYCODE_BACK) && _webview.canGoBack())
+		if (_webview != null && keyCode == KeyEvent.KEYCODE_BACK)
 		{
-			_webview.goBack();
-			return true;
+			if (_webview.canGoBack())
+			{
+				_webview.goBack();
+				return true;
+			}
+			else
+				_webview.destroy();
+
 		}
 		return super.onKeyDown(keyCode, event);
 	}
