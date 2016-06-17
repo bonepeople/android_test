@@ -34,6 +34,9 @@ public class BidInfo_common
 	private double _budget;// 预算
 	private int _bidsState;// 招标状态 1为发标，2为应标中，3已备选，4已选标,待卖家建立协议，5待买家签订协议，6待业主托管，7已成功，8已结束
 	private int _bidNum;// 参与人数
+	private double _providerPrice;// 投标人报价，只有在投标人投标信息页面会使用
+	private int _providerState;// 投标人状态，只有在投标人投标信息页面会使用2-设为备选，4-弃选,5-中标
+
 	private String _createDate;// 发布时间 "2016年06月12日"
 	private String _remainingDate;// 过期时间 "29天7小时17分"
 	private String _ownerIdea;// 需求描述
@@ -41,6 +44,8 @@ public class BidInfo_common
 
 	// "isOver":"n",
 	// "userId":"764de29e9d214d6bafb029a0f97d1909"
+	// "quotationId":"1",
+	// "quoteWay":"2",
 
 	public BidInfo_common(JSONObject _json) throws JSONException
 	{
@@ -59,13 +64,18 @@ public class BidInfo_common
 		this._balconyNum = JsonUtil.get_int(_json, "balconyNum", 1);
 		this._contacts = JsonUtil.get_string(_json, "contacts", "");
 		this._phone = JsonUtil.get_string(_json, "phone", "");
+		if (this._phone.equals(""))
+			this._phone = JsonUtil.get_string(_json, "userPhone", "");
 		this._bookType = JsonUtil.get_int(_json, "bookType", 13);
 		this._bookTypeName = JsonUtil.get_string(_json, "bookTypeName", "施工标");
 		this._consType = JsonUtil.get_int(_json, "consType", 0);
 		this._biddingTypeId = JsonUtil.get_int(_json, "biddingTypeId", 1);
 		this._budget = JsonUtil.get_double(_json, "budget", 0);
+		if (this._budget == 0)
+			this._budget = JsonUtil.get_double(_json, "userBudget", 0);
 		this._bidsState = JsonUtil.get_int(_json, "bidsState", 2);
 		this._bidNum = JsonUtil.get_int(_json, "bidNum", 0);
+		this._providerState = JsonUtil.get_int(_json, "providerState", 1);
 		this._createDate = JsonUtil.get_string(_json, "createDate", "");
 		this._remainingDate = JsonUtil.get_string(_json, "remainingDate", "0天0小时0分");
 		this._ownerIdea = JsonUtil.get_string(_json, "ownerIdea", "");
@@ -409,6 +419,16 @@ public class BidInfo_common
 	public void set_bidNum(int _bidNum)
 	{
 		this._bidNum = _bidNum;
+	}
+
+	public int get_providerState()
+	{
+		return _providerState;
+	}
+
+	public void set_providerState(int _providerState)
+	{
+		this._providerState = _providerState;
 	}
 
 	public String get_createDate()
