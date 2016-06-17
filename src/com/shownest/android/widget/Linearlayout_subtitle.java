@@ -53,6 +53,14 @@ public class Linearlayout_subtitle extends LinearLayout implements View.OnClickL
 		super(context, attrs, defStyleAttr);
 	}
 
+	public void set_text(String[] _text)
+	{
+		for (int _temp_i = 0; _temp_i < _text.length && _temp_i < this._text.length; _temp_i++)
+		{
+			this._text[_temp_i].setText(_text[_temp_i]);
+		}
+	}
+
 	@Override
 	public void onClick(View v)
 	{

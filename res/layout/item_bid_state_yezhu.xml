@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 招标管理页面使用的Item，用于显示一些标的概要信息 -->
+<!-- 招标管理页面使用的Item，用于显示一些标的概要信息(业主显示的页面) -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
