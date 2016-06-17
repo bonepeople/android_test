@@ -83,7 +83,8 @@
         android:background="@drawable/background_textview"
         android:gravity="center"
         android:textColor="@color/white"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:visibility="gone" />
 
     <ImageView
         android:layout_width="wrap_content"

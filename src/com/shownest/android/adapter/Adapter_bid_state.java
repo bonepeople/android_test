@@ -27,7 +27,6 @@ public class Adapter_bid_state extends BaseAdapter implements View.OnClickListen
 		public TextView _textview_number;
 		public TextView _textview_state;
 		public TextView _textview_date;
-		public TextView _textview_hint;
 	}
 
 	public Adapter_bid_state(Context _context, ArrayList<BidInfo_common> _data)
@@ -75,8 +74,7 @@ public class Adapter_bid_state extends BaseAdapter implements View.OnClickListen
 			_holder._textview_number = (TextView) _view.findViewById(R.id.textview_number);
 			_holder._textview_state = (TextView) _view.findViewById(R.id.textview_state);
 			_holder._textview_date = (TextView) _view.findViewById(R.id.textview_date);
-			_holder._textview_hint = (TextView) _view.findViewById(R.id.textview_hint);
-			
+
 			_view.setId(position);
 			_view.setOnClickListener(this);
 			_view.setTag(_holder);
@@ -90,7 +88,6 @@ public class Adapter_bid_state extends BaseAdapter implements View.OnClickListen
 		_holder._textview_number.setText(String.valueOf(_temp_bid.get_bidNum()));
 		_holder._textview_state.setText(_temp_bid.get_bidsState_name());
 		_holder._textview_date.setText(_temp_bid.get_remainingDate());
-		_holder._textview_hint.setText("2");
 
 		return _view;
 	}
