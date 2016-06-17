@@ -6,6 +6,8 @@ import com.shownest.android.model.JsInterface;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -62,12 +64,22 @@ public class Activity_webview extends DEBUG_Activity
 			@Override
 			public void onPageFinished(WebView view, String url)
 			{
+				// WebView 在Android4.4的手机上onPageFinished()回调会多调用一次
 				close_wait();
 				super.onPageFinished(view, url);
 			}
 		};
 		_webview.setWebViewClient(_client);
 		_webview.addJavascriptInterface(new JsInterface(this), "JsInterface");
+		_webview.setOnLongClickListener(new OnLongClickListener()
+		{
+			@Override
+			public boolean onLongClick(View v)
+			{
+				return true;
+			}
+		});
+
 		_body.addView(_webview);
 		load();
 	}
