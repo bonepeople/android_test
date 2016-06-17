@@ -3,14 +3,18 @@ package com.shownest.android.fragment;
 import java.util.ArrayList;
 
 import com.shownest.android.R;
+import com.shownest.android.activity.Activity_bid_detail;
 import com.shownest.android.activity.Activity_quota_list;
+import com.shownest.android.activity.Activity_webview;
 import com.shownest.android.adapter.Adapter_quota_state;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.QuotaInfo;
 import com.shownest.android.utils.NumberUtil;
+import com.shownest.android.utils.UserManager;
 import com.shownest.android.widget.InformationBar;
 import com.shownest.android.widget.View_split_h;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -47,7 +51,7 @@ public class Fragment_quota_list extends DEBUG_Fragment implements View.OnClickL
 		ArrayList<QuotaInfo> _data = Activity_quota_list.get_data();
 		if (_data != null)
 		{
-			if (Activity_quota_list.is_has_detail())
+			if (Activity_quota_list.have_detail())
 			{
 				if (_data.size() != 0)
 				{
@@ -95,9 +99,27 @@ public class Fragment_quota_list extends DEBUG_Fragment implements View.OnClickL
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 				{
 					System.out.println("clicked index:" + position);
-					// Intent _detail = new Intent(getActivity(), Activity_bid_detail.class);
-					// _detail.putExtra("index", position);
-					// startActivity(_detail);
+					int _bidType = Activity_quota_list.get_data().get(position).get_userType();
+					String _bidID = Activity_quota_list.get_bidID();
+					String _userID = Activity_quota_list.get_data().get(position).get_userId();
+					String _ukey = UserManager.get_ukey();
+					String _url = "";
+					switch (_bidType)
+					{
+					case 12:
+						_url = "http://app.shownest.com/bid/getDesiSelfRespBid?userId=" + _userID + "&homeId=" + _bidID + "&ukey=" + _ukey;
+						break;
+					case 13:
+						_url = "http://app.shownest.com/bid/getConsSelfRespBid?userId=" + _userID + "&homeId=" + _bidID + "&ukey=" + _ukey;
+						break;
+					case 14:
+						break;
+					}
+					Intent _zhaobiao = new Intent(getActivity(), Activity_webview.class);
+					_zhaobiao.putExtra("url", _url);
+					_zhaobiao.putExtra("had_title", true);
+					_zhaobiao.putExtra("title", "招标详情");
+					startActivity(_zhaobiao);
 				}
 			});
 			_body.addView(_list);
@@ -107,8 +129,10 @@ public class Fragment_quota_list extends DEBUG_Fragment implements View.OnClickL
 	@Override
 	public void onClick(View v)
 	{
-		// TODO Auto-generated method stub
-		Toast.makeText(getActivity(), "查看标的详情", Toast.LENGTH_SHORT).show();
+		Intent _detail = new Intent(getActivity(), Activity_bid_detail.class);
+		_detail.putExtra("bidID", Activity_quota_list.get_bidID());
+		_detail.putExtra("have_button", false);
+		startActivity(_detail);
 	}
 
 }

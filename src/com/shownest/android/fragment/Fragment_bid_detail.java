@@ -38,7 +38,7 @@ public class Fragment_bid_detail extends DEBUG_Fragment implements OnClickListen
 		_button_other = (Button) _view.findViewById(R.id.button_other);
 
 		UserInfo _info = UserManager.get_user_info();
-		if (_info != null)
+		if (_info != null && Activity_bid_detail.have_button())
 		{
 			_userType = _info.get_userType();
 			switch (_userType)
@@ -150,7 +150,7 @@ public class Fragment_bid_detail extends DEBUG_Fragment implements OnClickListen
 		{
 			Intent _quota_list = new Intent(getActivity(), Activity_quota_list.class);
 			_quota_list.putExtra("id", Activity_bid_detail.get_data().get_id());
-			_quota_list.putExtra("has_detail", false);
+			_quota_list.putExtra("have_detail", false);
 			startActivity(_quota_list);
 		}
 	}

@@ -67,27 +67,10 @@ public class Fragment_my_bid extends DEBUG_Fragment implements OnChangeListener
 	@Override
 	public void onChange(String _tag, String[] _args)
 	{
-//		Toast.makeText(getActivity(), _tag + "-" + _args[0] + "clicked", Toast.LENGTH_SHORT).show();
-//		int _bidType = Activity_my_bid.get_data().get(Integer.parseInt(_tag)).get_bids().get(Integer.parseInt(_args[0])).get_bookType();
-//		String _bidID = Activity_my_bid.get_data().get(Integer.parseInt(_tag)).get_bids().get(Integer.parseInt(_args[0])).get_id();
-//		String _userID = UserManager.get_user_info().get_userId();
-//		String _ukey = UserManager.get_ukey();
-//		String _url = "";
-//		switch (_bidType)
-//		{
-//		case 12:
-//			_url = "http://app.shownest.com/bid/getDesiSelfRespBid?userId=" + _userID + "&homeId=" + _bidID + "&ukey=" + _ukey;
-//			break;
-//		case 13:
-//			_url = "http://app.shownest.com/bid/getConsSelfRespBid?userId=" + _userID + "&homeId=" + _bidID + "&ukey=" + _ukey;
-//			break;
-//		case 14:
-//			break;
-//		}
 		String _bidID = Activity_my_bid.get_data().get(Integer.parseInt(_tag)).get_bids().get(Integer.parseInt(_args[0])).get_id();
 		Intent _quota_list = new Intent(getActivity(), Activity_quota_list.class);
 		_quota_list.putExtra("id", _bidID);
-		_quota_list.putExtra("has_detail", true);
+		_quota_list.putExtra("have_detail", true);
 		startActivity(_quota_list);
 	}
 }

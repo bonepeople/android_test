@@ -13,15 +13,15 @@ import com.shownest.android.utils.JsonUtil;
 public class QuotaInfo
 {
 	private String _homeId;// 招标ID
-	private String _userShowName;// 用户昵称
-	private int _userType;// 用户身份类别
-	private String _headerIcon;// 用户头像
-	private double _gradePraise;// 用户评分
-	private double _userPrice;// 预算
+	private String _userId;// 投标人ID
+	private String _userShowName;// 投标人用户昵称
+	private int _userType;// 投标人用户身份类别
+	private String _headerIcon;// 投标人用户头像
+	private double _gradePraise;// 投标人用户评分
+	private double _userPrice;// 投标人预算
 	private int _state;// 招标状态 1-已投标(参与)，2-备选，3-已量房修改价格(待定)，4-淘汰，5-中标，6-结束
 	private String _otherInfor;// 额外信息(投标的)
 	private int _quoteWay;// 报价方式 1-手动报价，2-智能报价
-	private boolean _change;// 是否修改过
 	private boolean _isHide;// 是否隐藏
 	private String _quotationId;// 报价单 ID
 
@@ -49,8 +49,17 @@ public class QuotaInfo
 		this._gradePraise = JsonUtil.get_double(_json, "gradePraise", 0);
 		this._userPrice = JsonUtil.get_double(_json, "userPrice", 0);
 		this._state = JsonUtil.get_int(_json, "state", 0);
-		this._change = JsonUtil.get_bool(_json, "change", false);
 		this._quotationId = JsonUtil.get_string(_json, "quotationId", "");
+	}
+
+	public String get_userId()
+	{
+		return _userId;
+	}
+
+	public void set_userId(String _userId)
+	{
+		this._userId = _userId;
 	}
 
 	public String get_userShowName()
@@ -134,16 +143,6 @@ public class QuotaInfo
 		this._state = _state;
 	}
 
-	public boolean is_change()
-	{
-		return _change;
-	}
-
-	public void set_change(boolean _change)
-	{
-		this._change = _change;
-	}
-
 	public String get_quotationId()
 	{
 		return _quotationId;
@@ -153,4 +152,5 @@ public class QuotaInfo
 	{
 		this._quotationId = _quotationId;
 	}
+
 }

@@ -59,6 +59,7 @@ public class Fragment_AH_bid extends DEBUG_Fragment
 				{
 					Intent _detail = new Intent(getActivity(), Activity_bid_detail.class);
 					_detail.putExtra("index", position);
+					_detail.putExtra("have_button", true);
 					startActivity(_detail);
 				}
 			});

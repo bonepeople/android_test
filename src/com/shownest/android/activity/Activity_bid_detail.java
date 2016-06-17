@@ -28,6 +28,7 @@ public class Activity_bid_detail extends DEBUG_Activity
 	public static final int GET_SUCCESSFUL = 1;
 	private static Activity_bid_detail _instance;
 	private Intent _intent;
+	private static boolean _have_button;
 	private static String _bidID = "";
 	private static int _index = 0;
 	private static BidInfo_common _data;
@@ -60,6 +61,8 @@ public class Activity_bid_detail extends DEBUG_Activity
 
 		_bidID = _intent.getStringExtra("bidID");
 		_index = _intent.getIntExtra("index", 0);
+		_have_button = getIntent().getBooleanExtra("have_button", true);
+		
 		if (_bidID != null && !_bidID.equals(""))
 		{
 			ContentValues _value = new ContentValues();
@@ -124,5 +127,10 @@ public class Activity_bid_detail extends DEBUG_Activity
 	public static Activity_bid_detail get_instance()
 	{
 		return _instance;
+	}
+
+	public static boolean have_button()
+	{
+		return _have_button;
 	}
 }

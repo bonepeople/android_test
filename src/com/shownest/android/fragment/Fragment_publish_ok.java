@@ -77,6 +77,7 @@ public class Fragment_publish_ok extends DEBUG_Fragment implements OnClickListen
 		{
 			Intent _intent = new Intent(Activity_publish.get_instance(), Activity_bid_detail.class);
 			_intent.putExtra("bidID", Activity_publish.get_bidID());
+			_intent.putExtra("have_button", true);
 			startActivity(_intent);
 		}
 		else

@@ -43,7 +43,7 @@ public class Activity_my_bid extends DEBUG_Activity
 				handle_string(msg.what, (String) msg.obj);
 			}
 			_instance.close_wait();
-		}
+		};
 	};
 
 	@Override
