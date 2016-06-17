@@ -106,6 +106,8 @@ public class Fragment_my_center extends DEBUG_Fragment implements View.OnClickLi
 	@Override
 	public void onClick(View v)
 	{
+		Intent _web = new Intent(getActivity(), Activity_webview.class);
+		String _url;
 		switch (v.getId())
 		{
 		case R.id.textview_hint:
@@ -127,16 +129,32 @@ public class Fragment_my_center extends DEBUG_Fragment implements View.OnClickLi
 			break;
 
 		case R.id.item_fangwu:
-			Intent _house = new Intent(getActivity(), Activity_webview.class);
-			String _url = "http://app.shownest.com/house/getHouseList?ukey=" + UserManager.get_ukey();
-			_house.putExtra("url", _url);
-			_house.putExtra("had_title", true);
-			_house.putExtra("title", "我的房屋");
-			startActivity(_house);
+			_url = "http://app.shownest.com/house/getHouseList?ukey=" + UserManager.get_ukey();
+			_web.putExtra("url", _url);
+			_web.putExtra("had_title", true);
+			_web.putExtra("title", "我的房屋");
+			startActivity(_web);
 			break;
 
 		case R.id.item_baojia:
-			Toast.makeText(getActivity(), "报价", Toast.LENGTH_SHORT).show();
+			switch (UserManager.get_user_info().get_userType())
+			{
+			case 12:
+				_url = "http://app.shownest.com/shuttering/getDesiShutterList?ukey=" + UserManager.get_ukey();
+				break;
+			case 13:
+				_url = "http://app.shownest.com/shuttering/getConsShutterList?ukey=" + UserManager.get_ukey();
+				break;
+			case 14:
+				_url = "http://app.shownest.com/shuttering/getSupShutterList?ukey=" + UserManager.get_ukey();
+				break;
+			default:
+				return;
+			}
+			_web.putExtra("url", _url);
+			_web.putExtra("had_title", true);
+			_web.putExtra("title", "报价模板");
+			startActivity(_web);
 			break;
 
 		case R.id.item_gongdi:

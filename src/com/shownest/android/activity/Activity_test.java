@@ -7,9 +7,7 @@ import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_test;
 import com.shownest.android.utils.JsonUtil;
-import com.shownest.android.utils.UserManager;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -76,24 +74,7 @@ public class Activity_test extends DEBUG_Activity
 
 	public void test(View v)
 	{
-
-		if (UserManager.is_login())
-		{
-
-			// add_fragment(this, new
-			// Fragment_webview("http://baike.baidu.com/link?url=0dlZFtaGLAYuloobGXYfOxmOlnRlzGgLz810J1z8LSJ5hUDlKGU3EJvAtnJcbf3smvZ5inON_d3fdx30069O3_"),
-			// true);
-			String _url = "http://app.shownest.com/shuttering/getDesiShutterList?ukey=" + UserManager.get_ukey();
-
-			
-		}
-		else
-		{
-			Intent intent = new Intent(this, Activity_login.class);
-			startActivity(intent);
-		}
-
-		return;
+		Toast.makeText(this, "nothing", Toast.LENGTH_SHORT).show();
 	}
 
 	public static Activity_test get_instance()
