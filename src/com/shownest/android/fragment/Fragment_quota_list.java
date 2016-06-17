@@ -53,29 +53,27 @@ public class Fragment_quota_list extends DEBUG_Fragment implements View.OnClickL
 		{
 			if (Activity_quota_list.have_detail())
 			{
-				if (_data.size() != 0)
+				switch (Activity_quota_list.get_type())
 				{
-					switch (_data.get(0).get_userType())
-					{
-					case 12:
-						_detail = new InformationBar(getActivity(), _body, 2, new String[] { "设计标详情", "" }, true, this);
-						break;
-					case 13:
-						_detail = new InformationBar(getActivity(), _body, 2, new String[] { "施工标详情", "" }, true, this);
-						break;
-					case 14:
-						_detail = new InformationBar(getActivity(), _body, 2, new String[] { "监理标详情", "" }, true, this);
-						break;
-					default:
-						_detail = new InformationBar(getActivity(), _body, 2, new String[] { "投标详情", "" }, true, this);
-					}
-				}
-				else
-				{
-					Toast.makeText(getActivity(), "目前该标无人投标", Toast.LENGTH_SHORT).show();
-					Activity_quota_list.get_instance().finish();
+				case 12:
+					_detail = new InformationBar(getActivity(), _body, 2, new String[] { "设计标详情", "" }, true, this);
+					break;
+				case 13:
+					_detail = new InformationBar(getActivity(), _body, 2, new String[] { "施工标详情", "" }, true, this);
+					break;
+				case 14:
+					_detail = new InformationBar(getActivity(), _body, 2, new String[] { "监理标详情", "" }, true, this);
+					break;
+				default:
+					_detail = new InformationBar(getActivity(), _body, 2, new String[] { "投标详情", "" }, true, this);
 				}
 				new View_split_h(getActivity(), _body, 10f).set_color(getResources().getColor(R.color.background_main));
+			}
+			else if (_data.size() == 0)
+			{
+				Toast.makeText(getActivity(), "目前该标无人投标", Toast.LENGTH_SHORT).show();
+				Activity_quota_list.get_instance().finish();
+				return;
 			}
 
 			TextView _name = new TextView(getActivity());

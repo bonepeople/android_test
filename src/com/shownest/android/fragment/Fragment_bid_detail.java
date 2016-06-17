@@ -127,6 +127,7 @@ public class Fragment_bid_detail extends DEBUG_Fragment implements OnClickListen
 	public void onClick(View v)
 	{
 		int _id = v.getId();
+		String _bidID = Activity_bid_detail.get_data().get_id();
 		if (_id == _button_commit.getId())
 		{
 			String _url = "";
@@ -134,10 +135,10 @@ public class Fragment_bid_detail extends DEBUG_Fragment implements OnClickListen
 			switch (UserManager.get_user_info().get_userType())
 			{
 			case 12:
-				_url = "http://app.shownest.com/bid/getDesiBidDetail?homeId=" + Activity_bid_detail.get_data().get_id() + "&ukey=" + UserManager.get_ukey();
+				_url = "http://app.shownest.com/bid/getDesiBidDetail?homeId=" + _bidID + "&ukey=" + UserManager.get_ukey();
 				break;
 			case 13:
-				_url = "http://app.shownest.com/bid/getConsBidDetail?homeId=" + Activity_bid_detail.get_data().get_id() + "&ukey=" + UserManager.get_ukey();
+				_url = "http://app.shownest.com/bid/getConsBidDetail?homeId=" + _bidID + "&ukey=" + UserManager.get_ukey();
 				break;
 			case 14:
 				return;
@@ -149,7 +150,8 @@ public class Fragment_bid_detail extends DEBUG_Fragment implements OnClickListen
 		else if (_id == _button_other.getId())
 		{
 			Intent _quota_list = new Intent(getActivity(), Activity_quota_list.class);
-			_quota_list.putExtra("id", Activity_bid_detail.get_data().get_id());
+			_quota_list.putExtra("id", _bidID);
+			_quota_list.putExtra("type", Activity_bid_detail.get_data().get_bookType());
 			_quota_list.putExtra("have_detail", false);
 			startActivity(_quota_list);
 		}

@@ -68,8 +68,10 @@ public class Fragment_my_bid extends DEBUG_Fragment implements OnChangeListener
 	public void onChange(String _tag, String[] _args)
 	{
 		String _bidID = Activity_my_bid.get_data().get(Integer.parseInt(_tag)).get_bids().get(Integer.parseInt(_args[0])).get_id();
+		int _type = Activity_my_bid.get_data().get(Integer.parseInt(_tag)).get_bids().get(Integer.parseInt(_args[0])).get_bookType();
 		Intent _quota_list = new Intent(getActivity(), Activity_quota_list.class);
 		_quota_list.putExtra("id", _bidID);
+		_quota_list.putExtra("type", _type);
 		_quota_list.putExtra("have_detail", true);
 		startActivity(_quota_list);
 	}
