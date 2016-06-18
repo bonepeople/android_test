@@ -3,6 +3,8 @@ package com.shownest.android.fragment;
 import java.util.ArrayList;
 
 import com.shownest.android.R;
+import com.shownest.android.activity.Activity_bid_detail;
+import com.shownest.android.activity.Activity_quota_list;
 import com.shownest.android.activity.Activity_webview;
 import com.shownest.android.adapter.Adapter_bid_state_maijia;
 import com.shownest.android.basic.DEBUG_Fragment;
@@ -88,10 +90,18 @@ public class Fragment_my_bid_maijia extends DEBUG_Fragment implements OnChangeLi
 			_zhaobiao.putExtra("title", _title);
 			startActivity(_zhaobiao);
 		}
-		else
+		else if (_args[0].equals("hint"))
 		{
 			// 点击_args[1]位置的按钮
 			System.out.println("hint = " + _args[1]);
+		}
+		else
+		{
+			String _bidID = _data.get(Integer.parseInt(_args[1])).get_id();
+			Intent _detail = new Intent(getActivity(), Activity_bid_detail.class);
+			_detail.putExtra("bidID", _bidID);
+			_detail.putExtra("have_button", false);
+			startActivity(_detail);
 		}
 	}
 }

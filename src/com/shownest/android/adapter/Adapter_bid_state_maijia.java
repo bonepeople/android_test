@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class Adapter_bid_state_maijia extends BaseAdapter implements View.OnClickListener
@@ -23,6 +24,7 @@ public class Adapter_bid_state_maijia extends BaseAdapter implements View.OnClic
 
 	private static class ViewHolder
 	{
+		public LinearLayout _linearlayout_content;
 		public TextView _textview_name;
 		public TextView _textview_showname;
 		public TextView _textview_price;
@@ -74,6 +76,7 @@ public class Adapter_bid_state_maijia extends BaseAdapter implements View.OnClic
 		{
 			_view = _inflater.inflate(R.layout.item_bid_state_maijia, null);
 			_holder = new ViewHolder();
+			_holder._linearlayout_content = (LinearLayout) _view.findViewById(R.id.linearlayout_content);
 			_holder._textview_name = (TextView) _view.findViewById(R.id.textview_name);
 			_holder._textview_showname = (TextView) _view.findViewById(R.id.textview_showname);
 			_holder._textview_price = (TextView) _view.findViewById(R.id.textview_price);
@@ -83,7 +86,9 @@ public class Adapter_bid_state_maijia extends BaseAdapter implements View.OnClic
 			_holder._textview_hint = (TextView) _view.findViewById(R.id.textview_hint);
 			_holder._textview_commit = (TextView) _view.findViewById(R.id.textview_commit);
 
-			_holder._textview_commit.setId(position);
+			_holder._linearlayout_content.setId(position);
+			_holder._linearlayout_content.setOnClickListener(this);
+			_holder._textview_commit.setId(position + 100000);
 			_holder._textview_commit.setOnClickListener(this);
 			_holder._textview_hint.setId(position + 50000);
 			_holder._textview_hint.setOnClickListener(this);
@@ -114,15 +119,21 @@ public class Adapter_bid_state_maijia extends BaseAdapter implements View.OnClic
 		int _id = v.getId();
 		if (_id < 50000)
 		{
-			// textview_commit
+			// linearlayout_content
 			if (_listener != null)
-				_listener.onChange(_tag, new String[] { "commit", String.valueOf(_id) });
+				_listener.onChange(_tag, new String[] { "detail", String.valueOf(_id) });
 		}
-		else
+		else if (_id < 100000)
 		{
 			// textview_hint
 			if (_listener != null)
 				_listener.onChange(_tag, new String[] { "hint", String.valueOf(_id - 50000) });
+		}
+		else
+		{
+			// textview_commit
+			if (_listener != null)
+				_listener.onChange(_tag, new String[] { "commit", String.valueOf(_id - 100000) });
 		}
 	}
 
