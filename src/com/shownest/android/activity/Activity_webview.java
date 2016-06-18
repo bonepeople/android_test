@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnKeyListener;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -63,7 +64,15 @@ public class Activity_webview extends DEBUG_Activity
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url)
 			{
-				view.loadUrl(url);
+				if (url.startsWith("tel:"))
+				{
+					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+					startActivity(intent);
+				}
+				else
+				{
+					view.loadUrl(url);
+				}
 				return true;
 			}
 
