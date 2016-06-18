@@ -2,11 +2,11 @@ package com.shownest.android.model;
 
 import com.shownest.android.activity.Activity_webview;
 
-public class JsInterface
+public class WebInterface
 {
 	private Activity_webview _activity;
 
-	public JsInterface(Activity_webview _activity)
+	public WebInterface(Activity_webview _activity)
 	{
 		this._activity = _activity;
 	}

@@ -2,7 +2,7 @@ package com.shownest.android.activity;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
-import com.shownest.android.model.JsInterface;
+import com.shownest.android.model.WebInterface;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -70,8 +70,12 @@ public class Activity_webview extends DEBUG_Activity
 				super.onPageFinished(view, url);
 			}
 		};
+		_chrome = new WebChromeClient()
+		{
+		};
 		_webview.setWebViewClient(_client);
-		_webview.addJavascriptInterface(new JsInterface(this), "JsInterface");
+		_webview.setWebChromeClient(_chrome);
+		_webview.addJavascriptInterface(new WebInterface(this), "JsInterface");
 		_webview.setOnLongClickListener(new OnLongClickListener()
 		{
 			@Override
