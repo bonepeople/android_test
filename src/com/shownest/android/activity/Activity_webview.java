@@ -4,11 +4,15 @@ import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.model.WebInterface;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnKeyListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnLongClickListener;
+import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -72,6 +76,30 @@ public class Activity_webview extends DEBUG_Activity
 		};
 		_chrome = new WebChromeClient()
 		{
+			@Override
+			public boolean onJsAlert(WebView view, String url, String message, JsResult result)
+			{
+				final AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+
+				builder.setMessage(message).setPositiveButton("确定", null);
+
+				// 不需要绑定按键事件
+				// 屏蔽keycode等于84之类的按键
+				builder.setOnKeyListener(new OnKeyListener()
+				{
+					public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event)
+					{
+						System.out.println("keyCode==" + keyCode + "event=" + event);
+						return true;
+					}
+				});
+				// 禁止响应按back键的事件
+				builder.setCancelable(false);
+				AlertDialog dialog = builder.create();
+				dialog.show();
+				result.confirm();// 因为没有绑定事件，需要强行confirm,否则页面会变黑显示不了内容。
+				return true;
+			}
 		};
 		_webview.setWebViewClient(_client);
 		_webview.setWebChromeClient(_chrome);
@@ -103,6 +131,7 @@ public class Activity_webview extends DEBUG_Activity
 	{
 		if (_webview != null && keyCode == KeyEvent.KEYCODE_BACK)
 		{
+			System.out.println("webview can goback = " + _webview.canGoBack());
 			if (_webview.canGoBack())
 			{
 				_webview.goBack();
