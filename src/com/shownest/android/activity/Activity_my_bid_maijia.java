@@ -33,7 +33,7 @@ public class Activity_my_bid_maijia extends DEBUG_Activity implements OnChangeLi
 	public static final int GET_SUCCESSFUL = 1;
 	private static Activity_my_bid_maijia _instance;
 	private Linearlayout_subtitle _subtitle;
-	private static ArrayList<Fragment_my_bid_maijia> _array_fragment = new ArrayList<Fragment_my_bid_maijia>(4);
+	private ArrayList<Fragment_my_bid_maijia> _array_fragment = new ArrayList<Fragment_my_bid_maijia>(4);
 	private static ArrayList<BidInfo_common> _data = new ArrayList<BidInfo_common>();
 	private static ArrayList<BidInfo_common> _beixuan = new ArrayList<BidInfo_common>();
 	private static ArrayList<BidInfo_common> _zhongbiao = new ArrayList<BidInfo_common>();
@@ -99,8 +99,8 @@ public class Activity_my_bid_maijia extends DEBUG_Activity implements OnChangeLi
 						if (_temp_info.get_providerState() == 4)
 							_zhongbiao.add(_temp_info);
 					}
-					_array_fragment.set(1, new Fragment_my_bid_maijia("1", _beixuan));
-					add_fragment(_instance, _array_fragment.get(1), false);
+					_instance._array_fragment.set(1, new Fragment_my_bid_maijia("1", _beixuan));
+					add_fragment(_instance, _instance._array_fragment.get(1), false);
 					break;
 				}
 			else

@@ -3,12 +3,14 @@ package com.shownest.android.fragment;
 import java.util.ArrayList;
 
 import com.shownest.android.R;
-import com.shownest.android.activity.Activity_my_bid_maijia;
+import com.shownest.android.activity.Activity_webview;
 import com.shownest.android.adapter.Adapter_bid_state_maijia;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.BidInfo_common;
 import com.shownest.android.model.OnChangeListener;
+import com.shownest.android.utils.UserManager;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -64,6 +66,27 @@ public class Fragment_my_bid_maijia extends DEBUG_Fragment implements OnChangeLi
 		{
 			// 查看_args[1]位置的方案
 			System.out.println("commit = " + _args[1]);
+			String _url = "";
+			int _type = _data.get(Integer.parseInt(_args[1])).get_bookType();
+			String _bidID = _data.get(Integer.parseInt(_args[1])).get_id();
+			String _userID = UserManager.get_user_info().get_userId();
+			String _title = _data.get(Integer.parseInt(_args[1])).get_houseName();
+			switch (_type)
+			{
+			case 12:
+				_url = "http://app.shownest.com/bid/getDesiSelfRespBid?userId=" + _userID + "&homeId=" + _bidID + "&ukey=" + UserManager.get_ukey();
+				break;
+			case 13:
+				_url = "http://app.shownest.com/bid/getDesiSelfRespBid?userId=" + _userID + "&homeId=" + _bidID + "&ukey=" + UserManager.get_ukey();
+				break;
+			case 14:
+				return;
+			}
+			Intent _zhaobiao = new Intent(getActivity(), Activity_webview.class);
+			_zhaobiao.putExtra("url", _url);
+			_zhaobiao.putExtra("had_title", true);
+			_zhaobiao.putExtra("title", _title);
+			startActivity(_zhaobiao);
 		}
 		else
 		{
