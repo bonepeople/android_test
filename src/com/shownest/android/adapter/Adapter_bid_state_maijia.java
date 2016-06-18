@@ -72,7 +72,7 @@ public class Adapter_bid_state_maijia extends BaseAdapter implements View.OnClic
 		BidInfo_common _temp_bid = getItem(position);
 		if (convertView == null)
 		{
-			_view = _inflater.inflate(R.layout.item_bid_state_yezhu, null);
+			_view = _inflater.inflate(R.layout.item_bid_state_maijia, null);
 			_holder = new ViewHolder();
 			_holder._textview_name = (TextView) _view.findViewById(R.id.textview_name);
 			_holder._textview_showname = (TextView) _view.findViewById(R.id.textview_showname);
@@ -85,6 +85,8 @@ public class Adapter_bid_state_maijia extends BaseAdapter implements View.OnClic
 
 			_holder._textview_commit.setId(position);
 			_holder._textview_commit.setOnClickListener(this);
+			_holder._textview_hint.setId(position + 50000);
+			_holder._textview_hint.setOnClickListener(this);
 			_view.setTag(_holder);
 		}
 		else
@@ -95,13 +97,13 @@ public class Adapter_bid_state_maijia extends BaseAdapter implements View.OnClic
 		_holder._textview_showname.setText(_temp_bid.get_contacts());
 		_holder._textview_price.setText(_temp_bid.get_budget() + "元");
 		_holder._textview_phone.setText(_temp_bid.get_phone());
-		_holder._textview_number.setText(_temp_bid.get_bidNum());
+		_holder._textview_number.setText(_temp_bid.get_bidNum() + "人");
 		if (_temp_bid.get_bidsState() >= 4 && _temp_bid.get_providerState() < 5)
-
 			_holder._textview_state.setText("业主已选表，您未中标");
 		else
 			_holder._textview_state.setText(_temp_bid.get_bidsState_name());
 		_holder._textview_hint.setText(_temp_bid.get_bidsState_name());
+		_holder._textview_hint.setVisibility(TextView.VISIBLE);
 
 		return _view;
 	}
@@ -109,8 +111,19 @@ public class Adapter_bid_state_maijia extends BaseAdapter implements View.OnClic
 	@Override
 	public void onClick(View v)
 	{
-		if (_listener != null)
-			_listener.onChange(_tag, new String[] { String.valueOf(v.getId()) });
+		int _id = v.getId();
+		if (_id < 50000)
+		{
+			// textview_commit
+			if (_listener != null)
+				_listener.onChange(_tag, new String[] { "commit", String.valueOf(_id) });
+		}
+		else
+		{
+			// textview_hint
+			if (_listener != null)
+				_listener.onChange(_tag, new String[] { "hint", String.valueOf(_id - 50000) });
+		}
 	}
 
 }
