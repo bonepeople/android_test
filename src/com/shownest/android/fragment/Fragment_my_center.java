@@ -136,7 +136,7 @@ public class Fragment_my_center extends DEBUG_Fragment implements View.OnClickLi
 		case R.id.item_fangwu:
 			_url = "http://app.shownest.com/house/getHouseList?ukey=" + UserManager.get_ukey();
 			_web.putExtra("url", _url);
-			_web.putExtra("had_title", true);
+			_web.putExtra("have_title", true);
 			_web.putExtra("title", "我的房屋");
 			startActivity(_web);
 			break;
@@ -157,7 +157,7 @@ public class Fragment_my_center extends DEBUG_Fragment implements View.OnClickLi
 				return;
 			}
 			_web.putExtra("url", _url);
-			_web.putExtra("had_title", true);
+			_web.putExtra("have_title", true);
 			_web.putExtra("title", "报价模板");
 			startActivity(_web);
 			break;

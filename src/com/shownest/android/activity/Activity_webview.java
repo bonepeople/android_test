@@ -22,12 +22,13 @@ import android.widget.RelativeLayout;
 
 public class Activity_webview extends DEBUG_Activity
 {
+	public static final int RESULT_WEB = 199;
 	private FrameLayout _body;
 	private WebView _webview;
 	private WebViewClient _client;
 	private WebChromeClient _chrome;
 	private Intent _intent;
-	private boolean _had_title;
+	private boolean _have_title;
 	private String _url;
 
 	@Override
@@ -40,8 +41,8 @@ public class Activity_webview extends DEBUG_Activity
 		_intent = getIntent();
 
 		_url = _intent.getStringExtra("url");
-		_had_title = _intent.getBooleanExtra("had_title", true);
-		if (!_had_title)
+		_have_title = _intent.getBooleanExtra("have_title", true);
+		if (!_have_title)
 			hideTitle(this);
 		else
 			setTitle(_intent.getStringExtra("title"));
@@ -121,6 +122,34 @@ public class Activity_webview extends DEBUG_Activity
 	{
 		System.out.println("connecting:" + _url);
 		_webview.loadUrl(_url);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		if (resultCode == -1)
+		{
+			switch (requestCode)
+			{
+			case RESULT_WEB:
+				boolean _refresh = data.getBooleanExtra("refresh", false);
+				if (_refresh && _webview != null)
+					_webview.reload();
+				break;
+			}
+		}
+		else
+			System.out.println("resultCode=" + resultCode);
+	}
+
+	public void close(boolean _refresh)
+	{
+		Intent _intent = new Intent();
+		_intent.putExtra("refresh", _refresh);
+		setResult(RESULT_OK, _intent);
+		if (_webview != null)
+			_webview.destroy();
+		finish();
 	}
 
 	/**

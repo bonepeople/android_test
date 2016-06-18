@@ -1,6 +1,12 @@
 package com.shownest.android.model;
 
+import com.shownest.android.activity.Activity_login;
 import com.shownest.android.activity.Activity_webview;
+import com.shownest.android.utils.CommonUtil;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.widget.Toast;
 
 public class WebInterface
 {
@@ -32,12 +38,16 @@ public class WebInterface
 	 * @param _have_title
 	 *            <b>true</b>-新页面包含原生头部，<b>false</b>-新页面不包含原生头部
 	 * @param _name
-	 *            新页面的标题，无标题可传<b>null</b>或“”
+	 *            新页面的标题，无标题可传<b>null</b>或""
 	 */
 	@android.webkit.JavascriptInterface
 	public void open(String _url, boolean _have_title, String _name)
 	{
-
+		Intent _open = new Intent(_activity, Activity_webview.class);
+		_open.putExtra("url", _url);
+		_open.putExtra("have_title", _have_title);
+		_open.putExtra("title", _name == null ? "" : _name);
+		_activity.startActivityForResult(_open, Activity_webview.RESULT_WEB);
 	}
 
 	/**
@@ -49,7 +59,7 @@ public class WebInterface
 	@android.webkit.JavascriptInterface
 	public void close(boolean _refresh)
 	{
-
+		_activity.close(_refresh);
 	}
 
 	/**
@@ -61,7 +71,15 @@ public class WebInterface
 	@android.webkit.JavascriptInterface
 	public void tel(String _number)
 	{
-
+		if (CommonUtil.isPhone(_number))
+		{
+			Intent _tel = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + _number));
+			_activity.startActivity(_tel);
+		}
+		else
+		{
+			Toast.makeText(_activity, "电话号码不正确", Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	/**
@@ -89,6 +107,7 @@ public class WebInterface
 	@android.webkit.JavascriptInterface
 	public void login()
 	{
-
+		Intent _login = new Intent(_activity, Activity_login.class);
+		_activity.startActivity(_login);
 	}
 }

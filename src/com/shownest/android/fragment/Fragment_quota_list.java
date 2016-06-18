@@ -115,7 +115,7 @@ public class Fragment_quota_list extends DEBUG_Fragment implements View.OnClickL
 					}
 					Intent _zhaobiao = new Intent(getActivity(), Activity_webview.class);
 					_zhaobiao.putExtra("url", _url);
-					_zhaobiao.putExtra("had_title", true);
+					_zhaobiao.putExtra("have_title", true);
 					_zhaobiao.putExtra("title", "招标详情");
 					startActivity(_zhaobiao);
 				}

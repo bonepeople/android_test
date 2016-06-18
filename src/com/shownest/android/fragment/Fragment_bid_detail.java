@@ -144,7 +144,7 @@ public class Fragment_bid_detail extends DEBUG_Fragment implements OnClickListen
 				return;
 			}
 			_toubiao.putExtra("url", _url);
-			_toubiao.putExtra("had_title", false);
+			_toubiao.putExtra("have_title", false);
 			startActivity(_toubiao);
 		}
 		else if (_id == _button_other.getId())

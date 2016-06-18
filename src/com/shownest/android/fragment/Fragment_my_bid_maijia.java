@@ -84,7 +84,7 @@ public class Fragment_my_bid_maijia extends DEBUG_Fragment implements OnChangeLi
 			}
 			Intent _zhaobiao = new Intent(getActivity(), Activity_webview.class);
 			_zhaobiao.putExtra("url", _url);
-			_zhaobiao.putExtra("had_title", true);
+			_zhaobiao.putExtra("have_title", true);
 			_zhaobiao.putExtra("title", _title);
 			startActivity(_zhaobiao);
 		}
