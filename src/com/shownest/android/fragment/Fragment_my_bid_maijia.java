@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_bid_detail;
-import com.shownest.android.activity.Activity_quota_list;
 import com.shownest.android.activity.Activity_webview;
 import com.shownest.android.adapter.Adapter_bid_state_maijia;
 import com.shownest.android.basic.DEBUG_Fragment;

@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
-                android:src="@drawable/yezhu"
+                android:src="@drawable/role_yezhu"
                 android:text="我是业主" >
             </com.shownest.android.widget.Linearlayout_role>
 
@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
-                android:src="@drawable/shejishi"
+                android:src="@drawable/role_shejishi"
                 android:text="我是设计师" >
             </com.shownest.android.widget.Linearlayout_role>
         </TableRow>
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
-                android:src="@drawable/shigongdui"
+                android:src="@drawable/role_shigongdui"
                 android:text="我是施工队" >
             </com.shownest.android.widget.Linearlayout_role>
 
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
-                android:src="@drawable/jianli"
+                android:src="@drawable/role_jianli"
                 android:text="我是监理" >
             </com.shownest.android.widget.Linearlayout_role>
         </TableRow>
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
-                android:src="@drawable/zhuangxiugongsi"
+                android:src="@drawable/role_zhuangxiugongsi"
                 android:text="我是装修公司" >
             </com.shownest.android.widget.Linearlayout_role>
 
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
-                android:src="@drawable/weizhi"
+                android:src="@drawable/role_weizhi"
                 android:text="以上都不是" >
             </com.shownest.android.widget.Linearlayout_role>
         </TableRow>
