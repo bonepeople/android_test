@@ -112,7 +112,7 @@ public class Fragment_bid_detail extends DEBUG_Fragment implements OnClickListen
 			_idea.setPadding(padding, 0, padding, 0);
 			_body.addView(_idea);
 
-			if (_userType != _data.get_bookType())
+			if (_userType != _data.get_bookType() || !_data.get_respId().equals(""))
 				_button_commit.setVisibility(Button.GONE);
 		}
 	}

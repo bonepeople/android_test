@@ -13,6 +13,7 @@ import com.shownest.android.utils.JsonUtil;
 public class BidInfo_common
 {
 	private String _id;// 招标ID
+	private String _respId;// 投标单的ID，主要用于判断此单是否投过，如果为空值则此单没有投过
 	private String _houseName;// 房屋名称
 	// private String _homeRegion;// 所在区域 "1001,100101,10010101"
 	private String _homeRegionName;// 所在区域 "北京市,北京市,东城区"
@@ -50,6 +51,7 @@ public class BidInfo_common
 	public BidInfo_common(JSONObject _json) throws JSONException
 	{
 		this._id = JsonUtil.get_string(_json, "id", "");
+		this._respId = JsonUtil.get_string(_json, "respId", "");
 		this._houseName = JsonUtil.get_string(_json, "houseName", "");
 		// this._homeRegion = JsonUtil.get_string(_json, "homeRegion", "1001,100101,10010101");
 		this._homeRegionName = JsonUtil.get_string(_json, "homeRegionName", "北京市,北京市,东城区");
@@ -90,6 +92,16 @@ public class BidInfo_common
 	public void set_id(String _id)
 	{
 		this._id = _id;
+	}
+
+	public String get_respId()
+	{
+		return _respId;
+	}
+
+	public void set_respId(String _respId)
+	{
+		this._respId = _respId;
 	}
 
 	public String get_houseName()
@@ -374,33 +386,33 @@ public class BidInfo_common
 	}
 
 	public String get_bidsState_name()
-	{// 1为发标，2为应标中，3已备选，4已选标,待卖家建立协议，5待买家签订协议，6待业主托管，7已成功，8已结束
+	{
 		String _result = "未定义";
 		switch (_bidsState)
 		{
 		case 1:
-			_result = "发标";
+			_result = "已发标";
 			break;
 		case 2:
-			_result = "应标中";
+			if (_bidNum != 0)
+				_result = "待买家确认备选";
+			else
+				_result = "卖家应标中";
 			break;
 		case 3:
-			_result = "已备选";
+			_result = "待买家确认中标";
 			break;
 		case 4:
 			_result = "待卖家建立协议";
 			break;
 		case 5:
-			_result = "待买家签订协议";
+			_result = "待业主签订协议";
 			break;
 		case 6:
-			_result = "待业主托管";
+			_result = "待卖家修改协议";
 			break;
 		case 7:
-			_result = "已成功";
-			break;
-		case 8:
-			_result = "已结束";
+			_result = "招标成功";
 			break;
 		}
 		return _result;
@@ -424,6 +436,27 @@ public class BidInfo_common
 	public int get_providerState()
 	{
 		return _providerState;
+	}
+
+	public String get_providerState_name()
+	{
+		String _result = "未定义";
+		switch (_providerState)
+		{
+		case 2:
+			if (_bidsState >= 4)
+				_result = "业主已选标，您未中标";
+			else
+				_result = "待买家确认中标";
+			break;
+		case 4:
+			_result = "被淘汰";
+			break;
+		default:
+			_result = get_bidsState_name();
+			break;
+		}
+		return _result;
 	}
 
 	public void set_providerState(int _providerState)

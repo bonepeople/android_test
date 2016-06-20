@@ -96,7 +96,7 @@ public class Activity_my_bid_maijia extends DEBUG_Activity implements OnChangeLi
 						_data.add(_temp_info);
 						if (_temp_info.get_providerState() == 2)
 							_beixuan.add(_temp_info);
-						if (_temp_info.get_providerState() == 4)
+						if (_temp_info.get_providerState() == 5)
 							_zhongbiao.add(_temp_info);
 					}
 					_instance._array_fragment.set(1, new Fragment_my_bid_maijia("1", _beixuan));
