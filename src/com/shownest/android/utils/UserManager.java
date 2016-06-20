@@ -1,5 +1,8 @@
 package com.shownest.android.utils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.shownest.android.model.UserInfo;
 
 public class UserManager
@@ -11,6 +14,15 @@ public class UserManager
 
 	public static UserInfo get_user_info()
 	{
+		if (_user_info == null)
+			try
+			{
+				_user_info = new UserInfo(new JSONObject());
+			}
+			catch (JSONException e)
+			{
+				e.printStackTrace();
+			}
 		return _user_info;
 	}
 
