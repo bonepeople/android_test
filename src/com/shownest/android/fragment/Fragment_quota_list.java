@@ -75,10 +75,53 @@ public class Fragment_quota_list extends DEBUG_Fragment implements View.OnClickL
 				Activity_quota_list.get_instance().finish();
 				return;
 			}
-
+			// ======================中标方案
+			int _padding = NumberUtil.get_px(getActivity(), 10);
+			if (Activity_quota_list.get_winner() != null)
+			{
+				TextView _zhongbiao = new TextView(getActivity());
+				_zhongbiao.setText("中标方案");
+				_zhongbiao.setPadding(_padding, _padding, _padding, _padding);
+				_body.addView(_zhongbiao);
+				new View_split_h(getActivity(), _body, 1f).set_color(getResources().getColor(R.color.background_main));
+				ArrayList<QuotaInfo> _array_win = new ArrayList<QuotaInfo>();
+				_array_win.add(Activity_quota_list.get_winner());
+				ListView _list_win = new ListView(getActivity());
+				Adapter_quota_state _adapter_win = new Adapter_quota_state(getActivity(), _array_win);
+				_list_win.setAdapter(_adapter_win);
+				_list_win.setOnItemClickListener(new OnItemClickListener()
+				{
+					@Override
+					public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+					{
+						int _bidType = Activity_quota_list.get_winner().get_userType();
+						String _bidID = Activity_quota_list.get_bidID();
+						String _userID = Activity_quota_list.get_winner().get_userId();
+						String _ukey = UserManager.get_ukey();
+						String _url = "";
+						switch (_bidType)
+						{
+						case 12:
+							_url = "http://app.shownest.com/bid/getDesiSelfRespBid?userId=" + _userID + "&homeId=" + _bidID + "&ukey=" + _ukey;
+							break;
+						case 13:
+							_url = "http://app.shownest.com/bid/getConsSelfRespBid?userId=" + _userID + "&homeId=" + _bidID + "&ukey=" + _ukey;
+							break;
+						case 14:
+							break;
+						}
+						Intent _zhaobiao = new Intent(getActivity(), Activity_webview.class);
+						_zhaobiao.putExtra("url", _url);
+						_zhaobiao.putExtra("have_title", true);
+						_zhaobiao.putExtra("title", "招标详情");
+						startActivity(_zhaobiao);
+					}
+				});
+				_body.addView(_list_win);
+			}
+			// ======================所有投标记录
 			TextView _name = new TextView(getActivity());
 			_name.setText("投标记录(" + _data.size() + ")");
-			int _padding = NumberUtil.get_px(getActivity(), 10);
 			_name.setPadding(_padding, _padding, _padding, _padding);
 			_body.addView(_name);
 			new View_split_h(getActivity(), _body, 1f).set_color(getResources().getColor(R.color.background_main));

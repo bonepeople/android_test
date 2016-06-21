@@ -34,6 +34,7 @@ public class Activity_quota_list extends DEBUG_Activity
 	private static Activity_quota_list _instance;
 	private Intent _intent;
 	private static boolean _have_detail;
+	private static QuotaInfo _winner;
 	private static ArrayList<QuotaInfo> _data = new ArrayList<QuotaInfo>();
 	private static String _bidID = "";
 	private static int _type;
@@ -88,6 +89,11 @@ public class Activity_quota_list extends DEBUG_Activity
 				switch (_what)
 				{
 				case GET_SUCCESSFUL:
+					if (_obj.getJSONObject("data").has("bidRespWinner"))
+						_winner = new QuotaInfo(_obj.getJSONObject("data").getJSONObject("bidRespWinner"));
+					else
+						_winner = null;
+
 					JSONArray _array = _obj.getJSONObject("data").getJSONArray("bidRespUsers");
 					_data.clear();
 					for (int _temp_i = 0; _temp_i < _array.length(); _temp_i++)
@@ -115,6 +121,11 @@ public class Activity_quota_list extends DEBUG_Activity
 	public static ArrayList<QuotaInfo> get_data()
 	{
 		return _data;
+	}
+
+	public static QuotaInfo get_winner()
+	{
+		return _winner;
 	}
 
 	public static String get_bidID()
