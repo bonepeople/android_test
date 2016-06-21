@@ -57,8 +57,9 @@ public class Fragment_AH_bid extends DEBUG_Fragment
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 				{
+					String _bidID = _adapter.getItem(position).get_id();
 					Intent _detail = new Intent(getActivity(), Activity_bid_detail.class);
-					_detail.putExtra("index", position);
+					_detail.putExtra("bidID", _bidID);
 					_detail.putExtra("have_button", true);
 					startActivity(_detail);
 				}
