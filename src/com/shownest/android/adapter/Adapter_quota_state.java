@@ -82,8 +82,21 @@ public class Adapter_quota_state extends BaseAdapter
 		_holder._text_name.setText(_temp_quota.get_userShowName());
 		_holder._textview_role.setText(_temp_quota.get_userType_name());
 		_holder._ratingbar.setRating(CommonUtil.getRoleLevel(_temp_quota.get_gradePraise()));
-
-		_holder._textview_state.setBackgroundResource(R.drawable.icon_shownest);
+		_holder._textview_state.setVisibility(TextView.VISIBLE);
+		switch (_temp_quota.get_state())
+		{
+		case 2:
+			_holder._textview_state.setBackgroundResource(R.drawable.bid_state_2);
+			break;
+		case 4:
+			_holder._textview_state.setBackgroundResource(R.drawable.bid_state_4);
+			break;
+		case 5:
+			_holder._textview_state.setBackgroundResource(R.drawable.bid_state_5);
+			break;
+		default:
+			_holder._textview_state.setVisibility(TextView.INVISIBLE);
+		}
 		_holder._textview_money.setText(String.valueOf((int) _temp_quota.get_userPrice()));
 
 		return _view;

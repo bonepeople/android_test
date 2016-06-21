@@ -114,18 +114,16 @@ public class Adapter_bid_state_maijia extends BaseAdapter implements View.OnClic
 		}
 		if (_tag.equals("3"))// 全部
 		{
+			_holder._imageview_state.setVisibility(ImageView.VISIBLE);
 			switch (_temp_bid.get_providerState())
 			{
 			case 2:// 备选
-				_holder._imageview_state.setVisibility(ImageView.VISIBLE);
 				_holder._imageview_state.setImageResource(R.drawable.bid_state_2);
 				break;
 			case 4:// 淘汰
-				_holder._imageview_state.setVisibility(ImageView.VISIBLE);
 				_holder._imageview_state.setImageResource(R.drawable.bid_state_4);
 				break;
 			case 5:// 中标
-				_holder._imageview_state.setVisibility(ImageView.VISIBLE);
 				_holder._imageview_state.setImageResource(R.drawable.bid_state_5);
 				break;
 			default:
