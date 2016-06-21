@@ -99,7 +99,7 @@ public class Fragment_my_bid_maijia extends DEBUG_Fragment implements OnChangeLi
 			String _bidID = _data.get(Integer.parseInt(_args[1])).get_id();
 			Intent _detail = new Intent(getActivity(), Activity_bid_detail.class);
 			_detail.putExtra("bidID", _bidID);
-			_detail.putExtra("have_button", false);
+			_detail.putExtra("have_button", true);
 			startActivity(_detail);
 		}
 	}

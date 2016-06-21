@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -33,6 +34,7 @@ public class Adapter_bid_state_maijia extends BaseAdapter implements View.OnClic
 		public TextView _textview_state;
 		public TextView _textview_hint;
 		public TextView _textview_commit;
+		public ImageView _imageview_state;
 	}
 
 	public Adapter_bid_state_maijia(Context _context, ArrayList<BidInfo_common> _data)
@@ -85,6 +87,7 @@ public class Adapter_bid_state_maijia extends BaseAdapter implements View.OnClic
 			_holder._textview_state = (TextView) _view.findViewById(R.id.textview_state);
 			_holder._textview_hint = (TextView) _view.findViewById(R.id.textview_hint);
 			_holder._textview_commit = (TextView) _view.findViewById(R.id.textview_commit);
+			_holder._imageview_state = (ImageView) _view.findViewById(R.id.imageview_state);
 
 			_holder._linearlayout_content.setId(position);
 			_holder._linearlayout_content.setOnClickListener(this);
@@ -108,6 +111,26 @@ public class Adapter_bid_state_maijia extends BaseAdapter implements View.OnClic
 		{
 			_holder._textview_hint.setText(_temp_bid.get_providerState_hint());
 			_holder._textview_hint.setVisibility(TextView.VISIBLE);
+		}
+		if (_tag.equals("3"))// 全部
+		{
+			switch (_temp_bid.get_providerState())
+			{
+			case 2:// 备选
+				_holder._imageview_state.setVisibility(ImageView.VISIBLE);
+				_holder._imageview_state.setImageResource(R.drawable.bid_state_2);
+				break;
+			case 4:// 淘汰
+				_holder._imageview_state.setVisibility(ImageView.VISIBLE);
+				_holder._imageview_state.setImageResource(R.drawable.bid_state_4);
+				break;
+			case 5:// 中标
+				_holder._imageview_state.setVisibility(ImageView.VISIBLE);
+				_holder._imageview_state.setImageResource(R.drawable.bid_state_5);
+				break;
+			default:
+				_holder._imageview_state.setVisibility(ImageView.GONE);
+			}
 		}
 
 		return _view;
