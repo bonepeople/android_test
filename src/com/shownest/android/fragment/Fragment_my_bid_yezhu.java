@@ -33,6 +33,7 @@ public class Fragment_my_bid_yezhu extends DEBUG_Fragment implements OnChangeLis
 		_buttons = (LinearLayout) _view.findViewById(R.id.linearlayout_buttons);
 		_buttons.setVisibility(LinearLayout.GONE);
 
+		_body.setBackgroundColor(getResources().getColor(R.color.background_main));
 		return _view;
 	}
 
@@ -51,6 +52,7 @@ public class Fragment_my_bid_yezhu extends DEBUG_Fragment implements OnChangeLis
 					_temp_adapter.setOnChangetListener(String.valueOf(_temp_i), this);
 					_temp_list.set_backgroundColor(getResources().getColor(R.color.white));
 					_temp_list.set_collapse(false);
+					_temp_list.set_enabled(false);
 					_adapters.add(_temp_adapter);
 					_lists.add(_temp_list);
 				}

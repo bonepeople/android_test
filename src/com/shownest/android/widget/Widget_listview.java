@@ -33,6 +33,7 @@ public class Widget_listview implements View.OnClickListener
 	private ListAdapter _adapter;
 	private ImageView _image_flag;
 	private OnChangeListener _listener;
+	private boolean _enabled = true;
 	private boolean _collapse = true;// 折叠:true折叠状态，false展开状态
 
 	/**
@@ -243,13 +244,30 @@ public class Widget_listview implements View.OnClickListener
 		this._collapse = _collapse;
 	}
 
+	/**
+	 * 设置折叠功能是否可用
+	 */
+	public void set_enabled(boolean _enabled)
+	{
+		this._enabled = _enabled;
+		if (_enabled)
+		{
+			_image_flag.setVisibility(ImageView.VISIBLE);
+		}
+		else
+		{
+			_image_flag.setVisibility(ImageView.INVISIBLE);
+		}
+	}
+
 	@Override
 	public void onClick(View v)
 	{
 		switch (v.getId())
 		{
 		case R.id.linearlayout_title:
-			set_collapse(!_collapse);
+			if (_enabled)
+				set_collapse(!_collapse);
 			break;
 		case R.id.textview_change:
 			if (_listener != null)
