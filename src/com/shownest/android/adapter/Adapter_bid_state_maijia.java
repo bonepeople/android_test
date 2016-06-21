@@ -104,8 +104,11 @@ public class Adapter_bid_state_maijia extends BaseAdapter implements View.OnClic
 		_holder._textview_phone.setText(_temp_bid.get_phone());
 		_holder._textview_number.setText(_temp_bid.get_bidNum() + "人");
 		_holder._textview_state.setText(_temp_bid.get_providerState_name());
-		_holder._textview_hint.setText(_temp_bid.get_bidsState_name());
-		_holder._textview_hint.setVisibility(TextView.VISIBLE);
+		if (!_temp_bid.get_providerState_hint().equals(""))
+		{
+			_holder._textview_hint.setText(_temp_bid.get_providerState_hint());
+			_holder._textview_hint.setVisibility(TextView.VISIBLE);
+		}
 
 		return _view;
 	}

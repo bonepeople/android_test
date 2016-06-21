@@ -459,6 +459,14 @@ public class BidInfo_common
 		return _result;
 	}
 
+	public String get_providerState_hint()
+	{
+		if (_providerState == 5)
+			return "去建立协议";
+		else
+			return "";
+	}
+
 	public void set_providerState(int _providerState)
 	{
 		this._providerState = _providerState;
