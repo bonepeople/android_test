@@ -108,7 +108,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:text="招标人数" />
+                    android:text="投标人数" />
 
                 <TextView
                     android:id="@+id/textview_number"

@@ -31,7 +31,7 @@ public class BidInfo_common
 	private int _bookType;// 招标类型 12-设计标，13-施工标，14-监理标
 	private String _bookTypeName;// 招标类型名称 "设计标"
 	private int _consType;// 施工标类型 0-半包，1-全包，2-清包
-	private int _biddingTypeId;// 设计标类型 1-设计图服务，2-硬装全程服务，3-硬装软装全程服务
+	private int _biddingTypeId;// 设计标类型 1-设计图服务，2-硬装全程设计服务，3-硬装软装全程设计服务
 	private double _budget;// 预算
 	private int _bidsState;// 招标状态 1为发标，2为应标中，3已备选，4已选标,待卖家建立协议，5待买家签订协议，6待业主托管，7已成功，8已结束
 	private int _bidNum;// 参与人数
@@ -363,6 +363,24 @@ public class BidInfo_common
 	public int get_biddingTypeId()
 	{
 		return _biddingTypeId;
+	}
+	
+	public String get_biddingTypeId_name()
+	{
+		String _result = "";
+		switch (_biddingTypeId)
+		{
+		case 1:
+			_result = "设计图服务";
+			break;
+		case 2:
+			_result = "硬装全程设计服务";
+			break;
+		case 3:
+			_result = "硬装软装全程设计服务";
+			break;
+		}
+		return _result;
 	}
 
 	public void set_biddingTypeId(int _biddingTypeId)

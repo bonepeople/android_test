@@ -112,6 +112,8 @@ public class Adapter_bid_state_maijia extends BaseAdapter implements View.OnClic
 			_holder._textview_hint.setText(_temp_bid.get_providerState_hint());
 			_holder._textview_hint.setVisibility(TextView.VISIBLE);
 		}
+		else
+			_holder._textview_hint.setVisibility(TextView.INVISIBLE);
 		if (_tag.equals("3"))// 全部
 		{
 			_holder._imageview_state.setVisibility(ImageView.VISIBLE);

@@ -141,7 +141,7 @@ public class Fragment_publish_yezhu_setp1 extends DEBUG_Fragment implements OnCl
 		{
 			Toast.makeText(getActivity(), "请填写详细地址", Toast.LENGTH_SHORT).show();
 		}
-		else if(_areas.getData().equals("0.0"))
+		else if (_areas.getData().equals("0.0"))
 		{
 			Toast.makeText(getActivity(), "请输入房屋的建筑面积", Toast.LENGTH_SHORT).show();
 		}
@@ -182,7 +182,8 @@ public class Fragment_publish_yezhu_setp1 extends DEBUG_Fragment implements OnCl
 		int _id = v.getId();
 		if (_id == R.id.button_commit)
 		{
-			Activity_publish_yezhu.add_fragment(Activity_publish_yezhu.get_instance(), new Fragment_publish_yezhu_setp2(), true);
+			if (get_values() != null)
+				Activity_publish_yezhu.add_fragment(Activity_publish_yezhu.get_instance(), new Fragment_publish_yezhu_setp2(), true);
 		}
 		else if (_id == _name.get_id())
 		{

@@ -96,6 +96,7 @@ public class Fragment_bid_detail extends DEBUG_Fragment implements OnClickListen
 			}
 			else if (_data.get_bookType() == 12)
 			{
+				new InformationBar(getActivity(), _body, 5, new String[] { "服务类型", _data.get_biddingTypeId_name() }, false);
 				new InformationBar(getActivity(), _body, 7, new String[] { "设计预算", String.valueOf(_data.get_budget()), "元" }, false);
 			}
 			else
