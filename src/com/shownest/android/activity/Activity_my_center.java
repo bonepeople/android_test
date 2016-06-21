@@ -23,7 +23,7 @@ public class Activity_my_center extends DEBUG_Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_basic);
 		setTitle("个人中心");
-		setMenu("设置");
+		setMenu("退出");
 
 		if (UserManager.is_login())
 		{
@@ -56,7 +56,9 @@ public class Activity_my_center extends DEBUG_Activity
 	@Override
 	public void menu_click()
 	{
-		Intent _set = new Intent(this, Activity_set.class);
-		startActivityForResult(_set, RESULT_SET);
+		// Intent _set = new Intent(this, Activity_set.class);
+		// startActivityForResult(_set, RESULT_SET);
+		UserManager.set_user_info(null);
+		finish();
 	}
 }
