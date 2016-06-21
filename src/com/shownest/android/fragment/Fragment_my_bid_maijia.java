@@ -65,7 +65,7 @@ public class Fragment_my_bid_maijia extends DEBUG_Fragment implements OnChangeLi
 	{
 		if (_args[0].equals("commit"))
 		{
-			// 查看_args[1]位置的方案
+			// 查看我的方案
 			System.out.println("commit = " + _args[1]);
 			String _url = "";
 			int _type = _data.get(Integer.parseInt(_args[1])).get_bookType();
@@ -91,8 +91,17 @@ public class Fragment_my_bid_maijia extends DEBUG_Fragment implements OnChangeLi
 		}
 		else if (_args[0].equals("hint"))
 		{
-			// 点击_args[1]位置的按钮
+			// 点击"去建立协议"按钮
 			System.out.println("hint = " + _args[1]);
+			String _url = "";
+			String _bidID = _data.get(Integer.parseInt(_args[1])).get_id();
+			String _title = _data.get(Integer.parseInt(_args[1])).get_houseName();
+			_url = "http://app.shownest.com/agreement/createCooperationAgreement?homeId=" + _bidID + "&ukey=" + UserManager.get_ukey();
+			Intent _xieyi = new Intent(getActivity(), Activity_webview.class);
+			_xieyi.putExtra("url", _url);
+			_xieyi.putExtra("have_title", true);
+			_xieyi.putExtra("title", _title);
+			startActivity(_xieyi);
 		}
 		else
 		{
