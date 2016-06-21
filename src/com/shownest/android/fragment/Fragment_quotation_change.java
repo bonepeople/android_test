@@ -93,8 +93,6 @@ public class Fragment_quotation_change extends DEBUG_Fragment implements OnClick
 			_list = new Widget_listview(getActivity(), _body, new String[] { _name, "" }, _adapter);
 			_list.set_dividerheight(30);
 			_list.set_collapse(false);
-			// _adapter.setOnChangetListener(Activity_quotation_detail.get_instance());
-			// _list.setOnChangetListener(Activity_quotation_detail.get_instance());
 		}
 	}
 

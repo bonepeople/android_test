@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 /**
  * 招标详细信息
+ * <p>
+ * <b>intent:</b>"bidID"-要查看的招标的ID，"have_button"-是否拥有底部按钮条(true/false)
  * 
  * @author bonepeople
  */
@@ -61,8 +63,8 @@ public class Activity_bid_detail extends DEBUG_Activity
 
 		_bidID = _intent.getStringExtra("bidID");
 		_index = _intent.getIntExtra("index", 0);
-		_have_button = getIntent().getBooleanExtra("have_button", true);
-		
+		_have_button = _intent.getBooleanExtra("have_button", true);
+
 		if (_bidID != null && !_bidID.equals(""))
 		{
 			ContentValues _value = new ContentValues();

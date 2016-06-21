@@ -21,6 +21,13 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
+/**
+ * 网页Activity
+ * <p>
+ * 所有需要调用网页的页面均由这个activity实现
+ * 
+ * @author bonepeople
+ */
 public class Activity_webview extends DEBUG_Activity
 {
 	public static final int RESULT_WEB = 199;

@@ -14,6 +14,7 @@ import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.JsonUtil;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.RelativeLayout;
@@ -21,6 +22,8 @@ import android.widget.Toast;
 
 /**
  * 投标记录页面
+ * <p>
+ * <b>intent:</b>"id"-要查看的招标的ID，"type"-招标类型(12，13，14)，"have_detail"-是否拥有顶部的详细信息链接(true/false)
  * 
  * @author bonepeople
  */
@@ -29,6 +32,7 @@ public class Activity_quota_list extends DEBUG_Activity
 	public static final int GET_FAILED = 0;
 	public static final int GET_SUCCESSFUL = 1;
 	private static Activity_quota_list _instance;
+	private Intent _intent;
 	private static boolean _have_detail;
 	private static ArrayList<QuotaInfo> _data = new ArrayList<QuotaInfo>();
 	private static String _bidID = "";
@@ -60,11 +64,12 @@ public class Activity_quota_list extends DEBUG_Activity
 		setContentView(R.layout.activity_basic);
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 		_instance = this;
+		_intent = getIntent();
 		setTitle("招标详情");
 
-		_bidID = getIntent().getStringExtra("id");
-		_type = getIntent().getIntExtra("type", 12);
-		_have_detail = getIntent().getBooleanExtra("have_detail", false);
+		_bidID = _intent.getStringExtra("id");
+		_type = _intent.getIntExtra("type", 12);
+		_have_detail = _intent.getBooleanExtra("have_detail", false);
 
 		ContentValues _value = new ContentValues();
 		_value.put("homeId", _bidID);

@@ -21,6 +21,8 @@ import android.widget.Toast;
 
 /**
  * 报价单详细信息
+ * <p>
+ * <b>intent:</b>"quotationId"-报价单ID，"room"-房间类型({@link RoomDetail}中的tag类型)，"index"-房间序号，"name"-详细信息页面的标题文字
  * 
  * @author bonepeople
  */

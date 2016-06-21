@@ -64,7 +64,7 @@ public class Activity_addhouse extends DEBUG_Activity
 				{
 				case ADD_SUCCESSFUL:
 					// 06-11 14:34:28.383: I/System.out(18358): {"state":"1","msg":"房屋信息操作成功","data":"137"}
-					Toast.makeText(_instance, "房屋信息操作成功", Toast.LENGTH_SHORT).show();
+					Toast.makeText(_instance, "房屋添加成功", Toast.LENGTH_SHORT).show();
 					_instance.finish();
 					break;
 				}

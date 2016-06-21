@@ -20,6 +20,9 @@ import android.widget.Toast;
 
 /**
  * 修改报价单
+ * <p>
+ * <b>intent:</b>"quotationId"-报价单ID，"type"-修改类型(change/fix)，"room"-房间类型({@link RoomDetail}中的tag类型)，"room_index"-房间序号，"part"-部分({@link ItemDetail}
+ * 中的tag类型 )，"part_index"-需要修改的序号
  * 
  * @author bonepeople
  */
