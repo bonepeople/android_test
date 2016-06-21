@@ -31,6 +31,10 @@
             android:theme="@style/ActivityTheme_notitle" >
         </activity>
         <activity
+            android:name="com.shownest.android.activity.Activity_set"
+            android:theme="@style/ActivityTheme_notitle" >
+        </activity>
+        <activity
             android:name="com.shownest.android.activity.Activity_regist"
             android:theme="@style/ActivityTheme_notitle" >
         </activity>

@@ -7,7 +7,6 @@ import com.shownest.android.utils.UserManager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 /**
  * 我的中心
@@ -16,6 +15,7 @@ import android.widget.Toast;
  */
 public class Activity_my_center extends DEBUG_Activity
 {
+	public static final int RESULT_SET = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -38,8 +38,25 @@ public class Activity_my_center extends DEBUG_Activity
 	}
 
 	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		if (resultCode == -1)
+		{
+			switch (requestCode)
+			{
+			case RESULT_SET:
+				finish();
+				break;
+			}
+		}
+		else
+			System.out.println("resultCode=" + resultCode);
+	}
+
+	@Override
 	public void menu_click()
 	{
-		Toast.makeText(this, "设置", Toast.LENGTH_SHORT).show();
+		Intent _set = new Intent(this, Activity_set.class);
+		startActivityForResult(_set, RESULT_SET);
 	}
 }

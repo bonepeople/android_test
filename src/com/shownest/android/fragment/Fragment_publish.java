@@ -29,6 +29,7 @@ public class Fragment_publish extends DEBUG_Fragment implements OnClickListener
 	private InformationBar _budget, _phone, _contacts;
 	private Linearlayout_edittext _idea;
 
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		super.onCreateView(inflater, container, savedInstanceState);
