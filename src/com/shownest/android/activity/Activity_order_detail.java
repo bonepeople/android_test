@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
+import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.JsonUtil;
 
 import android.content.ContentValues;
@@ -55,6 +56,7 @@ public class Activity_order_detail extends DEBUG_Activity
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 		_instance = this;
 		_intent = getIntent();
+		setTitle("订单详情");
 
 		_protocolId = _intent.getStringExtra("protocolId");
 
@@ -63,7 +65,7 @@ public class Activity_order_detail extends DEBUG_Activity
 			ContentValues _value = new ContentValues();
 			_value.put("protocolId", _protocolId);
 			show_wait();
-			// HttpUtil.get_bid_info(_handler, _value, GET_SUCCESSFUL, GET_FAILED);
+			HttpUtil.get_order_detail(_handler, _value, GET_SUCCESSFUL, GET_FAILED);
 		}
 		else
 		{

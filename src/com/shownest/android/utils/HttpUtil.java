@@ -32,6 +32,19 @@ public class HttpUtil
 	// http://192.168.1.112:10000/shownest/html/test1.html
 	// http://192.168.1.112:10000/shownest/websubmitreg
 	/**
+	 * 获取订单详情
+	 */
+	public static void get_order_detail(Handler _handler, ContentValues _value, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "webGetOwnerDecorateOrderDetail";
+		String _message = "";
+
+		_message = values(_value);
+
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
+	}
+
+	/**
 	 * 获取业主所有订单列表
 	 */
 	public static void get_order_list(Handler _handler, int _successful, int _failed)
