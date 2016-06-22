@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_my_order_yezhu;
 import com.shownest.android.activity.Activity_offer_auto;
+import com.shownest.android.activity.Activity_order_detail;
 import com.shownest.android.activity.Activity_quotation_detail;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.HouseOrderState;
@@ -103,5 +104,8 @@ public class Fragment_my_order_yezhu extends DEBUG_Fragment implements OnChangeL
 		int _id = v.getId();
 		Package _package = _informationbars.get(_id);
 		Toast.makeText(getActivity(), "protocolId=" + _package._tag1, Toast.LENGTH_SHORT).show();
+		Intent _detail = new Intent(getActivity(), Activity_order_detail.class);
+		_detail.putExtra("protocolId", _package._tag1);
+		startActivity(_detail);
 	}
 }
