@@ -4,12 +4,9 @@ import java.util.ArrayList;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_my_order_yezhu;
-import com.shownest.android.activity.Activity_offer_auto;
 import com.shownest.android.activity.Activity_order_detail;
-import com.shownest.android.activity.Activity_quotation_detail;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.HouseOrderState;
-import com.shownest.android.model.OnChangeListener;
 import com.shownest.android.model.OrderInfo;
 import com.shownest.android.model.Package;
 import com.shownest.android.widget.InformationBar;
@@ -24,7 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Fragment_my_order_yezhu extends DEBUG_Fragment implements OnChangeListener, View.OnClickListener
+public class Fragment_my_order_yezhu extends DEBUG_Fragment implements View.OnClickListener
 {
 	private LinearLayout _body, _buttons;
 	private SparseArray<Package> _informationbars = new SparseArray<Package>();
@@ -84,18 +81,6 @@ public class Fragment_my_order_yezhu extends DEBUG_Fragment implements OnChangeL
 				Activity_my_order_yezhu.get_instance().finish();
 			}
 		}
-	}
-
-	@Override
-	public void onChange(String _tag, String[] _args)
-	{
-		// String _bidID = Activity_my_bid_yezhu.get_data().get(Integer.parseInt(_tag)).get_bids().get(Integer.parseInt(_args[0])).get_id();
-		// int _type = Activity_my_bid_yezhu.get_data().get(Integer.parseInt(_tag)).get_bids().get(Integer.parseInt(_args[0])).get_bookType();
-		// Intent _quota_list = new Intent(getActivity(), Activity_quota_list.class);
-		// _quota_list.putExtra("id", _bidID);
-		// _quota_list.putExtra("type", _type);
-		// _quota_list.putExtra("have_detail", true);
-		// startActivity(_quota_list);
 	}
 
 	@Override
