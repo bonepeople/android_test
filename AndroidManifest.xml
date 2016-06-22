@@ -138,6 +138,10 @@
             android:name="com.shownest.android.activity.Activity_my_bid_maijia"
             android:theme="@style/ActivityTheme_notitle" >
         </activity>
+         <activity
+            android:name="com.shownest.android.activity.Activity_my_order_yezhu"
+            android:theme="@style/ActivityTheme_notitle" >
+        </activity>
     </application>
 
 </manifest>

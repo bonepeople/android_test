@@ -151,6 +151,16 @@
         android:text="选择身份，享受更多功能"
         android:visibility="gone" />
 
+    <TextView
+        android:id="@+id/textview_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_main"
+        android:drawableRight="@drawable/clickable_flag_dark"
+        android:gravity="center_vertical"
+        android:padding="5dp"
+        android:text="我的订单" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

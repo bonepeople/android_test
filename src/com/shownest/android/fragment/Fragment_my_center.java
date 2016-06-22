@@ -5,6 +5,7 @@ import com.shownest.android.R;
 import com.shownest.android.activity.Activity_basicinfo;
 import com.shownest.android.activity.Activity_my_bid_maijia;
 import com.shownest.android.activity.Activity_my_bid_yezhu;
+import com.shownest.android.activity.Activity_my_order_yezhu;
 import com.shownest.android.activity.Activity_select_role;
 import com.shownest.android.activity.Activity_webview;
 import com.shownest.android.basic.DEBUG_Fragment;
@@ -24,7 +25,7 @@ import android.widget.Toast;
 
 public class Fragment_my_center extends DEBUG_Fragment implements View.OnClickListener
 {
-	private TextView _textview_money, _textview_name, _number_bowen, _number_guanzhu, _number_xiuyou, _textview_hint;
+	private TextView _textview_money, _textview_name, _number_bowen, _number_guanzhu, _number_xiuyou, _textview_hint, _textview_order;
 	private TextView _zhaobiao, _zhaobiao_comment, _yuebiao_comment;
 	private LinearLayout _line1, _line2, _line3;
 	private RelativeLayout _item_bid, _item_offer, _item_zhuangxiu, _item_fangwu, _item_baojia, _item_gongdi, _item_info, _item_money;
@@ -42,6 +43,7 @@ public class Fragment_my_center extends DEBUG_Fragment implements View.OnClickLi
 		_number_guanzhu = (TextView) _view.findViewById(R.id.textview_number_guanzhu);
 		_number_xiuyou = (TextView) _view.findViewById(R.id.textview_number_xiuyou);
 		_textview_hint = (TextView) _view.findViewById(R.id.textview_hint);
+		_textview_order = (TextView) _view.findViewById(R.id.textview_order);
 		_line1 = (LinearLayout) _view.findViewById(R.id.linearlayout_center_line1);
 		_line2 = (LinearLayout) _view.findViewById(R.id.linearlayout_center_line2);
 		_line3 = (LinearLayout) _view.findViewById(R.id.linearlayout_center_line3);
@@ -58,6 +60,7 @@ public class Fragment_my_center extends DEBUG_Fragment implements View.OnClickLi
 		_yuebiao_comment = (TextView) _view.findViewById(R.id.textview_comment_offer);
 		_imageview_header = (SmartImageView) _view.findViewById(R.id.imageview_header);
 
+		_textview_order.setOnClickListener(this);
 		_item_bid.setOnClickListener(this);
 		_item_offer.setOnClickListener(this);
 		_item_zhuangxiu.setOnClickListener(this);
@@ -115,7 +118,14 @@ public class Fragment_my_center extends DEBUG_Fragment implements View.OnClickLi
 			Intent _select_role = new Intent(getActivity(), Activity_select_role.class);
 			getActivity().startActivity(_select_role);
 			break;
-
+		case R.id.textview_order:
+			Intent _order = new Intent();
+			if (UserManager.get_user_info().get_userType() == 11)
+				_order.setClass(getActivity(), Activity_my_order_yezhu.class);
+			else
+				_order.setClass(getActivity(), Activity_my_bid_maijia.class);
+			startActivity(_order);
+			break;
 		case R.id.item_bid:
 			Intent _bid = new Intent();
 			if (UserManager.get_user_info().get_userType() == 11)
