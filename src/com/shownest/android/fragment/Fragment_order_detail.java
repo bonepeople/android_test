@@ -60,15 +60,19 @@ public class Fragment_order_detail extends DEBUG_Fragment implements OnClickList
 				new InformationBar(getActivity(), _stageView, 5, new String[] { "阶段名称", _stages.get(_temp_i + 1).get_stageName() }, false);
 				new InformationBar(getActivity(), _stageView, 5, new String[] { "阶段状态", _stages.get(_temp_i + 1).get_stageState_name() }, false);
 				new InformationBar(getActivity(), _stageView, 5, new String[] { "本阶段应托管", _stages.get(_temp_i + 1).get_stageMoney() + "元" }, false);
-				LayoutInflater.from(getActivity()).inflate(R.layout.widget_buttonbar, _stageView);
-				_button_left = (Button) _stageView.findViewById(R.id.button_commit);
-				_button_left.setText("去托管");
-				_button_left.setOnClickListener(this);
-
-				Widget_closeable_view _view = new Widget_closeable_view(getActivity(), _body, new String[] { _stages.get(_temp_i + 1).get_stageId_name(), "" }, _stageView);
+				
 				if (_data.get_currentStageId() == _stages.get(_temp_i + 1).get_stageId())
 				{
+					LayoutInflater.from(getActivity()).inflate(R.layout.widget_buttonbar, _stageView);
+					_button_left = (Button) _stageView.findViewById(R.id.button_commit);
+					_button_left.setText("去托管");
+					_button_left.setOnClickListener(this);
+					Widget_closeable_view _view = new Widget_closeable_view(getActivity(), _body, new String[] { _stages.get(_temp_i + 1).get_stageId_name(), "" }, _stageView);
 					_view.set_collapse(false);
+				}
+				else
+				{
+					new Widget_closeable_view(getActivity(), _body, new String[] { _stages.get(_temp_i + 1).get_stageId_name(), "" }, _stageView);
 				}
 			}
 		}
