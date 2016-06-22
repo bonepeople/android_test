@@ -137,7 +137,7 @@ public class Fragment_my_center extends DEBUG_Fragment implements View.OnClickLi
 			break;
 
 		case R.id.item_offer:
-			Toast.makeText(getActivity(), "约标", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), "敬请期待", Toast.LENGTH_SHORT).show();
 			break;
 
 		case R.id.item_zhuangxiu:

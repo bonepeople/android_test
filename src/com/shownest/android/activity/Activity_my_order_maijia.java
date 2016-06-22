@@ -8,8 +8,6 @@ import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
-import com.shownest.android.fragment.Fragment_my_order_yezhu;
-import com.shownest.android.model.HouseOrderState;
 import com.shownest.android.model.OrderInfo;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.JsonUtil;

@@ -398,7 +398,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/imageview_gongdi"
                     android:layout_toRightOf="@id/imageview_gongdi"
-                    android:text="我的工地"
+                    android:text="我的作品"
                     android:textSize="18sp" />
 
                 <TextView
