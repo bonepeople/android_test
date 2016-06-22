@@ -120,7 +120,7 @@ public class Activity_webview extends DEBUG_Activity
 		};
 		_webview.setWebViewClient(_client);
 		_webview.setWebChromeClient(_chrome);
-		_webview.addJavascriptInterface(new WebInterface(this), "JsInterface");
+		_webview.addJavascriptInterface(new WebInterface(this), "AndroidInterface");
 		_webview.setOnLongClickListener(new OnLongClickListener()
 		{
 			@Override
