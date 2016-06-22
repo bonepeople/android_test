@@ -45,6 +45,12 @@ public class Fragment_title extends DEBUG_Fragment implements View.OnClickListen
 		_text_menu.setVisibility(TextView.VISIBLE);
 	}
 
+	public void setMenu(int _resid)
+	{
+		_text_menu.setBackgroundResource(_resid);
+		_text_menu.setVisibility(TextView.VISIBLE);
+	}
+
 	@Override
 	public void onClick(View v)
 	{

@@ -97,11 +97,29 @@ public abstract class DEBUG_Activity extends Activity
 		_fragment_title.setTitle(_title);
 	}
 
+	/**
+	 * 设置标题栏右侧的文字
+	 * <p>
+	 * 调用此函数的Activity需要重写{@link #menu_click()}函数进行点击处理
+	 */
 	protected void setMenu(String _menu)
 	{
 		if (_fragment_title == null)
 			_fragment_title = (Fragment_title) getFragmentManager().findFragmentById(R.id.fragment_title);
 		_fragment_title.setMenu(_menu);
+	}
+
+	/**
+	 * 设置标题栏右侧的图片
+	 * <p>
+	 * 调用此函数的Activity需要重写{@link #menu_click()}函数进行点击处理
+	 */
+	protected void setMenu(int _resid)
+	{
+		if (_fragment_title == null)
+			_fragment_title = (Fragment_title) getFragmentManager().findFragmentById(R.id.fragment_title);
+		_fragment_title.setMenu(_resid);
+
 	}
 
 	protected void hideTitle(DEBUG_Activity _activity)
@@ -178,6 +196,11 @@ public abstract class DEBUG_Activity extends Activity
 	}
 
 	// protected abstract void back();
+	/**
+	 * 标题栏右侧按钮的点击事件回调
+	 * <p>
+	 * 当前activity标题栏右侧按钮被点击时会调用的函数，需要进行处理的activity要重写此函数
+	 */
 	public void menu_click()
 	{
 		// 当前activity标题栏右侧按钮被点击时会调用的函数，需要进行处理的activity要重写此函数
