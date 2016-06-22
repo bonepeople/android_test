@@ -2,12 +2,14 @@ package com.shownest.android.activity;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
-import com.shownest.android.model.HouseBidState;
+import com.shownest.android.fragment.Fragment_my_order_yezhu;
+import com.shownest.android.model.HouseOrderState;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.JsonUtil;
 
@@ -17,7 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 /**
- * 我的招标
+ * 我的订单
  * 
  * @author bonepeople
  */
@@ -26,7 +28,7 @@ public class Activity_my_order_yezhu extends DEBUG_Activity
 	public static final int GET_FAILED = 0;
 	public static final int GET_SUCCESSFUL = 1;
 	private static Activity_my_order_yezhu _instance;
-	private static ArrayList<HouseBidState> _data = new ArrayList<HouseBidState>();
+	private static ArrayList<HouseOrderState> _data = new ArrayList<HouseOrderState>();
 	public static Handler _handler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)
@@ -67,14 +69,14 @@ public class Activity_my_order_yezhu extends DEBUG_Activity
 				switch (_what)
 				{
 				case GET_SUCCESSFUL:
-					// JSONArray _array = _obj.getJSONArray("data");
-					// _data.clear();
-					// for (int _temp_i = 0; _temp_i < _array.length(); _temp_i++)
-					// {
-					// HouseBidState _temp_info = new HouseBidState(_array.getJSONObject(_temp_i));
-					// _data.add(_temp_info);
-					// }
-					// add_fragment(_instance, new Fragment_my_bid_yezhu(), false);
+					JSONArray _array = _obj.getJSONArray("data");
+					_data.clear();
+					for (int _temp_i = 0; _temp_i < _array.length(); _temp_i++)
+					{
+						HouseOrderState _temp_info = new HouseOrderState(_array.getJSONObject(_temp_i));
+						_data.add(_temp_info);
+					}
+					add_fragment(_instance, new Fragment_my_order_yezhu(), false);
 					break;
 				}
 			else
@@ -91,7 +93,7 @@ public class Activity_my_order_yezhu extends DEBUG_Activity
 		}
 	}
 
-	public static ArrayList<HouseBidState> get_data()
+	public static ArrayList<HouseOrderState> get_data()
 	{
 		return _data;
 	}
