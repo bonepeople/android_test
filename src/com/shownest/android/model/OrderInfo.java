@@ -223,6 +223,11 @@ public class OrderInfo
 		this._currentStageState = _currentStageState;
 	}
 
+	public SparseArray<OrderStageInfo> get_stages()
+	{
+		return _stages;
+	}
+
 	public OrderStageInfo get_stage(int _index)
 	{
 		return _stages.get(_index);

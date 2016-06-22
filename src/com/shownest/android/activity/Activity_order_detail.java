@@ -5,6 +5,8 @@ import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
+import com.shownest.android.fragment.Fragment_order_detail;
+import com.shownest.android.model.OrderInfo;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.JsonUtil;
 
@@ -29,7 +31,7 @@ public class Activity_order_detail extends DEBUG_Activity
 	private static Activity_order_detail _instance;
 	private Intent _intent;
 	private static String _protocolId = "";
-	// private static BidInfo_common _data;
+	private static OrderInfo _data;
 	public static Handler _handler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)
@@ -83,9 +85,8 @@ public class Activity_order_detail extends DEBUG_Activity
 				switch (_what)
 				{
 				case GET_SUCCESSFUL:
-					// _data = new BidInfo_common(_obj.getJSONObject("data"));
-					// _instance.setTitle(_data.get_houseName());
-					// add_fragment(_instance, new Fragment_bid_detail(), false);
+					_data = new OrderInfo(_obj.getJSONObject("data"));
+					add_fragment(_instance, new Fragment_order_detail(), false);
 					break;
 				}
 			else
@@ -102,9 +103,13 @@ public class Activity_order_detail extends DEBUG_Activity
 		}
 	}
 
+	public static OrderInfo get_data()
+	{
+		return _data;
+	}
+
 	public static Activity_order_detail get_instance()
 	{
 		return _instance;
 	}
-
 }
