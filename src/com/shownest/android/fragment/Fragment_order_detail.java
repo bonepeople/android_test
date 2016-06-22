@@ -6,6 +6,7 @@ import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.OrderInfo;
 import com.shownest.android.model.OrderStageInfo;
 import com.shownest.android.widget.InformationBar;
+import com.shownest.android.widget.Widget_closeable_view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -48,7 +49,11 @@ public class Fragment_order_detail extends DEBUG_Fragment implements OnClickList
 				new InformationBar(getActivity(), _stageView, 5, new String[] { "阶段名称", _stages.get(_temp_i + 1).get_stageName() }, false);
 				new InformationBar(getActivity(), _stageView, 5, new String[] { "阶段状态", _stages.get(_temp_i + 1).get_stageState_name() }, false);
 				new InformationBar(getActivity(), _stageView, 5, new String[] { "本阶段应托管", _stages.get(_temp_i + 1).get_stageMoney() + "元" }, false);
-				_body.addView(_stageView);
+				Widget_closeable_view _view = new Widget_closeable_view(getActivity(), _body, new String[] { _stages.get(_temp_i + 1).get_stageId_name(), "" }, _stageView);
+				if (_data.get_currentStageId() == _stages.get(_temp_i + 1).get_stageId())
+				{
+					_view.set_collapse(false);
+				}
 			}
 		}
 	}

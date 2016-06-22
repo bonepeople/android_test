@@ -193,13 +193,13 @@ public class Widget_closeable_view implements View.OnClickListener
 		if (_collapse)
 		{
 			// 收起
-			_view_child.setVisibility(ListView.GONE);
+			_body.setVisibility(ListView.GONE);
 			_image_flag.setImageResource(R.drawable.arrow_down);
 		}
 		else
 		{
 			// 展开
-			_view_child.setVisibility(ListView.VISIBLE);
+			_body.setVisibility(ListView.VISIBLE);
 			_image_flag.setImageResource(R.drawable.arrow_up);
 		}
 		this._collapse = _collapse;

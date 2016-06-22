@@ -55,6 +55,41 @@ public class OrderStageInfo
 		return _stageId;
 	}
 
+	public String get_stageId_name()
+	{
+		String _result = "";
+		switch (_stageId)
+		{
+		case 1:
+			_result = "第一阶段";
+			break;
+		case 2:
+			_result = "第二阶段";
+			break;
+		case 3:
+			_result = "第三阶段";
+			break;
+		case 4:
+			_result = "第四阶段";
+			break;
+		case 5:
+			_result = "第五阶段";
+			break;
+		case 6:
+			_result = "第六阶段";
+			break;
+		case 7:
+			_result = "第七阶段";
+			break;
+		case 8:
+			_result = "第八阶段";
+			break;
+		case 9:
+			_result = "第九阶段";
+		}
+		return _result;
+	}
+
 	public void set_stageId(int _stageId)
 	{
 		this._stageId = _stageId;

@@ -88,7 +88,6 @@ public class Fragment_my_order_yezhu extends DEBUG_Fragment implements View.OnCl
 	{
 		int _id = v.getId();
 		Package _package = _informationbars.get(_id);
-		Toast.makeText(getActivity(), "protocolId=" + _package._tag1, Toast.LENGTH_SHORT).show();
 		Intent _detail = new Intent(getActivity(), Activity_order_detail.class);
 		_detail.putExtra("protocolId", _package._tag1);
 		startActivity(_detail);
