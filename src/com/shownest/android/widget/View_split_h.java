@@ -1,5 +1,6 @@
 package com.shownest.android.widget;
 
+import com.shownest.android.R;
 import com.shownest.android.utils.NumberUtil;
 
 import android.content.Context;
@@ -88,6 +89,9 @@ public class View_split_h extends View
 
 	/**
 	 * 设置颜色
+	 * 
+	 * @param _color
+	 *            getResources().getColor(R.color.background_main)
 	 */
 	public void set_color(int _color)
 	{

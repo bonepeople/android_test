@@ -6,6 +6,7 @@ import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.OrderInfo;
 import com.shownest.android.model.OrderStageInfo;
 import com.shownest.android.widget.InformationBar;
+import com.shownest.android.widget.View_split_h;
 import com.shownest.android.widget.Widget_closeable_view;
 
 import android.content.Intent;
@@ -15,11 +16,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class Fragment_order_detail extends DEBUG_Fragment implements OnClickListener
 {
 	private LinearLayout _body, _buttons;
+	private InformationBar _protocol, _quota, _tel;
+	private Button _button_left;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
@@ -38,6 +43,12 @@ public class Fragment_order_detail extends DEBUG_Fragment implements OnClickList
 		OrderInfo _data = Activity_order_detail.get_data();
 		if (_data != null)
 		{
+			new InformationBar(getActivity(), _body, 5, new String[] { "合作卖家", _data.get_providerRealName() }, false);
+			new InformationBar(getActivity(), _body, 5, new String[] { "联系方式", _data.get_providerphone() }, false);
+			new View_split_h(getActivity(), _body, 5).set_color(getResources().getColor(R.color.background_main));
+			_protocol = new InformationBar(getActivity(), _body, 2, new String[] { "查看协议", "" }, true, this);
+			_quota = new InformationBar(getActivity(), _body, 2, new String[] { "查看方案", "" }, true, this);
+			_tel = new InformationBar(getActivity(), _body, 2, new String[] { "联系卖家", "" }, true, this);
 			SparseArray<OrderStageInfo> _stages = _data.get_stages();
 			for (int _temp_i = 0; _temp_i < _stages.size(); _temp_i++)
 			{
@@ -49,6 +60,11 @@ public class Fragment_order_detail extends DEBUG_Fragment implements OnClickList
 				new InformationBar(getActivity(), _stageView, 5, new String[] { "阶段名称", _stages.get(_temp_i + 1).get_stageName() }, false);
 				new InformationBar(getActivity(), _stageView, 5, new String[] { "阶段状态", _stages.get(_temp_i + 1).get_stageState_name() }, false);
 				new InformationBar(getActivity(), _stageView, 5, new String[] { "本阶段应托管", _stages.get(_temp_i + 1).get_stageMoney() + "元" }, false);
+				LayoutInflater.from(getActivity()).inflate(R.layout.widget_buttonbar, _stageView);
+				_button_left = (Button) _stageView.findViewById(R.id.button_commit);
+				_button_left.setText("去托管");
+				_button_left.setOnClickListener(this);
+
 				Widget_closeable_view _view = new Widget_closeable_view(getActivity(), _body, new String[] { _stages.get(_temp_i + 1).get_stageId_name(), "" }, _stageView);
 				if (_data.get_currentStageId() == _stages.get(_temp_i + 1).get_stageId())
 				{
@@ -61,39 +77,49 @@ public class Fragment_order_detail extends DEBUG_Fragment implements OnClickList
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
-		// _picture.onActivityResult(requestCode, resultCode, data);
+
 	}
 
 	@Override
 	public void onClick(View v)
 	{
-		// int _id = v.getId();
-		// if (_id == _button_commit.getId())
-		// {
-		// String _url = "";
-		// Intent _toubiao = new Intent(getActivity(), Activity_webview.class);
-		// switch (UserManager.get_user_info().get_userType())
-		// {
-		// case 12:
-		// _url = "http://app.shownest.com/bid/getDesiBidDetail?homeId=" + _bidID + "&ukey=" + UserManager.get_ukey();
-		// break;
-		// case 13:
-		// _url = "http://app.shownest.com/bid/getConsBidDetail?homeId=" + _bidID + "&ukey=" + UserManager.get_ukey();
-		// break;
-		// case 14:
-		// return;
-		// }
-		// _toubiao.putExtra("url", _url);
-		// _toubiao.putExtra("have_title", false);
-		// startActivity(_toubiao);
-		// }
-		// else if (_id == _button_other.getId())
-		// {
-		// Intent _quota_list = new Intent(getActivity(), Activity_quota_list.class);
-		// _quota_list.putExtra("id", _bidID);
-		// _quota_list.putExtra("type", Activity_bid_detail.get_data().get_bookType());
-		// _quota_list.putExtra("have_detail", false);
-		// startActivity(_quota_list);
-		// }
+		int _id = v.getId();
+		if (_id == R.id.button_commit)
+		{
+			Toast.makeText(getActivity(), "commit", Toast.LENGTH_SHORT).show();
+			// String _url = "";
+			// Intent _toubiao = new Intent(getActivity(), Activity_webview.class);
+			// switch (UserManager.get_user_info().get_userType())
+			// {
+			// case 12:
+			// _url = "http://app.shownest.com/bid/getDesiBidDetail?homeId=" + _bidID + "&ukey=" + UserManager.get_ukey();
+			// break;
+			// case 13:
+			// _url = "http://app.shownest.com/bid/getConsBidDetail?homeId=" + _bidID + "&ukey=" + UserManager.get_ukey();
+			// break;
+			// case 14:
+			// return;
+			// }
+			// _toubiao.putExtra("url", _url);
+			// _toubiao.putExtra("have_title", false);
+			// startActivity(_toubiao);
+		}
+		else if (_id == _protocol.get_id())
+		{
+			Toast.makeText(getActivity(), "protocol", Toast.LENGTH_SHORT).show();
+			// Intent _quota_list = new Intent(getActivity(), Activity_quota_list.class);
+			// _quota_list.putExtra("id", _bidID);
+			// _quota_list.putExtra("type", Activity_bid_detail.get_data().get_bookType());
+			// _quota_list.putExtra("have_detail", false);
+			// startActivity(_quota_list);
+		}
+		else if (_id == _quota.get_id())
+		{
+			Toast.makeText(getActivity(), "quota", Toast.LENGTH_SHORT).show();
+		}
+		else if (_id == _tel.get_id())
+		{
+			Toast.makeText(getActivity(), "tel", Toast.LENGTH_SHORT).show();
+		}
 	}
 }
