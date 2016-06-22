@@ -1,12 +1,12 @@
 package com.shownest.android.model;
 
-import java.util.ArrayList;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.shownest.android.utils.JsonUtil;
+
+import android.util.SparseArray;
 
 /**
  * 订单详细信息
@@ -32,7 +32,7 @@ public class OrderInfo
 	private String _currentStageName;// 当前阶段名称 "平面布置图设计"
 	private int _currentStageState;// 当前阶段状态 1未开始待托管(待业主托管)，2已托管(业主已托管，卖家工作中)，3申请验收(卖家申请验收 - 待业主验收)，4业主拒绝验收(待卖家整改)，5卖家申请调整费用 6业主同意调整(待业主托管调整费用)
 									// 7业主已托管调整费用(业主已托管)，8业主取消调整费用(业主已托管)，9验收完成,本阶段结束
-	private ArrayList<OrderStageInfo> _stages = new ArrayList<OrderStageInfo>();// 阶段信息
+	private SparseArray<OrderStageInfo> _stages = new SparseArray<OrderStageInfo>();// 阶段信息
 	private String _createDate;// 创建时间 "2016年06月23日"
 
 	public OrderInfo(JSONObject _json) throws JSONException
@@ -59,7 +59,7 @@ public class OrderInfo
 		for (int _temp_i = 0; _array != null && _temp_i < _array.length(); _temp_i++)
 		{
 			OrderStageInfo _temp_info = new OrderStageInfo(_array.getJSONObject(_temp_i));
-			_stages.add(_temp_info);
+			_stages.put(_temp_info.get_stageId(), _temp_info);
 		}
 	}
 
@@ -223,14 +223,9 @@ public class OrderInfo
 		this._currentStageState = _currentStageState;
 	}
 
-	public ArrayList<OrderStageInfo> get_stages()
+	public OrderStageInfo get_stage(int _index)
 	{
-		return _stages;
-	}
-
-	public void set_stages(ArrayList<OrderStageInfo> _stages)
-	{
-		this._stages = _stages;
+		return _stages.get(_index);
 	}
 
 	public String get_createDate()
