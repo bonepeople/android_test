@@ -142,6 +142,10 @@
             android:name="com.shownest.android.activity.Activity_my_order_yezhu"
             android:theme="@style/ActivityTheme_notitle" >
         </activity>
+         <activity
+            android:name="com.shownest.android.activity.Activity_my_order_maijia"
+            android:theme="@style/ActivityTheme_notitle" >
+        </activity>
         <activity
             android:name="com.shownest.android.activity.Activity_order_detail"
             android:theme="@style/ActivityTheme_notitle" >

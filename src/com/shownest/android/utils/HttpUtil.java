@@ -47,10 +47,15 @@ public class HttpUtil
 	/**
 	 * 获取业主所有订单列表
 	 */
-	public static void get_order_list(Handler _handler, int _successful, int _failed)
+	public static void get_order_list(Handler _handler, ContentValues _value, int _successful, int _failed)
 	{
-		String _address = BASEADDRESS + "webGetOwnerDecorateOrderList";
-		String _message = "";
+		String _address, _message;
+
+		if (UserManager.get_user_info().get_userType() == 11)
+			_address = BASEADDRESS + "webGetOwnerDecorateOrderList";
+		else
+			_address = BASEADDRESS + "webGetProviderDecorateOrderList";
+		_message = _value != null ? values(_value) : "";
 
 		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}

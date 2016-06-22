@@ -5,6 +5,7 @@ import com.shownest.android.R;
 import com.shownest.android.activity.Activity_basicinfo;
 import com.shownest.android.activity.Activity_my_bid_maijia;
 import com.shownest.android.activity.Activity_my_bid_yezhu;
+import com.shownest.android.activity.Activity_my_order_maijia;
 import com.shownest.android.activity.Activity_my_order_yezhu;
 import com.shownest.android.activity.Activity_select_role;
 import com.shownest.android.activity.Activity_webview;
@@ -123,7 +124,7 @@ public class Fragment_my_center extends DEBUG_Fragment implements View.OnClickLi
 			if (UserManager.get_user_info().get_userType() == 11)
 				_order.setClass(getActivity(), Activity_my_order_yezhu.class);
 			else
-				_order.setClass(getActivity(), Activity_my_bid_maijia.class);
+				_order.setClass(getActivity(), Activity_my_order_maijia.class);
 			startActivity(_order);
 			break;
 		case R.id.item_bid:

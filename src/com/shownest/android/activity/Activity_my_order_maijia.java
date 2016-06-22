@@ -10,9 +10,11 @@ import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_my_order_yezhu;
 import com.shownest.android.model.HouseOrderState;
+import com.shownest.android.model.OrderInfo;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.JsonUtil;
 
+import android.content.ContentValues;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.RelativeLayout;
@@ -23,12 +25,12 @@ import android.widget.Toast;
  * 
  * @author bonepeople
  */
-public class Activity_my_order_yezhu extends DEBUG_Activity
+public class Activity_my_order_maijia extends DEBUG_Activity
 {
 	public static final int GET_FAILED = 0;
 	public static final int GET_SUCCESSFUL = 1;
-	private static Activity_my_order_yezhu _instance;
-	private static ArrayList<HouseOrderState> _data = new ArrayList<HouseOrderState>();
+	private static Activity_my_order_maijia _instance;
+	private static ArrayList<OrderInfo> _data = new ArrayList<OrderInfo>();
 	public static Handler _handler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)
@@ -55,8 +57,10 @@ public class Activity_my_order_yezhu extends DEBUG_Activity
 		_instance = this;
 		setTitle("我的订单");
 
+		ContentValues _value = new ContentValues();
+		_value.put("startPage", 0);
 		show_wait();
-		HttpUtil.get_order_list(_handler, null, GET_SUCCESSFUL, GET_FAILED);
+		HttpUtil.get_order_list(_handler, _value, GET_SUCCESSFUL, GET_FAILED);
 	}
 
 	private static void handle_string(int _what, String _str)
@@ -69,14 +73,14 @@ public class Activity_my_order_yezhu extends DEBUG_Activity
 				switch (_what)
 				{
 				case GET_SUCCESSFUL:
-					JSONArray _array = _obj.getJSONArray("data");
+					JSONArray _array = _obj.getJSONObject("data").getJSONArray("decorateOrderBases");
 					_data.clear();
 					for (int _temp_i = 0; _temp_i < _array.length(); _temp_i++)
 					{
-						HouseOrderState _temp_info = new HouseOrderState(_array.getJSONObject(_temp_i));
+						OrderInfo _temp_info = new OrderInfo(_array.getJSONObject(_temp_i));
 						_data.add(_temp_info);
 					}
-					add_fragment(_instance, new Fragment_my_order_yezhu(), false);
+					// add_fragment(_instance, new Fragment_my_order_yezhu(), false);
 					break;
 				}
 			else
@@ -93,12 +97,12 @@ public class Activity_my_order_yezhu extends DEBUG_Activity
 		}
 	}
 
-	public static ArrayList<HouseOrderState> get_data()
+	public static ArrayList<OrderInfo> get_data()
 	{
 		return _data;
 	}
 
-	public static Activity_my_order_yezhu get_instance()
+	public static Activity_my_order_maijia get_instance()
 	{
 		return _instance;
 	}
