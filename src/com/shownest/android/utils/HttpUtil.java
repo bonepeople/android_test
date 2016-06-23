@@ -32,13 +32,17 @@ public class HttpUtil
 	// http://192.168.1.112:10000/shownest/html/test1.html
 	// http://192.168.1.112:10000/shownest/websubmitreg
 	/**
-	 * 获取订单详情
+	 * 获取订单详情，会根据当前登录用户的类别进行判断
 	 */
 	public static void get_order_detail(Handler _handler, ContentValues _value, int _successful, int _failed)
 	{
 		String _address = BASEADDRESS + "webGetOwnerDecorateOrderDetail";
 		String _message = "";
 
+		if (UserManager.get_user_info().get_userType() == 11)
+			_address = BASEADDRESS + "webGetOwnerDecorateOrderDetail";
+		else
+			_address = BASEADDRESS + "webGetProviderDecorateOrderDetail";
 		_message = values(_value);
 
 		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();

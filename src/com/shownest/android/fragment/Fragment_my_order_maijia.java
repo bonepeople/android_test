@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_my_order_maijia;
+import com.shownest.android.activity.Activity_order_detail;
 import com.shownest.android.adapter.Adapter_order_state_maijia;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.OnChangeListener;
 import com.shownest.android.model.OrderInfo;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -72,11 +74,10 @@ public class Fragment_my_order_maijia extends DEBUG_Fragment implements OnChange
 		else
 		{
 			// 订单详细信息
-			// String _bidID = _data.get(Integer.parseInt(_args[1])).get_id();
-			// Intent _detail = new Intent(getActivity(), Activity_bid_detail.class);
-			// _detail.putExtra("bidID", _bidID);
-			// _detail.putExtra("have_button", true);
-			// startActivity(_detail);
+			String _protocolId = _data.get(Integer.parseInt(_args[1])).get_protocolId();
+			Intent _detail = new Intent(getActivity(), Activity_order_detail.class);
+			_detail.putExtra("protocolId", _protocolId);
+			startActivity(_detail);
 		}
 	}
 }

@@ -6,9 +6,11 @@ import org.json.JSONObject;
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_order_detail;
+import com.shownest.android.fragment.Fragment_order_detail_maijia;
 import com.shownest.android.model.OrderInfo;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.JsonUtil;
+import com.shownest.android.utils.UserManager;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -86,7 +88,10 @@ public class Activity_order_detail extends DEBUG_Activity
 				{
 				case GET_SUCCESSFUL:
 					_data = new OrderInfo(_obj.getJSONObject("data"));
-					add_fragment(_instance, new Fragment_order_detail(), false);
+					if (UserManager.get_user_info().get_userType() == 11)
+						add_fragment(_instance, new Fragment_order_detail(), false);
+					else
+						add_fragment(_instance, new Fragment_order_detail_maijia(), false);
 					break;
 				}
 			else
