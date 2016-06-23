@@ -17,7 +17,7 @@ public class HouseInfo
 	private String _region;// 房屋位置 "1001,100101,10010104"
 	private String _regionName;// 房屋位置 "北京市,北京市,朝阳区"
 	private String _homeAddress;// 房屋详细地址
-	private int _bookTypes;// 招标类型 12-设计标，13-施工标，14-监理标 0-默认值(没有招标)
+	private String _bookTypes;// 招标类型 12-设计标，13-施工标，14-监理标 0-默认值(没有招标) "13,12"
 	private double _homeSq;// 房屋建筑面积
 	private int _houseState;// 房屋状态 1-新房，2-旧房
 	private int _houseType;// 房屋类型 1-平层，2-复式，3-别墅，4-商业
@@ -42,7 +42,7 @@ public class HouseInfo
 		this._region = JsonUtil.get_string(_json, "region", "1001,100101,10010101");
 		this._regionName = JsonUtil.get_string(_json, "regionName", "北京市,北京市,东城区");
 		this._homeAddress = JsonUtil.get_string(_json, "homeAddress", "");
-		this._bookTypes = JsonUtil.get_int(_json, "bookTypes", 0);
+		this._bookTypes = JsonUtil.get_string(_json, "bookTypes", "");
 		this._homeSq = JsonUtil.get_double(_json, "homeSq", 0);
 		this._houseState = JsonUtil.get_int(_json, "houseState", 1);
 		this._houseType = JsonUtil.get_int(_json, "houseType", 1);
@@ -109,12 +109,12 @@ public class HouseInfo
 		this._homeAddress = _homeAddress;
 	}
 
-	public int get_bookTypes()
+	public String get_bookTypes()
 	{
 		return _bookTypes;
 	}
 
-	public void set_bookTypes(int _bookTypes)
+	public void set_bookTypes(String _bookTypes)
 	{
 		this._bookTypes = _bookTypes;
 	}

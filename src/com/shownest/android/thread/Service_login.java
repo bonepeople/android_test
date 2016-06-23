@@ -91,6 +91,7 @@ public class Service_login extends Service
 	@Override
 	public void onCreate()
 	{
+		System.out.println("Service onCreate");
 		_instance = this;
 	}
 
@@ -104,6 +105,7 @@ public class Service_login extends Service
 	@Override
 	public void onDestroy()
 	{
+		System.out.println("Service onDestroy");
 		_instance = null;
 		super.onDestroy();
 	}
