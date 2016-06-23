@@ -17,6 +17,9 @@
         android:icon="@drawable/icon_shownest"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <service android:name="com.shownest.android.thread.Service_login" >
+        </service>
+
         <activity
             android:name="com.shownest.android.activity.Activity_main"
             android:label="@string/app_name" >
@@ -142,7 +145,7 @@
             android:name="com.shownest.android.activity.Activity_my_order_yezhu"
             android:theme="@style/ActivityTheme_notitle" >
         </activity>
-         <activity
+        <activity
             android:name="com.shownest.android.activity.Activity_my_order_maijia"
             android:theme="@style/ActivityTheme_notitle" >
         </activity>

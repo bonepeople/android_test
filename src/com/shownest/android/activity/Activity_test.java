@@ -6,8 +6,11 @@ import org.json.JSONObject;
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_test;
+import com.shownest.android.thread.Service_login;
+import com.shownest.android.utils.DataUtil;
 import com.shownest.android.utils.JsonUtil;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -74,7 +77,17 @@ public class Activity_test extends DEBUG_Activity
 
 	public void test(View v)
 	{
-		Toast.makeText(this, "nothing", Toast.LENGTH_SHORT).show();
+		// Toast.makeText(this, "nothing", Toast.LENGTH_SHORT).show();
+
+		if (DataUtil.get_ukey(this) != null)
+			startService(new Intent(this, Service_login.class));
+	}
+
+	@Override
+	protected void onDestroy()
+	{
+		stopService(new Intent(this, Service_login.class));
+		super.onDestroy();
 	}
 
 	public static Activity_test get_instance()
