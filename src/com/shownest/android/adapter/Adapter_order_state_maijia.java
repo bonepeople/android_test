@@ -74,7 +74,7 @@ public class Adapter_order_state_maijia extends BaseAdapter implements View.OnCl
 		OrderInfo _temp_order = getItem(position);
 		if (convertView == null)
 		{
-			_view = _inflater.inflate(R.layout.item_bid_state_maijia, null);
+			_view = _inflater.inflate(R.layout.item_order_state, null);
 			_holder = new ViewHolder();
 			_holder._linearlayout_content = (LinearLayout) _view.findViewById(R.id.linearlayout_content);
 			_holder._textview_name = (TextView) _view.findViewById(R.id.textview_name);

@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
+import com.shownest.android.fragment.Fragment_my_order_maijia;
 import com.shownest.android.model.OrderInfo;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.JsonUtil;
@@ -78,7 +79,7 @@ public class Activity_my_order_maijia extends DEBUG_Activity
 						OrderInfo _temp_info = new OrderInfo(_array.getJSONObject(_temp_i));
 						_data.add(_temp_info);
 					}
-					// add_fragment(_instance, new Fragment_my_order_yezhu(), false);
+					add_fragment(_instance, new Fragment_my_order_maijia(), false);
 					break;
 				}
 			else
