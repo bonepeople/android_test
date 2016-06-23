@@ -75,7 +75,6 @@ public class Adapter_bid_state_yezhu extends BaseAdapter implements View.OnClick
 			_holder._textview_state = (TextView) _view.findViewById(R.id.textview_state);
 			_holder._textview_date = (TextView) _view.findViewById(R.id.textview_date);
 
-			_view.setId(position);
 			_view.setOnClickListener(this);
 			_view.setTag(_holder);
 		}
@@ -83,7 +82,7 @@ public class Adapter_bid_state_yezhu extends BaseAdapter implements View.OnClick
 		{
 			_holder = (ViewHolder) _view.getTag();
 		}
-
+		_view.setId(position);
 		_holder._text_role.setText(_temp_bid.get_bookType_name());
 		_holder._textview_number.setText(String.valueOf(_temp_bid.get_bidNum()));
 		_holder._textview_state.setText(_temp_bid.get_bidsState_name());

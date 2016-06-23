@@ -89,11 +89,8 @@ public class Adapter_bid_state_maijia extends BaseAdapter implements View.OnClic
 			_holder._textview_commit = (TextView) _view.findViewById(R.id.textview_commit);
 			_holder._imageview_state = (ImageView) _view.findViewById(R.id.imageview_state);
 
-			_holder._linearlayout_content.setId(position);
 			_holder._linearlayout_content.setOnClickListener(this);
-			_holder._textview_commit.setId(position + 100000);
 			_holder._textview_commit.setOnClickListener(this);
-			_holder._textview_hint.setId(position + 50000);
 			_holder._textview_hint.setOnClickListener(this);
 			_view.setTag(_holder);
 		}
@@ -101,6 +98,9 @@ public class Adapter_bid_state_maijia extends BaseAdapter implements View.OnClic
 		{
 			_holder = (ViewHolder) _view.getTag();
 		}
+		_holder._linearlayout_content.setId(position);
+		_holder._textview_commit.setId(position + 100000);
+		_holder._textview_hint.setId(position + 50000);
 		_holder._textview_name.setText(_temp_bid.get_houseName());
 		_holder._textview_showname.setText(_temp_bid.get_contacts());
 		_holder._textview_price.setText(_temp_bid.get_budget() + "元");

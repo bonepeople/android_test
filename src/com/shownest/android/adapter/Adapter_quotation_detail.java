@@ -92,7 +92,6 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 			_holder._text_number = (TextView) _view.findViewById(R.id.textview_number);
 			_holder._text_total = (TextView) _view.findViewById(R.id.textview_total);
 			_holder._text_name.setTextColor(_context.getResources().getColor(R.color.text_blue));
-			_holder._image_edit.setId(position);
 			_holder._image_edit.setOnClickListener(this);
 			if (_temp_item.get_tag().equals("tax"))
 			{
@@ -107,7 +106,7 @@ public class Adapter_quotation_detail extends BaseAdapter implements View.OnClic
 		{
 			_holder = (ViewHolder) _view.getTag();
 		}
-
+		_holder._image_edit.setId(position);
 		_holder._text_name.setText(_temp_item.get_itemName());
 		_holder._text_fucai.setText(_temp_item.get_material());
 		_holder._text_shuoming.setText(_temp_item.get_technics());

@@ -87,7 +87,6 @@ public class Adapter_quotation_change extends BaseAdapter implements View.OnClic
 			_holder._linearlayout_middle = (LinearLayout) _view.findViewById(R.id.linearlayout_middle);
 			_holder._linearlayout_right = (LinearLayout) _view.findViewById(R.id.linearlayout_right);
 			_holder._text_name.setTextColor(_context.getResources().getColor(R.color.text_blue));
-			_holder._image_edit.setId(position);
 			_holder._image_edit.setOnClickListener(this);
 			
 			RelativeLayout.LayoutParams _params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -109,6 +108,7 @@ public class Adapter_quotation_change extends BaseAdapter implements View.OnClic
 		{
 			_holder = (ViewHolder) _view.getTag();
 		}
+		_holder._image_edit.setId(position);
 		_holder._text_name.setText(_temp_item.get_itemName());
 		if (_temp_item.get_delMarks() == 0)
 		{
