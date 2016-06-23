@@ -7,6 +7,7 @@ import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_login;
 import com.shownest.android.model.UserInfo;
+import com.shownest.android.utils.DataUtil;
 import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.JsonUtil;
 import com.shownest.android.utils.UserManager;
@@ -79,6 +80,7 @@ public class Activity_login extends DEBUG_Activity
 				case LOGIN_SUCCESSFUL:
 					String _ukey = JsonUtil.get_string(_obj, "data", "");
 					UserManager.set_ukey(_ukey);
+					DataUtil.set_ukey(_instance, _ukey);
 					HttpUtil.get_userinfo(_handler, GET_SUCCESSFUL, GET_FAILED);
 					break;
 				case GET_SUCCESSFUL:

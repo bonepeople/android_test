@@ -2,6 +2,8 @@ package com.shownest.android.activity;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
+import com.shownest.android.thread.Service_login;
+import com.shownest.android.utils.DataUtil;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +22,8 @@ public class Activity_main extends DEBUG_Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		if (DataUtil.get_ukey(this) != null)
+			startService(new Intent(this, Service_login.class));
 	}
 
 	public void login(View v)

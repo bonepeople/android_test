@@ -14,6 +14,13 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.widget.Toast;
 
+/**
+ * 自动登陆的服务
+ * <p>
+ * 此服务主要用于app账号的自动登陆业务，开启此服务之前先确认config文件中已有保存的ukey字段
+ * 
+ * @author bonepeople
+ */
 public class Service_login extends Service
 {
 	public static final int LOGIN_FAILED = 0;
@@ -50,12 +57,11 @@ public class Service_login extends Service
 				switch (_what)
 				{
 				case LOGIN_SUCCESSFUL:
-					// String _ukey = JsonUtil.get_string(_obj, "data", "");
-					UserManager.set_ukey(DataUtil.get_ukey(_instance));
 					HttpUtil.get_userinfo(_handler, GET_SUCCESSFUL, GET_FAILED);
 					break;
 				case GET_SUCCESSFUL:
 					JSONObject _data = _obj.getJSONArray("data").getJSONObject(0);
+					UserManager.set_ukey(DataUtil.get_ukey(_instance));
 					UserManager.set_user_info(new UserInfo(_data));
 					_instance.stopSelf();
 					break;

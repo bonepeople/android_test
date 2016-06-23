@@ -3,6 +3,7 @@ package com.shownest.android.activity;
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_my_center;
+import com.shownest.android.utils.DataUtil;
 import com.shownest.android.utils.UserManager;
 
 import android.content.Intent;
@@ -59,6 +60,7 @@ public class Activity_my_center extends DEBUG_Activity
 		// Intent _set = new Intent(this, Activity_set.class);
 		// startActivityForResult(_set, RESULT_SET);
 		UserManager.set_user_info(null);
+		DataUtil.set_ukey(this, "");
 		finish();
 	}
 }
