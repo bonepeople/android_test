@@ -19,7 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 /**
- * 我的订单(业主)
+ * 我的订单(卖家)
  * 
  * @author bonepeople
  */
