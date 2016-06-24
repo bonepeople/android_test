@@ -2,13 +2,10 @@ package com.shownest.android.fragment;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_card_list;
-import com.shownest.android.activity.Activity_my_wallet;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.UserInfo;
-import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.UserManager;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;

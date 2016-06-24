@@ -7,34 +7,32 @@ import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.utils.JsonUtil;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 /**
- * 银行卡管理
+ * 添加银行卡
  * 
  * @author bonepeople
  */
-public class Activity_card_list extends DEBUG_Activity
+public class Activity_card_add extends DEBUG_Activity
 {
-	public static final int GET_FAILED = 0;
-	public static final int GET_SUCCESSFUL = 1;
-	public static final int RESULT_ADD = 2;
-	private static Activity_card_list _instance;
+	public static final int ADD_FAILED = 0;
+	public static final int ADD_SUCCESSFUL = 1;
+	private static Activity_card_add _instance;
+	private static String _houseId = "";
 	public static Handler _handler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)
 		{
 			switch (msg.what)
 			{
-			case GET_FAILED:
+			case ADD_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
-				_instance.finish();
 				break;
-			case GET_SUCCESSFUL:
+			case ADD_SUCCESSFUL:
 				handle_string(msg.what, (String) msg.obj);
 				break;
 			}
@@ -49,28 +47,8 @@ public class Activity_card_list extends DEBUG_Activity
 		setContentView(R.layout.activity_basic);
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 		_instance = this;
-		setTitle("银行卡管理");
-		setMenu("添加");
+		setTitle("添加银行卡");
 
-		// ContentValues _value = new ContentValues();
-		// show_wait();
-		// HttpUtil.get_bid_list(_handler, _value, GET_SUCCESSFUL, GET_FAILED);
-	}
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data)
-	{
-		if (resultCode == -1)
-		{
-			switch (requestCode)
-			{
-			case RESULT_ADD:
-				Toast.makeText(this, "refresh", Toast.LENGTH_SHORT).show();
-				break;
-			}
-		}
-		else
-			System.out.println("resultCode=" + resultCode);
 	}
 
 	private static void handle_string(int _what, String _str)
@@ -82,33 +60,30 @@ public class Activity_card_list extends DEBUG_Activity
 			if (get_code(_obj))
 				switch (_what)
 				{
-				case GET_SUCCESSFUL:
-
+				case ADD_SUCCESSFUL:
+					// 06-11 14:34:28.383: I/System.out(18358): {"state":"1","msg":"房屋信息操作成功","data":"137"}
+					Toast.makeText(_instance, "房屋添加成功", Toast.LENGTH_SHORT).show();
+					_instance.finish();
 					break;
 				}
 			else
-			{
 				Toast.makeText(_instance, JsonUtil.get_string(_obj, "msg", "连接服务器失败。"), Toast.LENGTH_SHORT).show();
-				_instance.finish();
-			}
 		}
 		catch (JSONException e)
 		{
 			e.printStackTrace();
 			Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
-			_instance.finish();
 		}
 	}
 
-	@Override
-	public void menu_click()
+	public static String get_houseId()
 	{
-		Intent _add = new Intent(this, Activity_card_add.class);
-		startActivityForResult(_add, RESULT_ADD);
+		return _houseId;
 	}
 
-	public static Activity_card_list get_instance()
+	public static Activity_card_add get_instance()
 	{
 		return _instance;
 	}
+
 }
