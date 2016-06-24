@@ -7,6 +7,7 @@ import com.shownest.android.activity.Activity_my_bid_maijia;
 import com.shownest.android.activity.Activity_my_bid_yezhu;
 import com.shownest.android.activity.Activity_my_order_maijia;
 import com.shownest.android.activity.Activity_my_order_yezhu;
+import com.shownest.android.activity.Activity_my_wallet;
 import com.shownest.android.activity.Activity_select_role;
 import com.shownest.android.activity.Activity_webview;
 import com.shownest.android.basic.DEBUG_Fragment;
@@ -182,7 +183,8 @@ public class Fragment_my_center extends DEBUG_Fragment implements View.OnClickLi
 			break;
 
 		case R.id.item_money:
-			Toast.makeText(getActivity(), "钱包", Toast.LENGTH_SHORT).show();
+			Intent _my_wallet = new Intent(getActivity(), Activity_my_wallet.class);
+			getActivity().startActivity(_my_wallet);
 			break;
 		}
 	}
