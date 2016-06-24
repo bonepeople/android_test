@@ -101,7 +101,7 @@ public class Activity_publish_yezhu extends DEBUG_Activity
 					if (_house.size() == 0)
 					{
 						Toast.makeText(_instance, "您还没有房屋，请先创建一个房屋", Toast.LENGTH_SHORT).show();
-						Intent _add = new Intent(_instance, Activity_addhouse.class);
+						Intent _add = new Intent(_instance, Activity_house_add.class);
 						_instance.startActivity(_add);
 						_instance.finish();
 					}

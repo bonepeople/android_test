@@ -114,7 +114,7 @@
             android:theme="@style/ActivityTheme_notitle" >
         </activity>
         <activity
-            android:name="com.shownest.android.activity.Activity_addhouse"
+            android:name="com.shownest.android.activity.Activity_house_add"
             android:theme="@style/ActivityTheme_notitle" >
         </activity>
         <activity

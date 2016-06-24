@@ -18,11 +18,11 @@ import android.widget.Toast;
  * 
  * @author bonepeople
  */
-public class Activity_addhouse extends DEBUG_Activity
+public class Activity_house_add extends DEBUG_Activity
 {
 	public static final int ADD_FAILED = 0;
 	public static final int ADD_SUCCESSFUL = 1;
-	private static Activity_addhouse _instance;
+	private static Activity_house_add _instance;
 	private static String _houseId = "";
 	public static Handler _handler = new Handler()
 	{
@@ -83,7 +83,7 @@ public class Activity_addhouse extends DEBUG_Activity
 		return _houseId;
 	}
 
-	public static Activity_addhouse get_instance()
+	public static Activity_house_add get_instance()
 	{
 		return _instance;
 	}

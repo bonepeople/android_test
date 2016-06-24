@@ -1,7 +1,7 @@
 package com.shownest.android.fragment;
 
 import com.shownest.android.R;
-import com.shownest.android.activity.Activity_addhouse;
+import com.shownest.android.activity.Activity_house_add;
 import com.shownest.android.activity.Activity_location;
 import com.shownest.android.adapter.Adapter_rooms_area;
 import com.shownest.android.basic.DEBUG_Fragment;
@@ -137,7 +137,7 @@ public class Fragment_addhouse extends DEBUG_Fragment implements View.OnClickLis
 			else
 			{
 				ContentValues _value = new ContentValues();
-				_value.put("houseId", Activity_addhouse.get_houseId());
+				_value.put("houseId", Activity_house_add.get_houseId());
 				_value.put("houseName", _name.getData());
 				_value.put("houseType", _type.getData());
 				_value.put("houseState", _state.getData());
@@ -158,8 +158,8 @@ public class Fragment_addhouse extends DEBUG_Fragment implements View.OnClickLis
 				_value.put("balconyAcreage", _adapter.get_acreage("balcony"));
 				_value.put("floors", _floor_current.getData() + "/" + _floor_all.getData());
 
-				Activity_addhouse.get_instance().show_wait();
-				HttpUtil.add_house(Activity_addhouse._handler, _value, Activity_addhouse.ADD_SUCCESSFUL, Activity_addhouse.ADD_FAILED);
+				Activity_house_add.get_instance().show_wait();
+				HttpUtil.add_house(Activity_house_add._handler, _value, Activity_house_add.ADD_SUCCESSFUL, Activity_house_add.ADD_FAILED);
 			}
 		}
 		else if (_id == _house.get_id())
