@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
-import com.shownest.android.fragment.Fragment_addhouse;
+import com.shownest.android.fragment.Fragment_house_add;
 import com.shownest.android.utils.JsonUtil;
 
 import android.os.Bundle;
@@ -50,7 +50,7 @@ public class Activity_house_add extends DEBUG_Activity
 		_instance = this;
 		setTitle("添加房屋");
 
-		add_fragment(this, new Fragment_addhouse(), false);
+		add_fragment(this, new Fragment_house_add(), false);
 	}
 
 	private static void handle_string(int _what, String _str)

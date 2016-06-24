@@ -23,7 +23,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-public class Fragment_addhouse extends DEBUG_Fragment implements View.OnClickListener, OnChangeListener
+public class Fragment_house_add extends DEBUG_Fragment implements View.OnClickListener, OnChangeListener
 {
 	private static final int REQUEST_LOCATION = 1;
 	private LinearLayout _body;
