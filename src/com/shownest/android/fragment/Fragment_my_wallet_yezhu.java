@@ -68,11 +68,6 @@ public class Fragment_my_wallet_yezhu extends DEBUG_Fragment implements View.OnC
 		case R.id.item_card:
 			Intent _card = new Intent(getActivity(), Activity_card_list.class);
 			startActivity(_card);
-
-//			ContentValues _value = new ContentValues();
-//			_value.put("cardid", "6222020200031497197");
-//			Activity_my_wallet.get_instance().show_wait();
-//			HttpUtil.get_card_type(Activity_my_wallet._handler, _value, Activity_my_wallet.GET_SUCCESSFUL, Activity_my_wallet.GET_FAILED);
 			break;
 		}
 	}
