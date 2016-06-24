@@ -5,28 +5,23 @@ import org.json.JSONObject;
 
 import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
-import com.shownest.android.fragment.Fragment_my_wallet_yezhu;
 import com.shownest.android.utils.JsonUtil;
-import com.shownest.android.utils.UserManager;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 /**
- * 我的中心
+ * 招标大厅
  * 
  * @author bonepeople
  */
-public class Activity_my_wallet extends DEBUG_Activity
+public class Activity_card_list extends DEBUG_Activity
 {
 	public static final int GET_FAILED = 0;
 	public static final int GET_SUCCESSFUL = 1;
-	public static final int RESULT_SET = 3;
-	private static Activity_my_wallet _instance;
-
+	private static Activity_card_list _instance;
 	public static Handler _handler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)
@@ -35,7 +30,7 @@ public class Activity_my_wallet extends DEBUG_Activity
 			{
 			case GET_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
-				System.out.println((String) msg.obj);
+				_instance.finish();
 				break;
 			case GET_SUCCESSFUL:
 				handle_string(msg.what, (String) msg.obj);
@@ -52,10 +47,12 @@ public class Activity_my_wallet extends DEBUG_Activity
 		setContentView(R.layout.activity_basic);
 		_relativelayout_wait = (RelativeLayout) findViewById(R.id.relativelayout_wait);
 		_instance = this;
-		setTitle("我的钱包");
+		setTitle("银行卡管理");
+		setMenu("添加");
 
-		if (UserManager.get_user_info().get_userType() == 11)
-			add_fragment(this, new Fragment_my_wallet_yezhu(), false);
+		// ContentValues _value = new ContentValues();
+		// show_wait();
+		// HttpUtil.get_bid_list(_handler, _value, GET_SUCCESSFUL, GET_FAILED);
 	}
 
 	private static void handle_string(int _what, String _str)
@@ -68,7 +65,7 @@ public class Activity_my_wallet extends DEBUG_Activity
 				switch (_what)
 				{
 				case GET_SUCCESSFUL:
-					
+
 					break;
 				}
 			else
@@ -86,23 +83,12 @@ public class Activity_my_wallet extends DEBUG_Activity
 	}
 
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	public void menu_click()
 	{
-		if (resultCode == -1)
-		{
-			switch (requestCode)
-			{
-			case RESULT_SET:
-				finish();
-				break;
-			}
-		}
-		else
-			System.out.println("resultCode=" + resultCode);
+		Toast.makeText(this, "add", Toast.LENGTH_SHORT).show();
 	}
-	
 
-	public static Activity_my_wallet get_instance()
+	public static Activity_card_list get_instance()
 	{
 		return _instance;
 	}
