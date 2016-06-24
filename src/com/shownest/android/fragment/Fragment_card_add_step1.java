@@ -65,6 +65,7 @@ public class Fragment_card_add_step1 extends DEBUG_Fragment implements OnClickLi
 			{
 				ContentValues _value = new ContentValues();
 				_value.put("cardid", _number.getText().toString());
+				Activity_card_add.set_bank_number(_number.getText().toString());
 				Activity_card_add.get_instance().show_wait();
 				HttpUtil.get_card_type(Activity_card_add._handler, _value, Activity_card_add.GET_SUCCESSFUL, Activity_card_add.GET_FAILED);
 			}

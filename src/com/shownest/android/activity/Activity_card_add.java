@@ -7,6 +7,7 @@ import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_card_add_step1;
 import com.shownest.android.fragment.Fragment_card_add_step2;
+import com.shownest.android.thread.Thread_time;
 import com.shownest.android.utils.JsonUtil;
 
 import android.os.Bundle;
@@ -30,7 +31,8 @@ public class Activity_card_add extends DEBUG_Activity
 	public static final int BUTTON_CHANGE = 6;
 	private static Activity_card_add _instance;
 	private static Fragment_card_add_step2 _fragment_step2;
-	private static String _bank_name, _bank_type, _bank_number, _bank_logo;
+	private static Thread_time _timer = null;
+	private static String _bank_name = "", _bank_type = "", _bank_number, _bank_logo, _phone;
 	public static Handler _handler = new Handler()
 	{
 		public void handleMessage(android.os.Message msg)
@@ -48,7 +50,7 @@ public class Activity_card_add extends DEBUG_Activity
 				handle_string(msg.what, (String) msg.obj);
 				break;
 			case BUTTON_CHANGE:
-				// _fragment_regist.mobilcode_change();
+				_fragment_step2.mobilcode_change();
 			}
 			_instance.close_wait();
 		};
@@ -63,8 +65,10 @@ public class Activity_card_add extends DEBUG_Activity
 		_instance = this;
 		setTitle("添加银行卡");
 
-//		add_fragment(this, new Fragment_card_add_step1(), false);
-		add_fragment(this, new Fragment_card_add_step2(), false);
+		// add_fragment(this, new Fragment_card_add_step1(), false);
+		add_fragment(this, _fragment_step2 = new Fragment_card_add_step2(), false);
+		if (_timer != null)
+			_timer.interrupt();
 	}
 
 	private static void handle_string(int _what, String _str)
@@ -93,8 +97,9 @@ public class Activity_card_add extends DEBUG_Activity
 					}
 					break;
 				case SEND_SUCCESSFUL:
-					// 06-11 14:34:28.383: I/System.out(18358): {"state":"1","msg":"房屋信息操作成功","data":"137"}
-					Toast.makeText(_instance, "房屋添加成功", Toast.LENGTH_SHORT).show();
+					_timer = new Thread_time(_handler, BUTTON_CHANGE, 61, 1);
+					_timer.start();
+					Toast.makeText(_instance, "手机验证码发送成功", Toast.LENGTH_SHORT).show();
 					break;
 				case ADD_SUCCESSFUL:
 					// 06-11 14:34:28.383: I/System.out(18358): {"state":"1","msg":"房屋信息操作成功","data":"137"}
@@ -139,6 +144,16 @@ public class Activity_card_add extends DEBUG_Activity
 	public static String get_bank_logo()
 	{
 		return _bank_logo;
+	}
+
+	public static String get_phone()
+	{
+		return _phone;
+	}
+
+	public static void set_phone(String _phone)
+	{
+		Activity_card_add._phone = _phone;
 	}
 
 }

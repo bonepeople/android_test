@@ -1,8 +1,14 @@
 package com.shownest.android.fragment;
 
 import com.shownest.android.R;
+import com.shownest.android.activity.Activity_card_add;
 import com.shownest.android.basic.DEBUG_Fragment;
+import com.shownest.android.utils.CommonUtil;
+import com.shownest.android.utils.HttpUtil;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +26,8 @@ public class Fragment_card_add_step2 extends DEBUG_Fragment implements OnClickLi
 	private Button _button_commit, _button_code;
 	private EditText _name, _id, _phone, _code;
 	private TextView _bank, _type;
+	private String[] _types = new String[] { "身份证", "户口本", "军官证" };
+	private int _mobilecode_wait = 0;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
@@ -45,8 +53,27 @@ public class Fragment_card_add_step2 extends DEBUG_Fragment implements OnClickLi
 		_code = (EditText) _view.findViewById(R.id.edittext_code);
 		_button_code = (Button) _view.findViewById(R.id.button_code);
 
+		_bank.setText(Activity_card_add.get_bank_name() + " " + Activity_card_add.get_bank_type());
 		_type.setOnClickListener(this);
 		_button_code.setOnClickListener(this);
+	}
+
+	public void mobilcode_change()
+	{
+		switch (_mobilecode_wait)
+		{
+		case 0:
+			_mobilecode_wait = 60;
+			_button_code.setText("重新发送(" + _mobilecode_wait + ")");
+			break;
+		case 1:
+			_mobilecode_wait--;
+			_button_code.setText("获取验证码");
+			break;
+		default:
+			_mobilecode_wait--;
+			_button_code.setText("重新发送(" + _mobilecode_wait + ")");
+		}
 	}
 
 	@Override
@@ -59,11 +86,30 @@ public class Fragment_card_add_step2 extends DEBUG_Fragment implements OnClickLi
 		}
 		else if (_id == R.id.button_code)
 		{
-			Toast.makeText(getActivity(), "code", Toast.LENGTH_SHORT).show();
+			String _string_phone = _phone.getText().toString();
+			if (_mobilecode_wait == 0)
+				if (CommonUtil.isPhone(_string_phone))
+				{
+					Activity_card_add.set_phone(_string_phone);
+					Activity_card_add.get_instance().show_wait();
+					HttpUtil.send_mobilecode(Activity_card_add._handler, _string_phone, Activity_card_add.SEND_SUCCESSFUL, Activity_card_add.SEND_FAILED);
+				}
+				else
+					Toast.makeText(getActivity(), "请输入正确的电话号码", Toast.LENGTH_SHORT).show();
 		}
 		else if (_id == R.id.textview_type)
 		{
-			Toast.makeText(getActivity(), "type", Toast.LENGTH_SHORT).show();
+			AlertDialog.Builder _builder = new Builder(getActivity());
+			_builder.setTitle("证件类型");
+			_builder.setItems(_types, new DialogInterface.OnClickListener()
+			{
+				@Override
+				public void onClick(DialogInterface dialog, int which)
+				{
+					_type.setText(_types[which]);
+				}
+			});
+			_builder.show();
 		}
 	}
 }
