@@ -3,6 +3,7 @@ package com.shownest.android.fragment;
 import java.util.ArrayList;
 
 import com.shownest.android.R;
+import com.shownest.android.activity.Activity_bid_detail;
 import com.shownest.android.activity.Activity_my_order_maijia;
 import com.shownest.android.activity.Activity_order_detail;
 import com.shownest.android.adapter.Adapter_order_state_maijia;
@@ -16,8 +17,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class Fragment_my_order_maijia extends DEBUG_Fragment implements OnChangeListener
 {
@@ -49,7 +52,17 @@ public class Fragment_my_order_maijia extends DEBUG_Fragment implements OnChange
 			_list.setAdapter(_adapter);
 			_list.setDivider(new ColorDrawable(getResources().getColor(R.color.background_main)));
 			_list.setDividerHeight(30);
-
+			_list.setOnItemClickListener(new OnItemClickListener()
+			{
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+				{
+					String _protocolId = _data.get(position).get_protocolId();
+					Intent _detail = new Intent(getActivity(), Activity_order_detail.class);
+					_detail.putExtra("protocolId", _protocolId);
+					startActivity(_detail);
+				}
+			});
 			_body.addView(_list);
 		}
 	}
@@ -70,14 +83,6 @@ public class Fragment_my_order_maijia extends DEBUG_Fragment implements OnChange
 			// _xieyi.putExtra("have_title", true);
 			// _xieyi.putExtra("title", _title);
 			// startActivity(_xieyi);
-		}
-		else
-		{
-			// 订单详细信息
-			String _protocolId = _data.get(Integer.parseInt(_args[1])).get_protocolId();
-			Intent _detail = new Intent(getActivity(), Activity_order_detail.class);
-			_detail.putExtra("protocolId", _protocolId);
-			startActivity(_detail);
 		}
 	}
 }

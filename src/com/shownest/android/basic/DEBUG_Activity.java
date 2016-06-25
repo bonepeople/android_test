@@ -85,7 +85,7 @@ public abstract class DEBUG_Activity extends Activity
 	protected void onDestroy()
 	{
 		if (DEBUG)
-			Log.v(TAG, this.getClass().getName() + "onDestroy");
+			Log.v(TAG, this.getClass().getName() + "-onDestroy");
 		// TODO Auto-generated method stub
 		super.onDestroy();
 	}

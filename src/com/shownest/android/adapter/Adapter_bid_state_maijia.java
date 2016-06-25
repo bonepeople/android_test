@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class Adapter_bid_state_maijia extends BaseAdapter implements View.OnClickListener
@@ -25,7 +24,6 @@ public class Adapter_bid_state_maijia extends BaseAdapter implements View.OnClic
 
 	private static class ViewHolder
 	{
-		public LinearLayout _linearlayout_content;
 		public TextView _textview_name;
 		public TextView _textview_showname;
 		public TextView _textview_price;
@@ -78,7 +76,6 @@ public class Adapter_bid_state_maijia extends BaseAdapter implements View.OnClic
 		{
 			_view = _inflater.inflate(R.layout.item_bid_state_maijia, null);
 			_holder = new ViewHolder();
-			_holder._linearlayout_content = (LinearLayout) _view.findViewById(R.id.linearlayout_content);
 			_holder._textview_name = (TextView) _view.findViewById(R.id.textview_name);
 			_holder._textview_showname = (TextView) _view.findViewById(R.id.textview_showname);
 			_holder._textview_price = (TextView) _view.findViewById(R.id.textview_price);
@@ -89,7 +86,6 @@ public class Adapter_bid_state_maijia extends BaseAdapter implements View.OnClic
 			_holder._textview_commit = (TextView) _view.findViewById(R.id.textview_commit);
 			_holder._imageview_state = (ImageView) _view.findViewById(R.id.imageview_state);
 
-			_holder._linearlayout_content.setOnClickListener(this);
 			_holder._textview_commit.setOnClickListener(this);
 			_holder._textview_hint.setOnClickListener(this);
 			_view.setTag(_holder);
@@ -98,8 +94,7 @@ public class Adapter_bid_state_maijia extends BaseAdapter implements View.OnClic
 		{
 			_holder = (ViewHolder) _view.getTag();
 		}
-		_holder._linearlayout_content.setId(position);
-		_holder._textview_commit.setId(position + 100000);
+		_holder._textview_commit.setId(position);
 		_holder._textview_hint.setId(position + 50000);
 		_holder._textview_name.setText(_temp_bid.get_houseName());
 		_holder._textview_showname.setText(_temp_bid.get_contacts());
@@ -140,13 +135,7 @@ public class Adapter_bid_state_maijia extends BaseAdapter implements View.OnClic
 	public void onClick(View v)
 	{
 		int _id = v.getId();
-		if (_id < 50000)
-		{
-			// linearlayout_content
-			if (_listener != null)
-				_listener.onChange(_tag, new String[] { "detail", String.valueOf(_id) });
-		}
-		else if (_id < 100000)
+		if (_id > 50000)
 		{
 			// textview_hint
 			if (_listener != null)
@@ -156,8 +145,7 @@ public class Adapter_bid_state_maijia extends BaseAdapter implements View.OnClic
 		{
 			// textview_commit
 			if (_listener != null)
-				_listener.onChange(_tag, new String[] { "commit", String.valueOf(_id - 100000) });
+				_listener.onChange(_tag, new String[] { "commit", String.valueOf(_id) });
 		}
 	}
-
 }

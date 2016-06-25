@@ -17,6 +17,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -56,6 +58,18 @@ public class Fragment_my_bid_maijia extends DEBUG_Fragment implements OnChangeLi
 			_list.setAdapter(_adapter);
 			_list.setDivider(new ColorDrawable(getResources().getColor(R.color.background_main)));
 			_list.setDividerHeight(30);
+			_list.setOnItemClickListener(new OnItemClickListener()
+			{
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+				{
+					String _bidID = _data.get(position).get_id();
+					Intent _detail = new Intent(getActivity(), Activity_bid_detail.class);
+					_detail.putExtra("bidID", _bidID);
+					_detail.putExtra("have_button", true);
+					startActivity(_detail);
+				}
+			});
 			_body.addView(_list);
 		}
 	}
@@ -102,14 +116,6 @@ public class Fragment_my_bid_maijia extends DEBUG_Fragment implements OnChangeLi
 			_xieyi.putExtra("have_title", true);
 			_xieyi.putExtra("title", _title);
 			startActivity(_xieyi);
-		}
-		else
-		{
-			String _bidID = _data.get(Integer.parseInt(_args[1])).get_id();
-			Intent _detail = new Intent(getActivity(), Activity_bid_detail.class);
-			_detail.putExtra("bidID", _bidID);
-			_detail.putExtra("have_button", true);
-			startActivity(_detail);
 		}
 	}
 }
