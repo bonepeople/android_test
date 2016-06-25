@@ -31,6 +31,20 @@ public class HttpUtil
 
 	// http://192.168.1.112:10000/shownest/html/test1.html
 	// http://192.168.1.112:10000/shownest/websubmitreg
+
+	/**
+	 * 删除银行卡
+	 */
+	public static void delete_card(Handler _handler, ContentValues _value, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "webBankCardDelete";
+		String _message = "";
+
+		_message = values(_value);
+
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
+	}
+
 	/**
 	 * 添加银行卡
 	 */
@@ -53,6 +67,17 @@ public class HttpUtil
 		String _message = "";
 
 		_message = values(_value);
+
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
+	}
+
+	/**
+	 * 查询当前用户所有银行卡列表
+	 */
+	public static void get_card_list(Handler _handler, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "webBankCardList";
+		String _message = "";
 
 		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
 	}
