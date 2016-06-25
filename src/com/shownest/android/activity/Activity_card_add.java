@@ -41,6 +41,9 @@ public class Activity_card_add extends DEBUG_Activity
 		{
 			switch (msg.what)
 			{
+			case BUTTON_CHANGE:
+				_fragment_step2.mobilcode_change();
+				return;
 			case SEND_FAILED:
 			case GET_FAILED:
 			case ADD_FAILED:
@@ -51,8 +54,6 @@ public class Activity_card_add extends DEBUG_Activity
 			case ADD_SUCCESSFUL:
 				handle_string(msg.what, (String) msg.obj);
 				break;
-			case BUTTON_CHANGE:
-				_fragment_step2.mobilcode_change();
 			}
 			_instance.close_wait();
 		};
