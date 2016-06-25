@@ -21,7 +21,7 @@ public class Activity_main extends DEBUG_Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_main_test);
 		if (DataUtil.get_ukey(this) != null)
 			startService(new Intent(this, Service_login.class));
 	}
