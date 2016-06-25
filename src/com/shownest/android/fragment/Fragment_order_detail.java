@@ -2,9 +2,11 @@ package com.shownest.android.fragment;
 
 import com.shownest.android.R;
 import com.shownest.android.activity.Activity_order_detail;
+import com.shownest.android.activity.Activity_webview;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.OrderInfo;
 import com.shownest.android.model.OrderStageInfo;
+import com.shownest.android.utils.UserManager;
 import com.shownest.android.widget.InformationBar;
 import com.shownest.android.widget.View_split_h;
 import com.shownest.android.widget.Widget_closeable_view;
@@ -60,7 +62,7 @@ public class Fragment_order_detail extends DEBUG_Fragment implements OnClickList
 				new InformationBar(getActivity(), _stageView, 5, new String[] { "阶段名称", _stages.get(_temp_i + 1).get_stageName() }, false);
 				new InformationBar(getActivity(), _stageView, 5, new String[] { "阶段状态", _stages.get(_temp_i + 1).get_stageState_name() }, false);
 				new InformationBar(getActivity(), _stageView, 5, new String[] { "本阶段应托管", _stages.get(_temp_i + 1).get_stageMoney() + "元" }, false);
-				
+
 				if (_data.get_currentStageId() == _stages.get(_temp_i + 1).get_stageId())
 				{
 					LayoutInflater.from(getActivity()).inflate(R.layout.widget_buttonbar, _stageView);
@@ -110,12 +112,13 @@ public class Fragment_order_detail extends DEBUG_Fragment implements OnClickList
 		}
 		else if (_id == _protocol.get_id())
 		{
-			Toast.makeText(getActivity(), "protocol", Toast.LENGTH_SHORT).show();
-			// Intent _quota_list = new Intent(getActivity(), Activity_quota_list.class);
-			// _quota_list.putExtra("id", _bidID);
-			// _quota_list.putExtra("type", Activity_bid_detail.get_data().get_bookType());
-			// _quota_list.putExtra("have_detail", false);
-			// startActivity(_quota_list);
+			Intent _web = new Intent(getActivity(), Activity_webview.class);
+			String _url;
+			_url = "http://app.shownest.com/agreement/viewAgreementDetail?protocolId=" + Activity_order_detail.get_data().get_protocolId() + "&ukey=" + UserManager.get_ukey();
+			_web.putExtra("url", _url);
+			_web.putExtra("have_title", true);
+			_web.putExtra("title", "托管协议");
+			startActivity(_web);
 		}
 		else if (_id == _quota.get_id())
 		{
