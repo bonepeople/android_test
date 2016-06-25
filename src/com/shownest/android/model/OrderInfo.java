@@ -305,38 +305,17 @@ public class OrderInfo
 		}
 		return _result;
 	}
-	
+
 	public String get_currentStageState_hint()
 	{
 		String _result = "";
 		switch (_currentStageState)
 		{
-		case 1:
-			_result = "待业主托管";
-			break;
 		case 2:
-			_result = "业主已托管，卖家工作中";
-			break;
-		case 3:
-			_result = "卖家申请验收 - 待业主验收";
-			break;
-		case 4:
-			_result = "待卖家整改";
-			break;
-		case 5:
-			_result = "卖家申请调整费用";
-			break;
-		case 6:
-			_result = "待业主托管调整费用";
-			break;
 		case 7:
-			_result = "业主已托管";
-			break;
 		case 8:
-			_result = "业主已托管";
+			_result = "申请验收";
 			break;
-		case 9:
-			_result = "本阶段结束";
 		}
 		return _result;
 	}
