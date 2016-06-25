@@ -8,6 +8,7 @@ import com.shownest.android.utils.HttpUtil;
 
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -82,7 +83,32 @@ public class Fragment_card_add_step2 extends DEBUG_Fragment implements OnClickLi
 		int _id = v.getId();
 		if (_id == R.id.button_commit)
 		{
-			Toast.makeText(getActivity(), "commit", Toast.LENGTH_SHORT).show();
+			if (_name.getText().toString().isEmpty())
+			{
+				Toast.makeText(getActivity(), "请输入您的姓名", Toast.LENGTH_SHORT).show();
+			}
+			else if (this._id.getText().toString().isEmpty())
+			{
+				Toast.makeText(getActivity(), "请输入持卡人证件号", Toast.LENGTH_SHORT).show();
+			}
+			else if (_code.getText().toString().isEmpty())
+			{
+				Toast.makeText(getActivity(), "请输入验证码", Toast.LENGTH_SHORT).show();
+			}
+			else
+			{
+				ContentValues _value = new ContentValues();
+				_value.put("bankName", Activity_card_add.get_bank_name());
+				_value.put("bankLogo", Activity_card_add.get_bank_logo());
+				_value.put("bankCardNo", Activity_card_add.get_bank_number());
+				_value.put("bankCardType", Activity_card_add.get_bank_type());
+				_value.put("userRealName", _name.getText().toString());
+				_value.put("userIdCard", this._id.getText().toString());
+				_value.put("userPhone", Activity_card_add.get_phone());
+				_value.put("mobilecode", _code.getText().toString());
+				Activity_card_add.get_instance().show_wait();
+				HttpUtil.add_card(Activity_card_add._handler, _value, Activity_card_add.ADD_SUCCESSFUL, Activity_card_add.ADD_FAILED);
+			}
 		}
 		else if (_id == R.id.button_code)
 		{

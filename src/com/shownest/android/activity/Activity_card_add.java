@@ -103,7 +103,7 @@ public class Activity_card_add extends DEBUG_Activity
 					break;
 				case ADD_SUCCESSFUL:
 					// 06-11 14:34:28.383: I/System.out(18358): {"state":"1","msg":"房屋信息操作成功","data":"137"}
-					Toast.makeText(_instance, "房屋添加成功", Toast.LENGTH_SHORT).show();
+//					add_fragment(_instance, new Fragment_card_add_step3(), false);
 					break;
 				}
 			else
