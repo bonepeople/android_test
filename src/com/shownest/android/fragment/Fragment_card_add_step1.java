@@ -48,6 +48,7 @@ public class Fragment_card_add_step1 extends DEBUG_Fragment implements OnClickLi
 		_number = new EditText(getActivity());
 		_number.setHint("请输入卡号");
 		_number.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
+		_body.setFocusableInTouchMode(true);
 		_body.addView(_number);
 	}
 
@@ -63,6 +64,7 @@ public class Fragment_card_add_step1 extends DEBUG_Fragment implements OnClickLi
 			}
 			else
 			{
+				_number.clearFocus();
 				ContentValues _value = new ContentValues();
 				_value.put("cardid", _number.getText().toString());
 				Activity_card_add.set_bank_number(_number.getText().toString());

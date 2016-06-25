@@ -7,9 +7,11 @@ import com.shownest.android.R;
 import com.shownest.android.basic.DEBUG_Activity;
 import com.shownest.android.fragment.Fragment_card_add_step1;
 import com.shownest.android.fragment.Fragment_card_add_step2;
+import com.shownest.android.fragment.Fragment_card_add_step3;
 import com.shownest.android.thread.Thread_time;
 import com.shownest.android.utils.JsonUtil;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.RelativeLayout;
@@ -65,8 +67,7 @@ public class Activity_card_add extends DEBUG_Activity
 		_instance = this;
 		setTitle("添加银行卡");
 
-		// add_fragment(this, new Fragment_card_add_step1(), false);
-		add_fragment(this, _fragment_step2 = new Fragment_card_add_step2(), false);
+		add_fragment(this, new Fragment_card_add_step1(), false);
 		if (_timer != null)
 			_timer.interrupt();
 	}
@@ -82,19 +83,10 @@ public class Activity_card_add extends DEBUG_Activity
 				{
 				case GET_SUCCESSFUL:
 					JSONObject _data = _obj.getJSONObject("data");
-					String _result = _data.getString("reason");
-					if (_result.equals("查询成功"))
-					{
-						_bank_name = _data.getJSONObject("result").getString("bank");
-						_bank_type = _data.getJSONObject("result").getString("nature");
-						_bank_logo = _data.getJSONObject("result").getString("logo");
-						// 添加第二个界面
-						add_fragment(_instance, _fragment_step2 = new Fragment_card_add_step2(), true);
-					}
-					else
-					{
-						Toast.makeText(_instance, _result, Toast.LENGTH_SHORT).show();
-					}
+					_bank_name = _data.getString("bankName");
+					_bank_type = _data.getString("cardType");
+					_bank_logo = _data.getString("logoUrl");
+					add_fragment(_instance, _fragment_step2 = new Fragment_card_add_step2(), true);
 					break;
 				case SEND_SUCCESSFUL:
 					_timer = new Thread_time(_handler, BUTTON_CHANGE, 61, 1);
@@ -102,8 +94,8 @@ public class Activity_card_add extends DEBUG_Activity
 					Toast.makeText(_instance, "手机验证码发送成功", Toast.LENGTH_SHORT).show();
 					break;
 				case ADD_SUCCESSFUL:
-					// 06-11 14:34:28.383: I/System.out(18358): {"state":"1","msg":"房屋信息操作成功","data":"137"}
-//					add_fragment(_instance, new Fragment_card_add_step3(), false);
+					_instance.setResult(Activity.RESULT_OK);
+					add_fragment(_instance, new Fragment_card_add_step3(), false);
 					break;
 				}
 			else
