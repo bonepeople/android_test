@@ -122,7 +122,18 @@ public class Fragment_order_detail extends DEBUG_Fragment implements OnClickList
 		}
 		else if (_id == _quota.get_id())
 		{
-			Toast.makeText(getActivity(), "quota", Toast.LENGTH_SHORT).show();
+			Intent _web = new Intent(getActivity(), Activity_webview.class);
+			String _url;
+			if (Activity_order_detail.get_data().get_bookType() == 12)
+				_url = "http://app.shownest.com/bid/getDesiSelfRespBid?userId=" + UserManager.get_user_info().get_userId() + "&homeId=" + Activity_order_detail.get_data().get_quotationId() + "&ukey="
+						+ UserManager.get_ukey();
+			else
+				_url = "http://app.shownest.com/bid/getConsSelfRespBid?userId=" + UserManager.get_user_info().get_userId() + "&homeId=" + Activity_order_detail.get_data().get_quotationId() + "&ukey="
+						+ UserManager.get_ukey();
+			_web.putExtra("url", _url);
+			_web.putExtra("have_title", true);
+			_web.putExtra("title", "报价单详情");
+			startActivity(_web);
 		}
 		else if (_id == _tel.get_id())
 		{
