@@ -38,6 +38,9 @@ public class Activity_regist extends DEBUG_Activity
 		{
 			switch (msg.what)
 			{
+			case BUTTON_CHANGE:
+				_fragment_regist.mobilcode_change();
+				return;
 			case CHECK_FAILED:
 			case SEND_FAILED:
 			case REGIST_FAILED:
@@ -48,8 +51,6 @@ public class Activity_regist extends DEBUG_Activity
 			case REGIST_SUCCESSFUL:
 				handle_string(msg.what, (String) msg.obj);
 				break;
-			case BUTTON_CHANGE:
-				_fragment_regist.mobilcode_change();
 			}
 			_instance.close_wait();
 		};

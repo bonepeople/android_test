@@ -37,6 +37,9 @@ public class Activity_change_phone extends DEBUG_Activity
 		{
 			switch (msg.what)
 			{
+			case BUTTON_CHANGE:
+				_fragment_change_phone.mobilcode_change();
+				return;
 			case SEND_FAILED:
 			case CHANGE_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
@@ -45,8 +48,6 @@ public class Activity_change_phone extends DEBUG_Activity
 			case CHANGE_SUCCESSFUL:
 				handle_string(msg.what, (String) msg.obj);
 				break;
-			case BUTTON_CHANGE:
-				_fragment_change_phone.mobilcode_change();
 			}
 			_instance.close_wait();
 		};
