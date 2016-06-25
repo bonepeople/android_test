@@ -30,6 +30,8 @@ public class Activity_order_detail extends DEBUG_Activity
 {
 	public static final int GET_FAILED = 0;
 	public static final int GET_SUCCESSFUL = 1;
+	public static final int CHECK_FAILED = 2;
+	public static final int CHECK_SUCCESSFUL = 3;
 	private static Activity_order_detail _instance;
 	private Intent _intent;
 	private static String _protocolId = "";
@@ -40,10 +42,12 @@ public class Activity_order_detail extends DEBUG_Activity
 		{
 			switch (msg.what)
 			{
+			case CHECK_FAILED:
 			case GET_FAILED:
 				Toast.makeText(_instance, "连接服务器失败。", Toast.LENGTH_SHORT).show();
 				_instance.finish();
 				break;
+			case CHECK_SUCCESSFUL:
 			case GET_SUCCESSFUL:
 				handle_string(msg.what, (String) msg.obj);
 				break;
@@ -93,6 +97,12 @@ public class Activity_order_detail extends DEBUG_Activity
 					else
 						add_fragment(_instance, new Fragment_order_detail_maijia(), false);
 					break;
+				case CHECK_SUCCESSFUL:
+					Toast.makeText(_instance, "已通知业主，申请验收", Toast.LENGTH_SHORT).show();
+//					_data.set_currentStageState(2);
+//					_data.get_stages().get(_data.get_currentStageId()).set_stageState(2);
+					//刷新数据显示
+					
 				}
 			else
 			{

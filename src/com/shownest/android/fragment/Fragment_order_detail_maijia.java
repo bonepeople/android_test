@@ -5,10 +5,12 @@ import com.shownest.android.activity.Activity_order_detail;
 import com.shownest.android.activity.Activity_webview;
 import com.shownest.android.basic.DEBUG_Fragment;
 import com.shownest.android.model.OrderInfo;
+import com.shownest.android.utils.HttpUtil;
 import com.shownest.android.utils.UserManager;
 import com.shownest.android.widget.InformationBar;
 import com.shownest.android.widget.View_split_h;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -99,22 +101,11 @@ public class Fragment_order_detail_maijia extends DEBUG_Fragment implements OnCl
 		if (_id == R.id.button_commit)
 		{
 			Toast.makeText(getActivity(), "申请验收", Toast.LENGTH_SHORT).show();
-			// String _url = "";
-			// Intent _toubiao = new Intent(getActivity(), Activity_webview.class);
-			// switch (UserManager.get_user_info().get_userType())
-			// {
-			// case 12:
-			// _url = "http://app.shownest.com/bid/getDesiBidDetail?homeId=" + _bidID + "&ukey=" + UserManager.get_ukey();
-			// break;
-			// case 13:
-			// _url = "http://app.shownest.com/bid/getConsBidDetail?homeId=" + _bidID + "&ukey=" + UserManager.get_ukey();
-			// break;
-			// case 14:
-			// return;
-			// }
-			// _toubiao.putExtra("url", _url);
-			// _toubiao.putExtra("have_title", false);
-			// startActivity(_toubiao);
+			ContentValues _value = new ContentValues();
+			_value.put("protocolId", Activity_order_detail.get_data().get_protocolId());
+			_value.put("stageId", Activity_order_detail.get_data().get_currentStageId());
+			Activity_order_detail.get_instance().show_wait();
+			HttpUtil.commit_check(Activity_order_detail._handler, _value, Activity_order_detail.CHECK_SUCCESSFUL, Activity_order_detail.CHECK_FAILED);
 		}
 		else if (_id == _protocol.get_id())
 		{

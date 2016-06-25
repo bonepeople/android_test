@@ -83,12 +83,24 @@ public class HttpUtil
 	}
 
 	/**
+	 * 卖家申请验收
+	 */
+	public static void commit_check(Handler _handler, ContentValues _value, int _successful, int _failed)
+	{
+		String _address = BASEADDRESS + "webTrusteeshipContractAcceptance";
+		String _message = "";
+
+		_message = values(_value);
+
+		new Thread_http(_handler, _address, _message, _successful, _failed, "POST").start();
+	}
+
+	/**
 	 * 获取订单详情，会根据当前登录用户的类别进行判断
 	 */
 	public static void get_order_detail(Handler _handler, ContentValues _value, int _successful, int _failed)
 	{
-		String _address = BASEADDRESS + "webGetOwnerDecorateOrderDetail";
-		String _message = "";
+		String _address, _message;
 
 		if (UserManager.get_user_info().get_userType() == 11)
 			_address = BASEADDRESS + "webGetOwnerDecorateOrderDetail";
