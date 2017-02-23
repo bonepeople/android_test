@@ -19,6 +19,8 @@
         android:theme="@style/AppTheme" >
         <service android:name="com.shownest.android.thread.Service_login" >
         </service>
+        <service android:name="com.shownest.android.thread.Service_upload" >
+        </service>
 
         <activity
             android:name="com.shownest.android.activity.Activity_main"
